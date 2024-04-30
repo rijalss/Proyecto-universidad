@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<section class="p-3 p-md-4 p-xl-5">
+
   <div class="container">
     <div class="card border-light-subtle shadow-sm">
       <div class="row g-0">
@@ -56,7 +56,7 @@
       </div>
     </div>
   </div>
-</section>
+
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
