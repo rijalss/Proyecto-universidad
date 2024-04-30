@@ -10,12 +10,12 @@
 </head>
 <body>
 
-
+<section class="p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="card border-light-subtle shadow-sm">
       <div class="row g-0">
         <div class="col-12 col-md-6">
-          <img class="img rounded-start w-200 h-200 object-fit-cover gg" loading="lazy" src="img/img-1.jpg" alt="BootstrapBrain Logo">
+          <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="img/img-1.jpg" alt="BootstrapBrain Logo">
         </div>
         <div class="col-12 col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
@@ -50,7 +50,9 @@
       </div>
     </div>
   </div>
-
+  
+</section>
+  
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
