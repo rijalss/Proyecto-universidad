@@ -13,7 +13,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-12 col-md-8 col-lg-6">
       <div class="card border-light-subtle shadow-sm">
-        Orlando pendejo
+        Orlando pendejoss
       </div>
     </div>
   </div>
@@ -73,4 +73,3 @@
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
