@@ -7,34 +7,34 @@
                     <i class="lni lni-grid-alt"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">CodzSword</a>
+                    <a href="#">Sistema de Inventario</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-user"></i>
-                        <span>Profile</span>
+                        <span>Perfil</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
-                        <span>Task</span>
+                        <span>Tareas</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-protection"></i>
-                        <span>Auth</span>
+                        <span>Autenticación</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
+                            <a href="#" class="sidebar-link">Iniciar Sesión</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
+                            <a href="#" class="sidebar-link">Registrar</a>
                         </li>
                     </ul>
                 </li>
@@ -64,13 +64,13 @@
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-popup"></i>
-                        <span>Notification</span>
+                        <span>Notificaciones</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-cog"></i>
-                        <span>Setting</span>
+                        <span>Configuración</span>
                     </a>
                 </li>
             </ul>
@@ -81,12 +81,11 @@
                 </a>
             </div>
         </aside>
+        <!-- ============================================================== -->
+        <!-- End of sidebar -->
+        <!-- ============================================================== -->
         <div class="main p-3">
-            <div class="text-center">
-                <h1>
-                    Sidebar Bootstrap 5
-                </h1>
-            </div>
+
         </div>
     </body>
 </body>
