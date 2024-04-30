@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Header -->
-        <?php require_once("componentes/header.php");?>
+        <?php require_once("comunes/header.php");?>
     <!-- Header -->
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
