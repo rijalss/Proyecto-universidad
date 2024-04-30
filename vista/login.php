@@ -35,14 +35,7 @@
                   <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                   <input type="password" class="form-control" name="password" id="password" value="" required>
                 </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                    <label class="form-check-label text-secondary" for="remember_me">
-                      Keep me logged in
-                    </label>
-                  </div>
-                </div>
+                
                 <div class="col-12">
                   <div class="d-grid">
                     <button class="btn bsb-btn-xl btn-primary" type="submit">Log in now</button>
