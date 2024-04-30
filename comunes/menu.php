@@ -7,7 +7,7 @@
                     <i class="lni lni-grid-alt"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">Sistema de Inventario</a>
+                    <a href="#">Menú</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
