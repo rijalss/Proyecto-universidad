@@ -1,4 +1,3 @@
-
 <body>
     <div class="wrapper">
         <aside id="sidebar">
@@ -24,30 +23,27 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-protection"></i>
                         <span>Autenticación</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Iniciar Sesión</a>
+                            <a href="?pagina=login" class="sidebar-link">Iniciar Sesión</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Registrar</a>
+                            <a href="?pagina=login" class="sidebar-link">Registrar</a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                         <i class="lni lni-layout"></i>
                         <span>Multi Level</span>
                     </a>
                     <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
                                 Two Links
                             </a>
                             <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
@@ -87,7 +83,7 @@
         <div class="main p-3">
 
         </div>
-    </body>
+</body>
 </body>
 
 </html>
