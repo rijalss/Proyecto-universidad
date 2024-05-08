@@ -1,6 +1,6 @@
-<body>
-    <div class="wrapper">
-        <aside id="sidebar">
+
+<div class="wrapper">
+        <aside id="sidebar" >
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
                     <i class="lni lni-grid-alt"></i>
@@ -80,10 +80,3 @@
         <!-- ============================================================== -->
         <!-- End of sidebar -->
         <!-- ============================================================== -->
-        <div class="main p-3">
-
-        </div>
-</body>
-</body>
-
-</html>
