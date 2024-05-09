@@ -6,14 +6,15 @@
     <title>Bienvenido</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css">
+    <link rel="stylesheet" href="public/bootstrap/css/sidebar.css">
 </head>
 <body>
     <!-- Header -->
         <?php require_once("public/commun/menu.php");?>
     <!-- Header -->
-	<br>
-	<br>
+    <br>
+    <br>
+
     <div class="container m-5">
     <div class="container-fluid"> <!-- todo el contenido ira dentro de esta etiqueta-->
 	<!-- As a heading -->
@@ -72,13 +73,11 @@
 </div>
 </div>
 </div>
-<!-- Footer -->
-<?php require_once("public/commun/footer.php");?>
-<!-- Footer -->
-</div> <!-- fin de container -->
-</div>  <!-- container 1  -->
+    <!-- Footer -->
+    <?php require_once("public/commun/footer.php") ?> 
+    <!-- Footer -->
+
     <!-- Scripts -->
-<script src="public/bootstrap/js/sidebar.js"></script>
 <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
 </body>

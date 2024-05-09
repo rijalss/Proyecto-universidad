@@ -1,11 +1,10 @@
 <!-- TODO conectar a la principal -->
-<footer class="footer mt-auto py-3 bg-dark">
+<footer id="footer" class=" pt-4 pb-2">
     <div class="container">
-        <p class="text-muted">© 2024 </p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#" class="text-muted">Acerca de</a></li>
-            <li class="list-inline-item"><a href="#" class="text-muted">Contacto</a></li>
-            <li class="list-inline-item"><a href="#" class="text-muted">Política de privacidad</a></li>
-        </ul>
+        <div class="row">
+        <div class="col-md-12">
+            <p>&copy; 2024 Proyecto UPTAEB.</p>
+        </div>
+        </div>
     </div>
 </footer>
