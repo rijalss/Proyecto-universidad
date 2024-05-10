@@ -23,7 +23,7 @@
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
-                <h5 class="card-title">Proveedores</h5>
+                <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
                 <p class="card-text ">Gestiona tus proveedores con facilidad.</p>
                 <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
             </div>
@@ -32,7 +32,7 @@
         <div class="col-sm-6">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
-                <h5 class="card-title">Almacen</h5>
+                <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
                 <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
                 <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
             </div>
@@ -41,7 +41,7 @@
         <div class="col-sm-6">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
-                <h5 class="card-title">Productos</h5>
+                <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
                 <p class="card-text">Mantén tu inventario bajo control</p>
                 <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
             </div>
@@ -50,7 +50,7 @@
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
-                <h5 class="card-title">Usuarios</h5>
+                <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Usuarios</h5>
                 <p class="card-text">Controla el acceso a tu sistema</p>
                 <a href="?pagina=usuario" class="btn btn-primary">Ver usuarios</a>
             </div>
