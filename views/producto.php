@@ -22,7 +22,7 @@
     <div class="container-fluid"> <!-- todo el contenido ira dentro de esta etiqueta-->
 	<!-- As a heading -->
 
-	<div class="card">
+	<div class="card shadow mb-4">
         <div class="card-header py-3">
         <h6 class="container text-center h2 text-primary">Registro de Producto</h6>
         <br>

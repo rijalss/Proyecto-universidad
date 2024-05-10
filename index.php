@@ -1,6 +1,6 @@
 <?php
 
-$pagina = 'producto';
+$pagina = 'principal';
 
 if(!empty ($_GET['pagina'])){
     $pagina = $_GET['pagina']; 
