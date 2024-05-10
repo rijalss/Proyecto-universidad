@@ -12,10 +12,16 @@
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="?pagina=usuario">Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?pagina=proveedor">Proveedor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?pagina=producto">Producto</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
