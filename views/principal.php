@@ -25,7 +25,7 @@
             <div class="card-body">
                 <h5 class="card-title">Proveedores</h5>
                 <p class="card-text ">Gestiona tus proveedores con facilidad.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
             </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h5 class="card-title">Almacen</h5>
                 <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
             </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="card-body">
                 <h5 class="card-title">Productos</h5>
                 <p class="card-text">Mantén tu inventario bajo control</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
             </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="card-body">
                 <h5 class="card-title">Usuarios</h5>
                 <p class="card-text">Controla el acceso a tu sistema</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="?pagina=usuario" class="btn btn-primary">Ver usuarios</a>
             </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="card-body">
                 <h5 class="card-title">Ventas</h5>
                 <p class="card-text">Gestiona tus ventas con facilidad.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">Ver ventas</a>
             </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="card-body">
                 <h5 class="card-title">Clientes</h5>
                 <p class="card-text">Gestiona tus clientes con facilidad.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">Ver clientes</a>
             </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
             <div class="card-body">
                 <h5 class="card-title">Cotizaciones</h5>
                 <p class="card-text">Gestiona tus cotizaciones con facilidad.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">Ver cotizaciones</a>
             </div>
             </div>
         </div>
