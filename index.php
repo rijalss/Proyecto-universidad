@@ -1,6 +1,6 @@
 <?php
 
-$pagina = 'proveedor';
+$pagina = 'producto';
 
 if(!empty ($_GET['pagina'])){
     $pagina = $_GET['pagina']; 

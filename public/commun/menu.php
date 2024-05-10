@@ -1,6 +1,7 @@
 <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sistema de Inventario</a>
+        <a class="navbar-brand " href="#">Sistema de Inventario <img width="20PX" src="public/img/box-seam.svg" alt=""></a> 
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,6 +36,9 @@
                 </li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/img/box-arrow-left.svg" alt="">  Salir</a>
             </li>
             </ul>
         </div>

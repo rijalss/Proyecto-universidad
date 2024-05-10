@@ -7,6 +7,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
+	
 </head>
 <body>
     <!-- Header -->
