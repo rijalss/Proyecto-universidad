@@ -1,8 +1,7 @@
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="navbar bg-primary fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand " href="#">Sistema de Inventario <img width="20PX" src="public/img/box-seam.svg" alt=""></a> 
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <a class="navbar-brand text-white">Sistema de Inventario</a>
+        <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
