@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="?pagina=producto">Producto</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?pagina=entrada">Entrada</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
+
 <body>
     <!-- Header -->
-        <?php require_once("public/commun/menu.php");?>
+    <?php require_once("public/commun/menu.php"); ?>
     <!-- Header -->
 
     <!-- Title -->
@@ -19,80 +21,73 @@
     <br><br>
     <!-- Container de cards -->
     <div class="container d-flex justify-content-center">
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
-                <p class="card-text ">Gestiona tus proveedores con facilidad.</p>
-                <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
+                        <p class="card-text ">Gestiona tus proveedores con facilidad.</p>
+                        <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-6 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
+                        <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
+                        <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6 p-3">
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
-                <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
-                <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
+            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
+                        <p class="card-text">Mantén tu inventario bajo control</p>
+                        <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Entregas</h5>
+                        <p class="card-text">Controla las entregas y entradas de productos en tu negocio</p>
+                        <a href="?pagina=usuario" class="btn btn-primary">Ver entregas</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6 mb-3 mb-sm-0 p-3" >
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
-                <p class="card-text">Mantén tu inventario bajo control</p>
-                <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
+            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas</h5>
+                        <p class="card-text">Gestiona tus ventas con facilidad.</p>
+                        <a href="#" class="btn btn-primary">Ver ventas</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Clientes</h5>
+                        <p class="card-text">Gestiona tus clientes con facilidad.</p>
+                        <a href="#" class="btn btn-primary">Ver clientes</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6 mb-3 mb-sm-0 p-3"> 
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Usuarios</h5>
-                <p class="card-text">Controla el acceso a tu sistema</p>
-                <a href="?pagina=usuario" class="btn btn-primary">Ver usuarios</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title">Ventas</h5>
-                <p class="card-text">Gestiona tus ventas con facilidad.</p>
-                <a href="#" class="btn btn-primary">Ver ventas</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title">Clientes</h5>
-                <p class="card-text">Gestiona tus clientes con facilidad.</p>
-                <a href="#" class="btn btn-primary">Ver clientes</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card shadow w-100 h-100 p-3">
-            <div class="card-body">
-                <h5 class="card-title">Cotizaciones</h5>
-                <p class="card-text">Gestiona tus cotizaciones con facilidad.</p>
-                <a href="#" class="btn btn-primary">Ver cotizaciones</a>
-            </div>
-            </div>
+
         </div>
     </div>
-</div>
-<br><br>
+    <br><br>
     <!-- Footer -->
-    <?php require_once("public/commun/footer.php");?>
+    <?php require_once("public/commun/footer.php"); ?>
     <!-- Footer -->
 
     <!-- Scripts -->
-        <script src="public/bootstrap/js/sidebar.js"></script>
-        <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap/js/sidebar.js"></script>
+    <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
 </body>
+
 </html>
