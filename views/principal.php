@@ -20,7 +20,7 @@
     <!-- Container de cards -->
     <div class="container d-flex justify-content-center">
     <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
@@ -29,7 +29,7 @@
             </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 p-3">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
@@ -38,7 +38,7 @@
             </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-3 mb-sm-0 p-3" >
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
@@ -47,7 +47,7 @@
             </div>
             </div>
         </div>
-        <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="col-sm-6 mb-3 mb-sm-0 p-3"> 
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Usuarios</h5>
@@ -56,7 +56,7 @@
             </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title">Ventas</h5>
@@ -65,7 +65,7 @@
             </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-3 mb-sm-0 p-3">
             <div class="card shadow w-100 h-100 p-3">
             <div class="card-body">
                 <h5 class="card-title">Clientes</h5>
