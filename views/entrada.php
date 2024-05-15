@@ -20,8 +20,7 @@
     <br>
 
     <div class="container-center m-5">
-        <div class="container-fluid"> <!-- todo el contenido ira dentro de esta etiqueta-->
-            <!-- As a heading -->
+        <div class="container-fluid">
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -30,7 +29,7 @@
                     <form method="post" action="" id="">
                         <div class="container">
                             <div class="row">
-
+                                <!-- Inputs encargados de registrar datos para las entradas de productos -->
                                 <div class="col">
                                     <label for="numFacturaProveedor">Factura del proveedor</label>
                                     <input class="form-control" type="text" id="numFacturaProveedor" name="numFacturaProveedor" />
@@ -40,13 +39,14 @@
                                     <input class="form-control" type="datetime-local" id="fechaEntrega" name="fechaEntrega" />
                                 </div>
                                 <div class="col">
+                                    <label for="cantidadEntrega">Cantidad del producto entregado</label>
+                                    <input class="form-control" type="number" id="cantidadEntrega" name="cantidadEntrega" />
+                                </div>
+                                <div class="col">
                                     <label for="precioEntrega">Precio</label>
                                     <input class="form-control" type="number" id="precioEntrega" name="precioEntrega" />
                                 </div>
-                                <div class="col">
-                                    <label for="cantidadEntrega">Cantidad del producto entrego</label>
-                                    <input class="form-control" type="number" id="cantidadEntrega" name="cantidadEntrega" />
-                                </div>
+
 
                             </div>
 
@@ -58,18 +58,40 @@
                             </div>
 
                             <div class="row">
+                                <!-- Selects para los demas registros, para que futuramente funcione junto a la base de datos -->
+                                <div class="col">
+                                    <label for="areas">Areas</label>
+                                    <select class="form-control" name="areas" id="areas">
+                                        <option value="" disabled selected>Seleccione un area</option>
+                                        <option value="1">Papeleria</option>
+                                        <option value="2">Jugueteria</option>
+                                        <option value="3">Electronica</option>
+
+                                    </select>
+                                    <br>
+                                    <label for="almacen">Almacenes</label>
+                                    <select class="form-control" name="areas" id="areas">
+                                        <option value="" disabled selected>Seleccione un almacen</option>
+                                        <option value="1">La 19</option>
+                                        <option value="2">La 21</option>
+
+                                    </select>
+                                </div>
+
+                                <!-- Campo para agregar observaciones (row es para marcar el tamaño del campo de texto) -->
                                 <div class="col">
                                     <label for="observaciones">observaciones</label>
-                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="4"></textarea>
+                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="5"></textarea>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
+                                    <br>
                                     <hr />
                                 </div>
                             </div>
-
+                            <!-- Botonera para cumplir acciones -->
                             <div class="row container text-center">
                                 <div class="col  mb-4">
                                     <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
