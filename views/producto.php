@@ -25,7 +25,7 @@
 				<div class="card-header py-3">
 					<h6 class="container text-center h2 text-primary">Productos</h6>
 					<br>
-					<form method="post" action="" id="">
+					<form method="post">
 						<div class="container">
 							<div class="row">
 
@@ -47,7 +47,6 @@
 								</div>
 								<div class="col-2">
 									<label for="agregarcategoria">&nbsp;</label>
-
 									<button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#agregarcategoria">
 										Agregar Categoría
 									</button>
@@ -63,9 +62,9 @@
 												</div>
 												<div class="modal-body">
 
-													<!-- Form dentro del modal para agregar productos a la base de datos -->
+													<!-- Form dentro del modal para agregar cartegorias a la base de datos -->
 
-													<form id="addCategoryForm" method="post" action="add_category.php">
+													<form method="post">
 														<div class="mb-3">
 															<label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
 															<input type="text" class="form-control" id="nombreCategoria" name="category_name" required>
@@ -100,7 +99,33 @@
 										<label for="promedioPrecio">Precio promedio del producto</label>
 										<input class="form-control" type="number" id="promedioPrecio" name="promedioPrecio" />
 									</div>
+									<br>
+
+									<!-- Checkbox para habilitar o deshabilitar el input -->
+
+									<div class="form-check">
+										<label class="form-check-label" for="habilitarPromedio">Habilitar precio promedio</label>
+										<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
+									</div>
 								</div>
+
+								<!-- Script para poder apagar el input de precio promedio -->
+
+								<script>
+									document.addEventListener('DOMContentLoaded', (event) => {
+										const checkbox = document.getElementById('habilitarPromedio');
+										const input = document.getElementById('promedioPrecio');
+										input.disabled = true;
+										checkbox.checked = false;
+									});
+
+									function toggleInput() {
+										const checkbox = document.getElementById('habilitarPromedio');
+										const input = document.getElementById('promedioPrecio');
+										input.disabled = !checkbox.checked;
+									}
+								</script>
+
 								<!-- Campo para describir o detallar el producto -->
 
 								<div class="col-7">

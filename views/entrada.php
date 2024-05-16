@@ -26,16 +26,18 @@
                 <div class="card-header py-3">
                     <h6 class="container text-center h2 text-primary">Entregas</h6>
                     <br>
-                    <form method="post" action="" id="">
+                    <form method="post">
                         <div class="container">
                             <div class="row">
+
                                 <!-- Inputs encargados de registrar datos para las entradas de productos -->
+
                                 <div class="col">
                                     <label for="numFacturaProveedor">Factura del proveedor</label>
                                     <input class="form-control" type="text" id="numFacturaProveedor" name="numFacturaProveedor" />
                                 </div>
                                 <div class="col">
-                                    <label for="fechaEntrega">Fecha de entrega</label>
+                                    <label for="fechayhoraEntrega">Fecha de entrega</label>
                                     <input class="form-control" type="datetime-local" id="fechaEntrega" name="fechaEntrega" />
                                 </div>
                                 <div class="col">
@@ -58,10 +60,12 @@
                             </div>
 
                             <div class="row">
+
                                 <!-- Selects para los demas registros, para que futuramente funcione junto a la base de datos -->
+
                                 <div class="col">
-                                    <label for="areas">Areas</label>
-                                    <select class="form-control" name="areas" id="areas">
+                                    <label for="area">Areas</label>
+                                    <select class="form-control" name="area" id="area">
                                         <option value="" disabled selected>Seleccione un area</option>
                                         <option value="1">Papeleria</option>
                                         <option value="2">Jugueteria</option>
@@ -70,15 +74,15 @@
                                     </select>
                                     <br>
                                     <label for="almacen">Almacenes</label>
-                                    <select class="form-control" name="areas" id="areas">
+                                    <select class="form-control" name="almacen" id="almacen">
                                         <option value="" disabled selected>Seleccione un almacen</option>
                                         <option value="1">La 19</option>
                                         <option value="2">La 21</option>
-
                                     </select>
                                 </div>
 
                                 <!-- Campo para agregar observaciones (row es para marcar el tamaño del campo de texto) -->
+
                                 <div class="col">
                                     <label for="observaciones">observaciones</label>
                                     <textarea class="form-control" id="observaciones" name="observaciones" rows="5"></textarea>
@@ -91,7 +95,9 @@
                                     <hr />
                                 </div>
                             </div>
+
                             <!-- Botonera para cumplir acciones -->
+
                             <div class="row container text-center">
                                 <div class="col  mb-4">
                                     <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
