@@ -38,6 +38,7 @@
 																		<th scope="col">Nombre del producto</th>
 																		<th scope="col">Área</th>
 																		<th scope="col">Categoría</th>
+																		<th scope="col">Acciones</th>
 																	</tr>
 																</thead>
 
@@ -48,6 +49,7 @@
 																		<td>Producto A</td>
 																		<td>Electrónica</td>
 																		<td>Gadgets</td>
+																		<td> <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Modificar</button>  <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Eliminar</button> </td>
 																	</tr>
 																	<tr>
 																		<td>75</td>
@@ -55,6 +57,7 @@
 																		<td>Producto B</td>
 																		<td>Hogar</td>
 																		<td>Muebles</td>
+																		<td>  <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Modificar</button>  <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Eliminar</button> </td>
 																	</tr>
 																	<tr>
 																		<td>200</td>
@@ -62,6 +65,7 @@
 																		<td>Producto C</td>
 																		<td>Oficina</td>
 																		<td>Accesorios</td>
+																		<td>  <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Modificar</button>  <button class="btn btn-warning"><a href= ><img class="imgmini" src=" " ></a>Eliminar</button> </td>
 																	</tr>
 																</tbody>
 											</table>
@@ -71,24 +75,7 @@
 
 										</div>
 									</div>
-
-									<!-- Botonera para cumplir acciones -->
-
-										<div class="row container text-center">
-										
-											<div class="col mb-4">
-												<button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
-											</div>
-											<div class="col mb-4">
-												<button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
-											</div>
-											<div class="col mb-4">
-												<button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
-											</div>
-											<div class="col mb-4">
-												<a href="." class="btn btn-secondary">REGRESAR</a>
-											</div>
-										</div>
+																	
 								</div>
 							</form>
 						</div>
@@ -104,9 +91,9 @@
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+	<script src="public/js/jquery-3.7.0.js"></script>
+	<script src="public/js/jquery.dataTables.min.js"></script>
+    <script src="public/js/dataTables.bootstrap5.min.js"></script>
 	<script src="public/js/datatable.js"></script>
     <!-- Scripts -->
 </body>
