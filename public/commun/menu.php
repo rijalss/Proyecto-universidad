@@ -18,6 +18,9 @@
                 <a class="nav-link" href="?pagina=usuario">Usuario</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="?pagina=trabajador">Trabajador</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="?pagina=proveedor">Proveedor</a>
             </li>
             <li class="nav-item">
