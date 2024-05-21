@@ -13,6 +13,7 @@
 <body>
     <!-- Header -->
     <?php require_once("public/commun/menu.php"); ?>
+    <?php require_once("public/commun/encabezado.php"); ?>
     <!-- Header -->
     <br>
     <br>
@@ -29,12 +30,75 @@
                     <form method="post">
                         <div class="container">
                             <div class="row">
+                                <div class="col">
+                                    <label for="rifProveedor">Proveedores</label>
+                                    <select class="form-control" name="rifProveedor" id="rifProveedor">
+                                        <option value="" disabled selected>Seleccione un proveedor</option>
+                                        <option value="1">Andes</option>
+                                        <option value="2">Polar</option>
+
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="agregarproveedor">&nbsp;</label>
+                                    <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#agregarproveedor">
+                                        Agregar Proveedor
+                                    </button>
+
+                                    <!-- Modal encargado de agregar un nueva proveedor -->
+
+                                    <div class="modal fade" id="agregarproveedor" tabindex="-1" aria-labelledby="proveedormodal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="proveedormodal">Agregar Proveedor</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <!-- Form dentro del modal para agregar proveedor a la base de datos -->
+
+                                                    <form method="post">
+                                                        <div class="mb-3">
+                                                            <label for="rifProveedor" class="form-label">Rif del proveedor</label>
+                                                            <input type="text" class="form-control" id="rifProveedor" name="rifProveedor" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="nombreProveedor" class="form-label">Nombre del proveedor</label>
+                                                            <input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="correoProveedor" class="form-label">Correo del proveedor</label>
+                                                            <input type="text" class="form-control" id="correoProveedor" name="correoProveedor" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="telefonoProveedor" class="form-label">Telefono del Proveedor</label>
+                                                            <input type="text" class="form-control" id="telefonoProveedor" name="telefonoProveedor" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="direccionProveedor" class="form-label">Direccion del proveedor</label>
+                                                            <input type="text" class="form-control" id="direccionProveedor" name="direccionProveedor" required>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary">Agregar</button>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
 
                                 <!-- Inputs encargados de registrar datos para las entradas de productos -->
 
                                 <div class="col">
-                                    <label for="numFacturaProveedor">Factura del proveedor</label>
-                                    <input class="form-control" type="text" id="numFacturaProveedor" name="numFacturaProveedor" />
+                                    <label for="numfacturaProveedor">Factura del proveedor</label>
+                                    <input class="form-control" type="text" id="numfacturaProveedor" name="numfacturaProveedor" />
+                                    <span id="snumfacturaProveedor"></span>
                                 </div>
                                 <div class="col">
                                     <label for="fechayhoraEntrega">Fecha de entrega</label>
@@ -43,10 +107,12 @@
                                 <div class="col">
                                     <label for="cantidadEntrega">Cantidad del producto entregado</label>
                                     <input class="form-control" type="number" id="cantidadEntrega" name="cantidadEntrega" />
+                                    <span id="scantidadEntrega"></span>
                                 </div>
                                 <div class="col">
                                     <label for="precioEntrega">Precio</label>
                                     <input class="form-control" type="number" id="precioEntrega" name="precioEntrega" />
+                                    <span id="sprecioEntrega"></span>
                                 </div>
 
 
@@ -86,6 +152,7 @@
                                 <div class="col">
                                     <label for="observaciones">observaciones</label>
                                     <textarea class="form-control" id="observaciones" name="observaciones" rows="5"></textarea>
+                                    <span id="sobservaciones"></span>
                                 </div>
                             </div>
 
@@ -130,6 +197,7 @@
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="public/js/entrada.js"></script>
     <!-- Scripts -->
 </body>
 

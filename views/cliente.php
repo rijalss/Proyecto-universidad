@@ -37,12 +37,12 @@
                                     <input type="text" class="form-control" id="cedula" placeholder="Ingrese su cédula" required>
                                 </div>
                                 <div class="col">
-                                        <label for="telefono">Teléfono</label>
+                                    <label for="telefono">Teléfono</label>
                                     <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono" required>
                                 </div>
                                 <div class="col">
-                                        <label for="direccion">Dirección</label>
-                                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
                                 </div>
 
 
