@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Header --> <?php require_once("public/commun/encabezado.php"); ?>
     <?php require_once("public/commun/menu.php"); ?>
     <!-- Header -->
     <br>
@@ -21,7 +21,6 @@
 
     <div class="container-center m-5">
         <div class="container-fluid">
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="container text-center h2 text-primary">Registro de ventas</h6>
@@ -42,10 +41,12 @@
                                 <div class="col">
                                     <label for="cantidadVenta">Cantidad del producto</label>
                                     <input class="form-control" type="number" id="cantidadVenta" name="cantidadVenta" />
+                                    <span id="scantidadVenta"></span>
                                 </div>
                                 <div class="col">
                                     <label for="precioVenta">Precio de venta</label>
                                     <input class="form-control" type="number" id="precioVenta" name="precioVenta" />
+                                    <span id="sprecioVenta"></span>
                                 </div>
                             </div>
 
@@ -57,6 +58,9 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente">Agregar cliente nuevo</button>
+                                </div>
                                 <div class="col">
                                     <label for="nombreCliente">Cliente</label>
                                     <select class="form-control" name="nombreCliente" id="nombreCliente">
@@ -81,6 +85,27 @@
                                 </div>
                             </div>
 
+                            <!-- Modal para agregar cliente-->
+                            <div class="modal fade" id="agregarCliente" tabindex="-1" aria-labelledby="formCliente" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="formCliente">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="post">
+
+                                            </form>
+                                         </div>
+                                        <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div> <!-- div que cierra el contenedor-->
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
                                     const tipoPagoSelect = document.getElementById('tipoPago');
@@ -155,16 +180,16 @@
             </div>
         </div>
     </div>
-    </div>
+    
     <!-- Footer -->
     <?php require_once("public/commun/footer.php"); ?>
     <!-- Footer -->
-    </div> <!-- fin de container -->
+     <!-- fin de container -->
 
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="public/js/salida.js"></script>
     <!-- Scripts -->
 </body>
 

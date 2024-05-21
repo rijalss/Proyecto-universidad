@@ -19,16 +19,16 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#cantidadEntrega").on("keyup",function(){
 		validarkeyup(/^[1-9][0-9]{0,9}$/,$(this),
-		$("#scantidadEntrega"),"El formato no permite cantidades negativas o cero");
+		$("#scantidadEntrega"),"El formato no permite cantidades negativas o cero,debe ser 9999999");
 	});
 	
 	$("#precioEntrega").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
+		validarkeypress(/^[0-9-,\b]*$/,e);
 	});
 	
 	$("#precioEntrega").on("keyup",function(){
-		validarkeyup(/^[1-9][0-9]{0,9}$/,$(this),
-		$("#sprecioEntrega"),"El formato no permite cantidades negativas o cero");
+		validarkeyup(/^[1-9][0-9,]*(\.[0-9]{1,2})?$/,$(this), // cammbie la expresion regular para que permitiera solo dos caracteres despues de la coma
+		$("#sprecioEntrega"),"El formato no permite cantidades negativas o cero,debe ser 9999999 o 99,99");
 	});
 
 	$("#observaciones").on("keypress",function(e){
