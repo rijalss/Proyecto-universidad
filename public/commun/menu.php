@@ -15,28 +15,26 @@
                 <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=usuario">Usuario</a>
+                <a class="nav-link" href="?pagina=usuario">Empleados</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="?pagina=proveedor">Proveedores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=trabajador">Trabajador</a>
+                <a class="nav-link" href="?pagina=producto">Productos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=proveedor">Proveedor</a>
+                <a class="nav-link" href="?pagina=entrada">Encargos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=producto">Producto</a>
+                <a class="nav-link" href="?pagina=salida">Ventas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=entrada">Entrada</a>
+                <a class="nav-link" href="?pagina=cliente">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?pagina=salida">Salida</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?pagina=cliente">Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?pagina=existencia">Existencia</a>
+                <a class="nav-link" href="?pagina=existencia">Existencias</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

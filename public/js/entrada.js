@@ -19,7 +19,7 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#cantidadEntrega").on("keyup",function(){
 		validarkeyup(/^[1-9][0-9]{0,9}$/,$(this),
-		$("#scantidadEntrega"),"El formato no permite cantidades negativas o cero,debe ser 9999999");
+		$("#scantidadEntrega"),"El formato no permite cantidades negativas o cero");
 	});
 	
 	$("#precioEntrega").on("keypress",function(e){
@@ -28,7 +28,7 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#precioEntrega").on("keyup",function(){
 		validarkeyup(/^[1-9][0-9,]*(\.[0-9]{1,2})?$/,$(this), // cammbie la expresion regular para que permitiera solo dos caracteres despues de la coma
-		$("#sprecioEntrega"),"El formato no permite cantidades negativas o cero,debe ser 9999999 o 99,99");
+		$("#sprecioEntrega"),"El formato no permite cantidades negativas o cero");
 	});
 
 	$("#observaciones").on("keypress",function(e){
@@ -37,7 +37,7 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#observaciones").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-		$(this),$("#sobservaciones"),"Las observaciones no pueden estar vacias");
+		$(this),$("#sobservaciones"),"Debes colocar alguna observación");
 	});
 	
 	

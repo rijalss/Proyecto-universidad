@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,77 +20,68 @@
     <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
     <br><br>
     <!-- Container de cards -->
-    <div class="container d-flex justify-content-center">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
-                        <p class="card-text ">Gestiona tus proveedores con facilidad.</p>
+                        <p class="card-text">Gestiona tus proveedores con facilidad.</p>
                         <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
-                        <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Ver almacenes</a>
+                        <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Existencias </h5>
+                        <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
+                        <a href="?pagina=existencia" class="btn btn-primary">Ver Existencias </a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
-                        <p class="card-text">Mantén tu inventario bajo control</p>
+                        <p class="card-text">Mantén tus productos bajo control</p>
                         <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Entregas</h5>
-                        <p class="card-text">Controla las entregas y entradas de productos en tu negocio</p>
-                        <a href="?pagina=usuario" class="btn btn-primary">Ver entregas</a>
+                        <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Encargos</h5>
+                        <p class="card-text">Controla las entregas de productos en tu negocio</p>
+                        <a href="?pagina=entrada" class="btn btn-primary">Ver encargos</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
-                    <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-                        <h5 class="card-title"><img width="20PX" src="public/img/cart2.svg" alt="">Ventas</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/img/cart2.svg" alt=""> Ventas</h5>
                         <p class="card-text">Gestiona tus ventas con facilidad.</p>
                         <a href="?pagina=salida" class="btn btn-primary">Ver ventas</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt="">Clientes</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt=""> Clientes</h5>
                         <p class="card-text">Gestiona tus clientes con facilidad.</p>
                         <a href="?pagina=cliente" class="btn btn-primary">Ver clientes</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt="">Trabajadores</h5>
-                        <p class="card-text">Gestiona tus trabajadores con facilidad.</p>
-                        <a href="?pagina=trabajador" class="btn btn-primary">Ver trabajador</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt="">Usuarios</h5>
-                        <p class="card-text">Gestiona tus usuarios con facilidad.</p>
-                        <a href="?pagina=usuario" class="btn btn-primary">Ver Usuarios</a>
+                        <h5 class="card-title"><img width="20PX" src="public/img/person-plus.svg" alt=""> Empleados</h5>
+                        <p class="card-text">Gestiona tus empleados con facilidad.</p>
+                        <a href="?pagina=usuario" class="btn btn-primary">Ver empleados</a>
                     </div>
                 </div>
             </div>
