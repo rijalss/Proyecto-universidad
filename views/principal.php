@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Almacen </h5>
                         <p class="card-text"> Gestiona tus almacenes de manera eficiente.</p>
-                        <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
+                        <a href="?pagina=existencia" class="btn btn-primary">Ver almacenes</a>
                     </div>
                 </div>
             </div>
@@ -73,15 +73,6 @@
                         <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt="">Clientes</h5>
                         <p class="card-text">Gestiona tus clientes con facilidad.</p>
                         <a href="?pagina=salida" class="btn btn-primary">Ver clientes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 p-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/bookmarks.svg" alt="">Existencias</h5>
-                        <p class="card-text">Gestiona la existencias con facilidad.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Ver existencias</a>
                     </div>
                 </div>
             </div>

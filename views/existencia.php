@@ -70,7 +70,9 @@
 										</tbody>
 									</table>
 
-
+									<div class="col mb-4">
+										<a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
+									</div>
 
 
 								</div>

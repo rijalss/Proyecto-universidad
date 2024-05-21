@@ -97,94 +97,94 @@
                                             <form action="" method="post">
 
                                             </form>
-                                         </div>
+                                        </div>
                                         <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
-                                 </div>
+                                </div>
                             </div>
                         </div> <!-- div que cierra el contenedor-->
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const tipoPagoSelect = document.getElementById('tipoPago');
-                                    const bancoContainer = document.getElementById('bancoContainer');
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const tipoPagoSelect = document.getElementById('tipoPago');
+                                const bancoContainer = document.getElementById('bancoContainer');
 
-                                    tipoPagoSelect.addEventListener('change', function() {
-                                        const selectedValue = tipoPagoSelect.value;
-                                        bancoContainer.innerHTML = '';
+                                tipoPagoSelect.addEventListener('change', function() {
+                                    const selectedValue = tipoPagoSelect.value;
+                                    bancoContainer.innerHTML = '';
 
-                                        if (selectedValue === '2' || selectedValue === '3') {
-                                            const label = document.createElement('label');
-                                            label.setAttribute('for', 'banco');
+                                    if (selectedValue === '2' || selectedValue === '3') {
+                                        const label = document.createElement('label');
+                                        label.setAttribute('for', 'banco');
 
-                                            const bancoSelect = document.createElement('select');
-                                            bancoSelect.setAttribute('id', 'banco');
-                                            bancoSelect.setAttribute('name', 'banco');
+                                        const bancoSelect = document.createElement('select');
+                                        bancoSelect.setAttribute('id', 'banco');
+                                        bancoSelect.setAttribute('name', 'banco');
 
-                                            const bancos = [
-                                                'Banco de Venezuela',
-                                                'Banco del Tesoro',
-                                                'Banesco',
-                                                'Bancaribe',
-                                                'Banco Exterior',
-                                                'Banco Mercantil',
-                                                'Banco Provincial',
-                                                'BOD',
-                                                'BNC',
-                                                'Banco Sofitasa'
-                                            ];
+                                        const bancos = [
+                                            'Banco de Venezuela',
+                                            'Banco del Tesoro',
+                                            'Banesco',
+                                            'Bancaribe',
+                                            'Banco Exterior',
+                                            'Banco Mercantil',
+                                            'Banco Provincial',
+                                            'BOD',
+                                            'BNC',
+                                            'Banco Sofitasa'
+                                        ];
 
-                                            bancos.forEach(function(banco) {
-                                                const option = document.createElement('option');
-                                                option.setAttribute('value', banco);
-                                                option.textContent = banco;
-                                                bancoSelect.appendChild(option);
-                                            });
+                                        bancos.forEach(function(banco) {
+                                            const option = document.createElement('option');
+                                            option.setAttribute('value', banco);
+                                            option.textContent = banco;
+                                            bancoSelect.appendChild(option);
+                                        });
 
-                                            bancoContainer.appendChild(label);
-                                            bancoContainer.appendChild(bancoSelect);
-                                        }
-                                    });
+                                        bancoContainer.appendChild(label);
+                                        bancoContainer.appendChild(bancoSelect);
+                                    }
                                 });
-                            </script>
+                            });
+                        </script>
 
-                            <div class="row">
-                                <div class="col">
+                        <div class="row">
+                            <div class="col">
 
-                                    <hr />
-                                </div>
-                            </div>
-                            <!-- Botonera para cumplir acciones -->
-                            <div class="row container text-center">
-                                <div class="col  mb-4">
-                                    <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
-                                </div>
-                                <div class="col mb-4">
-                                    <button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
-                                </div>
-                                <div class="col mb-4">
-                                    <button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
-                                </div>
-                                <div class="col mb-4">
-                                    <button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
-                                </div>
-                                <div class="col mb-4">
-                                    <a href="." class="btn btn-secondary">REGRESAR</a>
-                                </div>
+                                <hr />
                             </div>
                         </div>
-                    </form>
+                        <!-- Botonera para cumplir acciones -->
+                        <div class="row container text-center">
+                            <div class="col  mb-4">
+                                <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
+                            </div>
+                            <div class="col mb-4">
+                                <button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
+                            </div>
+                            <div class="col mb-4">
+                                <button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
+                            </div>
+                            <div class="col mb-4">
+                                <button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
+                            </div>
+                            <div class="col mb-4">
+                                <a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
+                            </div>
+                        </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-    
+    </div>
+
     <!-- Footer -->
     <?php require_once("public/commun/footer.php"); ?>
     <!-- Footer -->
-     <!-- fin de container -->
+    <!-- fin de container -->
 
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>

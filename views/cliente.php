@@ -72,7 +72,7 @@
                                     <button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
                                 </div>
                                 <div class="col mb-4">
-                                    <a href="." class="btn btn-secondary">REGRESAR</a>
+                                    <a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
                                 </div>
                             </div>
                         </div>
