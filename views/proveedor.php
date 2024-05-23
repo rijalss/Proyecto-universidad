@@ -13,6 +13,7 @@
 <body>
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
+	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>
@@ -35,14 +36,17 @@
 								<div class="col">
 									<label for="rifProveedor">Rif del Proveedor</label>
 									<input type="text" class="form-control" id="rifProveedor" required>
+									<span id="srifProveedor"></span>
 								</div>
 								<div class="col">
 									<label for="nombreProveedor">Nombre del Proveedor</label>
 									<input type="text" class="form-control" id="nombreProveedor" required>
+									<span id="snombreProveedor"></span>
 								</div>
 								<div class="col">
 									<label for="correoProveedor">Correo del Proveedor</label>
-									<input type="text" class="form-control" id="correoProveedor" required>
+									<input type="email" class="form-control" id="correoProveedor" required>
+									<span id="scorreoProveedor"></span>
 								</div>
 
 
@@ -59,12 +63,14 @@
 							<div class="row">
 
 								<div class="col">
-									<label for="telefonoCorreo">Telefono del Proveedor</label>
-									<input type="text" class="form-control" id="telefonoCorreo" required>
+									<label for="telefonoProveedor">Telefono del Proveedor</label>
+									<input type="text" class="form-control" id="telefonoProveedor" required>
+									<span id="stelefonoProveedor"></span>
 								</div>
 								<div class="col">
-									<label for="correoProveedor">Correo del Proveedor</label>
-									<input type="text" class="form-control" id="correoProveedor" required>
+									<label for="direccionProveedor">Direccion del Proveedor</label>
+									<input type="text" class="form-control" id="direccionProveedor" required>
+									<span id="sdireccionProveedor"></span>
 								</div>
 
 							</div>
@@ -111,6 +117,8 @@
 	<!-- Scripts -->
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="public/js/proveedor.js"></script>
+
 	<!-- Scripts -->
 </body>
 

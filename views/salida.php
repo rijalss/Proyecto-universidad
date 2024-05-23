@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <!-- Header --> <?php require_once("public/commun/encabezado.php"); ?>
+    <!-- Header -->
+    <?php require_once("public/commun/extras.php"); ?>
     <?php require_once("public/commun/menu.php"); ?>
     <!-- Header -->
     <br>
@@ -28,7 +29,9 @@
                     <form method="post" action="" id="">
                         <div class="container">
                             <div class="row">
-                                <!-- -->
+
+                                <!-- Select para registrar en la base de datos -->
+
                                 <div class="col">
                                     <label for="nombreProducto">Producto</label>
                                     <select class="form-control" name="nombreProducto" id="nombreProducto">
@@ -58,9 +61,58 @@
                             </div>
 
                             <div class="row">
+
+                                <!-- Boton para el modal -->
+
                                 <div class="col-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente">Agregar cliente nuevo</button>
+
+                                    <label for="agregarCliente">&nbsp;</label>
+                                    <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#agregarCliente">
+                                        Agregar Cliente
+                                    </button>
+
+                                    <!-- Modal encargado de agregar un nuevo cargo -->
+
+                                    <div class="modal fade" id="agregarCliente" tabindex="-1" aria-labelledby="clienteModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="clienteModal">Agregar Cliente</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <!-- Form dentro del modal para agregar clientes a la base de datos -->
+
+                                                    <form method="post">
+                                                        <div class="col">
+                                                            <label for="cedula">Cédula</label>
+                                                            <input type="text" class="form-control" id="cedula" placeholder="Ingrese su cédula" required>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col">
+                                                            <label for="telefono">Teléfono</label>
+                                                            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono" required>
+                                                        </div>
+                                                        <br>
+                                                        <div class="col">
+                                                            <label for="direccion">Dirección</label>
+                                                            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
+                                                        </div>
+                                                        <br>
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary">Agregar</button>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <!-- Inputs encargados de agregar un nuevo cliente -->
+
                                 <div class="col">
                                     <label for="nombreCliente">Cliente</label>
                                     <select class="form-control" name="nombreCliente" id="nombreCliente">
@@ -85,27 +137,11 @@
                                 </div>
                             </div>
 
-                            <!-- Modal para agregar cliente-->
-                            <div class="modal fade" id="agregarCliente" tabindex="-1" aria-labelledby="formCliente" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="formCliente">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="" method="post">
 
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- div que cierra el contenedor-->
+                        </div>
+
+                        <!-- div que cierra el contenedor-->
+
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
                                 const tipoPagoSelect = document.getElementById('tipoPago');
@@ -156,7 +192,9 @@
                                 <hr />
                             </div>
                         </div>
+
                         <!-- Botonera para cumplir acciones -->
+
                         <div class="row container text-center">
                             <div class="col  mb-4">
                                 <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>

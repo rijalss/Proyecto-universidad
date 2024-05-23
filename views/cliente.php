@@ -13,6 +13,7 @@
 <body>
     <!-- Header -->
     <?php require_once("public/commun/menu.php"); ?>
+    <?php require_once("public/commun/extras.php"); ?>
     <!-- Header -->
     <br>
     <br>
@@ -33,19 +34,36 @@
                                 <!-- Inputs encargados de registrar datos para las entradas de productos -->
 
                                 <div class="col">
-                                    <label for="cedula">Cédula</label>
-                                    <input type="text" class="form-control" id="cedula" placeholder="Ingrese su cédula" required>
+                                    <label for="cedulaCliente">Cédula del Cliente</label>
+                                    <input type="text" class="form-control" id="cedulaCliente" required>
+                                    <span id="scedulaCliente"></span>
                                 </div>
                                 <div class="col">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono" required>
+                                    <label for="telefonoCliente">Teléfono del Cliente</label>
+                                    <input type="text" class="form-control" id="telefonoCliente" required>
+                                    <span id="stelefonoCliente"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <br>
+                                    <hr />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="nombreCliente">Nombre del Cliente</label>
+                                    <input type="text" class="form-control" id="nombreCliente" required>
+                                    <span id="snombreCliente"></span>
                                 </div>
                                 <div class="col">
-                                    <label for="direccion">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
+                                    <label for="apellidoCliente">Apellido del Cliente</label>
+                                    <input type="text" class="form-control" id="apellidoCliente" required>
+                                    <span id="sapellidoCliente"></span>
                                 </div>
-
-
                             </div>
 
                             <div class="row">
@@ -90,6 +108,7 @@
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="public/js/cliente.js"></script>
     <!-- Scripts -->
 </body>
 

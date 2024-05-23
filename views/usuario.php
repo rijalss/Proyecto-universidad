@@ -13,6 +13,7 @@
 <body>
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
+	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>
@@ -33,17 +34,20 @@
 								<!-- Inputs encargados de registrar datos para los vendedores -->
 
 								<div class="col">
-									<label for="cedulaTrabajador">Cedula del vendedor</label>
-									<input class="form-control" type="text" id="cedulaTrabajador" name="cedulaTrabajador" />
+									<label for="cedulaEmpleado">Cedula del Empleado</label>
+									<input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" required />
+									<span id="scedulaEmpleado"></span>
 								</div>
 
 								<div class="col">
-									<label for="nombreTrabajador">Nombre</label>
-									<input class="form-control" type="text" id="nombreTrabajador" name="nombreTrabajador" />
+									<label for="nombreEmpleado">Nombre del Empleado</label>
+									<input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" required />
+									<span id="snombreEmpleado"></span>
 								</div>
 								<div class="col">
-									<label for="apellidoTrabajador">Apellido</label>
-									<input class="form-control" type="text" id="apellidoTrabajador" name="apellidoTrabajador" />
+									<label for="apellidoEmpleado">Apellido del Empleado</label>
+									<input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" required />
+									<span id="sapellidoEmpleado"></span>
 								</div>
 
 							</div>
@@ -52,12 +56,14 @@
 							<div class="row">
 
 								<div class="col">
-									<label for="correoTrabajador">Correo</label>
-									<input class="form-control" type="email" id="correoTrabajador" name="correoTrabajador" />
+									<label for="correoEmpleado">Correo del Empleado</label>
+									<input class="form-control" type="email" id="correoEmpleado" name="correoEmpleado" required />
+									<span id="scorreoEmpleado"></span>
 								</div>
 								<div class="col">
-									<label for="telefonoTrabajador">Número de teléfono</label>
-									<input class="form-control" type="text" id="telefonoTrabajador" name="telefonoTrabajador" />
+									<label for="telefonoEmpleado">Número de teléfono del Empleado</label>
+									<input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
+									<span id="stelefonoEmpleado"></span>
 								</div>
 
 								<div class="row">
@@ -73,7 +79,7 @@
 
 									<div class="col-4">
 										<label for="cargo">Cargo</label>
-										<select class="form-control" name="cargo" id="cargo">
+										<select class="form-control" name="cargo" id="cargo" required>
 											<option value="" disabled selected>Seleccione un area</option>
 											<option value="1">administrador</option>
 											<option value="2">almacenista</option>
@@ -165,6 +171,7 @@
 	<!-- Scripts -->
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="public/js/usuario.js"></script>
 	<!-- Scripts -->
 </body>
 

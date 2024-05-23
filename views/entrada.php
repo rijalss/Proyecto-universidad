@@ -13,7 +13,7 @@
 <body>
     <!-- Header -->
     <?php require_once("public/commun/menu.php"); ?>
-    <?php require_once("public/commun/encabezado.php"); ?>
+    <?php require_once("public/commun/extras.php"); ?>
     <!-- Header -->
     <br>
     <br>
@@ -97,21 +97,21 @@
 
                                 <div class="col">
                                     <label for="numfacturaProveedor">Factura del proveedor</label>
-                                    <input class="form-control" type="text" id="numfacturaProveedor" name="numfacturaProveedor" />
+                                    <input class="form-control" type="text" id="numfacturaProveedor" name="numfacturaProveedor" required />
                                     <span id="snumfacturaProveedor"></span>
                                 </div>
                                 <div class="col">
                                     <label for="fechayhoraEntrega">Fecha de entrega</label>
-                                    <input class="form-control" type="datetime-local" id="fechaEntrega" name="fechaEntrega" />
+                                    <input class="form-control" type="datetime-local" id="fechaEntrega" name="fechaEntrega" required />
                                 </div>
                                 <div class="col">
                                     <label for="cantidadEntrega">Cantidad del producto entregado</label>
-                                    <input class="form-control" type="number" id="cantidadEntrega" name="cantidadEntrega" />
+                                    <input class="form-control" type="number" id="cantidadEntrega" name="cantidadEntrega" required />
                                     <span id="scantidadEntrega"></span>
                                 </div>
                                 <div class="col">
                                     <label for="precioEntrega">Precio</label>
-                                    <input class="form-control" type="number" id="precioEntrega" name="precioEntrega" />
+                                    <input class="form-control" type="number" id="precioEntrega" name="precioEntrega" required />
                                     <span id="sprecioEntrega"></span>
                                 </div>
 
@@ -131,7 +131,7 @@
 
                                 <div class="col">
                                     <label for="area">Areas</label>
-                                    <select class="form-control" name="area" id="area">
+                                    <select class="form-control" name="area" id="area" required>
                                         <option value="" disabled selected>Seleccione un area</option>
                                         <option value="1">Papeleria</option>
                                         <option value="2">Jugueteria</option>
@@ -140,7 +140,7 @@
                                     </select>
                                     <br>
                                     <label for="almacen">Almacenes</label>
-                                    <select class="form-control" name="almacen" id="almacen">
+                                    <select class="form-control" name="almacen" id="almacen" required>
                                         <option value="" disabled selected>Seleccione un almacen</option>
                                         <option value="1">La 19</option>
                                         <option value="2">La 21</option>
@@ -151,7 +151,7 @@
 
                                 <div class="col">
                                     <label for="observaciones">observaciones</label>
-                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="5"></textarea>
+                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="5" required></textarea>
                                     <span id="sobservaciones"></span>
                                 </div>
                             </div>

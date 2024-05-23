@@ -9,8 +9,8 @@ if($.trim($("#mensajes").text()) != ""){
 	});
 	
 	$("#numfacturaProveedor").on("keyup",function(){
-		validarkeyup(/^[1-9][0-9]{0,9}$/,$(this),
-		$("#snumfacturaProveedor"),"El formato debe ser 9999999 ");
+		validarkeyup(/^[1-9]{0,10}$/,$(this),
+		$("#snumfacturaProveedor"),"El formato tiene un máximo de 10 carácteres");
 	});
 	
 	$("#cantidadEntrega").on("keypress",function(e){
@@ -18,8 +18,8 @@ if($.trim($("#mensajes").text()) != ""){
 	});
 	
 	$("#cantidadEntrega").on("keyup",function(){
-		validarkeyup(/^[1-9][0-9]{0,9}$/,$(this),
-		$("#scantidadEntrega"),"El formato no permite cantidades negativas o cero");
+		validarkeyup(/^[1-9]{1,10}$/,$(this),
+		$("#scantidadEntrega"),"El formato no debe contener numeros negativos y ser debe ser mayor a cero");
 	});
 	
 	$("#precioEntrega").on("keypress",function(e){
@@ -28,7 +28,7 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#precioEntrega").on("keyup",function(){
 		validarkeyup(/^[1-9][0-9,]*(\.[0-9]{1,2})?$/,$(this), // cammbie la expresion regular para que permitiera solo dos caracteres despues de la coma
-		$("#sprecioEntrega"),"El formato no permite cantidades negativas o cero");
+		$("#sprecioEntrega"),"El formato no debe contener numeros negativos y ser debe ser mayor a cero");
 	});
 
 	$("#observaciones").on("keypress",function(e){
@@ -37,7 +37,7 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#observaciones").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-		$(this),$("#sobservaciones"),"Debes colocar alguna observación");
+		$(this),$("#sobservaciones"),"Se debe colocar alguna observación");
 	});
 	
 	
@@ -100,13 +100,13 @@ function validarenvio(){
 		return false;					
 	}	
 	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
-		$("#cantidadEntrega"),$("#scantidadEntrega"),"Solo numeros y/o # - cantidades positivas y mayores a 0")==0){
-		muestraMensaje("cantidadEntrega <br/>Solo numeros y/o # - cantidades positivas y mayores a 0");
+		$("#cantidadEntrega"),$("#scantidadEntrega"),"Solo numeros y/o # - cantidades positivas o iguales a cero")==0){
+		muestraMensaje("cantidadEntrega <br/>Solo numeros y/o # - cantidades positivas o iguales a cero");
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
-		$("#precioEntrega"),$("#sprecioEntrega"),"Solo numeros y/o # - cantidades positivas y mayores a 0")==0){
-		muestraMensaje("El precio de entrega <br/>Solo numeros y/o # - cantidades positivas y mayores a 0");
+		$("#precioEntrega"),$("#sprecioEntrega"),"Solo numeros y/o # - cantidades positivaso iguales a cero")==0){
+		muestraMensaje("El precio de entrega <br/>Solo numeros y/o # - cantidades positivaso iguales a cero");
 		return false;
 	}
 	return true;
