@@ -67,12 +67,12 @@ $(document).ready(function(){
     });
     
     function validarenvio(){
-        if(validarkeyup(/^[0-9]{7,8}$/,$("#cantidadVenta"),
+        if(validarkeyup(/^[0-9]{1,10}$/,$("#cantidadVenta"),
             $("#scantidadVenta"),"Solo numeros y/o # - cantidades positivas y mayores a 0")==0){
             muestraMensaje("El precio de venta <br/>Solo numeros y/o # - cantidades positivas y mayores a 0");	
             return false;					
         }	
-        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,10}$/,
             $("#precioVenta"),$("#sprecioVenta"),"Solo numeros y/o # - cantidades positivas y mayores a 0")==0){
             muestraMensaje("El precio de venta <br/>Solo numeros y/o # - cantidades positivas y mayores a 0");
             return false;

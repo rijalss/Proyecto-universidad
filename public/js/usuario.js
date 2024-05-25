@@ -103,7 +103,7 @@ $("#eliminar").on("click",function(){
 });
 
 function validarenvio(){
-	if(validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	if(validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#nombreEmpleado"),$("#snombreEmpleado"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("El nombre del empleado <br/>Solo letras y # - No debe contener más de 30 carácteres");
 		return false;
@@ -115,19 +115,19 @@ function validarenvio(){
 		return false;
     }
 
-	else if(validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	else if(validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#apellidoEmpleado"),$("#sapellidoEmpleado"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("El nombre del empleado <br/>Solo letras y # - No debe contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#correoEmpleado"),$("#scorreoEmpleado"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("El correo del empleado <br/> No debe contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{11}$/,
 		$("#telefonoEmpleado"),$("#stelefonoEmpleado"),"Solo numeros y/o # - cantidades positivas o iguales a 0")==0){
-		muestraMensaje("El teléfono del Empleado <br/>Solo numeros y # - debe contener 10 carácteres");
+		muestraMensaje("El teléfono del Empleado <br/>Solo numeros y # - debe contener 11 carácteres");
 		return false;
 	}
 	return true;

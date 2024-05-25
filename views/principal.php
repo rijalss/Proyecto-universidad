@@ -25,7 +25,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/truck.svg" alt=""> Proveedores</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/truck.svg" alt=""> Proveedores</h5>
                         <p class="card-text">Gestiona tus proveedores con facilidad.</p>
                         <a href="?pagina=proveedor" class="btn btn-primary">Ver proveedores</a>
                     </div>
@@ -34,7 +34,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/shop-window.svg" alt=""> Existencias </h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/inboxes.svg" alt=""> Existencias </h5>
                         <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
                         <a href="?pagina=existencia" class="btn btn-primary">Ver Existencias </a>
                     </div>
@@ -43,7 +43,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/bag.svg" alt=""> Productos</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/bag.svg" alt=""> Productos</h5>
                         <p class="card-text">Mantén tus productos bajo control</p>
                         <a href="?pagina=producto" class="btn btn-primary">Ver productos</a>
                     </div>
@@ -52,8 +52,8 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/person.svg" alt=""> Encargos</h5>
-                        <p class="card-text">Controla las entregas de productos en tu negocio</p>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/house-down.svg" alt=""> Encargos</h5>
+                        <p class="card-text">Controla el abastencimiento de tus productos en tu negocio</p>
                         <a href="?pagina=entrada" class="btn btn-primary">Ver encargos</a>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/img/cart2.svg" alt=""> Ventas</h5>
-                        <p class="card-text">Gestiona tus ventas con facilidad.</p>
+                        <p class="card-text">Gestiona las ventas de tus productos con facilidad.</p>
                         <a href="?pagina=salida" class="btn btn-primary">Ver ventas</a>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/people.svg" alt=""> Clientes</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/people.svg" alt=""> Clientes</h5>
                         <p class="card-text">Gestiona tus clientes con facilidad.</p>
                         <a href="?pagina=cliente" class="btn btn-primary">Ver clientes</a>
                     </div>
@@ -79,9 +79,18 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/img/person-plus.svg" alt=""> Empleados</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/person-add.svg" alt=""> Empleados</h5>
                         <p class="card-text">Gestiona tus empleados con facilidad.</p>
                         <a href="?pagina=usuario" class="btn btn-primary">Ver empleados</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/shop-window.svg" alt=""> Almacenes</h5>
+                        <p class="card-text">Controla y Gestiona tus almacenes y sus respectivas areas.</p>
+                        <a href="?pagina=almacen" class="btn btn-primary">Ver almacenes</a>
                     </div>
                 </div>
             </div>

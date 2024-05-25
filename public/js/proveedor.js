@@ -109,22 +109,22 @@ function validarenvio(){
 						"9999999999");	
 		return false;					
 	}	
-	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{11}$/,
 		$("#telefonoProveedor"),$("#stelefonoProveedor"),"Solo numeros y/o # - cantidades positivas o iguales a 0")==0){
-		muestraMensaje("El teléfono del proveedor <br/>Solo numeros y # - debe contener 10 carácteres");
+		muestraMensaje("El teléfono del proveedor <br/>Solo numeros y # - debe contener 11 carácteres");
 		return false;
 	}
-	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#nombreProveedor"),$("#snombreProveedor"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("El nombre del proveedor <br/> No debe contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#correoProveedor"),$("#scorreoProveedor"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("El correo del proveedor <br/> No debe contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#direccionProveedor"),$("#sdireccionProveedor"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("La direccion del proveedor <br/> No debe contener más de 30 carácteres");
 		return false;

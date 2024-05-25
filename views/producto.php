@@ -13,6 +13,7 @@
 <body>
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
+	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>
@@ -32,8 +33,14 @@
 								<!-- inputs para agregar informacion sobre el producto -->
 
 								<div class="col">
+									<label for="codProducto">Codigo del producto</label>
+									<input class="form-control" type="text" id="codProducto" name="codProducto" />
+									<span id="scodProducto"></span>
+								</div>
+								<div class="col">
 									<label for="nombreProducto">Nombre del producto</label>
 									<input class="form-control" type="text" id="nombreProducto" name="nombreProducto" />
+									<span id="snombreProducto"></span>
 								</div>
 								<div class="col">
 									<label for="categorias">Categorias</label>
@@ -98,6 +105,7 @@
 									<div class="col-12">
 										<label for="promedioPrecio">Precio promedio del producto</label>
 										<input class="form-control" type="number" id="promedioPrecio" name="promedioPrecio" />
+										<span id="spromedioPrecio"></span>
 									</div>
 									<br>
 
@@ -131,6 +139,7 @@
 								<div class="col-7">
 									<label for="detalleProducto">Descripcion del producto</label>
 									<textarea class="form-control" id="detalleProducto" name="detalleProducto" rows="5"></textarea>
+									<span id="sdetalleProducto"></span>
 								</div>
 							</div>
 
@@ -175,6 +184,7 @@
 	<!-- Scripts -->
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="public/js/producto.js"></script>
 	<!-- Scripts -->
 </body>
 

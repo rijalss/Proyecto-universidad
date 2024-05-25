@@ -9,7 +9,7 @@ if($.trim($("#mensajes").text()) != ""){
 	});
 	
 	$("#numfacturaProveedor").on("keyup",function(){
-		validarkeyup(/^[1-9]{0,10}$/,$(this),
+		validarkeyup(/^[1-9]{8,10}$/,$(this),
 		$("#snumfacturaProveedor"),"El formato tiene un máximo de 10 carácteres");
 	});
 	
@@ -27,17 +27,17 @@ if($.trim($("#mensajes").text()) != ""){
 	});
 	
 	$("#precioEntrega").on("keyup",function(){
-		validarkeyup(/^[1-9][0-9,]*(\.[0-9]{1,2})?$/,$(this), // cammbie la expresion regular para que permitiera solo dos caracteres despues de la coma
+		validarkeyup(/^[1-9][0-9,]*(\.[0-9]{1,10})?$/,$(this), // cammbie la expresion regular para que permitiera solo dos caracteres despues de la coma
 		$("#sprecioEntrega"),"El formato no debe contener numeros negativos y ser debe ser mayor a cero");
 	});
 
-	$("#observaciones").on("keypress",function(e){
+	$("#observacion").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 	});
 	
-	$("#observaciones").on("keyup",function(){
+	$("#observacion").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-		$(this),$("#sobservaciones"),"Se debe colocar alguna observación");
+		$(this),$("#sobservacion"),"Se debe colocar alguna observación y tener un máximo de 200 carácteres");
 	});
 	
 	
@@ -48,7 +48,7 @@ $("#incluir").on("click",function(){
 		 datos.append('accion','incluir');
 		 datos.append('numfacturaProveedor',$("#numfacturaProveedor").val());
 		 datos.append('cantidadEntrega',$("#cantidadEntrega").val());
-		 datos.append('observaciones',$("#observaciones").val());
+		 datos.append('observacion',$("#observacion").val());
 		 datos.append('precioEntrega',$("#precioEntrega").val());
 		 
 		 enviaAjax(datos);
@@ -63,7 +63,7 @@ $("#modificar").on("click",function(){
 		datos.append('accion','modificar');
 		datos.append('numfacturaProveedor',$("#numfacturaProveedor").val());
 	    datos.append('cantidadEntrega',$("#cantidadEntrega").val());
-		datos.append('observaciones',$("#observaciones").val());
+		datos.append('observacion',$("#observacion").val());
 	    datos.append('precioEntrega',$("#precioEntrega").val());
 		 
 		enviaAjax(datos);
@@ -82,7 +82,7 @@ $("#eliminar").on("click",function(){
 		datos.append('accion','eliminar');
 		datos.append('numfacturaProveedor',$("#numfacturaProveedor").val());
 	    datos.append('cantidadEntrega',$("#cantidadEntrega").val());
-		datos.append('observaciones',$("#observaciones").val());
+		datos.append('observacion',$("#observacion").val());
 	    datos.append('precioEntrega',$("#precioEntrega").val());
 		enviaAjax(datos);
 		limpia();
@@ -93,20 +93,25 @@ $("#eliminar").on("click",function(){
 });
 
 function validarenvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#numfacturaProveedor"),
+	if(validarkeyup(/^[0-9]{8,10}$/,$("#numfacturaProveedor"),
 		$("#snumfacturaProveedor"),"El formato debe ser 9999999")==0){
 	    muestraMensaje("La numfacturaProveedor debe coincidir con el formato <br/>"+ 
 						"99999999");	
 		return false;					
 	}	
-	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,10}$/,
 		$("#cantidadEntrega"),$("#scantidadEntrega"),"Solo numeros y/o # - cantidades positivas o iguales a cero")==0){
 		muestraMensaje("cantidadEntrega <br/>Solo numeros y/o # - cantidades positivas o iguales a cero");
 		return false;
 	}
-	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{6,12}$/,
+	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,20}$/,
 		$("#precioEntrega"),$("#sprecioEntrega"),"Solo numeros y/o # - cantidades positivaso iguales a cero")==0){
 		muestraMensaje("El precio de entrega <br/>Solo numeros y/o # - cantidades positivaso iguales a cero");
+		return false;
+	}
+	 else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+		$("#observacion"),$("#sobservacion"),"No debe contener más de 200 carácteres")==0){
+		muestraMensaje("El correo del Producto <br/> No debe contener más de 200 carácteres");
 		return false;
 	}
 	return true;

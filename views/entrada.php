@@ -25,7 +25,7 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="container text-center h2 text-primary">Administrar Entregas</h6>
+                    <h6 class="container text-center h2 text-primary">Administrar Encargos</h6>
                     <br>
                     <form method="post">
                         <div class="container">
@@ -150,9 +150,9 @@
                                 <!-- Campo para agregar observaciones (row es para marcar el tamaño del campo de texto) -->
 
                                 <div class="col">
-                                    <label for="observaciones">observaciones</label>
-                                    <textarea class="form-control" id="observaciones" name="observaciones" rows="5" required></textarea>
-                                    <span id="sobservaciones"></span>
+                                    <label for="observacion">observaciones</label>
+                                    <textarea class="form-control" id="observacion" name="observacion" rows="5" required></textarea>
+                                    <span id="sobservacion"></span>
                                 </div>
                             </div>
 
