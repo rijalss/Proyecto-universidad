@@ -13,6 +13,7 @@
 <body>
     <!-- Header -->
     <?php require_once("public/commun/menu.php"); ?>
+    <?php require_once("public/commun/modal.php"); ?>
     <?php require_once("public/commun/extras.php"); ?>
     <!-- Header -->
     <br>
@@ -93,6 +94,41 @@
                                     <a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
                                 </div>
                             </div>
+
+                                                            
+                                <!-- seccion del modal -->
+                                <div class="modal fade" tabindex="-1" role="dialog"  id="modal1">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-header text-light bg-info">
+                                        <h5 class="modal-title">Listado de Clientes</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-content">
+                                        <!--se agrega un id para poder enlazar con el datatablet--> 
+                                        <table class="table table-striped table-hover" id="tablacliente">
+                                        <thead>
+                                        <tr>
+                                            <th>Cedula</th>
+                                            <th>Apellidos</th>
+                                            <th>Nombres</th>
+                                            <th>telefono</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="resultadoconsulta">
+                                        
+                                        
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer bg-light">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                                </div>
+                                <!--fin de seccion modal-->
+
                         </div>
                     </form>
                 </div>

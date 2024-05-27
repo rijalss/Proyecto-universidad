@@ -87,8 +87,45 @@ $("#eliminar").on("click",function(){
 	}
 	
 });
+$("#consultar").on("click",function(){
+	var datos = new FormData();
+	datos.append('accion','consultar');
+	enviaAjax(datos);
+});
 
 });
+
+
+//funcion para enlazar al DataTablet
+function destruyeDT(){
+	//1 se destruye el datatablet
+	if ($.fn.DataTable.isDataTable("#tablapersona")) {
+            $("#tablapersona").DataTable().destroy();
+    }
+}
+function crearDT(){
+	//se crea nuevamente
+    if (!$.fn.DataTable.isDataTable("#tablapersona")) {
+            $("#tablapersona").DataTable({
+              language: {
+                lengthMenu: "Mostrar _MENU_ por página",
+                zeroRecords: "No se encontraron personas",
+                info: "Mostrando página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay personas registradas",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar:",
+                paginate: {
+                  first: "Primera",
+                  last: "Última",
+                  next: "Siguiente",
+                  previous: "Anterior",
+                },
+              },
+              autoWidth: false,
+              order: [[1, "asc"]],
+            });
+    }         
+}
 
 function validarenvio(){
 	if(validarkeyup(/^[0-9]{8,10}$/,$("#cedulaCliente"),
@@ -112,6 +149,16 @@ function validarenvio(){
 		return false;
 	}
 	return true;
+}
+
+//Funcion que muestra el modal con un mensaje
+function muestraMensaje(mensaje){
+	
+	$("#contenidodemodal").html(mensaje);
+			$("#mostrarmodal").modal("show");
+			setTimeout(function() {
+					$("#mostrarmodal").modal("hide");
+			},5000);
 }
 
 function validarkeypress(er,e){
@@ -145,33 +192,91 @@ mensaje){
 	}
 }
 
-function enviaAjax(datos){
+//funcion para pasar de la lista a el formulario
+function coloca(linea){
+	$("#cedulaCliente").val($(linea).find("td:eq(0)").text());
+	$("#telefonoCliente").val($(linea).find("td:eq(1)").text());
+	$("#nombreCliente").val($(linea).find("td:eq(2)").text());
+	$("#apellidoCliente").val($(linea).find("td:eq(3)").text());
 	
+}
+
+//funcion que envia y recibe datos por AJAX
+function enviaAjax(datos){
+	 
 	$.ajax({
 		    async: true,
-            url: '', //la pagina a donde se envia por estar en mvc, se omite la ruta ya que siempre estaremos en la misma pagina
-            type: 'POST',//tipo de envio 
+			url: "",
+			type: "POST",
 			contentType: false,
-            data: datos,
+			data: datos,
 			processData: false,
-	        cache: false,
+			cache: false,
+			beforeSend: function () {},
+			timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
             success: function(respuesta) {//si resulto exitosa la transmision
-			   console.log(respuesta);
-			   muestraMensaje(respuesta);
-
+			console.log(respuesta);
+				try {
+					var lee = JSON.parse(respuesta);
+					if (lee.resultado == "obtienefecha") {
+					  $("#cedulaCliente").val(lee.mensaje);
+					}
+					else if (lee.resultado == "consultar") {
+					   destruyeDT();
+					   $("#resultadoconsulta").html(lee.mensaje);
+					   crearDT();
+					   $("#modal1").modal("show");
+					}
+					else if (lee.resultado == "encontro") {
+					   $("#apellidos").val(lee.mensaje[0][2]);
+					   $("#nombres").val(lee.mensaje[0][3]);
+					   $("#fechadenacimiento").val(lee.mensaje[0][4]);	
+					}
+					else if (lee.resultado == "incluir" || 
+					lee.resultado == "modificar" || 
+					lee.resultado == "eliminar") {
+					   muestraMensaje(lee.mensaje);
+					   limpia();
+					}
+					else if (lee.resultado == "error") {
+					   muestraMensaje(lee.mensaje);
+					}
+			  } catch (e) {
+				alert("Error en JSON " + e.name);
+			  }
+			   
             },
-            error: function(){
-			   muestraMensaje("Error con ajax");	
-            }
+            error: function (request, status, err) {
+			  // si ocurrio un error en la trasmicion
+			  // o recepcion via ajax entra aca
+			  // y se muestran los mensaje del error
+			  if (status == "timeout") {
+				//pasa cuando superan los 10000 10 segundos de timeout
+				muestraMensaje("Servidor ocupado, intente de nuevo");
+			  } else {
+				//cuando ocurre otro error con ajax
+				muestraMensaje("ERROR: <br/>" + request + status + err);
+			  }
+			},
+			complete: function () {},
 			
     }); 
 	
 }
-function limpia(){ 
-	/*
-	$("#cedula").val('');
-	$("#usuario").val('');
-	$("#clave").val('');
-	$("#cargo").val('GERENTE');
-	*/
+
+function limpia(){
+	if($("#masculino").is(":checked")){
+		$("#masculino").prop("checked",false);
+	}
+	else{
+	    $("#femenino").prop("checked",false);
+	}
+	
+	$("#cedula").val("");
+	$("#apellidos").val("");
+	$("#nombres").val("");
+	var datos = new FormData();
+		datos.append('accion','obtienefecha');
+		enviaAjax(datos,'obtienefecha');	
+	$("#gradodeinstruccion").prop("selectedIndex",0);
 }
