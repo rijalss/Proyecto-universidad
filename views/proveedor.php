@@ -90,7 +90,7 @@
 									<button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
 								</div>
 								<div class="col mb-4">
-									<button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
+									<button type="button" class="btn btn-success" id="consultar" name="consultar">CONSULTAR</button>
 								</div>
 								<div class="col mb-4">
 									<button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
@@ -108,17 +108,53 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" tabindex="-1" aria-labelledby="cargomodal" aria-hidden="true" role="dialog" id="modal1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Listado de Proveedores</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<!-- Form dentro del modal para agregar cargos a la base de datos -->
+					<table class="table table-striped table-hover" id="tablaproveedor">
+						<thead>
+							<tr>
+								<th>Rif</th>
+								<th>Nombre</th>
+								<th>Teléfono</th>
+								<th>Correo</th>
+								<th>Dirección</th>
+							</tr>
+						</thead>
+						<tbody id="resultadoconsulta">
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
 	</div>
+
 	<!-- Footer -->
 	<?php require_once("public/commun/footer.php"); ?>
 	<!-- Footer -->
 	</div> <!-- fin de container -->
 
 	<!-- Scripts -->
+
+	<script src="public/js/jquery-3.7.0.js"></script>
+	<script src="public/js/jquery.dataTables.min.js"></script>
+	<script src="public/js/dataTables.bootstrap5.min.js"></script>
+	<script src="public/js/datatable.js"></script>
+
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="public/js/proveedor.js"></script>
-
 	<!-- Scripts -->
 </body>
 
