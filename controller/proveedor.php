@@ -16,13 +16,13 @@ if (is_file("views/" . $pagina . ".php")) {
         if ($accion == 'consultar') {
             echo  json_encode($o->consultar());
         } elseif ($accion == 'consultatr') {
-            $o->set_Rifproveedor($_POST['Rifproveedor']);
+            $o->set_rifProveedor($_POST['rifProveedor']);
             echo  json_encode($o->consultatr());
         } elseif ($accion == 'eliminar') {
-            $o->set_Rifproveedor($_POST['Rifproveedor']);
+            $o->set_rifProveedor($_POST['rifProveedor']);
             echo  json_encode($o->eliminar());
         } else {
-            $o->set_Rifproveedor($_POST['Rifproveedor']);
+            $o->set_rifProveedor($_POST['rifProveedor']);
             $o->set_nombreProveedor($_POST['nombreProveedor']);
             $o->set_telefonoProveedor($_POST['telefonoProveedor']);
             $o->set_correoProveedor($_POST['correoProveedor']);

@@ -4,6 +4,8 @@ if($.trim($("#mensajes").text()) != ""){
 	muestraMensaje($("#mensajes").html());
 }
 	
+//////////////////////////////VALIDACIONES/////////////////////////////////////
+
 	$("#rifProveedor").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
@@ -53,6 +55,8 @@ if($.trim($("#mensajes").text()) != ""){
 		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$(this),$("#sdireccionProveedor"),"Se debe llenar este campo y debe tener un máximo de 30 carácteres");
 	});
+
+//////////////////////////////BOTONES/////////////////////////////////////
 	
 $("#incluir").on("click",function(){
 	if(validarenvio()){
@@ -145,6 +149,8 @@ function crearDT(){
     }         
 }
 
+//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
+
 function validarenvio(){
 	if(validarkeyup(/^[0-9]{10}$/,$("#rifProveedor"),
 		$("#srifProveedor"),"El formato debe tener 10 carácteres")==0){
@@ -214,6 +220,8 @@ function coloca(linea){
 	$("#direccionProveedor").val($(linea).find("td:eq(4)").text());
 }
 
+//////////////////////////////FUNCIONES AJAX/////////////////////////////////////
+
 function enviaAjax(datos) {
     $.ajax({
         async: true,
@@ -227,8 +235,8 @@ function enviaAjax(datos) {
         timeout: 10000, // tiempo máximo de espera por la respuesta del servidor
         success: function (respuesta) {
             console.log("Respuesta del servidor:", respuesta);
-            try {
-                var lee = JSON.parse(respuesta);
+			try {
+    		var lee = JSON.parse(respuesta);
                 console.log("JSON parseado:", lee);
 
                 if (lee.resultado == "consultar") {
@@ -252,6 +260,7 @@ function enviaAjax(datos) {
                 }
             } catch (e) {
                 console.error("Error en JSON:", e);
+				console.error("Respuesta del servidor:", respuesta);
                 alert("Error en JSON: " + e.message);
             }
         },
@@ -270,10 +279,21 @@ function enviaAjax(datos) {
 }
 
 function limpia(){ 
-	/*
+	
 	$("#rifProveedor").val('');
-	$("#usuario").val('');
-	$("#clave").val('');
-	$("#cargo").val('GERENTE');
-	*/
+	$("#nombreProveedor").val('');
+	$("#correoProveedor").val('');
+	$("#direccionProveedor").val('');
+	$("#telefonoProveedor").val('');
+	
+}
+
+//Funcion que muestra el modal con un mensaje
+function muestraMensaje(mensaje){
+	
+	$("#contenidodemodal").html(mensaje);
+			$("#mostrarmodal").modal("show");
+			setTimeout(function() {
+					$("#mostrarmodal").modal("hide");
+			},5000);
 }

@@ -84,14 +84,14 @@ class Proveedor extends Conexion
 						nombreProveedor,
 						telefonoProveedor,
 						correoProveedor,
-						direccionProveedor,
+						direccionProveedor
 						)
 						Values(
 						:rifProveedor,
 						:nombreProveedor,
 						:telefonoProveedor,
 						:correoProveedor,
-						:direccionProveedor,
+						:direccionProveedor
 						)");
                 $p->bindParam(':rifProveedor', $this->rifProveedor);
                 $p->bindParam(':nombreProveedor', $this->nombreProveedor);
@@ -137,7 +137,7 @@ class Proveedor extends Conexion
 						nombreProveedor = :nombreProveedor,
 						telefonoProveedor = :telefonoProveedor,
 						correoProveedor = :correoProveedor,
-						direccionProveedor = :direccionProveedor,
+						direccionProveedor = :direccionProveedor
 						where
 						rifProveedor = :rifProveedor
 						");
@@ -157,7 +157,7 @@ class Proveedor extends Conexion
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] =  'No existe la rifProveedor';
+            $r['mensaje'] =  'No existe el rif del Proveedor';
         }
         return $r;
     }
@@ -265,8 +265,9 @@ class Proveedor extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("Select * from proveedor where rifProveedor='$this->rifProveedor'");
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+            $stmt = $co->prepare("SELECT * FROM proveedor WHERE rifProveedor = :rifProveedor");
+            $stmt->execute(['rifProveedor' => $this->rifProveedor]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
 
                 $r['resultado'] = 'encontro';
