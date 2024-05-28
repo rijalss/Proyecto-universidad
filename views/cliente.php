@@ -12,17 +12,17 @@
 
 <body>
     <!-- Header -->
-    
+
     <?php require_once("public/commun/menu.php"); ?>
     <?php require_once("public/commun/extras.php"); ?>
     <!-- modal para las alertas -->
-      <?php require_once("public/commun/modal.php"); ?>
+    <?php require_once("public/commun/modal.php"); ?>
     <!-- Header -->
     <br>
     <br>
     <br>
     <br>
-  
+
     <div class="container-center m-5">
         <div class="container-fluid">
 
@@ -78,76 +78,76 @@
 
 
 
-                               <!-- Botonera para cumplir acciones -->
+                            <!-- Botonera para cumplir acciones -->
 
-                             <div class="row container text-center">
-                                    <div class="col-md-2">
-                                        <button type="button" class="btn btn-primary" id="incluir" >INCLUIR</button>
-                                    </div>
-                                    <div class="col-md-2">	
-                                        <button type="button" class="btn btn-primary" id="consultar" >CONSULTAR</button>
-                                    </div>
-                                    <div class="col-md-2">	
-                                        <button type="button" class="btn btn-primary" id="modificar" >MODIFICAR</button>
-                                    </div>
-                                    <div class="col-md-2">	
-                                        <button type="button" class="btn btn-primary" id="eliminar" >ELIMINAR</button>
-                                    </div>
-                                    <div class="col-md-2">	
-                                        <a href="." class="btn btn-primary">REGRESAR</a>
-                                    </div>
+                            <div class="row container text-center">
+                                <div class="col  mb-4">
+                                    <button type="button" class="btn btn-primary" id="incluir">INCLUIR</button>
+                                </div>
+                                <div class="col  mb-4">
+                                    <button type="button" class="btn btn-success" id="consultar">CONSULTAR</button>
+                                </div>
+                                <div class="col  mb-4">
+                                    <button type="button" class="btn btn-warning" id="modificar">MODIFICAR</button>
+                                </div>
+                                <div class="col  mb-4">
+                                    <button type="button" class="btn btn-danger" id="eliminar">ELIMINAR</button>
+                                </div>
+                                <div class="col  mb-4">
+                                    <a href="." class="btn btn-secondary">REGRESAR</a>
+                                </div>
                             </div>
 
 
-  
+
                             <!-- inicio del modal -->
-                            <div class="container">	  
-                            <div class="modal fade" tabindex="-1" role="dialog"  id="modal1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header text-light bg-primary">
-                                        <h5 class="modal-title">Listado de Personas</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        
-                                    </button>
+                            <div class="container">
+                                <div class="modal fade" tabindex="-1" role="dialog" id="modal1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-light bg-primary">
+                                                <h5 class="modal-title">Listado de Clientes</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-striped table-hover" id="tablacliente">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cedula</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Nombres</th>
+                                                            <th>telefono</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="resultadoconsulta">
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer bg-light">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+                                                    Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                    <table class="table table-striped table-hover" id="tablacliente">
-                                        <thead>
-                                        <tr>
-                                            <th>Cedula</th>
-                                            <th>Apellidos</th>
-                                            <th>Nombres</th>
-                                            <th>telefono</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="resultadoconsulta">
-                                        
-                                        
-                                        </tbody>
-                                        </table> 
-                                </div>
-                                <div class="modal-footer bg-light">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-                                    Cerrar
-                                </button>
-                                </div>
                                 </div>
                             </div>
-                            </div>
-                          </div>
-                             <!--fin de seccion modal-->
-                                                      
+                            <!--fin de seccion modal-->
+
+                        </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- Footer -->
     <?php require_once("public/commun/footer.php"); ?>
     <!-- Footer -->
 
-                                                         
+
     <!-- Scripts -->
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>

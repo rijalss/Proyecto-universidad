@@ -288,12 +288,3 @@ function limpia(){
 	
 }
 
-//Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	
-	$("#contenidodemodal").html(mensaje);
-			$("#mostrarmodal").modal("show");
-			setTimeout(function() {
-					$("#mostrarmodal").modal("hide");
-			},5000);
-}
