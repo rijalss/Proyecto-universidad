@@ -35,24 +35,26 @@ require_once("model/".$pagina.".php");
 			 echo  json_encode($o->consultar());  
 		  }
 		  elseif($accion=='consultatr'){
-			 $o->set_cedula($_POST['cedula']); 
+			 $o->set_cedula($_POST['cedulaCliente']); 
 			 echo  json_encode($o->consultatr());  
 		  }
-		//   elseif($accion=='eliminar'){
-		// 	 $o->set_cedula($_POST['cedula']);
-		// 	 echo  json_encode($o->eliminar());
-		//   }
+		  elseif($accion=='eliminar'){
+			 $o->set_cedula($_POST['cedulaCliente']);
+			 echo  json_encode($o->eliminar());
+		  }
 		  else{		  
 			  $o->set_cedula($_POST['cedulaCliente']);
+			  $o->set_apellido($_POST['apellidoCliente']);
 			  $o->set_nombre($_POST['nombreCliente']);
 			  $o->set_telefono($_POST['telefonoCliente']);
-			  $o->set_apellido($_POST['apellidoCliente']);
-			//   if($accion=='incluir'){
-			// 	echo  json_encode($o->incluir());
-			//   }
-			//   elseif($accion=='modificar'){a
-			// 	echo  json_encode($o->modificar());
-			//   }
+			 
+			  if($accion=='incluir'){
+				echo  json_encode($o->incluir());
+			  }
+			  else if($accion=='modificar'){
+				
+				echo  json_encode($o->modificar());
+			  }
 		  }
 		  exit;
 	  }
@@ -63,5 +65,4 @@ require_once("model/".$pagina.".php");
   else{
 	  echo "pagina en construccion";
   }
-
-
+?>

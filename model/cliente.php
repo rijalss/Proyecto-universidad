@@ -61,17 +61,135 @@ class cliente extends Conexion{
 		return $this->nombre;
 	}
 	
-	function get_telefono($valor){
-		$this->telefono = $valor;
+	function get_telefono(){
+		return $this->telefono;
 	}
 
 	
 	//Lo siguiente que demos hacer es crear los metodos para incluir, consultar y eliminar
+	function incluir(){
+		//Ok ya tenemos la base de datos y la funcion conecta dentro de la clase
+		//datos, ahora debemos ejecutar las operaciones para realizar las consultas 
+		
+		//Lo primero que debemos hacer es consultar por el campo clave
+		//en este caso la cedula, para ello se creo la funcion existe
+		//que retorna true en caso de exitir el registro
+		
+		if(!$this->existe($this->cedula)){
+			//si estamos aca es porque la cedula no existe es decir se puede incluir
+			//los pasos a seguir son
+			//1 Se llama a la funcion conecta 
+			$co = $this->conecta();
+			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			//2 Se ejecuta el sql
+			$r = array();
+			try {
+				
+					$p = $co->prepare("Insert into cliente(
+						cedulaCliente,
+						apellidoCliente,
+						nombreCliente,
+						telefonoCliente
+						)
+						Values(
+						:cedulaCliente,
+						:apellidoCliente,
+						:nombreCliente,
+						:telefonoCliente
+						)");
+					$p->bindParam(':cedulaCliente',$this->cedula);		
+					$p->bindParam(':apellidoCliente',$this->apellido);
+					$p->bindParam(':nombreCliente',$this->nombre);	
+					$p->bindParam(':telefonoCliente',$this->telefono);
+					
+					
+					$p->execute();
+					
+						$r['resultado'] = 'incluir';
+			            $r['mensaje'] =  'Registro Inluido';
+			} catch(Exception $e) {
+				$r['resultado'] = 'error';
+			    $r['mensaje'] =  $e->getMessage();
+			}
+		}
+		else{
+			$r['resultado'] = 'incluir';
+			$r['mensaje'] =  'Ya existe la cedula';
+		}
+		
+		//Listo eso es todo y es igual para el resto de las operaciones
+		//incluir, modificar y eliminar
+		//solo cambia para buscar 
+		return $r;
+		
+	}
+	function modificar(){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		if($this->existe($this->cedula)){
+			try {
+		
+				$p = $co->prepare("Update cliente set 
+						apellidoCliente = :apellidoCliente,
+						nombreCliente = :nombreCliente,
+						telefonoCliente = :telefonoCliente
+						where
+						cedulaCliente = :cedulaCliente");
+					$p->bindParam(':cedulaCliente',$this->cedula);		
+					$p->bindParam(':apellidoCliente',$this->apellido);
+					$p->bindParam(':nombreCliente',$this->nombre);	
+					$p->bindParam(':telefonoCliente',$this->telefono);
+					
+					
+					$p->execute();
+					
+						$r['resultado'] = 'modificar';
+			            $r['mensaje'] =  'Registro Modificado';
+			} catch(Exception $e) {
+				$r['resultado'] = 'error';
+			    $r['mensaje'] =  $e->getMessage();
+			}
+		}
+		else{
+			$r['resultado'] = 'modificar';
+			    $r['mensaje'] =  'No existe la cedula';
+		}
+		return $r;
+	}
 	
+	function eliminar(){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		if($this->existe($this->cedula)){
+			try {
+					$p = $co->prepare("delete from cliente
+					    where
+						cedulaCliente = :cedulaCliente
+						");
+					$p->bindParam(':cedulaCliente',$this->cedula);		
+					
+					
+					$p->execute();
+					$r['resultado'] = 'eliminar';
+			        $r['mensaje'] =  'Registro Eliminado';
+			} catch(Exception $e) {
+				$r['resultado'] = 'error';
+			    $r['mensaje'] =  $e->getMessage();
+			}
+		}
+		else{
+			$r['resultado'] = $this->cedula;
+			$r['mensaje'] =  'No existe la cedula';
+		}
+		return $r;
+	}
 	
 	
 	
 	function consultar(){
+
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
@@ -85,16 +203,16 @@ class cliente extends Conexion{
 				foreach($resultado as $r){
 					$respuesta = $respuesta."<tr style='cursor:pointer' onclick='coloca(this);'>";
 						$respuesta = $respuesta."<td>";
-							$respuesta = $respuesta.$r['cedula'];
+							$respuesta = $respuesta.$r['cedulaCliente'];
 						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td>";
-							$respuesta = $respuesta.$r['apellidos'];
+							$respuesta = $respuesta.$r['nombreCliente'];
 						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td>";
-							$respuesta = $respuesta.$r['nombres'];
+							$respuesta = $respuesta.$r['apellidoCliente'];
 						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td>";
-							$respuesta = $respuesta.$r['telefono'];
+							$respuesta = $respuesta.$r['telefonoCliente'];
 						$respuesta = $respuesta."</td>";
 					$respuesta = $respuesta."</tr>";
 				}
@@ -120,7 +238,7 @@ class cliente extends Conexion{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
 			
-			$resultado = $co->query("Select * from cliente where cedula='$cedula'");
+			$resultado = $co->query("Select * from cliente where cedulaCliente='$cedula'");
 			
 			
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -145,7 +263,7 @@ class cliente extends Conexion{
 		$r = array();
 		try{
 			
-			$resultado = $co->query("Select * from cliente where cedula='$this->cedula'");
+			$resultado = $co->query("Select * from cliente where cedulaCliente='$this->cedula'");
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){
 			    
@@ -156,7 +274,7 @@ class cliente extends Conexion{
 			}
 			else{
 				
-				$r['resultado'] = 'noencontro';
+				$r['resultado'] = 'no en contro';
 				$r['mensaje'] =  '';
 				
 			}
