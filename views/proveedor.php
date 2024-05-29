@@ -14,7 +14,6 @@
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
 	<?php require_once("public/commun/extras.php"); ?>
-	<?php require_once("public/commun/modal.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>

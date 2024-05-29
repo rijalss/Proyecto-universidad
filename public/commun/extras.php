@@ -6,6 +6,7 @@
         <script src="public/js/jquery.dataTables.min.js"></script>
         <script src="public/js/dataTables.bootstrap5.min.js"></script>
         <script src="public/js/datatable.js"></script>
+        <?php require_once("public/commun/modal.php"); ?>
     </head>
 
 </head>
