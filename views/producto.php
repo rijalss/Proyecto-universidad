@@ -71,11 +71,12 @@
 								<div class="col">
 									<label for="categoria">Categoría</label>
 									<select class="form-control" name="categoria" id="categoria">
+									<option value="1" disabled selected>Seleccione una categoria</option>
 										<?php
-										$categoria = new Categoria("");
+										$categoria = new producto();
 										$categorias = $categoria->obtenerCategorias();
 										foreach ($categorias as $categoria) {
-											echo "<option value='" . $categoria['nombreCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+											echo "<option value='" . $categoria['codCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
 										}
 										?>
 									</select>
@@ -116,7 +117,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" tabindex="-1" aria-labelledby="productomodal" aria-hidden="true" role="dialog" id="modal1">
+	<div class="modal fade" tabindex="-1" aria-labelledby="cargomodal" aria-hidden="true" role="dialog" id="modal1">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -127,13 +128,14 @@
 				<div class="modal-body">
 
 					<!-- Form dentro del modal para agregar cargos a la base de datos -->
-					<table class="table table-striped table-hover" id="tablaProductos">
+					<table class="table table-striped table-hover" id="tablaproducto">
 						<thead>
 							<tr>
 								<th>Código</th>
 								<th>Nombre</th>
 								<th>Precio</th>
-								<th>Descripción</th>
+								<th>Descripcion</th>
+								<th>Categoria</th>
 							</tr>
 						</thead>
 						<tbody id="resultadoconsulta">

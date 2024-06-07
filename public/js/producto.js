@@ -52,16 +52,16 @@ $(document).ready(function(){
 		
 	$("#incluir").on("click",function(){
 		if(validarenvio()){
-			 var datos = new FormData();
-			 datos.append('accion','incluir');
-			 datos.append('codProducto',$("#codProducto").val());
-			 datos.append('precio',$("#precio").val());
-			 datos.append('nombreProducto',$("#nombreProducto").val());
-			 datos.append('descProducto',$("#descProducto").val());
-			 datos.append('nombreCategoria',$("#nombreCategoria").val());
+				var datos = new FormData();
+				datos.append('accion','incluir');
+				datos.append('codProducto',$("#codProducto").val());
+				datos.append('precio',$("#precio").val());
+				datos.append('nombreProducto',$("#nombreProducto").val());
+				datos.append('descProducto',$("#descProducto").val());
+				datos.append('categoria',$("#categoria").val());
 
-			 enviaAjax(datos);
-			 limpia();
+				enviaAjax(datos);
+				limpia();
 		}
 	});
 	
@@ -71,9 +71,10 @@ $(document).ready(function(){
 			var datos = new FormData();
 			datos.append('accion','modificar');
 			datos.append('codProducto',$("#codProducto").val());
-			datos.append('precio',$("#precio").val());
-			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('descProducto',$("#descProducto").val());
+				datos.append('precio',$("#precio").val());
+				datos.append('nombreProducto',$("#nombreProducto").val());
+				datos.append('descProducto',$("#descProducto").val());
+				datos.append('categoria',$("#categoria").val());
 	 
 			enviaAjax(datos);
 			limpia();
@@ -90,9 +91,10 @@ $(document).ready(function(){
 			var datos = new FormData();
 			datos.append('accion','eliminar');
 			datos.append('codProducto',$("#codProducto").val());
-			datos.append('precio',$("#precio").val());
-			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('descProducto',$("#descProducto").val());
+				datos.append('precio',$("#precio").val());
+				datos.append('nombreProducto',$("#nombreProducto").val());
+				datos.append('descProducto',$("#descProducto").val());
+				datos.append('categoria',$("#categoria").val());
 	
 			enviaAjax(datos);
 			limpia();
@@ -213,6 +215,7 @@ $(document).ready(function(){
 		$("#precio").val($(linea).find("td:eq(2)").text());
 		$("#descProducto").val($(linea).find("td:eq(3)").text());
 		$("#nombreCategoria").val($(linea).find("td:eq(4)").text());
+		$("#codCategoria").val($(linea).find("td:eq(5)").text());
 	}
 	
 	//////////////////////////////FUNCIONES AJAX/////////////////////////////////////
@@ -245,6 +248,7 @@ $(document).ready(function(){
 						$("#precio").val(lee.mensaje[0][3]);
 						$("#descProducto").val(lee.mensaje[0][4]);
 						$("#nombreCategoria").val(lee.mensaje[0][5]);
+						$("#categoria").val(lee.mensaje[0][6]);
 					} else if (lee.resultado == "incluir" ||
 						lee.resultado == "modificar" ||
 						lee.resultado == "eliminar") {
@@ -279,6 +283,7 @@ $(document).ready(function(){
 		$("#nombreProducto").val('');
 		$("#precio").val('');
 		$("#descProducto").val('');
+		$("#categoria").val('1');
 		
 	}
 	

@@ -75,20 +75,20 @@ class producto extends Categoria
 						nombreProducto,
 						precio,
 						descProducto,
-                        nombreCategoria
+                        codCategoria
 						)
 						Values(
 						:codProducto,
 						:nombreProducto,
 						:precio,
-						:descProducto
-                        :nombreCategoria
+						:descProducto,
+                        :codCategoria
 						)");
                 $p->bindParam(':codProducto', $this->codProducto);
                 $p->bindParam(':nombreProducto', $this->nombreProducto);
                 $p->bindParam(':precio', $this->precio);
                 $p->bindParam(':descProducto', $this->descProducto);
-                $p->bindParam(':nombreCategoria', $this->nombreCategoria);
+                $p->bindParam(':codCategoria', $this->codCategoria);
 
                 $p->execute();
 
@@ -117,13 +117,16 @@ class producto extends Categoria
                 $p = $co->prepare("Update producto set 
         nombreProducto = :nombreProducto,
         precio = :precio,
-        descProducto = :descProducto
+        descProducto = :descProducto,
+        codCategoria = :codCategoria
         where producto.codProducto = :codProducto
       ");
                 $p->bindParam(':codProducto', $this->codProducto);
                 $p->bindParam(':nombreProducto', $this->nombreProducto);
                 $p->bindParam(':precio', $this->precio);
                 $p->bindParam(':descProducto', $this->descProducto);
+                $p->bindParam(':codCategoria', $this->codCategoria);
+
 
                 $p->execute();
 
@@ -178,7 +181,9 @@ class producto extends Categoria
         $r = array();
         try {
 
-            $resultado = $co->query("Select * from producto");
+            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.precio, p.descProducto, p.codCategoria, c.nombreCategoria
+            FROM producto p
+            JOIN categoria c ON p.codCategoria = c.codCategoria");
 
             if ($resultado) {
 
@@ -245,13 +250,16 @@ class producto extends Categoria
         $r = array();
         try {
 
-            $stmt = $co->prepare("SELECT * FROM producto WHERE codProducto = :codProducto");
+            $stmt = $co->prepare("SELECT p.codProducto, p.nombreProducto, p.precio, p.descProducto, p.codCategoria, c.nombreCategoria
+                                FROM producto p
+                                JOIN categoria c ON p.codCategoria = c.codCategoria
+                                WHERE p.codProducto = :codProducto");
             $stmt->execute(['codProducto' => $this->codProducto]);
             $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
 
                 $r['resultado'] = 'encontro';
-                $r['mensaje'] =  $fila;
+                $r['mensaje'] = $fila[0];
             } else {
 
                 $r['resultado'] = 'noencontro';

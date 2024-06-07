@@ -9,6 +9,7 @@ if (is_file("views/" . $pagina . ".php")) {
 
     $o = new Producto();
 
+
     if (!empty($_POST)) {
 
         $accion = $_POST['accion'];
@@ -26,7 +27,7 @@ if (is_file("views/" . $pagina . ".php")) {
             $o->set_nombreProducto($_POST['nombreProducto']);
             $o->set_descProducto($_POST['descProducto']);
             $o->set_precio($_POST['precio']);
-            $o->set_nombreCategoria($_POST['nombreCategoria']);
+            $o->set_codCategoria($_POST['categoria']);
             if ($accion == 'incluir') {
                 echo  json_encode($o->incluir());
             } elseif ($accion == 'modificar') {
