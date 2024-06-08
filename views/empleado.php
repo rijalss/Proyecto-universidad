@@ -12,6 +12,7 @@
 
 <body>
 	<!-- Header -->
+	<?php require_once("public/commun/modal.php"); ?>
 	<?php require_once("public/commun/menu.php"); ?>
 	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
@@ -61,6 +62,11 @@
 									<span id="scorreoEmpleado"></span>
 								</div>
 								<div class="col">
+									<label for="contraEmpleado">Contraseña</label>
+									<input class="form-control" type="password" id="contraEmpleado" name="contraEmpleado" required />
+									<span id="scontraEmpleado"></span>
+								</div>
+								<div class="col">
 									<label for="telefonoEmpleado">Número de teléfono del Empleado</label>
 									<input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
 									<span id="stelefonoEmpleado"></span>
@@ -75,7 +81,7 @@
 
 								<!-- Select y modal encargado de seleccionar, al igual que agregar cargos -->
 
-								<div class="row justify-content-center">
+								<!-- <div class="row justify-content-center">
 
 									<div class="col-4">
 										<label for="cargo">Cargo</label>
@@ -93,22 +99,22 @@
 										<label for="agregarcargo">&nbsp;</label>
 										<button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#agregarcargo">
 											Agregar Cargo
-										</button>
+										</button> -->
 
 										<!-- Modal encargado de agregar un nuevo cargo -->
 
-										<div class="modal fade" id="agregarcargo" tabindex="-1" aria-labelledby="cargomodal" aria-hidden="true">
+										<!-- <div class="modal fade" id="agregarcargo" tabindex="-1" aria-labelledby="cargomoda2" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
 														<h5 class="modal-title" id="cargomodal">Agregar Cargos</h5>
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
-													<div class="modal-body">
+													<div class="modal-body"> -->
 
 														<!-- Form dentro del modal para agregar cargos a la base de datos -->
 
-														<form method="post">
+														<!-- <form method="post">
 															<div class="mb-3">
 																<label for="nombreCargo" class="form-label">Nombre del cargo</label>
 																<input type="text" class="form-control" id="nombreCargo" name="nombreCategoria" required>
@@ -121,7 +127,7 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 
 								</div>
@@ -140,22 +146,58 @@
 							<!-- Botonera para cumplir acciones -->
 
 							<div class="row container text-center">
-								<div class="col  mb-4">
-									<button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
-								</div>
-								<div class="col mb-4">
-									<a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
-								</div>
-							</div>
+                                    <div class="col  mb-4">
+                                        <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
+                                    </div>
+                                </div>
+
+
+
+							 <!-- inicio del modal -->
+							 <div class="modal fade" tabindex="-1" aria-labelledby="cargomodal" aria-hidden="true" role="dialog" id="modal1">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Listado de Empleados</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <!-- Form dentro del modal para agregar cargos a la base de datos -->
+                                                <table class="table table-striped table-hover" id="tablaEmpleado">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cedula</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Nombres</th>
+															<th>Correo</th>
+                                                            <th>telefono</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="resultadoconsulta">
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--fin de seccion modal-->
+
 						</div>
 					</form>
 				</div>
@@ -171,7 +213,7 @@
 	<!-- Scripts -->
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="public/js/usuario.js"></script>
+	<script type="text/javascript" src="public/js/empleado.js"></script>
 	<!-- Scripts -->
 </body>
 
