@@ -271,4 +271,89 @@ class producto extends Categoria
         }
         return $r;
     }
+// CATEGORIAS
+    function incluirCategoria()
+    {
+
+        if (!$this->existeCategoria($this->nombreCategoria)) {
+            //1 Se llama a la funcion conecta 
+            $co = $this->conecta();
+            $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //2 Se ejecuta el sql
+            $r = array();
+            try {
+
+                $p = $co->prepare("Insert into categoria(
+                        nombreCategoria
+						)
+						Values(
+                        :nombreCategoria
+						)");
+                $p->bindParam(':nombreCategoria', $this->nombreCategoria);
+
+                $p->execute();
+
+                $r['resultado'] = 'incluirCategoria';
+                $r['mensaje'] =  'Registro Inluido';
+            } catch (Exception $e) {
+                $r['resultado'] = 'error';
+                $r['mensaje'] =  $e->getMessage();
+            }
+        } else {
+            $r['resultado'] = 'incluirCategoria';
+            $r['mensaje'] =  'Ya existe la categoria';
+        }
+
+        return $r;
+    }
+
+    function eliminarCategoria()
+    {
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
+        if ($this->existeCategoria($this->nombreCategoria)) {
+            try {
+                $p = $co->prepare("delete from categoria 
+					    where
+						nombreCategoria = :nombreCategoria
+						");
+                $p->bindParam(':nombreCategoria', $this->nombreCategoria);
+
+
+                $p->execute();
+                $r['resultado'] = 'eliminarCategoria';
+                $r['mensaje'] =  'Categoria Eliminada';
+            } catch (Exception $e) {
+                $r['resultado'] = 'error';
+                $r['mensaje'] =  $e->getMessage();
+            }
+        } else {
+            $r['resultado'] = 'eliminarCategoria';
+            $r['mensaje'] =  'No existe la categoria';
+        }
+        return $r;
+    }
+
+    private function existeCategoria($nombreCategoria)
+    {
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+
+            $resultado = $co->query("Select * from categoria where nombreCategoria='$nombreCategoria'");
+
+
+            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+            if ($fila) {
+
+                return true;
+            } else {
+
+                return false;;
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 }

@@ -22,7 +22,6 @@
 
 	<div class="container-center m-5">
 		<div class="container-fluid">
-
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h6 class="container text-center h2 text-primary">Registro de Productos</h6>
@@ -34,7 +33,7 @@
 								<!-- Inputs encargados de registrar datos para las entradas de productos -->
 
 								<div class="col">
-									<label for="codProducto">Codigo del Productos</label>
+									<label for="codProducto">Codigo del Producto</label>
 									<input type="text" class="form-control" id="codProducto" required>
 									<span id="scodProducto"></span>
 								</div>
@@ -44,11 +43,52 @@
 									<span id="snombreProducto"></span>
 								</div>
 								<div class="col">
-									<label for="precio">Precio Productos</label>
-									<input type="number" class="form-control" id="precio" min="0" required>
-									<span id="sprecio"></span>
+									<label for="categoria">Categoría</label>
+									<select class="form-control" name="categoria" id="categoria">
+										<option value="1" disabled selected>Seleccione una categoria</option>
+										<?php
+										$categoria = new producto();
+										$categorias = $categoria->obtenerCategorias();
+										foreach ($categorias as $categoria) {
+											echo "<option value='" . $categoria['codCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+										}
+										?>
+									</select>
 								</div>
+								<div class="col-2">
+									<label for="agregarcategoria">&nbsp;</label>
+									<button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#agregarcategoria">
+										Agregar Categoría
+									</button>
+								</div>
+								<!-- Modal Categoria-->
+								<div class="modal fade" id="agregarcategoria" tabindex="-1" aria-labelledby="categoriamodal" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="categoriamodal">Agregar Categoría</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+											</div>
+											<div class="modal-body">
+
+												<!-- Form dentro del modal para agregar cartegorias a la base de datos -->
+
+												<form method="post">
+													<div class="mb-3">
+														<label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
+														<input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" required>
+													</div>
+													<div class="text-center">
+														<button id="incluirCategoria" type="button" class="btn btn-primary">Agregar</button>
+														<button id="eliminarCategoria" type="button" class="btn btn-danger">Eliminar</button>
+													</div>
+
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
 
 
 							</div>
@@ -63,25 +103,53 @@
 
 							<div class="row">
 
-								<div class="col">
+								<!-- <div class="col">
 									<label for="descProducto">Descripción del Producto</label>
 									<input type="text" class="form-control" id="descProducto" required>
 									<span id="sdescProducto"></span>
-								</div>
-								<div class="col">
-									<label for="categoria">Categoría</label>
-									<select class="form-control" name="categoria" id="categoria">
-									<option value="1" disabled selected>Seleccione una categoria</option>
-										<?php
-										$categoria = new producto();
-										$categorias = $categoria->obtenerCategorias();
-										foreach ($categorias as $categoria) {
-											echo "<option value='" . $categoria['codCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
-										}
-										?>
-									</select>
-								</div>
+								</div> -->
+								<div class="row">
+									<div class="col">
+										<div class="col-12">
+											<label for="precio">Último precio</label>
+											<input class="form-control" type="number" id="precio" name="precio" min="0" />
+											<span id="sprecio"></span>
+										</div>
+										<br>
 
+										<!-- Checkbox para habilitar o deshabilitar el input -->
+
+										<div class="form-check">
+											<label class="form-check-label" for="habilitarPromedio">Habilitar precio promedio</label>
+											<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
+										</div>
+									</div>
+
+									<!-- Script para poder apagar el input de precio promedio -->
+
+									<script>
+										document.addEventListener('DOMContentLoaded', (event) => {
+											const checkbox = document.getElementById('habilitarPromedio');
+											const input = document.getElementById('precio');
+											input.disabled = true;
+											checkbox.checked = false;
+										});
+
+										function toggleInput() {
+											const checkbox = document.getElementById('habilitarPromedio');
+											const input = document.getElementById('precio');
+											input.disabled = !checkbox.checked;
+										}
+									</script>
+
+									<!-- Campo para describir o detallar el producto -->
+
+									<div class="col-7">
+										<label for="descProducto">Descripcion del producto</label>
+										<textarea class="form-control" id="descProducto" name="descProducto" rows="5"></textarea>
+										<span id="sdescProducto"></span>
+									</div>
+								</div>
 							</div>
 
 							<div class=" row">

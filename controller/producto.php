@@ -4,10 +4,13 @@ if (!is_file("model/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
 }
+require_once("model/categoria.php");
 require_once("model/" . $pagina . ".php");
 if (is_file("views/" . $pagina . ".php")) {
 
     $o = new Producto();
+    $categoria = new Categoria("");
+    $categorias = $categoria->obtenerCategorias();
 
 
     if (!empty($_POST)) {

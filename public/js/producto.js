@@ -11,9 +11,9 @@ $(document).ready(function(){
 		});
 		
 		$("#codProducto").on("keyup",function(){
-			validarkeyup(/^[0-9]{10}$/,$(this),
-			$("#scodProducto"),"El formato debe tener 10 carácteres");
-			if($("#codProducto").val().length == 10){
+			validarkeyup(/^[0-9]{4,10}$/,$(this),
+			$("#scodProducto"),"El formato no puede estar vacío y no puede conter más de 10 carácteres");
+			if($("#codProducto").val().length <= 10){
 			  var datos = new FormData();
 				datos.append('accion','consultatr');
 				datos.append('codProducto',$(this).val());
@@ -22,21 +22,21 @@ $(document).ready(function(){
 		});
 	
 		$("#nombreProducto").on("keypress",function(e){
-			validarkeypress(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
+			validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 		});
 		
 		$("#nombreProducto").on("keyup",function(){
-			validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
+			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
 			$(this), $("#snombreProducto"), "Se debe llenar este campo y debe tener un máximo de 30 carácteres");
 		});
 	
 		$("#precio").on("keypress",function(e){
-			validarkeypress(/^[0-9-\b]*$/,e);		
+			validarkeypress(/^[0-9-\b]*$/,e);
 		});
 		
 		$("#precio").on("keyup",function(){
-			validarkeyup(/^[0-9]{1,11}$/,$(this),
-			$("#sprecio"),"El formato debe tener 11 carácteres");
+			validarkeyup(/^[1-9]{0,10}$/,$(this),
+			$("#sprecio"),"No debe haber cantidades negativas / menores a cero");
 		});
 
 		$("#descProducto").on("keypress",function(e){
@@ -44,9 +44,11 @@ $(document).ready(function(){
 		});
 		
 		$("#descProducto").on("keyup",function(){
-			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-			$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 30 carácteres");
+			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+			$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 200 carácteres");
 		});
+
+		
 	
 	//////////////////////////////BOTONES/////////////////////////////////////
 		
@@ -64,6 +66,14 @@ $(document).ready(function(){
 				limpia();
 		}
 	});
+
+	$("#incluirCategoria").on("click",function(){
+				var datos = new FormData();
+				datos.append('accionCategoria','incluirCategoria');
+				datos.append('nombreCategoria',$("#nombreCategoria").val());
+				enviaAjax(datos);
+				limpiaCategoria();
+	});
 	
 	
 	$("#modificar").on("click",function(){
@@ -80,11 +90,12 @@ $(document).ready(function(){
 			limpia();
 		}
 	});
+
 	$("#eliminar").on("click",function(){
 		if(validarkeyup(/^[0-9]{10}$/,$("#codProducto"),
-			$("#scodProducto"),"El formato debe ser 9999999")==0){
-			muestraMensaje("El codigo del producto debe coincidir con el formato <br/>"+ 
-							"99999999");	
+			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
+			muestraMensaje("La codigo del Producto debe coincidir con el formato <br/>"+ 
+						"máximo 10 carácteres, ni tener cantidades negativas");	
 			
 		}
 		else{	
@@ -98,6 +109,23 @@ $(document).ready(function(){
 	
 			enviaAjax(datos);
 			limpia();
+		}
+		
+	});
+
+	$("#eliminarCategoria").on("click",function(){
+		if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
+			$("#nombreCategoria"),"El formato no puede estar vacío")==0){
+			muestraMensaje("El formato no puede estar vacío");	
+			
+		}
+		else{	
+			var datos = new FormData();
+			datos.append('accionCategoria','eliminarCategoria');
+			datos.append('nombreCategoria',$("#nombreCategoria").val());
+	
+			enviaAjax(datos);
+			limpiaCategoria();
 		}
 		
 	});
@@ -151,29 +179,31 @@ $(document).ready(function(){
 						$("#mostrarmodal").modal("hide");
 				},5000);
 	}
-		
+	
+
 	function validarenvio(){
-		if(validarkeyup(/^[0-9]{10}$/,$("#codProducto"),
-			$("#scodProducto"),"El formato debe tener 10 carácteres")==0){
-			muestraMensaje("El codigo del producto debe coincidir con el formato <br/>" + 
-			"9999999999");	
+		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
+			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
+			muestraMensaje("El codigo del Producto debe coincidir con el formato <br/>"+ 
+							"máximo 10 carácteres, ni tener cantidades negativas");	
 			return false;					
 		}	
-		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,
-			$("#precio"),$("#sprecio"),"Solo numeros y/o # - debe contender 11 carácteres")==0){
-			muestraMensaje("El precio del producto <br/>Solo numeros y # - debe contener 11 carácteres");
+		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{0,10}$/,
+			$("#precio"),$("#sprecio"),"Solo numeros y/o # - sin cantidades negativas / menores a cero")==0){
+			muestraMensaje("El último precio del Producto <br/>Solo numeros y # - sin cantidades negativas / menores a cero");
 			return false;
 		}
 		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 			$("#nombreProducto"),$("#snombreProducto"),"No debe contener más de 30 carácteres")==0){
-			muestraMensaje("El nombre del producto <br/> No debe contener más de 30 carácteres");
+			muestraMensaje("El nombre del Producto <br/> No debe contener más de 30 carácteres");
 			return false;
 		}
-		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-			$("#descProducto"),$("#sdescProducto"),"No debe contener más de 30 carácteres")==0){
-			muestraMensaje("La descripción del producto <br/> No debe contener más de 30 carácteres");
+		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+			$("#descProducto"),$("#sdescProducto"),"No debe contener más de 200 carácteres")==0){
+			muestraMensaje("La descripción del Producto <br/> No debe contener más de 200 carácteres");
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -241,7 +271,11 @@ $(document).ready(function(){
 						destruyeDT();
 						$("#resultadoconsulta").html(lee.mensaje);
 						crearDT();
-						$("#modal1").modal("show");
+						$("#modal1").modal("show");	
+					}else if(lee.resultado == "incluirCategoria" ||
+						lee.resultado == "eliminarCategoria"){
+						muestraMensaje(lee.mensaje);
+						limpiaCategoria();
 					} else if (lee.resultado == "encontro") {
 						$("#codProducto").val(lee.mensaje[0][1]);
 						$("#nombreProducto").val(lee.mensaje[0][2]);
@@ -254,7 +288,7 @@ $(document).ready(function(){
 						lee.resultado == "eliminar") {
 						muestraMensaje(lee.mensaje);
 						limpia();
-					} else if (lee.resultado == "error") {
+					}  else if (lee.resultado == "error") {
 						muestraMensaje(lee.mensaje);
 					}
 				} catch (e) {
@@ -285,6 +319,10 @@ $(document).ready(function(){
 		$("#descProducto").val('');
 		$("#categoria").val('1');
 		
+	}
+
+	function limpiaCategoria(){
+		$("#nombreCategoria").val('');
 	}
 	
 	
