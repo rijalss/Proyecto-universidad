@@ -81,10 +81,10 @@ $(document).ready(function(){
 			var datos = new FormData();
 			datos.append('accion','modificar');
 			datos.append('codProducto',$("#codProducto").val());
-				datos.append('precio',$("#precio").val());
-				datos.append('nombreProducto',$("#nombreProducto").val());
-				datos.append('descProducto',$("#descProducto").val());
-				datos.append('categoria',$("#categoria").val());
+			datos.append('precio',$("#precio").val());
+			datos.append('nombreProducto',$("#nombreProducto").val());
+			datos.append('descProducto',$("#descProducto").val());
+			datos.append('categoria',$("#categoria").val());
 	 
 			enviaAjax(datos);
 			limpia();
@@ -92,7 +92,7 @@ $(document).ready(function(){
 	});
 
 	$("#eliminar").on("click",function(){
-		if(validarkeyup(/^[0-9]{10}$/,$("#codProducto"),
+		if(validarkeyup(/^[0-9]{8,10}$/,$("#codProducto"),
 			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
 			muestraMensaje("La codigo del Producto debe coincidir con el formato <br/>"+ 
 						"máximo 10 carácteres, ni tener cantidades negativas");	
@@ -102,10 +102,10 @@ $(document).ready(function(){
 			var datos = new FormData();
 			datos.append('accion','eliminar');
 			datos.append('codProducto',$("#codProducto").val());
-				datos.append('precio',$("#precio").val());
-				datos.append('nombreProducto',$("#nombreProducto").val());
-				datos.append('descProducto',$("#descProducto").val());
-				datos.append('categoria',$("#categoria").val());
+			datos.append('precio',$("#precio").val());
+			datos.append('nombreProducto',$("#nombreProducto").val());
+			datos.append('descProducto',$("#descProducto").val());
+			datos.append('categoria',$("#categoria").val());
 	
 			enviaAjax(datos);
 			limpia();
@@ -114,19 +114,19 @@ $(document).ready(function(){
 	});
 
 	$("#eliminarCategoria").on("click",function(){
-		if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
-			$("#nombreCategoria"),"El formato no puede estar vacío")==0){
-			muestraMensaje("El formato no puede estar vacío");	
+	if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
+	$("#nombreCategoria"),"El formato no puede estar vacío")==0){
+	muestraMensaje("El formato no puede estar vacío");	
 			
-		}
-		else{	
-			var datos = new FormData();
-			datos.append('accionCategoria','eliminarCategoria');
-			datos.append('nombreCategoria',$("#nombreCategoria").val());
+	}
+	else{	
+		var datos = new FormData();
+		datos.append('accionCategoria','eliminarCategoria');
+		datos.append('nombreCategoria',$("#nombreCategoria").val());
 	
-			enviaAjax(datos);
-			limpiaCategoria();
-		}
+		enviaAjax(datos);
+		limpiaCategoria();
+	}
 		
 	});
 	
@@ -244,8 +244,7 @@ $(document).ready(function(){
 		$("#nombreProducto").val($(linea).find("td:eq(1)").text());
 		$("#precio").val($(linea).find("td:eq(2)").text());
 		$("#descProducto").val($(linea).find("td:eq(3)").text());
-		$("#nombreCategoria").val($(linea).find("td:eq(4)").text());
-		$("#codCategoria").val($(linea).find("td:eq(5)").text());
+
 	}
 	
 	//////////////////////////////FUNCIONES AJAX/////////////////////////////////////
@@ -266,14 +265,16 @@ $(document).ready(function(){
 				try {
 				var lee = JSON.parse(respuesta);
 					console.log("JSON parseado:", lee);
+					console.log("Resultado:", lee.resultado); // Añade esta línea
 	
 					if (lee.resultado == "consultar") {
 						destruyeDT();
 						$("#resultadoconsulta").html(lee.mensaje);
 						crearDT();
 						$("#modal1").modal("show");	
-					}else if(lee.resultado == "incluirCategoria" ||
+					} else if(lee.resultado == "incluirCategoria" ||
 						lee.resultado == "eliminarCategoria"){
+							console.log("Entrando en el bloque de incluir/eliminar categoría"); // Añade esta línea
 						muestraMensaje(lee.mensaje);
 						limpiaCategoria();
 					} else if (lee.resultado == "encontro") {
@@ -281,8 +282,7 @@ $(document).ready(function(){
 						$("#nombreProducto").val(lee.mensaje[0][2]);
 						$("#precio").val(lee.mensaje[0][3]);
 						$("#descProducto").val(lee.mensaje[0][4]);
-						$("#nombreCategoria").val(lee.mensaje[0][5]);
-						$("#categoria").val(lee.mensaje[0][6]);
+						$("#categoria").val(lee.mensaje[0][5]);
 					} else if (lee.resultado == "incluir" ||
 						lee.resultado == "modificar" ||
 						lee.resultado == "eliminar") {

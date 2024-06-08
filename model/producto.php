@@ -250,10 +250,7 @@ class producto extends Categoria
         $r = array();
         try {
 
-            $stmt = $co->prepare("SELECT p.codProducto, p.nombreProducto, p.precio, p.descProducto, p.codCategoria, c.nombreCategoria
-                                FROM producto p
-                                JOIN categoria c ON p.codCategoria = c.codCategoria
-                                WHERE p.codProducto = :codProducto");
+            $stmt = $co->prepare("SELECT * FROM producto WHERE codProducto = :codProducto");
             $stmt->execute(['codProducto' => $this->codProducto]);
             $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
@@ -271,7 +268,7 @@ class producto extends Categoria
         }
         return $r;
     }
-// CATEGORIAS
+    // CATEGORIAS
     function incluirCategoria()
     {
 

@@ -1,30 +1,22 @@
 <?php
 
-if (!is_file("model/" . $pagina . ".php")) {
-    echo "Falta definir la clase " . $pagina;
-    exit;
-}
-require_once("model/" . $pagina . ".php");
-if (is_file("views/" . $pagina . ".php")) {
+require_once("model/producto.php");
 
-    $o = new Producto();
+$o = new Producto();
+$categoria = new Categoria("");
+$categorias = $categoria->obtenerCategorias();
 
+if (!empty($_POST)) {
+    $accionCategoria = isset($_POST['accionCategoria']) ? $_POST['accionCategoria'] : null;
 
-    if (!empty($_POST)) {
-        $accionCategoria = $_POST['accionCategoria'];
-
-            if ($accionCategoria == 'eliminarCategoria') {
-            $o->set_codProducto($_POST['codProducto']);
-            echo  json_encode($o->eliminarCategoria());
-        } else {
-            $o->set_nombreCategoria($_POST['nombreCategoria']);
-            if ($accionCategoria == 'incluirCategoria') {
-                echo  json_encode($o->incluirCategoria());
-            }
+    if ($accionCategoria == 'eliminarCategoria') {
+        $o->set_nombreCategoria(isset($_POST['nombreCategoria']) ? $_POST['nombreCategoria'] : null);
+        echo  json_encode($o->eliminarCategoria());
+    } else {
+        $o->set_nombreCategoria(isset($_POST['nombreCategoria']) ? $_POST['nombreCategoria'] : null);
+        if ($accionCategoria == 'incluirCategoria') {
+            echo  json_encode($o->incluirCategoria());
         }
-        exit;
     }
-    require_once("views/" . $pagina . ".php");
-} else {
-    echo "pagina en construccion";
+    exit;
 }

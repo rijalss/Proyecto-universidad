@@ -102,12 +102,6 @@
 							</div>
 
 							<div class="row">
-
-								<!-- <div class="col">
-									<label for="descProducto">Descripción del Producto</label>
-									<input type="text" class="form-control" id="descProducto" required>
-									<span id="sdescProducto"></span>
-								</div> -->
 								<div class="row">
 									<div class="col">
 										<div class="col-12">
