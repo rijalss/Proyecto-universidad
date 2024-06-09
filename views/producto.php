@@ -45,10 +45,8 @@
 								<div class="col">
 									<label for="categoria">Categoría</label>
 									<select class="form-control" name="categoria" id="categoria">
-										<option value="1" disabled selected>Seleccione una categoria</option>
+										<option value='1' disabled selected>Seleccione una categoria</option>
 										<?php
-										$categoria = new producto();
-										$categorias = $categoria->obtenerCategorias();
 										foreach ($categorias as $categoria) {
 											echo "<option value='" . $categoria['codCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
 										}
@@ -61,6 +59,7 @@
 										Agregar Categoría
 									</button>
 								</div>
+
 								<!-- Modal Categoria-->
 								<div class="modal fade" id="agregarcategoria" tabindex="-1" aria-labelledby="categoriamodal" aria-hidden="true">
 									<div class="modal-dialog">

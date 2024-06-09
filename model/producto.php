@@ -1,18 +1,39 @@
 <?php
 
-require_once('model/categoria.php');
+require_once('model/conexion.php');
 
 
-class producto extends Categoria
+class producto extends Conexion
 {
 
     private $codProducto;
     private $nombreProducto;
     private $precio;
     private $descProducto;
-
+    private $codCategoria;
+    private $nombreCategoria;
 
     //////////////////////////SET//////////////////////////
+
+    public function get_nombreCategoria()
+    {
+        return $this->nombreCategoria;
+    }
+
+    public function get_codCategoria()
+    {
+        return $this->codCategoria;
+    }
+
+    public function set_nombreCategoria($nombreCategoria)
+    {
+        $this->nombreCategoria = $nombreCategoria;
+    }
+
+    public function set_codCategoria($codCategoria)
+    {
+        $this->codCategoria = $codCategoria;
+    }
 
     function set_codProducto($valor)
     {
@@ -227,7 +248,7 @@ class producto extends Categoria
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
 
-            $resultado = $co->query("Select * from producto where codProducto='$codProducto'");
+            $resultado = $co->query("SELECT * FROM producto WHERE codProducto='$codProducto'");
 
 
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -250,13 +271,17 @@ class producto extends Categoria
         $r = array();
         try {
 
-            $stmt = $co->prepare("SELECT * FROM producto WHERE codProducto = :codProducto");
+            $stmt = $co->prepare("SELECT producto.*, categoria.nombreCategoria 
+                                FROM producto 
+                                INNER JOIN categoria 
+                                ON producto.codCategoria = categoria.codCategoria 
+                                WHERE producto.codProducto = :codProducto");
             $stmt->execute(['codProducto' => $this->codProducto]);
             $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
 
                 $r['resultado'] = 'encontro';
-                $r['mensaje'] = $fila[0];
+                $r['mensaje'] = $fila;
             } else {
 
                 $r['resultado'] = 'noencontro';
@@ -268,7 +293,19 @@ class producto extends Categoria
         }
         return $r;
     }
+
     // CATEGORIAS
+
+    public function obtenerCategorias()
+    {
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $p = $co->prepare("SELECT * FROM categoria");
+        $p->execute();
+        $r = $p->fetchAll(PDO::FETCH_ASSOC);
+        return $r;
+    }
+
     function incluirCategoria()
     {
 
