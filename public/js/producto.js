@@ -3,6 +3,7 @@ $(document).ready(function(){
 	if($.trim($("#mensajes").text()) != ""){
 		muestraMensaje($("#mensajes").html());
 	}
+
 		
 	//////////////////////////////VALIDACIONES/////////////////////////////////////
 
@@ -54,19 +55,25 @@ $(document).ready(function(){
 	//////////////////////////////BOTONES/////////////////////////////////////
 		
 	$("#incluir").on("click",function(){
-		if(validarenvio()){
-				var datos = new FormData();
-				datos.append('accion','incluir');
-				datos.append('codProducto',$("#codProducto").val());
-				datos.append('precio',$("#precio").val());
-				datos.append('nombreProducto',$("#nombreProducto").val());
-				datos.append('descProducto',$("#descProducto").val());
-				datos.append('categoria',$("#categoria").val());
+        if(validarenvio()){
+            var datos = new FormData();
+            datos.append('accion','incluir');
+            datos.append('codProducto',$("#codProducto").val());
 
-				enviaAjax(datos);
-				limpia();
-		}
-	});
+            // Verificar si el campo precio está vacío
+            if($("#precio").val().trim() === ''){
+                $("#precio").val(0);
+            }
+	
+            datos.append('precio',$("#precio").val());
+            datos.append('nombreProducto',$("#nombreProducto").val());
+            datos.append('descProducto',$("#descProducto").val());
+            datos.append('categoria',$("#categoria").val());
+
+            enviaAjax(datos);
+            limpia();
+        }
+    });
 
 	$("#incluirCategoria").on("click",function(){
 				var datos = new FormData();
@@ -172,12 +179,14 @@ $(document).ready(function(){
 	
 	//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 	//Funcion que muestra el modal con un mensaje
-	function muestraMensaje(mensaje){
+	function muestraMensaje(mensaje) {
 		$("#contenidodemodal").html(mensaje);
-				$("#mostrarmodal").modal("show");
-				setTimeout(function() {
-						$("#mostrarmodal").modal("hide");
-				},5000);
+		$("#mostrarmodal").modal("show");
+		setTimeout(function() {
+			$("#mostrarmodal").modal("hide");
+		}, 5000);
+		// Cierra el modal de agregar categoría
+		$("#agregarcategoria").modal("hide");
 	}
 
 	function validarenvio(){
@@ -283,7 +292,7 @@ $(document).ready(function(){
 						muestraMensaje(lee.mensaje);
 						limpiaCategoria();
 					} else if (lee.resultado == "encontro") {
-						$("#codProducto").val(lee.mensaje[0][1]);
+						$("#codProducto").val(lee.mensaje[0][0]);
 						$("#nombreProducto").val(lee.mensaje[0][2]);
 						$("#precio").val(lee.mensaje[0][3]);
 						$("#descProducto").val(lee.mensaje[0][4]);
