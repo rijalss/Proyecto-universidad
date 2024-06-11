@@ -1,73 +1,63 @@
 <?php
-  
-//llamada al archivo que contiene la clase
-//usuarios, en ella estara el codigo que me //permitirá
-//guardar, consultar y modificar dentro de mi base //de datos
 
+if (!is_file("model/" . $pagina . ".php")) {
+    echo "Falta definir la clase " . $pagina;
+    exit;
+}
+require_once("model/" . $pagina . ".php");
+if (is_file("views/" . $pagina . ".php")) {
 
-//lo primero que se debe hacer es verificar al //igual que en la vista que exista el archivo
-if (!is_file("model/".$pagina.".php")){
-	//alli pregunte que si no es archivo se niega //con !
-	//si no existe envio mensaje y me salgo
-	echo "Falta definir la clase ".$pagina;
-	exit;
-}  
-require_once("model/".$pagina.".php");  
-  if(is_file("views/".$pagina.".php")){
-	  
-	  //bien si estamos aca es porque existe la //vista y la clase
-	  //por lo que lo primero que debemos hace es //realizar una instancia de la clase
-	  //instanciar es crear una variable local, //que contiene los metodos de la clase
-	  //para poderlos usar
-	  
-	  
-	  $o = new empleado(); //ahora nuestro objeto //se llama $o y es una copia en memoria de la
-	  //clase personasht
-	  
-	  if(!empty($_POST)){
-		  
-		  //como ya sabemos si estamos aca es //porque se recibio alguna informacion
-		  //de la vista, por lo que lo primero que //debemos hacer ahora que tenemos una 
-		  //clase es guardar esos valores en ella //con los metodos set
-		  $accion = $_POST['accion'];
-		  
-		  if($accion=='consultar'){
-			 echo  json_encode($o->consultar());  
-		  }
-		  elseif($accion=='consultatr'){
-			 $o->set_cedula($_POST['cedulaEmpleado']); 
-			 echo  json_encode($o->consultatr());  
-		  }
-		  elseif($accion=='eliminar'){
-			 $o->set_cedula($_POST['cedulaEmpleado']);
-			 echo  json_encode($o->eliminar());
-		  }
-		  else{		 
+    $o = new Empleado();
+    $c = new Empleado();
+    $cargos = $c->obtenerCargos();
 
-			  $o->set_cedula($_POST['cedulaEmpleado']);
-			  $o->set_nombre($_POST['nombreEmpleado']);
-			  $o->set_apellido($_POST['apellidoEmpleado']);
-			  $o->set_correo($_POST['correoEmpleado']);
-			  $o->set_contraseña($_POST['contraEmpleado']);
-			  $o->set_telefono($_POST['telefonoEmpleado']);
-			
-			
-			 
-			  if($accion=='incluir'){
-				echo  json_encode($o->incluir());
-			  }
-			  else if($accion=='modificar'){
-				
-				echo  json_encode($o->modificar());
-			  }
-		  }
-		  exit;
-	  }
-	  
-	  
-	  require_once("views/".$pagina.".php"); 
-  }
-  else{
-	  echo "pagina en construccion";
-  }
+    if (!empty($_POST)) {
+        $accion = isset($_POST['accion']) ? $_POST['accion'] : null;
+        $accionCargo = isset($_POST['accionCargo']) ? $_POST['accionCargo'] : null;
+
+        if ($accion == 'consultar') {
+            echo  json_encode($o->consultar());
+        } elseif ($accion == 'consultatr') {
+            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
+            echo  json_encode($o->consultatr());
+        } elseif ($accion == 'eliminar') {
+            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
+            echo  json_encode($o->eliminar());
+        } elseif ($accionCargo == 'eliminarCargo') {
+            if (isset($_POST['descCargo']) && $_POST['descCargo'] != null) {
+                $o->set_descCargo($_POST['descCargo']);
+                echo  json_encode($o->eliminarCargo());
+            } else {
+                echo json_encode(array("status" => "error", "message" => "descCargo no puede ser null"));
+            }
+        } else {
+           
+            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
+            $o->set_nombreEmpleado(isset($_POST['nombreEmpleado']) ? $_POST['nombreEmpleado'] : null);
+            $o->set_apellidoEmpleado(isset($_POST['apellidoEmpleado']) ? $_POST['apellidoEmpleado'] : null);
+            $o->set_correoEmpleado(isset($_POST['correoEmpleado']) ? $_POST['correoEmpleado'] : null);
+            $o->set_telefonoEmpleado(isset($_POST['telefonoEmpleado']) ? $_POST['telefonoEmpleado'] : null);
+            $o->set_contrasena(isset($_POST['contrasena']) ? $_POST['contrasena'] : null);
+            $o->set_clCargo(isset($_POST['clCargo']) ? $_POST['clCargo'] : null);
+
+            if ($accion == 'incluir') {
+                echo  json_encode($o->incluir());
+            } elseif ($accion == 'modificar') {
+                echo  json_encode($o->modificar());
+            } elseif ($accionCargo == 'incluirCargo') {
+                if (isset($_POST['descCargo']) && $_POST['descCargo'] != null) {
+                    $o->set_descCargo($_POST['descCargo']);
+                    echo  json_encode($o->incluirCargo());
+                } else {
+                    echo json_encode(array("status" => "error", "message" => "descCargo no puede ser null"));
+                }
+            }
+        }
+        exit;
+    }
+
+    require_once("views/" . $pagina . ".php");
+} else {
+    echo "pagina en construccion";
+}
 ?>
