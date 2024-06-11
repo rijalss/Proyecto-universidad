@@ -13,7 +13,6 @@
 <body>
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
-	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>
@@ -45,13 +44,14 @@
 								<div class="col">
 									<label for="categoria">Categoría</label>
 									<select class="form-control" name="categoria" id="categoria">
-										<option value='1' disabled selected>Seleccione una categoria</option>
+										<option value='disabled' disabled selected>Seleccione una categoria</option>
 										<?php
 										foreach ($categorias as $categoria) {
-											echo "<option value='" . $categoria['codCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+											echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
 										}
 										?>
 									</select>
+									<span id="scategoria" class="error"></span>
 								</div>
 								<div class="col-2">
 									<label for="agregarcategoria">&nbsp;</label>
@@ -211,6 +211,7 @@
 
 	<!-- Footer -->
 	<?php require_once("public/commun/footer.php"); ?>
+	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Footer -->
 	</div> <!-- fin de container -->
 

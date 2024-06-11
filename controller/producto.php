@@ -35,7 +35,7 @@ if (is_file("views/" . $pagina . ".php")) {
             $o->set_nombreProducto(isset($_POST['nombreProducto']) ? $_POST['nombreProducto'] : null);
             $o->set_descProducto(isset($_POST['descProducto']) ? $_POST['descProducto'] : null);
             $o->set_precio(isset($_POST['precio']) ? $_POST['precio'] : null);
-            $o->set_codCategoria(isset($_POST['categoria']) ? $_POST['categoria'] : null);
+            $o->set_clCategoria(isset($_POST['categoria']) ? $_POST['categoria'] : null);
 
             if ($accion == 'incluir') {
                 echo  json_encode($o->incluir());

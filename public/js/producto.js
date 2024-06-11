@@ -5,7 +5,7 @@ $(document).ready(function(){
 	}
 		
 	//////////////////////////////VALIDACIONES/////////////////////////////////////
-	
+
 		$("#codProducto").on("keypress",function(e){
 			validarkeypress(/^[0-9-\b]*$/,e);
 		});
@@ -47,6 +47,9 @@ $(document).ready(function(){
 			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
 			$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 200 carácteres");
 		});
+
+	
+		
 
 	//////////////////////////////BOTONES/////////////////////////////////////
 		
@@ -170,14 +173,12 @@ $(document).ready(function(){
 	//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 	//Funcion que muestra el modal con un mensaje
 	function muestraMensaje(mensaje){
-		
 		$("#contenidodemodal").html(mensaje);
 				$("#mostrarmodal").modal("show");
 				setTimeout(function() {
 						$("#mostrarmodal").modal("hide");
 				},5000);
 	}
-	
 
 	function validarenvio(){
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
@@ -202,7 +203,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		return true;
+	return true;
 	}
 	
 
@@ -236,13 +237,19 @@ $(document).ready(function(){
 			return 0;
 		}
 	}
+
 	
 	function coloca(linea){
 		$("#codProducto").val($(linea).find("td:eq(0)").text());
 		$("#nombreProducto").val($(linea).find("td:eq(1)").text());
 		$("#precio").val($(linea).find("td:eq(2)").text());
 		$("#descProducto").val($(linea).find("td:eq(3)").text());
+		var nombreCategoria = $(linea).find("td:eq(4)").text();
+		var clCategoria = $(linea).find("td:eq(4)").data('clcategoria');
 
+		$('#categoria option').filter(function() {
+			return $(this).text() == nombreCategoria;
+		}).prop('selected', true).change();
 	}
 	
 	//////////////////////////////FUNCIONES AJAX/////////////////////////////////////
@@ -276,12 +283,11 @@ $(document).ready(function(){
 						muestraMensaje(lee.mensaje);
 						limpiaCategoria();
 					} else if (lee.resultado == "encontro") {
-						$("#codProducto").val(lee.mensaje[0][0]);
-						$("#nombreProducto").val(lee.mensaje[0][1]);
+						$("#codProducto").val(lee.mensaje[0][1]);
+						$("#nombreProducto").val(lee.mensaje[0][2]);
 						$("#precio").val(lee.mensaje[0][3]);
-						$("#descProducto").val(lee.mensaje[0][2]);
-						//$("#nombreCategoria").val(lee.mensaje[0][5]);
-						$("#categoria").val(lee.mensaje[0]['nombreCategoria']);
+						$("#descProducto").val(lee.mensaje[0][4]);
+						$("#categoria").val(lee.mensaje[0][5]);
 					} else if (lee.resultado == "incluir" ||
 						lee.resultado == "modificar" ||
 						lee.resultado == "eliminar") {
@@ -315,8 +321,8 @@ $(document).ready(function(){
 		$("#nombreProducto").val('');
 		$("#precio").val('');
 		$("#descProducto").val('');
-		$("#categoria").val('1');
-	}
+		$("#categoria").val('disabled');
+	}	
 
 	function limpiaCategoria(){
 		$("#nombreCategoria").val('');

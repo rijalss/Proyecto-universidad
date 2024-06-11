@@ -10,7 +10,7 @@ class producto extends Conexion
     private $nombreProducto;
     private $precio;
     private $descProducto;
-    private $codCategoria;
+    private $clCategoria;
     private $nombreCategoria;
 
     //////////////////////////SET//////////////////////////
@@ -20,9 +20,9 @@ class producto extends Conexion
         return $this->nombreCategoria;
     }
 
-    public function get_codCategoria()
+    public function get_clCategoria()
     {
-        return $this->codCategoria;
+        return $this->clCategoria;
     }
 
     public function set_nombreCategoria($nombreCategoria)
@@ -30,9 +30,9 @@ class producto extends Conexion
         $this->nombreCategoria = $nombreCategoria;
     }
 
-    public function set_codCategoria($codCategoria)
+    public function set_clCategoria($clCategoria)
     {
-        $this->codCategoria = $codCategoria;
+        $this->clCategoria = $clCategoria;
     }
 
     function set_codProducto($valor)
@@ -91,25 +91,25 @@ class producto extends Conexion
             $r = array();
             try {
 
-                $p = $co->prepare("Insert into producto(
+                $p = $co->prepare("INSERT INTO producto(
 						codProducto,
 						nombreProducto,
 						precio,
 						descProducto,
-                        codCategoria
+                        clCategoria
 						)
-						Values(
+						VALUES(
 						:codProducto,
 						:nombreProducto,
 						:precio,
 						:descProducto,
-                        :codCategoria
+                        :clCategoria
 						)");
                 $p->bindParam(':codProducto', $this->codProducto);
                 $p->bindParam(':nombreProducto', $this->nombreProducto);
                 $p->bindParam(':precio', $this->precio);
                 $p->bindParam(':descProducto', $this->descProducto);
-                $p->bindParam(':codCategoria', $this->codCategoria);
+                $p->bindParam(':clCategoria', $this->clCategoria);
 
                 $p->execute();
 
@@ -135,18 +135,18 @@ class producto extends Conexion
 
         if ($this->existe($this->codProducto)) {
             try {
-                $p = $co->prepare("Update producto set 
+                $p = $co->prepare("UPDATE producto SET 
         nombreProducto = :nombreProducto,
         precio = :precio,
         descProducto = :descProducto,
-        codCategoria = :codCategoria
-        where producto.codProducto = :codProducto
+        clCategoria = :clCategoria
+        WHERE producto.codProducto = :codProducto
       ");
                 $p->bindParam(':codProducto', $this->codProducto);
                 $p->bindParam(':nombreProducto', $this->nombreProducto);
                 $p->bindParam(':precio', $this->precio);
                 $p->bindParam(':descProducto', $this->descProducto);
-                $p->bindParam(':codCategoria', $this->codCategoria);
+                $p->bindParam(':clCategoria', $this->clCategoria);
 
 
                 $p->execute();
@@ -173,8 +173,8 @@ class producto extends Conexion
         $r = array();
         if ($this->existe($this->codProducto)) {
             try {
-                $p = $co->prepare("delete from producto 
-					    where
+                $p = $co->prepare("DELETE from producto 
+					    WHERE
 						codProducto = :codProducto
 						");
                 $p->bindParam(':codProducto', $this->codProducto);
@@ -202,9 +202,9 @@ class producto extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.precio, p.descProducto, p.codCategoria, c.nombreCategoria
+            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.precio, p.descProducto, p.clCategoria, c.nombreCategoria
             FROM producto p
-            JOIN categoria c ON p.codCategoria = c.codCategoria");
+            JOIN categoria c ON p.clCategoria = c.clCategoria");
 
             if ($resultado) {
 
@@ -274,7 +274,7 @@ class producto extends Conexion
             $stmt = $co->prepare("SELECT producto.*, categoria.nombreCategoria 
                                 FROM producto 
                                 INNER JOIN categoria 
-                                ON producto.codCategoria = categoria.codCategoria 
+                                ON producto.clCategoria = categoria.clCategoria 
                                 WHERE producto.codProducto = :codProducto");
             $stmt->execute(['codProducto' => $this->codProducto]);
             $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -317,10 +317,10 @@ class producto extends Conexion
             $r = array();
             try {
 
-                $p = $co->prepare("Insert into categoria(
+                $p = $co->prepare("INSERT INTO categoria(
                         nombreCategoria
 						)
-						Values(
+						VALUES(
                         :nombreCategoria
 						)");
                 $p->bindParam(':nombreCategoria', $this->nombreCategoria);
@@ -348,8 +348,8 @@ class producto extends Conexion
         $r = array();
         if ($this->existeCategoria($this->nombreCategoria)) {
             try {
-                $p = $co->prepare("delete from categoria 
-					    where
+                $p = $co->prepare("DELETE FROM categoria 
+					    WHERE
 						nombreCategoria = :nombreCategoria
 						");
                 $p->bindParam(':nombreCategoria', $this->nombreCategoria);
@@ -375,7 +375,7 @@ class producto extends Conexion
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
 
-            $resultado = $co->query("Select * from categoria where nombreCategoria='$nombreCategoria'");
+            $resultado = $co->query("SELECT * FROM categoria WHERE nombreCategoria='$nombreCategoria'");
 
 
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
