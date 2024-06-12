@@ -19,7 +19,7 @@
     <br><br><br><br>
     <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
     <?php
-        /*
+    /*
         session_start();
         $nombreEmpleado = $_SESSION['nombreEmpleado'];
         echo "<h2 class=\"display-4 text-center text-uppercase font-weight-bold\">$nombreEmpleado!</h2>";
@@ -32,21 +32,23 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/truck.svg" alt=""> Proveedores</h5>
-                        <p class="card-text">Gestiona tus proveedores con facilidad.</p>
-                        <a href="?pagina=proveedor" class="btn btn-primary">Ver Proveedores</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/house-down.svg" alt=""> Encargos</h5>
+                        <p class="card-text">Controla el abastencimiento de tus productos en tu negocio</p>
+                        <a href="?pagina=entrada" class="btn btn-primary">Ver Encargos</a>
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/inboxes.svg" alt=""> Existencias </h5>
-                        <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Ver Existencias </a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/menu-button-fill.svg" alt=""> Notas de Salida</h5>
+                        <p class="card-text">Gestiona los despacho al mostrador de tus productos con facilidad.</p>
+                        <a href="?pagina=salida" class="btn btn-primary">Ver Notas de Salida</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
@@ -56,24 +58,27 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/house-down.svg" alt=""> Encargos</h5>
-                        <p class="card-text">Controla el abastencimiento de tus productos en tu negocio</p>
-                        <a href="?pagina=entrada" class="btn btn-primary">Ver Encargos</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/truck.svg" alt=""> Proveedores</h5>
+                        <p class="card-text">Gestiona tus proveedores con facilidad.</p>
+                        <a href="?pagina=proveedor" class="btn btn-primary">Ver Proveedores</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/menu-button-fill.svg" alt=""> Despachos</h5>
-                        <p class="card-text">Gestiona los despacho al mostrador de tus productos con facilidad.</p>
-                        <a href="?pagina=salida" class="btn btn-primary">Ver Despacho</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/inboxes.svg" alt=""> Existencias </h5>
+                        <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
+                        <a href="?pagina=existencia" class="btn btn-primary">Ver Existencias </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
