@@ -1,6 +1,6 @@
 <nav class="navbar bg-primary fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
+        <a href="?pagina=principal" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,8 +22,8 @@
                             Manejo de Stock
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="?pagina=entrada">Encargos</a></a></li>
-                            <li><a class="dropdown-item" href="?pagina=existencia">Existencias</a></li>
+                            <li><a class="dropdown-item" href="?pagina=entrada">Encargo</a></a></li>
+                            <li><a class="dropdown-item" href="?pagina=salida">Notas de salida</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

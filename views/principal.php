@@ -18,6 +18,13 @@
     <!-- Title -->
     <br><br><br><br>
     <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
+    <?php
+        /*
+        session_start();
+        $nombreEmpleado = $_SESSION['nombreEmpleado'];
+        echo "<h2 class=\"display-4 text-center text-uppercase font-weight-bold\">$nombreEmpleado!</h2>";
+        */
+    ?>
     <br><br>
     <!-- Container de cards -->
     <div class="container">

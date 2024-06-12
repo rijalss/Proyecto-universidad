@@ -19,6 +19,7 @@ if (is_file("views/" . $pagina . ".php")) {
         if ($e->Login($correo, $contrasena)) {
             session_start();
             $_SESSION['loggedin'] = true;
+            //$_SESSION['nombreEmpleado'] = $loginResult['nombreEmpleado'];
             // si existe, se redirecciona a la pagina principal
             header("Location: ?pagina=principal");
         } else {

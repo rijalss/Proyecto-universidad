@@ -25,7 +25,7 @@
 
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="container text-center h2 text-primary">Manejo de Existencias</h6>
+					<h6 class="container text-center h2 text-primary">Gestión de Existencia</h6>
 					<br>
 					<form method="post">
 						<div class="container">
@@ -95,7 +95,6 @@
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="public/js/datatable.js"></script>
-
 	<!-- <script src="public/js/jquery-3.7.0.js"></script>
 	<script src="public/js/jquery.dataTables.min.js"></script> 
 	<script src="public/js/dataTables.bootstrap5.min.js"></script> -->

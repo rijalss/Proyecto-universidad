@@ -93,7 +93,6 @@ $("#eliminar").on("click",function(){
 		$("#srifProveedor"),"El formato debe ser 9999999")==0){
 	    muestraMensaje("La rifProveedor debe coincidir con el formato <br/>"+ 
 						"99999999");	
-		
 	}
 	else{	
 		var datos = new FormData();

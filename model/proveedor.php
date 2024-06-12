@@ -169,9 +169,8 @@ class Proveedor extends Conexion
         $r = array();
         if ($this->existe($this->rifProveedor)) {
             try {
-                $p = $co->prepare("delete from proveedor 
-					    where
-						rifProveedor = :rifProveedor
+                $p = $co->prepare("DELETE FROM proveedor 
+					    WHERE rifProveedor = :rifProveedor
 						");
                 $p->bindParam(':rifProveedor', $this->rifProveedor);
 
@@ -198,7 +197,7 @@ class Proveedor extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("Select * from proveedor");
+            $resultado = $co->query("SELECT * FROM proveedor");
 
             if ($resultado) {
 
@@ -242,7 +241,7 @@ class Proveedor extends Conexion
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
 
-            $resultado = $co->query("Select * from proveedor where rifProveedor='$rifProveedor'");
+            $resultado = $co->query("SELECT * FROM proveedor WHERE rifProveedor='$rifProveedor'");
 
 
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);

@@ -117,13 +117,11 @@ $(document).ready(function(){
     });
 
     $("#eliminar").on("click",function(){
-        if(validarkeyup(/^[0-9]{8,10}$/,$("#cedula"),
+        if(validarkeyup(/^[0-9]{8,10}$/,$("#cedulaEmpleado"),
             $("#scedula"),"El formato debe ser un número de cédula válido")==0){
-	    muestraMensaje("La cedula del Empleado debe coincidir con el formato <br/>"+ 
-						"mínimo 8 y máximo 10 carácteres / 99999999999");	
-            
-        }
-        else{    
+	    muestraMensaje("La cédula del Empleado debe coincidir con el formato: <br/>"+ 
+						"mínimo 8 y máximo 10 carácteres / 99999999");	          
+        }else{    
             var datos = new FormData();
             datos.append('accion','eliminar');
             datos.append('cedulaEmpleado',$("#cedulaEmpleado").val());
@@ -233,6 +231,11 @@ $(document).ready(function(){
             muestraMensaje("El apellido del Empleado <br/> No debe contener más de 200 caracteres");
             return false;
         }
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{5,30}$/,
+            $("#contrasena"),$("#scontrasena"),"No debe contener más de 200 caracteres")==0){
+            muestraMensaje("La contraña debe tener mínimo 5 carácteres / máximo 30");
+            return false;
+        }
         return true;
     }
 
@@ -263,10 +266,9 @@ $(document).ready(function(){
         $("#cedulaEmpleado").val($(linea).find("td:eq(0)").text());
         $("#nombreEmpleado").val($(linea).find("td:eq(1)").text());
         $("#apellidoEmpleado").val($(linea).find("td:eq(2)").text());
-        $("#correoEmpleado").val($(linea).find("td:eq(3)").text());
-        $("#telefonoEmpleado").val($(linea).find("td:eq(4)").text());
-        $("#contrasena").val($(linea).find("td:eq(5)").text());
-        var descCargo = $(linea).find("td:eq(6)").text();
+        $("#telefonoEmpleado").val($(linea).find("td:eq(3)").text());
+        $("#correoEmpleado").val($(linea).find("td:eq(4)").text());
+        var descCargo = $(linea).find("td:eq(5)").text();
         //var clCargo = $(linea).find("td:eq(6)").data('clcargo');
 
         $('#clCargo option').filter(function() {
@@ -311,6 +313,7 @@ $(document).ready(function(){
                         $("#telefonoEmpleado").val(lee.mensaje[0][5]);
                         $("#contrasena").val(lee.mensaje[0][6]);
                         $("#clCargo").val(lee.mensaje[0][7]);
+                        
                     } else if (lee.resultado == "incluir" ||
                         lee.resultado == "modificar" ||
                         lee.resultado == "eliminar") {

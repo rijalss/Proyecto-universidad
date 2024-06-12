@@ -105,7 +105,7 @@ class Empleado extends Conexion
             $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $r = array();
             try {
-                $p = $co->prepare("INSERT INTO Empleado (
+                $p = $co->prepare("INSERT INTO empleado (
                     cedulaEmpleado,
                     nombreEmpleado,
                     apellidoEmpleado,
@@ -154,7 +154,7 @@ class Empleado extends Conexion
 
         if ($this->existe($this->cedulaEmpleado)) {
             try {
-                $p = $co->prepare("UPDATE Empleado SET 
+                $p = $co->prepare("UPDATE empleado SET 
                     nombreEmpleado = :nombreEmpleado,
                     apellidoEmpleado = :apellidoEmpleado,
                     correoEmpleado = :correoEmpleado,
@@ -194,7 +194,7 @@ class Empleado extends Conexion
         $r = array();
         if ($this->existe($this->cedulaEmpleado)) {
             try {
-                $p = $co->prepare("DELETE FROM Empleado 
+                $p = $co->prepare("DELETE FROM empleado 
                     WHERE cedulaEmpleado = :cedulaEmpleado
                 ");
                 $p->bindParam(':cedulaEmpleado', $this->cedulaEmpleado);
@@ -230,8 +230,8 @@ class Empleado extends Conexion
                     $respuesta .= "<td>" . $row['cedulaEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['nombreEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['apellidoEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['correoEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['telefonoEmpleado'] . "</td>";
+                    $respuesta .= "<td>" . $row['correoEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['descCargo'] . "</td>";
                     $respuesta .= "</tr>";
                 }
@@ -253,7 +253,7 @@ class Empleado extends Conexion
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
-            $resultado = $co->query("SELECT * FROM Empleado WHERE cedulaEmpleado='$cedulaEmpleado'");
+            $resultado = $co->query("SELECT * FROM empleado WHERE cedulaEmpleado='$cedulaEmpleado'");
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
                 return true;

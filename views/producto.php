@@ -23,7 +23,7 @@
 		<div class="container-fluid">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="container text-center h2 text-primary">Registro de Productos</h6>
+					<h6 class="container text-center h2 text-primary">Gestionar Productos</h6>
 					<br>
 					<form method="post">
 						<div class="container">
