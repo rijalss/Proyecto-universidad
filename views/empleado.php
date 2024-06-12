@@ -58,14 +58,14 @@
                                     <input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
                                     <span id="stelefonoEmpleado"></span>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="row justify-content-center">
                                 <div class="col">
                                     <label for="contrasena">Contraseña</label>
                                     <input class="form-control" type="password" id="contrasena" name="contrasena" required />
                                     <span id="scontrasena"></span>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row justify-content-center">
                                 <div class="col-4">
                                     <label for="clCargo">Cargo</label>
                                     <select class="form-control" name="clCargo" id="clCargo">
@@ -139,34 +139,33 @@
     </div>
 
 
-					<div class="modal fade" tabindex="-1" aria-labelledby="empleadoModal" aria-hidden="true" role="dialog" id="modal1">
-					<div class="modal-dialog modal-xl" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Listado de Empleados</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<table class="table table-striped table-hover" id="tablaEmpleado">
-									<thead>
-										<tr>
-											<th>Cédula</th>
-											<th>Nombre</th>
-											<th>Apellido</th>
-											<th>Correo</th>
-											<th>Teléfono</th>
-											<th>Contraseña</th>
-											<th>Cargo</th>
-										</tr>
-									</thead>
-									<tbody id="resultadoconsulta">
+    <div class="modal fade" tabindex="-1" aria-labelledby="empleadoModal" aria-hidden="true" role="dialog" id="modal1">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listado de Empleados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover" id="tablaEmpleado">
+                        <thead>
+                            <tr>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Cargo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultadoconsulta">
 
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Footer -->
@@ -176,7 +175,7 @@
     </div> <!-- fin de container -->
 
     <!-- Scripts -->
-	<script src="public/js/empleado.js"></script>
+    <script src="public/js/empleado.js"></script>
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

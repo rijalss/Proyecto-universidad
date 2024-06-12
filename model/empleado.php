@@ -232,7 +232,6 @@ class Empleado extends Conexion
                     $respuesta .= "<td>" . $row['apellidoEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['correoEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $row['telefonoEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['contrasena'] . "</td>";
                     $respuesta .= "<td>" . $row['descCargo'] . "</td>";
                     $respuesta .= "</tr>";
                 }
@@ -369,4 +368,3 @@ class Empleado extends Conexion
         }
     }
 }
-?>
