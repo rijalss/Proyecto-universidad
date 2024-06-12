@@ -34,7 +34,7 @@
                         <a class="nav-link" href="?pagina=proveedor">Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=usuario">Empleados</a>
+                        <a class="nav-link" href="?pagina=empleado">Empleados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=almacen">Almacenes</a>

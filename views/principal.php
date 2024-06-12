@@ -72,7 +72,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/person-add.svg" alt=""> Empleados</h5>
                         <p class="card-text">Gestiona tus empleados con facilidad.</p>
-                        <a href="?pagina=usuario" class="btn btn-primary">Ver Empleados</a>
+                        <a href="?pagina=empleado" class="btn btn-primary">Ver Empleados</a>
                     </div>
                 </div>
             </div>
