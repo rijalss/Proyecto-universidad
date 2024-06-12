@@ -11,8 +11,8 @@ $(document).ready(function(){
     });
     
     $("#cedulaEmpleado").on("keyup",function(){
-        validarkeyup(/^[0-9]{4,10}$/,$(this),
-        $("#scedula"),"El formato no puede estar vacío y no puede contener más de 10 caracteres");
+        validarkeyup(/^[0-9]{8,10}$/,$(this),
+        $("#scedula"),"El formato debe ser un número de cédula válido");
         if($("#cedulaEmpleado").val().length <= 10){
             var datos = new FormData();
             datos.append('accion','consultatr');
@@ -27,7 +27,7 @@ $(document).ready(function(){
     
     $("#nombreEmpleado").on("keyup",function(){
         validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
-        $(this), $("#snombre"), "Se debe llenar este campo y debe tener un máximo de 30 caracteres");
+        $(this), $("#snombre"), "Se debe llenar este campo y debe contener un máximo de 30 caracteres");
     });
 
     $("#telefonoEmpleado").on("keypress",function(e){
@@ -35,8 +35,8 @@ $(document).ready(function(){
     });
     
     $("#telefonoEmpleado").on("keyup",function(){
-        validarkeyup(/^[0-9]{0,10}$/,$(this),
-        $("#stelefonoEmpleado"),"No debe haber cantidades negativas / menores a cero");
+        validarkeyup(/^[0-9]{11}$/,$(this),
+        $("#stelefonoEmpleado"),"El formato debe ser un número de teléfono válido");
     });
 
     $("#apellidoEmpleado").on("keypress",function(e){
@@ -45,8 +45,26 @@ $(document).ready(function(){
     
     $("#apellidoEmpleado").on("keyup",function(){
         validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-        $(this),$("#sapellido"),"Se debe llenar este campo y debe tener un máximo de 200 caracteres");
+        $(this),$("#sapellido"),"Se debe llenar este campo y debe contener un máximo de 200 caracteres");
     });
+
+     $("#correoEmpleado").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC@.]*$/,e);
+	});
+	
+	$("#correoEmpleado").on("keyup",function(){
+		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC@.]{1,30}$/,
+		$(this),$("#scorreoEmpleado"),"Se debe llenar este campo y debe contener un máximo de 30 carácteres");
+	});
+
+     $("#contrasena").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]*$/,e);
+	});
+	
+	$("#contrasena").on("keyup",function(){
+		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{5,30}$/,
+		$(this),$("#scontrasena"),"Este formato no puede estar vacío y debe contener un mínimo de 5 carácteres");
+	});
 
     //////////////////////////////BOTONES/////////////////////////////////////
         
@@ -99,10 +117,10 @@ $(document).ready(function(){
     });
 
     $("#eliminar").on("click",function(){
-        if(validarkeyup(/^[0-9]{4,10}$/,$("#cedulaEmpleado"),
-            $("#scedula"),"El formato no debe pasar de los 10 caracteres")==0){
-            muestraMensaje("La cédula del Empleado debe coincidir con el formato <br/>"+ 
-                        "máximo 10 caracteres, ni tener cantidades negativas");    
+        if(validarkeyup(/^[0-9]{8,10}$/,$("#cedula"),
+            $("#scedula"),"El formato debe ser un número de cédula válido")==0){
+	    muestraMensaje("La cedula del Empleado debe coincidir con el formato <br/>"+ 
+						"mínimo 8 y máximo 10 carácteres / 99999999999");	
             
         }
         else{    
@@ -188,14 +206,20 @@ $(document).ready(function(){
     }
 
     function validarenvio(){
-        if(validarkeyup(/^[0-9]{4,10}$/,$("#cedulaEmpleado"),
-            $("#scedula"),"El formato no debe pasar de los 10 caracteres")==0){
+
+        var cargoSeleccionado = $("#clCargo").val();
+        if (cargoSeleccionado === null || cargoSeleccionado === "0" || cargoSeleccionado === "disabled") {
+            muestraMensaje("Por favor, seleccione un cargo");
+            return false;
+        }
+        if(validarkeyup(/^[0-9]{8,10}$/,$("#cedulaEmpleado"),
+            $("#scedula"),"El formato debe ser un número de cédula válido")==0){
             muestraMensaje("La cédula del Empleado debe coincidir con el formato <br/>"+ 
-                            "máximo 10 caracteres, ni tener cantidades negativas");    
+                            "entre 8 y 10 caracteres, sin cantidades negativas");    
             return false;                    
         }    
-        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{0,10}$/,
-            $("#telefonoEmpleado"),$("#stelefonoEmpleado"),"Solo números y/o # - sin cantidades negativas / menores a cero")==0){
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{11}$/,
+            $("#telefonoEmpleado"),$("#stelefonoEmpleado"),"El formato debe ser un número de teléfono válido")==0){
             muestraMensaje("El número de teléfono del Empleado <br/>Solo números y # - sin cantidades negativas / menores a cero");
             return false;
         }
@@ -204,17 +228,11 @@ $(document).ready(function(){
             muestraMensaje("El nombre del Empleado <br/> No debe contener más de 30 caracteres");
             return false;
         }
-        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
             $("#apellidoEmpleado"),$("#sapellido"),"No debe contener más de 200 caracteres")==0){
             muestraMensaje("El apellido del Empleado <br/> No debe contener más de 200 caracteres");
             return false;
         }
-        var cargoSeleccionado = $("#clCargo").val();
-        if (cargoSeleccionado === null || cargoSeleccionado === "0" || cargoSeleccionado === "disabled") {
-            muestraMensaje("Por favor, seleccione un cargo");
-            return false;
-        }
-
         return true;
     }
 
@@ -249,7 +267,7 @@ $(document).ready(function(){
         $("#telefonoEmpleado").val($(linea).find("td:eq(4)").text());
         $("#contrasena").val($(linea).find("td:eq(5)").text());
         var descCargo = $(linea).find("td:eq(6)").text();
-        var clCargo = $(linea).find("td:eq(6)").data('clcargo');
+        //var clCargo = $(linea).find("td:eq(6)").data('clcargo');
 
         $('#clCargo option').filter(function() {
             return $(this).text() == descCargo;
