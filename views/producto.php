@@ -113,7 +113,7 @@
 										<!-- Checkbox para habilitar o deshabilitar el input -->
 
 										<div class="form-check">
-											<label class="form-check-label" for="habilitarPromedio">Habilitar precio promedio</label>
+											<label class="form-check-label" for="habilitarPromedio">Habilitar último precio</label>
 											<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
 										</div>
 									</div>

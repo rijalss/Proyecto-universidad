@@ -3,6 +3,7 @@ $(document).ready(function(){
 	if($.trim($("#mensajes").text()) != ""){
 		muestraMensaje($("#mensajes").html());
 	}
+
 		
 	//////////////////////////////VALIDACIONES/////////////////////////////////////
 
@@ -14,7 +15,7 @@ $(document).ready(function(){
 			validarkeyup(/^[0-9]{4,10}$/,$(this),
 			$("#scodProducto"),"El formato no puede estar vacío y no puede conter más de 10 carácteres");
 			if($("#codProducto").val().length <= 10){
-			  var datos = new FormData();
+			var datos = new FormData();
 				datos.append('accion','consultatr');
 				datos.append('codProducto',$(this).val());
 				enviaAjax(datos,'consultatr');	
@@ -54,28 +55,26 @@ $(document).ready(function(){
 	//////////////////////////////BOTONES/////////////////////////////////////
 		
 	$("#incluir").on("click",function(){
-		if(validarenvio()){
-				var datos = new FormData();
-				datos.append('accion','incluir');
-				datos.append('codProducto',$("#codProducto").val());
-				datos.append('precio',$("#precio").val());
-				datos.append('nombreProducto',$("#nombreProducto").val());
-				datos.append('descProducto',$("#descProducto").val());
-				datos.append('categoria',$("#categoria").val());
+        if(validarenvio()){
+            var datos = new FormData();
+            datos.append('accion','incluir');
+            datos.append('codProducto',$("#codProducto").val());
 
-				enviaAjax(datos);
-				limpia();
-		}
-	});
-
-	$("#incluirCategoria").on("click",function(){
-				var datos = new FormData();
-				datos.append('accionCategoria','incluirCategoria');
-				datos.append('nombreCategoria',$("#nombreCategoria").val());
-				enviaAjax(datos);
-				limpiaCategoria();
-	});
+            // Verificar si el campo precio está vacío
+            if($("#precio").val().trim() === ''){
+                $("#precio").val(0);
+            }
 	
+            datos.append('precio',$("#precio").val());
+            datos.append('nombreProducto',$("#nombreProducto").val());
+            datos.append('descProducto',$("#descProducto").val());
+            datos.append('categoria',$("#categoria").val());
+
+            enviaAjax(datos);
+            limpia();
+        }
+    });
+
 	
 	$("#modificar").on("click",function(){
 		if(validarenvio()){
@@ -86,7 +85,6 @@ $(document).ready(function(){
 			datos.append('nombreProducto',$("#nombreProducto").val());
 			datos.append('descProducto',$("#descProducto").val());
 			datos.append('categoria',$("#categoria").val());
-	 
 			enviaAjax(datos);
 			limpia();
 		}
@@ -114,6 +112,28 @@ $(document).ready(function(){
 		
 	});
 
+	$("#consultar").on("click",function(){
+		var datos = new FormData();
+		datos.append('accion','consultar');
+		enviaAjax(datos);
+	});
+	
+	});
+		// Acciones de Categoria
+	$("#incluirCategoria").on("click",function(){
+		var datos = new FormData();
+		if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
+		$("#nombreCategoria"),"El formato no puede estar vacío")==0){
+		muestraMensaje("El formato no puede estar vacío");	
+	
+	}else{
+			datos.append('accionCategoria','incluirCategoria');
+			datos.append('nombreCategoria',$("#nombreCategoria").val());
+			enviaAjax(datos);
+			limpiaCategoria();
+	}		
+	});
+
 	$("#eliminarCategoria").on("click",function(){
 	if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
 	$("#nombreCategoria"),"El formato no puede estar vacío")==0){
@@ -131,14 +151,6 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#consultar").on("click",function(){
-		var datos = new FormData();
-		datos.append('accion','consultar');
-		enviaAjax(datos);
-	});
-	
-	});
-	
 	//funcion para enlazar al DataTablet
 	function destruyeDT(){
 		//1 se destruye el datatablet
@@ -150,7 +162,7 @@ $(document).ready(function(){
 		//se crea nuevamente
 		if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
 				$("#tablaproducto").DataTable({
-				  language: {
+				language: {
 					lengthMenu: "Mostrar _MENU_ por página",
 					zeroRecords: "No se encontraron productos",
 					info: "Mostrando página _PAGE_ de _PAGES_",
@@ -158,35 +170,46 @@ $(document).ready(function(){
 					infoFiltered: "(filtrado de _MAX_ registros totales)",
 					search: "Buscar:",
 					paginate: {
-					  first: "Primera",
-					  last: "Última",
-					  next: "Siguiente",
-					  previous: "Anterior",
+					first: "Primera",
+					last: "Última",
+					next: "Siguiente",
+					previous: "Anterior",
 					},
-				  },
-				  autoWidth: false,
-				  order: [[1, "asc"]],
+				},
+				autoWidth: false,
+				order: [[1, "asc"]],
 				});
 		}         
 	}
 	
 	//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 	//Funcion que muestra el modal con un mensaje
-	function muestraMensaje(mensaje){
+	function muestraMensaje(mensaje) {
 		$("#contenidodemodal").html(mensaje);
-				$("#mostrarmodal").modal("show");
-				setTimeout(function() {
-						$("#mostrarmodal").modal("hide");
-				},5000);
+		$("#mostrarmodal").modal("show");
+		setTimeout(function() {
+			$("#mostrarmodal").modal("hide");
+		}, 5000);
+		// Cierra el modal de agregar categoría
+		$("#agregarcategoria").modal("hide");
 	}
 
 	function validarenvio(){
+
+		var categoriaSeleccionada = $("#categoria").val();
+
+		// Validar si el campo de categoría está vacío (0 o null)
+		if (categoriaSeleccionada === null || categoriaSeleccionada === "0") {
+			muestraMensaje("Por favor, seleccione una categoría");
+			return false;
+		}
+
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
 			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
 			muestraMensaje("El codigo del Producto debe coincidir con el formato <br/>"+ 
 							"máximo 10 carácteres, ni tener cantidades negativas");	
 			return false;					
-		}	
+		}
 		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{0,10}$/,
 			$("#precio"),$("#sprecio"),"Solo numeros y/o # - sin cantidades negativas / menores a cero")==0){
 			muestraMensaje("El último precio del Producto <br/>Solo numeros y # - sin cantidades negativas / menores a cero");
@@ -245,8 +268,10 @@ $(document).ready(function(){
 		$("#precio").val($(linea).find("td:eq(2)").text());
 		$("#descProducto").val($(linea).find("td:eq(3)").text());
 		var nombreCategoria = $(linea).find("td:eq(4)").text();
-		var clCategoria = $(linea).find("td:eq(4)").data('clcategoria');
+		// var clCategoria = $(linea).find("td:eq(4)").data('clcategoria');
+		// La variable no se está leyendo en ninguna parte :(
 
+		// Seleccionador de categoria
 		$('#categoria option').filter(function() {
 			return $(this).text() == nombreCategoria;
 		}).prop('selected', true).change();
@@ -279,11 +304,10 @@ $(document).ready(function(){
 						$("#modal1").modal("show");	
 					} else if(lee.resultado == "incluirCategoria" ||
 						lee.resultado == "eliminarCategoria"){
-							console.log("Entrando en el bloque de incluir/eliminar categoría"); // Añade esta línea
 						muestraMensaje(lee.mensaje);
 						limpiaCategoria();
 					} else if (lee.resultado == "encontro") {
-						$("#codProducto").val(lee.mensaje[0][1]);
+						$("#codProducto").val(lee.mensaje[0][0]);
 						$("#nombreProducto").val(lee.mensaje[0][2]);
 						$("#precio").val(lee.mensaje[0][3]);
 						$("#descProducto").val(lee.mensaje[0][4]);
@@ -303,7 +327,7 @@ $(document).ready(function(){
 				}
 			},
 			error: function (request, status, err) {
-			  
+			
 				if (status == "timeout") {
 	
 					muestraMensaje("Servidor ocupado, intente de nuevo");
