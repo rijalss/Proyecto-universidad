@@ -13,7 +13,6 @@
 <body>
     <!-- Header -->
     <?php require_once("public/commun/menu.php"); ?>
-    <?php require_once("public/commun/extras.php"); ?>
     <!-- Header -->
     <br>
     <br>
@@ -62,13 +61,24 @@
                                                             <span id="snombreArea"></span>
                                                         </div>
                                                         <span id="snombreArea"></span>
-                                                        <label for="codAlmacen">Ubicación del Area</label>
-                                                        <select class="form-control" name="codAlmacen" id="codAlmacen">
-                                                            <option value="" disabled selected>Seleccione un almacen</option>
-                                                            <option value="1">Almacen 1</option>
-                                                            <option value="2">Almacen 2</option>
-                                                            <option value="3">Almacen 3</option>
+                                                        <label for="almacen">Ubicación del Area</label>
+
+
+                                                        <select class="form-control" name="almacen" id="almacen">
+                                                            <option value='disabled' disabled selected>Seleccione un almacen</option>
+                                                            <?php
+                                                            foreach ($almacenes as $almacen) {
+                                                                echo "<option value='" . $almacen['clAlmacen'] . "'>" . $almacen['nombreAlmacen'] . "</option>";
+                                                            }
+                                                            ?>
                                                         </select>
+                                                        <span id="salmacen" class="error"></span>
+                                                        <br>
+                                                        <div class="text-center">
+                                                            <button id="incluirArea" type="button" class="btn btn-primary">Agregar</button>
+                                                            <button id="eliminarArea" type="button" class="btn btn-danger">Eliminar</button>
+                                                        </div>
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -123,6 +133,7 @@
     </div>
     <!-- Footer -->
     <?php require_once("public/commun/footer.php"); ?>
+    <?php require_once("public/commun/extras.php"); ?>
     <!-- Footer -->
     </div> <!-- fin de container -->
 
