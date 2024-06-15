@@ -1,7 +1,6 @@
 <?php
 
-require_once('model/conexion.php');
-
+require_once('conexion.php');
 
 class Proveedor extends Conexion
 {
@@ -70,37 +69,26 @@ class Proveedor extends Conexion
 
     function incluir()
     {
-
+        $r = array();
         if (!$this->existe($this->rifProveedor)) {
             //1 Se llama a la funcion conecta 
             $co = $this->conecta();
             $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //2 Se ejecuta el sql
-            $r = array();
             try {
-
-                $p = $co->prepare("Insert into proveedor(
+                $co->query("INSERT INTO proveedor(
 						rifProveedor,
-						nombreProveedor,
-						telefonoProveedor,
-						correoProveedor,
-						direccionProveedor
-						)
-						Values(
-						:rifProveedor,
-						:nombreProveedor,
-						:telefonoProveedor,
-						:correoProveedor,
-						:direccionProveedor
+                        nombreProveedor,
+                        telefonoProveedor,
+                        correoProveedor,
+                        direccionProveedor
+						)Values(
+						'$this->rifProveedor',
+						'$this->nombreProveedor',
+						'$this->telefonoProveedor',
+						'$this->correoProveedor',
+						'$this->direccionProveedor'
 						)");
-                $p->bindParam(':rifProveedor', $this->rifProveedor);
-                $p->bindParam(':nombreProveedor', $this->nombreProveedor);
-                $p->bindParam(':telefonoProveedor', $this->telefonoProveedor);
-                $p->bindParam(':correoProveedor', $this->correoProveedor);
-                $p->bindParam(':direccionProveedor', $this->direccionProveedor);
-
-                $p->execute();
-
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] =  'Registro Inluido';
             } catch (Exception $e) {
@@ -109,9 +97,8 @@ class Proveedor extends Conexion
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] =  'Ya existe el proveedor';
+            $r['mensaje'] =  'Ya existe el Rif';
         }
-
         return $r;
     }
 
@@ -122,33 +109,15 @@ class Proveedor extends Conexion
         $r = array();
         if ($this->existe($this->rifProveedor)) {
             try {
-                /**
-				$aux = "Update proveedor set 
-						nombreProveedor = $this->nombreProveedor,
-						telefonoProveedor = $this->telefonoProveedor,
-						correoProveedor = $this->correoProveedor,
-						direccionProveedor = $this->direccionProveedor,
-						where
-						rifProveedor = $this->rifProveedor";
-				echo $aux;
-				exit;
-                 **/
-                $p = $co->prepare("Update proveedor set 
-						nombreProveedor = :nombreProveedor,
-						telefonoProveedor = :telefonoProveedor,
-						correoProveedor = :correoProveedor,
-						direccionProveedor = :direccionProveedor
-						where
-						rifProveedor = :rifProveedor
+                $co->query("UPDATE proveedor SET 
+					    rifProveedor = '$this->rifProveedor',
+						nombreProveedor = '$this->nombreProveedor',
+						telefonoProveedor = '$this->telefonoProveedor',
+						correoProveedor = '$this->correoProveedor',
+						direccionProveedor = '$this->direccionProveedor'
+						WHERE
+						rifProveedor = '$this->rifProveedor'
 						");
-                $p->bindParam(':rifProveedor', $this->rifProveedor);
-                $p->bindParam(':nombreProveedor', $this->nombreProveedor);
-                $p->bindParam(':telefonoProveedor', $this->telefonoProveedor);
-                $p->bindParam(':correoProveedor', $this->correoProveedor);
-                $p->bindParam(':direccionProveedor', $this->direccionProveedor);
-
-                $p->execute();
-
                 $r['resultado'] = 'modificar';
                 $r['mensaje'] =  'Registro Modificado';
             } catch (Exception $e) {
@@ -157,7 +126,7 @@ class Proveedor extends Conexion
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] =  'No existe el rif del Proveedor';
+            $r['mensaje'] =  'Rif no registrado';
         }
         return $r;
     }
@@ -169,13 +138,9 @@ class Proveedor extends Conexion
         $r = array();
         if ($this->existe($this->rifProveedor)) {
             try {
-                $p = $co->prepare("DELETE FROM proveedor 
-					    WHERE rifProveedor = :rifProveedor
+                $co->query("DELETE FROM proveedor 
+						WHERE rifProveedor = '$this->rifProveedor'
 						");
-                $p->bindParam(':rifProveedor', $this->rifProveedor);
-
-
-                $p->execute();
                 $r['resultado'] = 'eliminar';
                 $r['mensaje'] =  'Registro Eliminado';
             } catch (Exception $e) {
@@ -184,7 +149,7 @@ class Proveedor extends Conexion
             }
         } else {
             $r['resultado'] = 'eliminar';
-            $r['mensaje'] =  'No existe la rifProveedor';
+            $r['mensaje'] =  'No existe el Rif';
         }
         return $r;
     }
@@ -203,7 +168,7 @@ class Proveedor extends Conexion
 
                 $respuesta = '';
                 foreach ($resultado as $r) {
-                    $respuesta = $respuesta . "<tr style='cursor:pointer' onclick='coloca(this);'>";
+                    $respuesta = $respuesta . "<tr>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['rifProveedor'];
                     $respuesta = $respuesta . "</td>";
@@ -219,8 +184,21 @@ class Proveedor extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['direccionProveedor'];
                     $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . "<div class='btn-group' role='group'>";
+                    $respuesta = $respuesta . "<button type='button'
+                        class='btn btn-danger small-width' 
+                        onclick='pone(this,0)'
+                        >Modificar</button>";
+                    $respuesta = $respuesta . "<button type='button'
+                        class='btn btn-warning small-width' 
+                        onclick='pone(this,1)'
+                        >Eliminar</button>";
+                    $respuesta = $respuesta . "</div>";
+                    $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "</tr>";
                 }
+
                 $r['resultado'] = 'consultar';
                 $r['mensaje'] =  $respuesta;
             } else {
@@ -255,31 +233,5 @@ class Proveedor extends Conexion
         } catch (Exception $e) {
             return false;
         }
-    }
-
-    function consultatr()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        try {
-
-            $stmt = $co->prepare("SELECT * FROM proveedor WHERE rifProveedor = :rifProveedor");
-            $stmt->execute(['rifProveedor' => $this->rifProveedor]);
-            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
-            if ($fila) {
-
-                $r['resultado'] = 'encontro';
-                $r['mensaje'] =  $fila;
-            } else {
-
-                $r['resultado'] = 'noencontro';
-                $r['mensaje'] =  '';
-            }
-        } catch (Exception $e) {
-            $r['resultado'] = 'error';
-            $r['mensaje'] =  $e->getMessage();
-        }
-        return $r;
     }
 }

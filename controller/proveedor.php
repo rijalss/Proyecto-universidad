@@ -7,35 +7,30 @@ if (!is_file("model/" . $pagina . ".php")) {
 require_once("model/" . $pagina . ".php");
 if (is_file("views/" . $pagina . ".php")) {
 
-    $o = new Proveedor();
-
     if (!empty($_POST)) {
 
+        $p = new Proveedor();
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($o->consultar());
-        } elseif ($accion == 'consultatr') {
-            $o->set_rifProveedor($_POST['rifProveedor']);
-            echo  json_encode($o->consultatr());
+            echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
-            $o->set_rifProveedor($_POST['rifProveedor']);
-            echo  json_encode($o->eliminar());
+            $p->set_rifProveedor($_POST['rifProveedor']);
+            echo  json_encode($p->eliminar());
         } else {
-            $o->set_rifProveedor($_POST['rifProveedor']);
-            $o->set_nombreProveedor($_POST['nombreProveedor']);
-            $o->set_telefonoProveedor($_POST['telefonoProveedor']);
-            $o->set_correoProveedor($_POST['correoProveedor']);
-            $o->set_direccionProveedor($_POST['direccionProveedor']);
+            $p->set_rifProveedor($_POST['rifProveedor']);
+            $p->set_nombreProveedor($_POST['nombreProveedor']);
+            $p->set_telefonoProveedor($_POST['telefonoProveedor']);
+            $p->set_correoProveedor($_POST['correoProveedor']);
+            $p->set_direccionProveedor($_POST['direccionProveedor']);
             if ($accion == 'incluir') {
-                echo  json_encode($o->incluir());
+                echo  json_encode($p->incluir());
             } elseif ($accion == 'modificar') {
-                echo  json_encode($o->modificar());
+                echo  json_encode($p->modificar());
             }
         }
         exit;
     }
-
 
     require_once("views/" . $pagina . ".php");
 } else {

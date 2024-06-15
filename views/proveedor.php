@@ -13,134 +13,103 @@
 <body>
 	<!-- Header -->
 	<?php require_once("public/commun/menu.php"); ?>
-	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Header -->
-	<br>
-	<br>
-	<br>
-	<br>
 
-	<div class="container-center m-5">
-		<div class="container-fluid">
+	<section class="d-flex align-items-center justify-content-center" style="height: calc(130vh - 200px); flex-direction: column;">
+		<br>
+		<h2 class="text-primary text-center">Gestionar Proveedores</h2>
 
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="container text-center h2 text-primary">Gestionar Proveedor</h6>
-					<br>
-					<form method="post">
-						<div class="container">
-							<div class="row">
-
-								<!-- Inputs encargados de registrar datos para las entradas de productos -->
-
-								<div class="col">
-									<label for="rifProveedor">Rif del Proveedor</label>
-									<input type="text" class="form-control" id="rifProveedor" required>
-									<span id="srifProveedor"></span>
-								</div>
-								<div class="col">
-									<label for="nombreProveedor">Nombre del Proveedor</label>
-									<input type="text" class="form-control" id="nombreProveedor" required>
-									<span id="snombreProveedor"></span>
-								</div>
-								<div class="col">
-									<label for="correoProveedor">Correo del Proveedor</label>
-									<input type="email" class="form-control" id="correoProveedor" required>
-									<span id="scorreoProveedor"></span>
-								</div>
-
-
-							</div>
-
-
-							<div class="row">
-								<div class="col">
-									<br>
-									<hr />
-								</div>
-							</div>
-
-							<div class="row">
-
-								<div class="col">
-									<label for="telefonoProveedor">Telefono del Proveedor</label>
-									<input type="text" class="form-control" id="telefonoProveedor" required>
-									<span id="stelefonoProveedor"></span>
-								</div>
-								<div class="col">
-									<label for="direccionProveedor">Direccion del Proveedor</label>
-									<input type="text" class="form-control" id="direccionProveedor" required>
-									<span id="sdireccionProveedor"></span>
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col">
-									<br>
-									<hr />
-								</div>
-							</div>
-
-
-							<!-- Botonera para cumplir acciones -->
-
-							<div class="row container text-center">
-								<div class="col  mb-4">
-									<button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-success" id="consultar" name="consultar">CONSULTAR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
-								</div>
-								<div class="col mb-4">
-									<button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
-								</div>
-								<div class="col mb-4">
-									<a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
-								</div>
-							</div>
-						</div>
-					</form>
+		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
+			<div>
+				<br>
+				<button class="btn btn-success" id="incluir">Registrar Proveedor </button>
+			</div>
+			<br>
+			<div class="container">
+			</div>
+			<div class="container text-center">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover" id="tablaproveedor">
+						<thead>
+							<tr>
+								<th>RIF</th>
+								<th>Nombre</th>
+								<th>Teléfono</th>
+								<th>Correo</th>
+								<th>Dirección</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tbody id="resultadoconsulta"></tbody>
+					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="modal fade" tabindex="-1" aria-labelledby="cargomodal" aria-hidden="true" role="dialog" id="modal1">
+		</div> <!-- fin de container -->
+	</section>
+
+	<!-- Modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal1">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Listado de Proveedores</h5>
+					<h5 class="modal-title">Formulario de Proveedores</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 					</button>
 				</div>
 				<div class="modal-body">
 
-					<!-- Form dentro del modal para agregar cargos a la base de datos -->
-					<table class="table table-striped table-hover" id="tablaproveedor">
-						<thead>
-							<tr>
-								<th>Rif</th>
-								<th>Nombre</th>
-								<th>Teléfono</th>
-								<th>Correo</th>
-								<th>Dirección</th>
-							</tr>
-						</thead>
-						<tbody id="resultadoconsulta">
+					<form method="post" id="f" autocomplete="off">
+						<input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
+						<div class="container">
+							<div class="row mb-3">
 
-						</tbody>
-					</table>
+								<div class="col-3">
+									<label for="rifProveedor">Rif</label>
+									<input class="form-control" type="text" id="rifProveedor" name="rifProveedor">
+									<span id="srifProveedor"></span>
+								</div>
+								<div class="col-5">
+									<label for="nombreProveedor">Nombre</label>
+									<input class="form-control" type="text" id="nombreProveedor" name="nombreProveedor">
+									<span id="snombreProveedor"></span>
+								</div>
+								<div class="col-4">
+									<label for="telefonoProveedor">Teléfono</label>
+									<input class="form-control" type="text" id="telefonoProveedor" name="telefonoProveedor">
+									<span id="stelefonoProveedor"></span>
+								</div>
+
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+									<label for="correoProveedor">Correo</label>
+									<input class="form-control" type="text" id="correoProveedor" name="correoProveedor">
+									<span id="scorreoProveedor"></span>
+								</div>
+								<div class="col-6">
+									<label for="direccionProveedor">Dirección</label>
+									<input class="form-control" type="text" id="direccionProveedor" name="direccionProveedor">
+									<span id="sdireccionProveedor"></span>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row mt-3 d-flex justify-content-center align-items-center">
+							<div class="col-md-2">
+								<button type="button" class="btn btn-primary" id="proceso"></button>
+							</div>
+						</div>
+					</form>
 
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Fin del Modal -->
 
 	<!-- Footer -->
 	<?php require_once("public/commun/footer.php"); ?>
+	<?php require_once("public/commun/extras.php"); ?>
 	<!-- Footer -->
 	</div> <!-- fin de container -->
 
