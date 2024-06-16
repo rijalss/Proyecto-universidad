@@ -10,35 +10,55 @@ function destruyeDT(){
     }
 }
 function crearDT(){
-	//se crea nuevamente
     if (!$.fn.DataTable.isDataTable("#tablaproveedor")) {
-         $("#tablaproveedor").DataTable({
-			"paging": true,
-			"lengthChange": true,
-			"searching": true,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-          language: {
-				
-             lengthMenu: "Mostrar _MENU_ Página",
-             zeroRecords: "No se encontraron proveedores",
-             info: "Mostrando página _PAGE_ de _PAGES_",
-             infoEmpty: "No hay proveedores registradas",
-             infoFiltered: "(filtrado de _MAX_ registros totales)",
-             search: "Buscar:",
-            paginate: {
-                first: "Primera",
-                last: "Última",
-                next: "Siguiente",
-                 previous: "Anterior",
+         var table = $("#tablaproveedor").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            language: {
+                lengthMenu: "Mostrar _MENU_",
+                zeroRecords: "No se encontraron proveedores",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay proveedores registrados",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
                 },
             },
-			  
-              autoWidth: false,
-              order: [[1, "asc"]],	
-			    
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom: "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
+
+        $("div.dataTables_length select").css({
+            "width": "auto",
+            "display": "inline",
+			"margin-top": "10px",
+
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+			"margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            "float": "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            "width": "300px",
+            "float": "right",
+            "margin-left": "10px",
         });
     }         
 }
@@ -68,11 +88,11 @@ $(document).ready(function(){
 	});
 
     $("#correoProveedor").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]*$/,e);
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC@.]*$/,e);
 	});
 	
 	$("#correoProveedor").on("keyup",function(){
-		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
+		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC@.]{1,30}$/,
 		$(this),$("#scorreoProveedor"),"Este campo debe estar lleno / Máximo 30 carácteres");
 	});
 
@@ -85,11 +105,11 @@ $(document).ready(function(){
 		$("#stelefonoProveedor"),"El formato debe tener 11 carácteres");
 	});
     $("#direccionProveedor").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]*$/,e);
 	});
 	
 	$("#direccionProveedor").on("keyup",function(){
-		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
+		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
 		$(this),$("#sdireccionProveedor"),"Se debe llenar este campo y debe tener un máximo de 30 carácteres");
 	});
 

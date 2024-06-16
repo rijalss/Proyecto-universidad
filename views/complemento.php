@@ -17,7 +17,7 @@
 
     <!-- Title -->
     <br><br><br><br>
-    <h1 class="display-4 text-center text-uppercase font-weight-bold">Complementos <br> a Gestionar!</h1>
+    <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Complementos!</h1>
     <?php
     /*
         session_start();

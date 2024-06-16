@@ -15,21 +15,22 @@
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex align-items-center justify-content-center" style="height: calc(130vh - 200px); flex-direction: column;">
+	<section class="d-flex align-items-center justify-content-center" style="height: calc(95vh - 100px); flex-direction: column;">
 		<br>
 		<h2 class="text-primary text-center">Gestionar Proveedores</h2>
+		<div class="container">
+			<div class="text-left">
 
-		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
-			<div>
-				<br>
 				<button class="btn btn-success" id="incluir">Registrar Proveedor </button>
 			</div>
+		</div>
+		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<br>
 			<div class="container">
 			</div>
 			<div class="container text-center">
 				<div class="table-responsive">
-					<table class="table table-striped table-hover" id="tablaproveedor">
+					<table class="table table-striped table-hover " id="tablaproveedor">
 						<thead>
 							<tr>
 								<th>RIF</th>

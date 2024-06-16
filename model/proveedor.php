@@ -184,17 +184,16 @@ class Proveedor extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['direccionProveedor'];
                     $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . "<div class='btn-group' role='group'>";
+                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<button type='button'
-                        class='btn btn-danger small-width' 
-                        onclick='pone(this,0)'
-                        >Modificar</button>";
+                    class='btn btn-warning small-width d-inline-block mr-1' 
+                    onclick='pone(this,0)'
+                    style='margin-right: 5px;'
+                    >Modificar</button>";
                     $respuesta = $respuesta . "<button type='button'
-                        class='btn btn-warning small-width' 
-                        onclick='pone(this,1)'
-                        >Eliminar</button>";
-                    $respuesta = $respuesta . "</div>";
+                    class='btn btn-danger small-width d-inline-block' 
+                    onclick='pone(this,1)'
+                    >Eliminar</button>";
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "</tr>";
                 }

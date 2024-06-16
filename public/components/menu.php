@@ -15,29 +15,28 @@
                         <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=producto">Productos</a>
+                        <a class="nav-link" href="?pagina=producto">Gestionar Productos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Manejo de Stock
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="?pagina=entrada">Encargo</a></a></li>
-                            <li><a class="dropdown-item" href="?pagina=salida">Notas de salida</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="?pagina=existencia"> Ver Existencias</a></li>
-                        </ul>
+                    <li>
+                        <a class="nav-link" href="?pagina=entrada">Gestionar Encargo</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="?pagina=existencia">Listar Existencias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=proveedor">Proveedores</a>
+                        <a class="nav-link" href="?pagina=proveedor">Gestionar Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=empleado">Empleados</a>
+                        <a class="nav-link" href="?pagina=empleado">Gestionar Empleados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=almacen">Almacenes</a>
+                        <a class="nav-link" href="?pagina=almacen">Gestionar Almacenes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?pagina=complemento">Gestionar Complementos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/img/box-arrow-left.svg" alt=""> Salir</a>

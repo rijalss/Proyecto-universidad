@@ -36,7 +36,7 @@
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Encargos</h5>
-                        <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio</p>
+                        <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio.</p>
                         <a href="?pagina=entrada" class="btn btn-primary">Gestionar Encargos</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Productos</h5>
-                        <p class="card-text">Mantén la gestión tus productos bajo control</p>
+                        <p class="card-text">Mantén la gestión tus productos bajo control.</p>
                         <a href="?pagina=producto" class="btn btn-primary">Gestionar Productos</a>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias </h5>
-                        <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Gestión de Existencias </a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
+                        <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
+                        <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias </a>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/wrench-adjustable-circle.svg" alt=""> Complementos</h5>
                         <p class="card-text">Gestiona los datos que complementan a tu sistema.</p>
-                        <a href="?pagina=complemento" class="btn btn-primary">Gestión de Complementos</a>
+                        <a href="?pagina=complemento" class="btn btn-primary">Gestionar Complementos</a>
                     </div>
                 </div>
             </div>
