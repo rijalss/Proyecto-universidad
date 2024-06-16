@@ -13,8 +13,8 @@
 
 <body>
 	<!-- Header -->
-	<?php require_once("public/commun/menu.php"); ?>
-	<?php require_once("public/commun/extras.php"); ?>
+	<?php require_once("public/components/menu.php"); ?>
+	<?php require_once("public/components/extra.php"); ?>
 	<!-- Header -->
 	<br>
 	<br>
@@ -87,7 +87,7 @@
 	</div>
 	<div>
 		<!-- Footer -->
-		<?php require_once("public/commun/footer.php"); ?>
+		<?php require_once("public/components/footer.php"); ?>
 		<!-- Footer -->
 	</div> <!-- fin de container -->
 

@@ -12,7 +12,7 @@
 
 <body>
 	<!-- Header -->
-	<?php require_once("public/commun/menu.php"); ?>
+	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
 	<section class="d-flex align-items-center justify-content-center" style="height: calc(130vh - 200px); flex-direction: column;">
@@ -108,8 +108,8 @@
 	<!-- Fin del Modal -->
 
 	<!-- Footer -->
-	<?php require_once("public/commun/footer.php"); ?>
-	<?php require_once("public/commun/extras.php"); ?>
+	<?php require_once("public/components/footer.php"); ?>
+	<?php require_once("public/components/extra.php"); ?>
 	<!-- Footer -->
 	</div> <!-- fin de container -->
 

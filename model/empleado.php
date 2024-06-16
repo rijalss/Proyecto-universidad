@@ -1,5 +1,5 @@
 <?php
-require_once('model/conexion.php');
+require_once('conexion.php');
 
 class Empleado extends Conexion
 {

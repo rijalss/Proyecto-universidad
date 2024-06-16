@@ -11,9 +11,12 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <?php require_once("public/commun/menu.php"); ?>
-    <!-- Header -->
+    <nav>
+        <div class="navbar bg-primary fixed-top">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
+            </div>
+    </nav>
 
     <!-- Title -->
     <br><br><br><br>
@@ -32,19 +35,19 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/house-down.svg" alt=""> Encargos</h5>
-                        <p class="card-text">Controla el abastencimiento de tus productos en tu negocio</p>
-                        <a href="?pagina=entrada" class="btn btn-primary">Ver Encargos</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Encargos</h5>
+                        <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio</p>
+                        <a href="?pagina=entrada" class="btn btn-primary">Gestionar Encargos</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/menu-button-fill.svg" alt=""> Notas de Salida</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/menu-button-fill.svg" alt=""> Notas de Salida</h5>
                         <p class="card-text">Gestiona los despacho al mostrador de tus productos con facilidad.</p>
-                        <a href="?pagina=salida" class="btn btn-primary">Ver Notas de Salida</a>
+                        <a href="?pagina=salida" class="btn btn-primary">Gestionar Notas de Salida</a>
                     </div>
                 </div>
             </div>
@@ -52,9 +55,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/bag.svg" alt=""> Productos</h5>
-                        <p class="card-text">Mantén tus productos bajo control</p>
-                        <a href="?pagina=producto" class="btn btn-primary">Ver Productos</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Productos</h5>
+                        <p class="card-text">Mantén la gestión tus productos bajo control</p>
+                        <a href="?pagina=producto" class="btn btn-primary">Gestionar Productos</a>
                     </div>
                 </div>
             </div>
@@ -62,9 +65,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/truck.svg" alt=""> Proveedores</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/truck.svg" alt=""> Proveedores</h5>
                         <p class="card-text">Gestiona tus proveedores con facilidad.</p>
-                        <a href="?pagina=proveedor" class="btn btn-primary">Ver Proveedores</a>
+                        <a href="?pagina=proveedor" class="btn btn-primary">Gestionar Proveedores</a>
                     </div>
                 </div>
             </div>
@@ -72,9 +75,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/inboxes.svg" alt=""> Existencias </h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias </h5>
                         <p class="card-text">Gestiona las existencias de tus productos de forma eficiente.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Ver Existencias </a>
+                        <a href="?pagina=existencia" class="btn btn-primary">Gestión de Existencias </a>
                     </div>
                 </div>
             </div>
@@ -82,18 +85,27 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/person-add.svg" alt=""> Empleados</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Empleados</h5>
                         <p class="card-text">Gestiona tus empleados con facilidad.</p>
-                        <a href="?pagina=empleado" class="btn btn-primary">Ver Empleados</a>
+                        <a href="?pagina=empleado" class="btn btn-primary">Gestionar Empleados</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/shop-window.svg" alt=""> Almacenes</h5>
-                        <p class="card-text">Controla y Gestiona tus almacenes y sus respectivas areas.</p>
-                        <a href="?pagina=almacen" class="btn btn-primary">Ver Almacenes</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/shop-window.svg" alt=""> Almacenes</h5>
+                        <p class="card-text">Maneja y Gestiona tus almacenes.</p>
+                        <a href="?pagina=almacen" class="btn btn-primary">Gestionar Almacenes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/wrench-adjustable-circle.svg" alt=""> Complementos</h5>
+                        <p class="card-text">Gestiona los datos que complementan a tu sistema.</p>
+                        <a href="?pagina=complemento" class="btn btn-primary">Gestión de Complementos</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +113,7 @@
     </div>
     <br><br>
     <!-- Footer -->
-    <?php require_once("public/commun/footer.php"); ?>
+    <?php require_once("public/components/footer.php"); ?>
     <!-- Footer -->
 
     <!-- Scripts -->
