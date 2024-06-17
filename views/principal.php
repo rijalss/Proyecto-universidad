@@ -37,7 +37,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Encargos</h5>
                         <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio.</p>
-                        <a href="?pagina=entrada" class="btn btn-primary">Gestionar Encargos</a>
+                        <a href="?pagina=entrada" class="btn btn-primary">Gestionar Encargo</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Productos</h5>
                         <p class="card-text">Mantén la gestión tus productos bajo control.</p>
-                        <a href="?pagina=producto" class="btn btn-primary">Gestionar Productos</a>
+                        <a href="?pagina=producto" class="btn btn-primary">Gestionar Producto</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/truck.svg" alt=""> Proveedores</h5>
                         <p class="card-text">Gestiona tus proveedores con facilidad.</p>
-                        <a href="?pagina=proveedor" class="btn btn-primary">Gestionar Proveedores</a>
+                        <a href="?pagina=proveedor" class="btn btn-primary">Gestionar Proveedor</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
                         <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias </a>
+                        <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Empleados</h5>
                         <p class="card-text">Gestiona tus empleados con facilidad.</p>
-                        <a href="?pagina=empleado" class="btn btn-primary">Gestionar Empleados</a>
+                        <a href="?pagina=empleado" class="btn btn-primary">Gestionar Empleado</a>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/shop-window.svg" alt=""> Almacenes</h5>
                         <p class="card-text">Maneja y Gestiona tus almacenes.</p>
-                        <a href="?pagina=almacen" class="btn btn-primary">Gestionar Almacenes</a>
+                        <a href="?pagina=almacen" class="btn btn-primary">Gestionar Almacen</a>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
                         <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=producto">Gestionar Productos</a>
+                        <a class="nav-link" href="?pagina=producto">Gestionar Producto</a>
                     </li>
                     <li>
                         <a class="nav-link" href="?pagina=entrada">Gestionar Encargo</a>
@@ -27,13 +27,13 @@
                         <a class="nav-link" href="?pagina=existencia">Listar Existencias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=proveedor">Gestionar Proveedores</a>
+                        <a class="nav-link" href="?pagina=proveedor">Gestionar Proveedor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=empleado">Gestionar Empleados</a>
+                        <a class="nav-link" href="?pagina=empleado">Gestionar Empleado</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=almacen">Gestionar Almacenes</a>
+                        <a class="nav-link" href="?pagina=almacen">Gestionar Almacen</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=complemento">Gestionar Complementos</a>

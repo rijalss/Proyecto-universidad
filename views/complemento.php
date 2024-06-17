@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/img/categorization.png" alt=""> Categorias</h5>
                         <p class="card-text">Gestiona las categorias que tendran tus productos</p>
-                        <a href="?pagina=categoria" class="btn btn-primary">Gestionar Categorias</a>
+                        <a href="?pagina=categoria" class="btn btn-primary">Gestionar Categoria</a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/employee.svg" alt="">Cargos</h5>
                         <p class="card-text">Gestiona los cargos que tendras para tus empleados.</p>
-                        <a href="?pagina=cargo" class="btn btn-primary">Gestionar Cargos</a>
+                        <a href="?pagina=cargo" class="btn btn-primary">Gestionar Cargo</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/area.svg" alt="">Areas</h5>
                         <p class="card-text">Gestiona tus areas dentro de tus almacenes.</p>
-                        <a href="?pagina=area" class="btn btn-primary">Gestionar Areas</a>
+                        <a href="?pagina=area" class="btn btn-primary">Gestionar Area</a>
                     </div>
                 </div>
             </div>
