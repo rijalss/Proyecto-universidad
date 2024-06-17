@@ -10,12 +10,19 @@ class Proveedor extends Conexion
     private $telefonoProveedor;
     private $correoProveedor;
     private $direccionProveedor;
+    private $prefijo;
+
 
     //////////////////////////SET//////////////////////////
 
     function set_rifProveedor($valor)
     {
         $this->rifProveedor = $valor;
+    }
+
+    function set_prefijo($valor)
+    {
+        $this->prefijo = $valor;
     }
 
     function set_nombreProveedor($valor)
@@ -45,6 +52,11 @@ class Proveedor extends Conexion
         return $this->rifProveedor;
     }
 
+    function get_prefijo()
+    {
+        return $this->prefijo;
+    }
+
     function get_nombreProveedor()
     {
         return $this->nombreProveedor;
@@ -67,9 +79,11 @@ class Proveedor extends Conexion
 
     //////////////////////////METODOS//////////////////////////
 
+    
     function incluir()
     {
         $r = array();
+
         if (!$this->existe($this->rifProveedor)) {
             //1 Se llama a la funcion conecta 
             $co = $this->conecta();
@@ -77,27 +91,29 @@ class Proveedor extends Conexion
             //2 Se ejecuta el sql
             try {
                 $co->query("INSERT INTO proveedor(
-						rifProveedor,
-                        nombreProveedor,
-                        telefonoProveedor,
-                        correoProveedor,
-                        direccionProveedor
-						)Values(
-						'$this->rifProveedor',
-						'$this->nombreProveedor',
-						'$this->telefonoProveedor',
-						'$this->correoProveedor',
-						'$this->direccionProveedor'
-						)");
+                    prefijo,
+                    rifProveedor,
+                    nombreProveedor,
+                    telefonoProveedor,
+                    correoProveedor,
+                    direccionProveedor
+                    ) VALUES (
+                    '$this->prefijo',
+                    '$this->rifProveedor',
+                    '$this->nombreProveedor',
+                    '$this->telefonoProveedor',
+                    '$this->correoProveedor',
+                    '$this->direccionProveedor'
+                )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] =  'Registro Inluido';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el proveedor correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
-                $r['mensaje'] =  $e->getMessage();
+                $r['mensaje'] = $e->getMessage();
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] =  'Ya existe el Rif';
+            $r['mensaje'] = 'ERROR! <br/> El RIF colocado ya existe!';
         }
         return $r;
     }
@@ -109,24 +125,23 @@ class Proveedor extends Conexion
         $r = array();
         if ($this->existe($this->rifProveedor)) {
             try {
-                $co->query("UPDATE proveedor SET 
-					    rifProveedor = '$this->rifProveedor',
-						nombreProveedor = '$this->nombreProveedor',
-						telefonoProveedor = '$this->telefonoProveedor',
-						correoProveedor = '$this->correoProveedor',
-						direccionProveedor = '$this->direccionProveedor'
-						WHERE
-						rifProveedor = '$this->rifProveedor'
-						");
+                $co->query("UPDATE proveedor 
+                SET nombreProveedor = '$this->nombreProveedor',
+                telefonoProveedor = '$this->telefonoProveedor',
+                correoProveedor = '$this->correoProveedor',
+                direccionProveedor = '$this->direccionProveedor',
+                prefijo = '$this->prefijo'
+                WHERE rifProveedor = '$this->rifProveedor'
+                ");
                 $r['resultado'] = 'modificar';
-                $r['mensaje'] =  'Registro Modificado';
+                $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el proveedor correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] =  $e->getMessage();
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] =  'Rif no registrado';
+            $r['mensaje'] =  'ERROR! <br/> El RIF colocado NO existe!';
         }
         return $r;
     }
@@ -142,14 +157,14 @@ class Proveedor extends Conexion
 						WHERE rifProveedor = '$this->rifProveedor'
 						");
                 $r['resultado'] = 'eliminar';
-                $r['mensaje'] =  'Registro Eliminado';
+                $r['mensaje'] =  'Registro Eliminado! <br/> Se eliminó el proveedor correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] =  $e->getMessage();
             }
         } else {
             $r['resultado'] = 'eliminar';
-            $r['mensaje'] =  'No existe el Rif';
+            $r['mensaje'] =  'ERROR! <br/> El RIF colocado NO existe!';
         }
         return $r;
     }
@@ -170,7 +185,7 @@ class Proveedor extends Conexion
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
                     $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['rifProveedor'];
+                    $respuesta = $respuesta . $r['prefijo'] .'-'. $r['rifProveedor'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreProveedor'];

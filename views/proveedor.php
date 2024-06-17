@@ -10,18 +10,25 @@
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
+<div id="mensajes" style="display:none">
+	<?php
+	if (!empty($mensaje)) {
+		echo $mensaje;
+	}
+	?>
+</div>
+
 <body>
 	<!-- Header -->
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex align-items-center justify-content-center" style="height: calc(95vh - 100px); flex-direction: column;">
-		<br>
-		<h2 class="text-primary text-center">Gestionar Proveedores</h2>
+	<section class="d-flex flex-column align-items-center">
+		<br><br><br><br>
+		<h2 class="text-primary text-center">Gestionar Proveedor</h2>
 		<div class="container">
 			<div class="text-left">
-
-				<button class="btn btn-success" id="incluir">Registrar Proveedor </button>
+				<button class="btn btn-success" id="incluir">Registrar Proveedor</button>
 			</div>
 		</div>
 		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
@@ -30,7 +37,7 @@
 			</div>
 			<div class="container text-center">
 				<div class="table-responsive">
-					<table class="table table-striped table-hover " id="tablaproveedor">
+					<table class="table table-striped table-hover" id="tablaproveedor">
 						<thead>
 							<tr>
 								<th>RIF</th>
@@ -64,6 +71,15 @@
 						<div class="container">
 							<div class="row mb-3">
 
+								<div class="col-1">
+									<label for="prefijo"></label>
+									<select class="form-control" name="prefijo" id="prefijo">
+										<option value="J">J</option>
+										<option value="V">V</option>
+										<option value="G">G</option>
+									</select>
+									<span id="sprefijo"></span>
+								</div>
 								<div class="col-3">
 									<label for="rifProveedor">Rif</label>
 									<input class="form-control" type="text" id="rifProveedor" name="rifProveedor">
@@ -74,7 +90,7 @@
 									<input class="form-control" type="text" id="nombreProveedor" name="nombreProveedor">
 									<span id="snombreProveedor"></span>
 								</div>
-								<div class="col-4">
+								<div class="col-3">
 									<label for="telefonoProveedor">Teléfono</label>
 									<input class="form-control" type="text" id="telefonoProveedor" name="telefonoProveedor">
 									<span id="stelefonoProveedor"></span>

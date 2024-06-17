@@ -70,30 +70,30 @@ $(document).ready(function(){
 //////////////////////////////VALIDACIONES/////////////////////////////////////
 
 	$("#rifProveedor").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
+    validarkeypress(/^[A-Za-z0-9-\b]*$/,e);
 	});
-	
+
 	$("#rifProveedor").on("keyup",function(){
-		validarkeyup(/^[0-9]{10}$/,$(this),
-		$("#srifProveedor"),"El formato debe tener 10 carácteres");
+		validarkeyup(/^[A-Za-z0-9]{8,9}$/,$(this),
+		$("#srifProveedor"),"El formato debe tener de 8 a 9 carácteres");
 	});
 
 	$("#nombreProveedor").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 	});
 	
 	$("#nombreProveedor").on("keyup",function(){
-        validarkeyup(/^[A-Za-z,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
+        validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
         $(this), $("#snombreProveedor"),"Este campo debe estar lleno / Máximo 30 carácteres");
 	});
 
     $("#correoProveedor").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC@.]*$/,e);
+		validarkeypress(/^[A-Za-z0-9@_.\b\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 	});
 	
 	$("#correoProveedor").on("keyup",function(){
-		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC@.]{1,30}$/,
-		$(this),$("#scorreoProveedor"),"Este campo debe estar lleno / Máximo 30 carácteres");
+		validarkeyup(/^[A-Za-z0-9_\u00f1\u00d1\u00E0-\u00FC-]{3,30}[@]{1}[A-Za-z0-9]{3,8}[.]{1}[A-Za-z]{2,3}$/,
+		$(this),$("#scorreoProveedor"),"El formato debe ser un correo válido!");
 	});
 
     $("#telefonoProveedor").on("keypress",function(e){
@@ -114,12 +114,17 @@ $(document).ready(function(){
 	});
 
 //////////////////////////////BOTONES/////////////////////////////////////
-
+if($.trim($("#mensajes").text()) != ""){
+	//icono,tiempo,titulo,mensaje
+	muestraMensaje("success",4000,"Resultado",$("#mensajes").html());
+	}
+	
 $("#proceso").on("click",function(){
 	if($(this).text()=="INCLUIR"){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
+			datos.append('prefijo',$("#prefijo").val()); // Añade esta línea
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -133,6 +138,7 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
+			datos.append('prefijo',$("#prefijo").val()); // Añade esta línea
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -143,10 +149,9 @@ $("#proceso").on("click",function(){
 		}
 	}
 	if($(this).text()=="ELIMINAR"){
-		if(validarkeyup(/^[0-9]{8,10}$/,$("#rifProveedor"),
-		$("#srifProveedor"),"El formato debe ser 9999999999")==0){
-	    muestraMensaje("La rifProveedor debe coincidir con el formato <br/>"+ 
-						"9999999999");	
+		if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{8,11}$/,$("#rifProveedor"),
+		$("#srifProveedor"),"El formato debe tener de 11 carácteres")==0){
+		muestraMensaje("error",4000,"ERROR!","Seleccionó un rif incorrecto <br/> por favor verifique nuevamente");
 		}else{
 			var datos = new FormData();
 			datos.append('accion','eliminar');
@@ -166,44 +171,50 @@ $("#proceso").on("click",function(){
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
-	if(validarkeyup(/^[0-9]{10}$/,$("#rifProveedor"),
-		$("#srifProveedor"),"El formato debe tener 10 carácteres")==0){
-	    muestraMensaje("El rif del proveedor debe coincidir con el formato <br/>" + 
-		"9999999999");	
+	if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{8,11}$/,$("#rifProveedor"),
+		$("#srifProveedor"),"El formato debe tener 9 carácteres")==0){
+		muestraMensaje("error",4000,"ERROR!","El rif del proveedor debe coincidir con el formato <br/>" + "J-123456789");
 		return false;					
-	}	
-	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{10,11}$/,
-		$("#telefonoProveedor"),$("#stelefonoProveedor"),"Solo numeros y/o # - debe contender 11 carácteres")==0){
-		muestraMensaje("El teléfono del proveedor <br/>Solo numeros y # - debe contener 11 carácteres");
-		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 		$("#nombreProveedor"),$("#snombreProveedor"),"No debe contener más de 30 carácteres")==0){
-		muestraMensaje("El nombre del proveedor <br/> No debe contener más de 30 carácteres");
+		muestraMensaje("error",4000,"ERROR!","El nombre del proveedor <br/> No debe estar vacío, ni contener más de 30 carácteres");
+		return false;
+	}	
+	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{10,11}$/,
+		$("#telefonoProveedor"),$("#stelefonoProveedor"),"Debe contender 11 carácteres")==0){
+		muestraMensaje("error",4000,"ERROR!","El teléfono del proveedor <br/>Solo numeros y/o debe contener 11 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
+    else if(validarkeyup(/^[A-Za-z0-9_\u00f1\u00d1\u00E0-\u00FC-]{3,30}[@]{1}[A-Za-z0-9]{3,8}[.]{1}[A-Za-z]{2,3}$/,
 		$("#correoProveedor"),$("#scorreoProveedor"),"No debe contener más de 30 carácteres")==0){
-		muestraMensaje("El correo del proveedor <br/> No debe contener más de 30 carácteres");
+		muestraMensaje("error",4000,"ERROR!","El correo del proveedor <br/> No debe estar vacío, ni contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
+    else if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
 		$("#direccionProveedor"),$("#sdireccionProveedor"),"No debe contener más de 30 carácteres")==0){
-		muestraMensaje("La direccion del proveedor <br/> No debe contener más de 30 carácteres");
+		muestraMensaje("error",4000,"ERROR!","La dirección del proveedor <br/> No debe estar vacío, ni contener más de 30 carácteres");
 		return false;
 	}
 	return true;
 }
 
-//Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	
-	$("#contenidodemodal").html(mensaje);
-			$("#mostrarmodal").modal("show");
-			setTimeout(function() {
-					$("#mostrarmodal").modal("hide");
-			},5000);
+//Función para mostrar mensajes
+
+function muestraMensaje(icono,tiempo,titulo,mensaje){
+
+	Swal.fire({
+	icon:icono,
+    timer:tiempo,	
+    title:titulo,
+	html:mensaje,
+	showConfirmButton:true,
+	confirmButtonText:'Aceptar',
+	});
+
+
 }
+
 
 //Función para validar por Keypress
 function validarkeypress(er,e){
@@ -240,23 +251,25 @@ mensaje){
 
 //funcion para pasar de la lista a el formulario
 function pone(pos,accion){
-	
-	linea=$(pos).closest('tr');
+    
+    linea=$(pos).closest('tr');
 
-
-	if(accion==0){
-		$("#proceso").text("MODIFICAR");
-	}
-	else{
-		$("#proceso").text("ELIMINAR");
-	}
-	$("#rifProveedor").val($(linea).find("td:eq(0)").text());
-	$("#nombreProveedor").val($(linea).find("td:eq(1)").text());
-	$("#telefonoProveedor").val($(linea).find("td:eq(2)").text());
-	$("#correoProveedor").val($(linea).find("td:eq(3)").text());
-	$("#direccionProveedor").val($(linea).find("td:eq(4)").text());
-	
-	$("#modal1").modal("show");
+    if(accion==0){
+        $("#proceso").text("MODIFICAR");
+    }
+    else{
+        $("#proceso").text("ELIMINAR");
+    }
+    
+    var rifProveedor = $(linea).find("td:eq(0)").text();
+    $("#rifProveedor").val(rifProveedor.substring(2)); 
+    $("#prefijo").val(rifProveedor.substring(0, 1));
+    $("#nombreProveedor").val($(linea).find("td:eq(1)").text());
+    $("#telefonoProveedor").val($(linea).find("td:eq(2)").text());
+    $("#correoProveedor").val($(linea).find("td:eq(3)").text());
+    $("#direccionProveedor").val($(linea).find("td:eq(4)").text());
+    
+    $("#modal1").modal("show");
 }
 
 
@@ -281,20 +294,20 @@ function enviaAjax(datos) {
            $("#resultadoconsulta").html(lee.mensaje);
 		   crearDT();
         }else if (lee.resultado == "incluir") {
-           muestraMensaje(lee.mensaje);
-		   if(lee.mensaje=='Registro Inluido'){
+    	    muestraMensaje('info', 4000,'INCLUIR', lee.mensaje);
+		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el proveedor correctamente'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
         }else if (lee.resultado == "modificar") {
-           muestraMensaje(lee.mensaje);
-		   if(lee.mensaje=='Registro Modificado'){
-			   $("#modal1").modal("hide");
-			   consultar();
+    	    muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
+           if(lee.mensaje=='Registro Modificado!<br/> Se modificó el proveedor correctamente'){
+               $("#modal1").modal("hide");
+               consultar();
 		   }
         }else if (lee.resultado == "eliminar") {
-           muestraMensaje(lee.mensaje);
-		   if(lee.mensaje=='Registro Eliminado'){
+    	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
+		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el proveedor correctamente'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
