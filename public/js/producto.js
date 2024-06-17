@@ -4,7 +4,6 @@ $(document).ready(function(){
 		muestraMensaje($("#mensajes").html());
 	}
 
-		
 	//////////////////////////////VALIDACIONES/////////////////////////////////////
 
 		$("#codProducto").on("keypress",function(e){
