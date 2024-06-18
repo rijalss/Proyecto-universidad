@@ -1,81 +1,123 @@
+function consultar(){
+	var datos = new FormData();
+	datos.append('accion','consultar');
+	enviaAjax(datos);	
+}
+function destruyeDT(){
+	//1 se destruye el datatablet
+	if ($.fn.DataTable.isDataTable("#tablaproducto")) {
+            $("#tablaproducto").DataTable().destroy();
+    }
+}
+function crearDT(){
+    if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
+         var table = $("#tablaproducto").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            language: {
+                lengthMenu: "Mostrar _MENU_",
+                zeroRecords: "No se encontraron productos",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay productos registrados",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                },
+            },
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom: "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
+
+        $("div.dataTables_length select").css({
+            "width": "auto",
+            "display": "inline",
+			"margin-top": "10px",
+
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+			"margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            "float": "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            "width": "300px",
+            "float": "right",
+            "margin-left": "10px",
+        });
+    }         
+}
+					
 $(document).ready(function(){
 
-	if($.trim($("#mensajes").text()) != ""){
-		muestraMensaje($("#mensajes").html());
+	consultar();
+	
+//////////////////////////////VALIDACIONES/////////////////////////////////////
+
+	
+$("#nombreProducto").on("keypress",function(e){
+	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
+});
+
+$("#nombreProducto").on("keyup",function(){
+	validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
+	$(this), $("#snombreProducto"), "Se debe llenar este campo y debe tener un máximo de 30 carácteres");
+});
+
+$("#precio").on("keypress",function(e){
+	validarkeypress(/^[0-9-\b]*$/,e);
+});
+
+$("#precio").on("keyup",function(){
+	validarkeyup(/^[0-9]{0,10}$/,$(this),
+	$("#sprecio"),"No debe haber cantidades negativas / menores a cero");
+});
+
+$("#descProducto").on("keypress",function(e){
+	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
+});
+
+$("#descProducto").on("keyup",function(){
+	validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+	$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 200 carácteres");
+});
+
+
+
+//////////////////////////////BOTONES/////////////////////////////////////
+if($.trim($("#mensajes").text()) != ""){
+	//icono,tiempo,titulo,mensaje
+	muestraMensaje("success",4000,"Resultado",$("#mensajes").html());
 	}
-
-	//////////////////////////////VALIDACIONES/////////////////////////////////////
-
-		$("#codProducto").on("keypress",function(e){
-			validarkeypress(/^[0-9-\b]*$/,e);
-		});
-		
-		$("#codProducto").on("keyup",function(){
-			validarkeyup(/^[0-9]{4,10}$/,$(this),
-			$("#scodProducto"),"El formato no puede estar vacío y no puede conter más de 10 carácteres");
-			if($("#codProducto").val().length <= 10){
+	
+$("#proceso").on("click",function(){
+	if($(this).text()=="INCLUIR"){
+		if(validarenvio()){
 			var datos = new FormData();
-				datos.append('accion','consultatr');
-				datos.append('codProducto',$(this).val());
-				enviaAjax(datos,'consultatr');	
-			}
-		});
-	
-		$("#nombreProducto").on("keypress",function(e){
-			validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
-		});
-		
-		$("#nombreProducto").on("keyup",function(){
-			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
-			$(this), $("#snombreProducto"), "Se debe llenar este campo y debe tener un máximo de 30 carácteres");
-		});
-	
-		$("#precio").on("keypress",function(e){
-			validarkeypress(/^[0-9-\b]*$/,e);
-		});
-		
-		$("#precio").on("keyup",function(){
-			validarkeyup(/^[0-9]{0,10}$/,$(this),
-			$("#sprecio"),"No debe haber cantidades negativas / menores a cero");
-		});
-
-		$("#descProducto").on("keypress",function(e){
-			validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
-		});
-		
-		$("#descProducto").on("keyup",function(){
-			validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-			$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 200 carácteres");
-		});
-
-	
-		
-
-	//////////////////////////////BOTONES/////////////////////////////////////
-		
-	$("#incluir").on("click",function(){
-        if(validarenvio()){
-            var datos = new FormData();
-            datos.append('accion','incluir');
-            datos.append('codProducto',$("#codProducto").val());
-
-            // Verificar si el campo precio está vacío
-            if($("#precio").val().trim() === ''){
-                $("#precio").val(0);
-            }
-	
-            datos.append('precio',$("#precio").val());
-            datos.append('nombreProducto',$("#nombreProducto").val());
-            datos.append('descProducto',$("#descProducto").val());
-            datos.append('categoria',$("#categoria").val());
-
-            enviaAjax(datos);
-            limpia();
-        }
-    });
-
-	
-	$("#modificar").on("click",function(){
+			datos.append('accion','incluir');
+			datos.append('codProducto',$("#codProducto").val());
+			datos.append('nombreProducto',$("#nombreProducto").val());
+			datos.append('precio',$("#precio").val());
+			datos.append('descProducto',$("#descProducto").val());
+			enviaAjax(datos);
+		}
+	}
+	else if($(this).text()=="MODIFICAR"){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
@@ -83,126 +125,32 @@ $(document).ready(function(){
 			datos.append('precio',$("#precio").val());
 			datos.append('nombreProducto',$("#nombreProducto").val());
 			datos.append('descProducto',$("#descProducto").val());
-			datos.append('categoria',$("#categoria").val());
 			enviaAjax(datos);
-			limpia();
 		}
-	});
-
-	$("#eliminar").on("click",function(){
-		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
-			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
-			muestraMensaje("La codigo del Producto debe coincidir con el formato <br/>"+ 
-						"máximo 10 carácteres, ni tener cantidades negativas");	
-			
-		}
-		else{	
+	}
+	if($(this).text()=="ELIMINAR"){
+		if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,$("#codProducto"),
+		$("#scodProducto"),"El formato debe tener de 11 carácteres")==0){
+		muestraMensaje("error",4000,"ERROR!","Seleccionó un código incorrecto <br/> por favor verifique nuevamente");
+		}else{
 			var datos = new FormData();
 			datos.append('accion','eliminar');
 			datos.append('codProducto',$("#codProducto").val());
-			datos.append('precio',$("#precio").val());
-			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('descProducto',$("#descProducto").val());
-			datos.append('categoria',$("#categoria").val());
-	
 			enviaAjax(datos);
-			limpia();
-		}
-		
-	});
-
-	$("#consultar").on("click",function(){
-		var datos = new FormData();
-		datos.append('accion','consultar');
-		enviaAjax(datos);
-	});
-	
-	});
-		// Acciones de Categoria
-	$("#incluirCategoria").on("click",function(){
-		var datos = new FormData();
-		if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
-		$("#nombreCategoria"),"El formato no puede estar vacío")==0){
-		muestraMensaje("El formato no puede estar vacío");	
-	
-	}else{
-			datos.append('accionCategoria','incluirCategoria');
-			datos.append('nombreCategoria',$("#nombreCategoria").val());
-			enviaAjax(datos);
-			limpiaCategoria();
-	}		
-	});
-
-	$("#eliminarCategoria").on("click",function(){
-	if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
-	$("#nombreCategoria"),"El formato no puede estar vacío")==0){
-	muestraMensaje("El formato no puede estar vacío");	
-			
-	}
-	else{	
-		var datos = new FormData();
-		datos.append('accionCategoria','eliminarCategoria');
-		datos.append('nombreCategoria',$("#nombreCategoria").val());
-	
-		enviaAjax(datos);
-		limpiaCategoria();
-	}
-		
-	});
-	
-	//funcion para enlazar al DataTablet
-	function destruyeDT(){
-		//1 se destruye el datatablet
-		if ($.fn.DataTable.isDataTable("#tablaproducto")) {
-				$("#tablaproducto").DataTable().destroy();
 		}
 	}
-	function crearDT(){
-		//se crea nuevamente
-		if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
-				$("#tablaproducto").DataTable({
-				language: {
-					lengthMenu: "Mostrar _MENU_ por página",
-					zeroRecords: "No se encontraron productos",
-					info: "Mostrando página _PAGE_ de _PAGES_",
-					infoEmpty: "No hay productos registrados",
-					infoFiltered: "(filtrado de _MAX_ registros totales)",
-					search: "Buscar:",
-					paginate: {
-					first: "Primera",
-					last: "Última",
-					next: "Siguiente",
-					previous: "Anterior",
-					},
-				},
-				autoWidth: false,
-				order: [[1, "asc"]],
-				});
-		}         
-	}
-	
-	//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
-	//Funcion que muestra el modal con un mensaje
-	function muestraMensaje(mensaje) {
-		$("#contenidodemodal").html(mensaje);
-		$("#mostrarmodal").modal("show");
-		setTimeout(function() {
-			$("#mostrarmodal").modal("hide");
-		}, 5000);
-		// Cierra el modal de agregar categoría
-		$("#agregarcategoria").modal("hide");
-	}
+});
 
-	function validarenvio(){
+	$("#incluir").on("click",function(){
+		limpia();
+		$("#proceso").text("INCLUIR");
+		$("#modal1").modal("show");
+	});
+});
 
-		var categoriaSeleccionada = $("#categoria").val();
+//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
-		// Validar si el campo de categoría está vacío (0 o null)
-		if (categoriaSeleccionada === null || categoriaSeleccionada === "0") {
-			muestraMensaje("Por favor, seleccione una categoría");
-			return false;
-		}
-
+function validarenvio(){
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
 			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
 			muestraMensaje("El codigo del Producto debe coincidir con el formato <br/>"+ 
@@ -227,128 +175,167 @@ $(document).ready(function(){
 		
 	return true;
 	}
-	
 
-	function validarkeypress(er,e){
-		
-		key = e.keyCode;
-		
-		
-		tecla = String.fromCharCode(key);
-		
-		
-		a = er.test(tecla);
-		
-		if(!a){
-		
-			e.preventDefault();
-		}
-		
-		
-	}
-	//Función para validar por keyup
-	function validarkeyup(er,etiqueta,etiquetamensaje,
-	mensaje){
-		a = er.test(etiqueta.val());
-		if(a){
-			etiquetamensaje.text("");
-			return 1;
-		}
-		else{
-			etiquetamensaje.text(mensaje);
-			return 0;
-		}
-	}
+//Función para mostrar mensajes
 
+function muestraMensaje(icono,tiempo,titulo,mensaje){
+
+	Swal.fire({
+	icon:icono,
+    timer:tiempo,	
+    title:titulo,
+	html:mensaje,
+	showConfirmButton:true,
+	confirmButtonText:'Aceptar',
+	});
+
+
+}
+
+
+//Función para validar por Keypress
+function validarkeypress(er,e){
 	
-	function coloca(linea){
+	key = e.keyCode;
+	
+	
+    tecla = String.fromCharCode(key);
+	
+	
+    a = er.test(tecla);
+	
+    if(!a){
+	
+		e.preventDefault();
+    }
+	
+    
+}
+
+//Función para validar por keyup
+function validarkeyup(er,etiqueta,etiquetamensaje,
+mensaje){
+	a = er.test(etiqueta.val());
+	if(a){
+		etiquetamensaje.text("");
+		return 1;
+	}
+	else{
+		etiquetamensaje.text(mensaje);
+		return 0;
+	}
+}
+
+//funcion para pasar de la lista a el formulario
+function pone(pos,accion){
+    
+    linea=$(pos).closest('tr');
+
+    if(accion==0){
+    	$("#proceso").text("MODIFICAR");
 		$("#codProducto").val($(linea).find("td:eq(0)").text());
-		$("#nombreProducto").val($(linea).find("td:eq(1)").text());
-		$("#precio").val($(linea).find("td:eq(2)").text());
-		$("#descProducto").val($(linea).find("td:eq(3)").text());
+		$("#codProducto").prop("readonly", true); //WOW CON READONLY 
+    	$("#nombreProducto").val($(linea).find("td:eq(1)").text());
+    	$("#precio").val($(linea).find("td:eq(2)").text());
+    	$("#descProducto").val($(linea).find("td:eq(3)").text());   
+
 		var nombreCategoria = $(linea).find("td:eq(4)").text();
-		// var clCategoria = $(linea).find("td:eq(4)").data('clcategoria');
-		// La variable no se está leyendo en ninguna parte :(
-
-		// Seleccionador de categoria
 		$('#categoria option').filter(function() {
-			return $(this).text() == nombreCategoria;
-		}).prop('selected', true).change();
-	}
-	
-	//////////////////////////////FUNCIONES AJAX/////////////////////////////////////
-	
-	function enviaAjax(datos) {
-		$.ajax({
-			async: true,
-			url: "", // Aquí deberías poner la URL de tu servidor
-			type: "POST",
-			contentType: false,
-			data: datos,
-			processData: false,
-			cache: false,
-			beforeSend: function () {},
-			timeout: 10000, // tiempo máximo de espera por la respuesta del servidor
-			success: function (respuesta) {
-				console.log("Respuesta del servidor:", respuesta);
-				try {
-				var lee = JSON.parse(respuesta);
-					console.log("JSON parseado:", lee);
-					console.log("Resultado:", lee.resultado); // Añade esta línea
-	
-					if (lee.resultado == "consultar") {
-						destruyeDT();
-						$("#resultadoconsulta").html(lee.mensaje);
-						crearDT();
-						$("#modal1").modal("show");	
-					} else if(lee.resultado == "incluirCategoria" ||
-						lee.resultado == "eliminarCategoria"){
-						muestraMensaje(lee.mensaje);
-						limpiaCategoria();
-					} else if (lee.resultado == "encontro") {
-						$("#codProducto").val(lee.mensaje[0][0]);
-						$("#nombreProducto").val(lee.mensaje[0][2]);
-						$("#precio").val(lee.mensaje[0][3]);
-						$("#descProducto").val(lee.mensaje[0][4]);
-						$("#categoria").val(lee.mensaje[0][5]);
-					} else if (lee.resultado == "incluir" ||
-						lee.resultado == "modificar" ||
-						lee.resultado == "eliminar") {
-						muestraMensaje(lee.mensaje);
-						limpia();
-					}  else if (lee.resultado == "error") {
-						muestraMensaje(lee.mensaje);
-					}
-				} catch (e) {
-					console.error("Error en JSON:", e);
-					console.error("Respuesta del servidor:", respuesta);
-					alert("Error en JSON: " + e.message);
-				}
-			},
-			error: function (request, status, err) {
-			
-				if (status == "timeout") {
-	
-					muestraMensaje("Servidor ocupado, intente de nuevo");
-				} else {
-	
-					muestraMensaje("ERROR: <br/>" + request + status + err);
-				}
-			},
-			complete: function () {},
-		});
-	}
-	
-	function limpia(){ 
-		$("#codProducto").val('');
-		$("#nombreProducto").val('');
-		$("#precio").val('');
-		$("#descProducto").val('');
-		$("#categoria").val('disabled');
-	}	
+            return $(this).text() == nombreCategoria;
+        }).prop('selected', true).change();
 
-	function limpiaCategoria(){
-		$("#nombreCategoria").val('');
+    	$("#modal1").modal("show");
+		
+    }
+    else{
+    	$("#proceso").text("ELIMINAR");
+		$("#codProducto").val($(linea).find("td:eq(0)").text());
+		$("#codProducto").prop("readonly", true); //WOW CON READONLY 
+
+
+    	$("#nombreProducto").val($(linea).find("td:eq(1)").text());
+		$("#nombreProducto").prop("readonly", true); //WOW CON READONLY 
+
+
+    	$("#precio").val($(linea).find("td:eq(2)").text());
+		$("#precio").prop("readonly", true); //WOW CON READONLY 
+
+
+    	$("#descProducto").val($(linea).find("td:eq(3)").text());    
+		$("#descProducto").prop("readonly", true); //WOW CON READONLY 
+
+		var nombreCategoria = $(linea).find("td:eq(4)").text();
+		$('#categoria option').filter(function() {
+            return $(this).text() == nombreCategoria;
+        }).prop('selected', true).change();
+
+   		$("#modal1").modal("show");
+    }
+    
+    
+}
+
+
+//funcion que envia y recibe datos por AJAX
+function enviaAjax(datos) {
+  $.ajax({
+    async: true,
+    url: "",
+    type: "POST",
+    contentType: false,
+    data: datos,
+    processData: false,
+    cache: false,
+    beforeSend: function () {},
+    timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
+    success: function (respuesta) {
+    // console.log(respuesta);
+      try {
+        var lee = JSON.parse(respuesta);
+        if (lee.resultado == "consultar") {
+		   destruyeDT();	
+           $("#resultadoconsulta").html(lee.mensaje);
+		   crearDT();
+        }else if (lee.resultado == "incluir") {
+    	    muestraMensaje('info', 4000,'INCLUIR', lee.mensaje);
+		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el producto correctamente'){
+			   $("#modal1").modal("hide");
+			   consultar();
+		   }
+        }else if (lee.resultado == "modificar") {
+    	    muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
+           if(lee.mensaje=='Registro Modificado!<br/> Se modificó el producto correctamente'){
+               $("#modal1").modal("hide");
+               consultar();
+		   }
+        }else if (lee.resultado == "eliminar") {
+    	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
+		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el producto correctamente'){
+			   $("#modal1").modal("hide");
+			   consultar();
+		   }
+        }else if (lee.resultado == "error") {
+           muestraMensaje(lee.mensaje);
+        }
+     }catch (e) {
+        console.error("Error en análisis JSON:", e); // Registrar el error para depuración
+    	alert("Error en JSON " + e.name + ": " + e.message);
 	}
-	
-	
+    },
+    error: function (request, status, err) {
+      if (status == "timeout") {
+        muestraMensaje("Servidor ocupado, intente de nuevo");
+      } else {
+        muestraMensaje("ERROR: <br/>" + request + status + err);
+      }
+    },
+    complete: function () {},
+  });
+}
+
+function limpia(){
+	$("#codProducto").val('');
+	$("#nombreProducto").val('');
+	$("#descProducto").val('');
+	$("#precio").val('');
+}

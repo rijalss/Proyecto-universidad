@@ -2,9 +2,8 @@
 require_once("model/conexion.php");
 class Categoria extends Conexion
 {
-
-    private $clCategoria;
-    private $nombreCategoria;
+    protected $clCategoria;
+    protected $nombreCategoria;
 
     // SETTERS
 
@@ -150,4 +149,5 @@ class Categoria extends Conexion
             return false;
         }
     }
+
 }
