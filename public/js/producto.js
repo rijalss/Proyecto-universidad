@@ -69,37 +69,56 @@ $(document).ready(function(){
 	
 //////////////////////////////VALIDACIONES/////////////////////////////////////
 
+	$("#codProducto").on("keypress",function(e){
+		validarkeypress(/^[0-9-\b]*$/,e);
+	});
 	
-$("#nombreProducto").on("keypress",function(e){
-	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
-});
+	$("#codProducto").on("keyup",function(){
+		validarkeyup(/^[0-9]{4,10}$/,$(this),
+		$("#scodProducto"),"Este formato permite de 4 a 10 carácteres");
+	});
 
-$("#nombreProducto").on("keyup",function(){
-	validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
-	$(this), $("#snombreProducto"), "Se debe llenar este campo y debe tener un máximo de 30 carácteres");
-});
+	$("#nombreProducto").on("keypress", function (e) {
+	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
+	});
 
-$("#precio").on("keypress",function(e){
-	validarkeypress(/^[0-9-\b]*$/,e);
-});
+	$("#nombreProducto").on("keyup", function () {
+	validarkeyup(
+    /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/,
+    $(this),
+    $("#snombreProducto"),
+    "Este formato no debe estar vacío / permite un máximo 30 carácteres"
+  );
+	});
 
-$("#precio").on("keyup",function(){
-	validarkeyup(/^[0-9]{0,10}$/,$(this),
-	$("#sprecio"),"No debe haber cantidades negativas / menores a cero");
-});
+	$("#ultimoPrecio").on("keypress", function (e) {
+	validarkeypress(/^[0-9-\b]*$/, e);
+	});
 
-$("#descProducto").on("keypress",function(e){
-	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
-});
+	$("#ultimoPrecio").on("keyup", function () {
+	validarkeyup(
+		/^[0-9]{0,10}$/,
+		$(this),
+		$("#sultimoPrecio"),
+		"Este formato no permite cantidades negativas"
+	);
+	});
 
-$("#descProducto").on("keyup",function(){
-	validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-	$(this),$("#sdescProducto"),"Se debe llenar este campo y debe tener un máximo de 200 carácteres");
-});
+	$("#descProducto").on("keypress", function (e) {
+	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
+	});
 
-
+	$("#descProducto").on("keyup", function () {
+	validarkeyup(
+    /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+    $(this),
+    $("#sdescProducto"),
+    "Este formato no debe estar vacío / permite un máximo 200 carácteres"
+  );
+	});
 
 //////////////////////////////BOTONES/////////////////////////////////////
+
 if($.trim($("#mensajes").text()) != ""){
 	//icono,tiempo,titulo,mensaje
 	muestraMensaje("success",4000,"Resultado",$("#mensajes").html());
@@ -112,8 +131,10 @@ $("#proceso").on("click",function(){
 			datos.append('accion','incluir');
 			datos.append('codProducto',$("#codProducto").val());
 			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('precio',$("#precio").val());
+			datos.append('ultimoPrecio',$("#ultimoPrecio").val());
 			datos.append('descProducto',$("#descProducto").val());
+			datos.append("categoria", $("#categoria").val());
+
 			enviaAjax(datos);
 		}
 	}
@@ -121,10 +142,12 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
-			datos.append('codProducto',$("#codProducto").val());
-			datos.append('precio',$("#precio").val());
-			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('descProducto',$("#descProducto").val());
+			datos.append("codProducto", $("#codProducto").val());
+			datos.append("nombreProducto", $("#nombreProducto").val());
+			datos.append("ultimoPrecio", $("#ultimoPrecio").val());
+			datos.append("descProducto", $("#descProducto").val());
+			datos.append("categoria", $("#categoria").val());
+
 			enviaAjax(datos);
 		}
 	}
@@ -132,11 +155,29 @@ $("#proceso").on("click",function(){
 		if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,$("#codProducto"),
 		$("#scodProducto"),"El formato debe tener de 11 carácteres")==0){
 		muestraMensaje("error",4000,"ERROR!","Seleccionó un código incorrecto <br/> por favor verifique nuevamente");
-		}else{
-			var datos = new FormData();
-			datos.append('accion','eliminar');
-			datos.append('codProducto',$("#codProducto").val());
-			enviaAjax(datos);
+		}else {
+			// Mostrar confirmación usando SweetAlert
+			Swal.fire({
+				title: '¿Está seguro de eliminar este producto?',
+				text: "Esta acción no se puede deshacer.",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Sí, eliminar',
+				cancelButtonText: 'Cancelar'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					// Si se confirma, proceder con la eliminación
+					var datos = new FormData();
+					datos.append('accion', 'eliminar');
+					datos.append('codProducto', $("#codProducto").val());
+					enviaAjax(datos);
+				} else {
+					muestraMensaje("error", 2000, "INFORMACIÓN", "La eliminación ha sido cancelada.");
+					$("#modal1").modal("hide");
+				}
+			});
 		}
 	}
 });
@@ -151,25 +192,28 @@ $("#proceso").on("click",function(){
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
-		if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
+		var categoriaSeleccionada = $("#categoria").val();
+
+        if (categoriaSeleccionada === null || categoriaSeleccionada === "0") {
+			muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una categoría! <br/> Recuerde que debe tener alguna registrada!"); 
+            return false;
+        }
+		else if(validarkeyup(/^[0-9]{4,10}$/,$("#codProducto"),
 			$("#scodProducto"),"El formato no debe pasar de los 10 carácteres")==0){
-			muestraMensaje("El codigo del Producto debe coincidir con el formato <br/>"+ 
-							"máximo 10 carácteres, ni tener cantidades negativas");	
+			muestraMensaje("error",4000,"ERROR!","El código del producto debe coincidir con el formato <br/>" + 
+			"se permiten de 4 a 10 carácteres");
 			return false;					
-		}
-		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{0,10}$/,
-			$("#precio"),$("#sprecio"),"Solo numeros y/o # - sin cantidades negativas / menores a cero")==0){
-			muestraMensaje("El último precio del Producto <br/>Solo numeros y # - sin cantidades negativas / menores a cero");
-			return false;
-		}
+		}	
 		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
 			$("#nombreProducto"),$("#snombreProducto"),"No debe contener más de 30 carácteres")==0){
-			muestraMensaje("El nombre del Producto <br/> No debe contener más de 30 carácteres");
+			muestraMensaje("error",4000,"ERROR!","El nombre del producto debe coincidir con el formato <br/>" + 
+			"No debe estar vacío, ni contener más de 30 carácteres");
 			return false;
 		}
 		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
 			$("#descProducto"),$("#sdescProducto"),"No debe contener más de 200 carácteres")==0){
-			muestraMensaje("La descripción del Producto <br/> No debe contener más de 200 carácteres");
+			muestraMensaje("error",4000,"ERROR!","La descripción del producto debe coincidir con el formato <br/>" + 
+			"No debe estar vacío, ni contener más de 200 carácteres");
 			return false;
 		}
 		
@@ -188,10 +232,7 @@ function muestraMensaje(icono,tiempo,titulo,mensaje){
 	showConfirmButton:true,
 	confirmButtonText:'Aceptar',
 	});
-
-
 }
-
 
 //Función para validar por Keypress
 function validarkeypress(er,e){
@@ -234,9 +275,9 @@ function pone(pos,accion){
     if(accion==0){
     	$("#proceso").text("MODIFICAR");
 		$("#codProducto").val($(linea).find("td:eq(0)").text());
-		$("#codProducto").prop("readonly", true); //WOW CON READONLY 
+		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
     	$("#nombreProducto").val($(linea).find("td:eq(1)").text());
-    	$("#precio").val($(linea).find("td:eq(2)").text());
+    	$("#ultimoPrecio").val($(linea).find("td:eq(2)").text());
     	$("#descProducto").val($(linea).find("td:eq(3)").text());   
 
 		var nombreCategoria = $(linea).find("td:eq(4)").text();
@@ -250,19 +291,19 @@ function pone(pos,accion){
     else{
     	$("#proceso").text("ELIMINAR");
 		$("#codProducto").val($(linea).find("td:eq(0)").text());
-		$("#codProducto").prop("readonly", true); //WOW CON READONLY 
+		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
 
 
     	$("#nombreProducto").val($(linea).find("td:eq(1)").text());
-		$("#nombreProducto").prop("readonly", true); //WOW CON READONLY 
+		// $("#nombreProducto").prop("readonly", true); //WOW CON READONLY 
 
 
-    	$("#precio").val($(linea).find("td:eq(2)").text());
-		$("#precio").prop("readonly", true); //WOW CON READONLY 
+    	$("#ultimoPrecio").val($(linea).find("td:eq(2)").text());
+		// $("#ultimoPrecio").prop("readonly", true); //WOW CON READONLY 
 
 
     	$("#descProducto").val($(linea).find("td:eq(3)").text());    
-		$("#descProducto").prop("readonly", true); //WOW CON READONLY 
+		// $("#descProducto").prop("readonly", true); //WOW CON READONLY 
 
 		var nombreCategoria = $(linea).find("td:eq(4)").text();
 		$('#categoria option').filter(function() {
@@ -304,10 +345,13 @@ function enviaAjax(datos) {
 		   }
         }else if (lee.resultado == "modificar") {
     	    muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
-           if(lee.mensaje=='Registro Modificado!<br/> Se modificó el producto correctamente'){
-               $("#modal1").modal("hide");
-               consultar();
-		   }
+           if (
+             lee.mensaje ==
+             "Registro Modificado!<br/> Se modificó el producto correctamente"
+           ) {
+             $("#modal1").modal("hide");
+             consultar();
+           }
         }else if (lee.resultado == "eliminar") {
     	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
 		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el producto correctamente'){
@@ -315,7 +359,7 @@ function enviaAjax(datos) {
 			   consultar();
 		   }
         }else if (lee.resultado == "error") {
-           muestraMensaje(lee.mensaje);
+		   muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
         }
      }catch (e) {
         console.error("Error en análisis JSON:", e); // Registrar el error para depuración
@@ -337,5 +381,6 @@ function limpia(){
 	$("#codProducto").val('');
 	$("#nombreProducto").val('');
 	$("#descProducto").val('');
-	$("#precio").val('');
+	$("#ultimoPrecio").val('');
+	$("#categoria").val("disabled");
 }

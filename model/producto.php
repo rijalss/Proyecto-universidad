@@ -1,16 +1,16 @@
 <?php
 
-require_once('conexion.php');
+require_once('auxiliar/categoria.php');
 
-
-class Producto extends Conexion
+class Producto extends Categoria
 {
     private $codProducto;
     private $nombreProducto;
-    private $precio;
+    private $ultimoPrecio;
     private $descProducto;
 
     //////////////////////////SET//////////////////////////
+
     function set_codProducto($valor)
     {
         $this->codProducto = $valor;
@@ -21,9 +21,9 @@ class Producto extends Conexion
         $this->nombreProducto = $valor;
     }
 
-    function set_precio($valor)
+    function set_ultimoPrecio($valor)
     {
-        $this->precio = $valor;
+        $this->ultimoPrecio = $valor;
     }
 
     function set_descProducto($valor)
@@ -38,21 +38,25 @@ class Producto extends Conexion
         return $this->codProducto;
     }
 
+    function get_clCategoria()
+    {
+        return $this->clCategoria;
+    }
+
     function get_nombreProducto()
     {
         return $this->nombreProducto;
     }
 
-    function get_precio()
+    function get_ultimoPrecio()
     {
-        return $this->precio;
+        return $this->ultimoPrecio;
     }
 
     function get_descProducto()
     {
         return $this->descProducto;
     }
-
 
     //////////////////////////METODOS//////////////////////////
 
@@ -69,13 +73,15 @@ class Producto extends Conexion
                 $co->query("INSERT INTO producto(
                     codProducto,
                     nombreProducto,
-                    precio,
-                    descProducto
+                    ultimoPrecio,
+                    descProducto,
+                    clCategoria
                     ) VALUES (
                     '$this->codProducto',
                     '$this->nombreProducto',
-                    '$this->precio',
-                    '$this->descProducto'
+                    '$this->ultimoPrecio',
+                    '$this->descProducto',
+                    '$this->clCategoria'
                     )");
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el producto correctamente';
@@ -85,7 +91,7 @@ class Producto extends Conexion
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'ERROR! <br/> El código colocado ya existe!';
+            $r['mensaje'] = 'ERROR! <br/> El CÓDIGO colocado ya existe!';
         }
         return $r;
     }
@@ -95,33 +101,25 @@ class Producto extends Conexion
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
-
         if ($this->existe($this->codProducto)) {
             try {
-                $p = $co->prepare("UPDATE producto SET 
-                nombreProducto = :nombreProducto,
-                precio = :precio,
-                descProducto = :descProducto
-                WHERE producto.codProducto = :codProducto
+                $co->query("UPDATE producto 
+                SET nombreProducto = '$this->nombreProducto',
+                descProducto = '$this->descProducto',
+                ultimoPrecio = '$this->ultimoPrecio',
+                clCategoria = '$this->clCategoria'
+                WHERE codProducto = '$this->codProducto'
                 ");
-
-                $p->bindParam(':codProducto', $this->codProducto);
-                $p->bindParam(':nombreProducto', $this->nombreProducto);
-                $p->bindParam(':precio', $this->precio);
-                $p->bindParam(':descProducto', $this->descProducto);
-                $p->execute();
-
                 $r['resultado'] = 'modificar';
-                $r['mensaje'] = 'Registro Modificado!<br/> Se modificó el producto correctamente';
+                $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el producto correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
+                $r['mensaje'] =  $e->getMessage();
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] = 'No existe el codigo del producto';
+            $r['mensaje'] =  'ERROR! <br/> El CÓDIGO colocado NO existe!';
         }
-
         return $r;
     }
 
@@ -162,7 +160,9 @@ class Producto extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT * FROM producto");
+            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, c.nombreCategoria
+                FROM producto p
+                JOIN categoria c ON p.clCategoria = c.clCategoria");
 
             if ($resultado) {
 
@@ -176,10 +176,13 @@ class Producto extends Conexion
                     $respuesta = $respuesta . $r['nombreProducto'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['precio'];
+                    $respuesta = $respuesta . $r['ultimoPrecio'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['descProducto'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['nombreCategoria'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<button type='button'
@@ -231,45 +234,17 @@ class Producto extends Conexion
         }
     }
 
-    // function consultatr()
-    // {
-    //     $co = $this->conecta();
-    //     $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $r = array();
-    //     try {
-
-    //         $stmt = $co->prepare("SELECT producto.*, categoria.nombreCategoria 
-    //                             FROM producto 
-    //                             INNER JOIN categoria 
-    //                             ON producto.clCategoria = categoria.clCategoria 
-    //                             WHERE producto.codProducto = :codProducto");
-    //         $stmt->execute(['codProducto' => $this->codProducto]);
-    //         $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
-    //         if ($fila) {
-
-    //             $r['resultado'] = 'encontro';
-    //             $r['mensaje'] = $fila;
-    //         } else {
-
-    //             $r['resultado'] = 'noencontro';
-    //             $r['mensaje'] =  '';
-    //         }
-    //     } catch (Exception $e) {
-    //         $r['resultado'] = 'error';
-    //         $r['mensaje'] =  $e->getMessage();
-    //     }
-    //     return $r;
-    // }
-
-    // CATEGORIAS
-
-    function obtenerCategorias()
+        public function obtenerCategoria()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $p = $co->prepare("SELECT * FROM categoria");
-        $p->execute();
-        $r = $p->fetchAll(PDO::FETCH_ASSOC);
-        return $r;
+        try {
+            $p = $co->prepare("SELECT * FROM categoria");
+            $p->execute();
+            $r = $p->fetchAll(PDO::FETCH_ASSOC);
+            return $r;
+        } catch (Exception $e) {
+            return []; 
+        }
     }
 }

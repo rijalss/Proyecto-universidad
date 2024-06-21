@@ -44,7 +44,7 @@
 								<th>Nombre</th>
 								<th>Último precio</th>
 								<th>Descripción</th>
-								<!-- <th>Categoría</th> -->
+								<th>Categoría</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -88,16 +88,16 @@
 
 										<div class="row">
 											<div class="col-md-6 mb-3">
-												<label for="precio">Último precio</label>
-												<input class="form-control" type="number" id="precio" name="precio" min="0" />
-												<span id="sprecio"></span>
+												<label for="ultimoPrecio">Último precio</label>
+												<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
+												<span id="sultimoPrecio"></span>
 												<div class="form-check">
 													<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio</label>
 													<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
 												</div>
 											</div>
 
-											<!-- <div class="col-md-6 mb-3">
+											<div class="col-md-6 mb-3">
 												<label for="categoria" class="form-label">Categoría:</label>
 												<select class="form-control" name="categoria" id="categoria">
 													<option value='disabled' disabled selected>Seleccione una categoria</option>
@@ -109,7 +109,7 @@
 												</select>
 												<span id="scategoria" class="error"></span>
 											</div>
-										</div> -->
+										</div>
 								</div>
 								<div class="mb-3">
 									<label for="descProducto" class="form-label">Descripción:</label>
@@ -122,7 +122,7 @@
 			<br>
 			<div class="row mt-3 d-flex justify-content-center align-items-center">
 				<div class="col-md-2">
-					<button type="button" class="btn btn-primary" id="proceso"></button>
+					<button type="button" class="btn btn-dark" id="proceso"></button>
 				</div>
 			</div>
 			</form>
@@ -130,14 +130,14 @@
 		<script>
 			document.addEventListener('DOMContentLoaded', (event) => {
 				const checkbox = document.getElementById('habilitarPromedio');
-				const input = document.getElementById('precio');
+				const input = document.getElementById('ultimoPrecio');
 				input.disabled = true;
 				checkbox.checked = false;
 			});
 
 			function toggleInput() {
 				const checkbox = document.getElementById('habilitarPromedio');
-				const input = document.getElementById('precio');
+				const input = document.getElementById('ultimoPrecio');
 				input.disabled = !checkbox.checked;
 			}
 		</script>

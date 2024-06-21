@@ -24,9 +24,9 @@ function crearDT(){
             "responsive": true,
             language: {
                 lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron proveedores",
+                zeroRecords: "No se encontraron categorias",
                 info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay proveedores registrados",
+                infoEmpty: "No hay categorias registradass",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
                 search: "Buscar",
                 paginate: {
@@ -108,7 +108,7 @@ $(document).ready(function(){
                 // Mostrar confirmación usando SweetAlert
                 Swal.fire({
                     title: '¿Está seguro de eliminar esta categoría?',
-                    text: "Esta acción no se puede deshacer.",
+                    text: "Se eliminaran todas los productos con esta categoría!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -239,7 +239,7 @@ function enviaAjax(datos) {
              }
           }else if (lee.resultado == "modificar") {
               muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
-             if(lee.mensaje=='Registro Modificado!<br/> Se modificó el proveedor correctamente'){
+             if(lee.mensaje=='Registro Modificado!<br/> Se modificó la categoría correctamente'){
                  $("#modal1").modal("hide");
                  consultar();
              }

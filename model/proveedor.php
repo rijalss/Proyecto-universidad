@@ -11,8 +11,7 @@ class Proveedor extends Conexion
     private $correoProveedor;
     private $direccionProveedor;
     private $prefijo;
-
-
+    
     //////////////////////////SET//////////////////////////
 
     function set_rifProveedor($valor)

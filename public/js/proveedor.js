@@ -75,7 +75,7 @@ $(document).ready(function(){
 
 	$("#rifProveedor").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9]{8,9}$/,$(this),
-		$("#srifProveedor"),"El formato debe tener de 8 a 9 carácteres");
+		$("#srifProveedor"),"El formato permite de 8 a 9 carácteres");
 	});
 
 	$("#nombreProveedor").on("keypress",function(e){
@@ -83,8 +83,8 @@ $(document).ready(function(){
 	});
 	
 	$("#nombreProveedor").on("keyup",function(){
-        validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
-        $(this), $("#snombreProveedor"),"Este campo debe estar lleno / Máximo 30 carácteres");
+        validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/, 
+        $(this), $("#snombreProveedor"),"Este formato no debe estar vacío / permite un máximo 30 carácteres");
 	});
 
     $("#correoProveedor").on("keypress",function(e){
@@ -93,7 +93,7 @@ $(document).ready(function(){
 	
 	$("#correoProveedor").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9_\u00f1\u00d1\u00E0-\u00FC-]{3,30}[@]{1}[A-Za-z0-9]{3,8}[.]{1}[A-Za-z]{2,3}$/,
-		$(this),$("#scorreoProveedor"),"El formato debe ser un correo válido!");
+		$(this),$("#scorreoProveedor"),"El formato sólo permite un correo válido!");
 	});
 
     $("#telefonoProveedor").on("keypress",function(e){
@@ -102,15 +102,19 @@ $(document).ready(function(){
 	
 	$("#telefonoProveedor").on("keyup",function(){
 		validarkeyup(/^[0-9]{10,11}$/,$(this),
-		$("#stelefonoProveedor"),"El formato debe tener 11 carácteres");
+		$("#stelefonoProveedor"),"El formato debe contener 11 carácteres");
 	});
     $("#direccionProveedor").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]*$/,e);
 	});
 	
 	$("#direccionProveedor").on("keyup",function(){
-		validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
-		$(this),$("#sdireccionProveedor"),"Se debe llenar este campo y debe tener un máximo de 30 carácteres");
+		validarkeyup(
+      /^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{4,30}$/,
+      $(this),
+      $("#sdireccionProveedor"),
+      "Este formato no debe estar vacío / permite un máximo 30 carácteres"
+    );
 	});
 
 //////////////////////////////BOTONES/////////////////////////////////////
@@ -124,7 +128,7 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
-			datos.append('prefijo',$("#prefijo").val()); // Añade esta línea
+			datos.append('prefijo',$("#prefijo").val());
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -138,7 +142,7 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
-			datos.append('prefijo',$("#prefijo").val()); // Añade esta línea
+			datos.append('prefijo',$("#prefijo").val()); 
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -153,10 +157,28 @@ $("#proceso").on("click",function(){
 		$("#srifProveedor"),"El formato debe tener de 11 carácteres")==0){
 		muestraMensaje("error",4000,"ERROR!","Seleccionó un rif incorrecto <br/> por favor verifique nuevamente");
 		}else{
-			var datos = new FormData();
-			datos.append('accion','eliminar');
-			datos.append('rifProveedor',$("#rifProveedor").val());
-			enviaAjax(datos);
+			// Mostrar confirmación usando SweetAlert
+			Swal.fire({
+				title: '¿Está seguro de eliminar este proveedor?',
+				text: "Esta acción no se puede deshacer.",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Sí, eliminar',
+				cancelButtonText: 'Cancelar'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					// Si se confirma, proceder con la eliminación
+					var datos = new FormData();
+						datos.append('accion','eliminar');
+						datos.append('rifProveedor',$("#rifProveedor").val());
+						enviaAjax(datos);
+				} else {
+					muestraMensaje("error", 2000, "INFORMACIÓN", "La eliminación ha sido cancelada.");
+					$("#modal1").modal("hide");
+				}
+			});
 		}
 	}
 });
@@ -312,7 +334,7 @@ function enviaAjax(datos) {
 			   consultar();
 		   }
         }else if (lee.resultado == "error") {
-           muestraMensaje(lee.mensaje);
+		   muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
         }
      }catch (e) {
         console.error("Error en análisis JSON:", e); // Registrar el error para depuración
