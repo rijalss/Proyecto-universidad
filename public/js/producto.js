@@ -339,7 +339,7 @@ function enviaAjax(datos) {
 		   crearDT();
         }else if (lee.resultado == "incluir") {
     	    muestraMensaje('info', 4000,'INCLUIR', lee.mensaje);
-		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el producto correctamente'){
+		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el producto correctamente.'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
@@ -347,14 +347,14 @@ function enviaAjax(datos) {
     	    muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
            if (
              lee.mensaje ==
-             "Registro Modificado!<br/> Se modificó el producto correctamente"
+             "Registro Modificado!<br/> Se modificó el producto correctamente."
            ) {
              $("#modal1").modal("hide");
              consultar();
            }
         }else if (lee.resultado == "eliminar") {
     	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
-		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el producto correctamente'){
+		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el producto correctamente.'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
