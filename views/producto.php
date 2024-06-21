@@ -72,77 +72,87 @@
 							<div class="row mb-3">
 								<div class="container">
 									<form id="formularioProducto">
-										<div class="row">
-											<div class="col-md-6 mb-3">
-												<label for="codProducto" class="form-label">Código de producto:</label>
-												<input type="text" class="form-control" id="codProducto" name="codProducto" required>
-												<span id="scodProducto"></span>
-											</div>
+										<form method="post" id="f" autocomplete="off">
+											<input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
 
-											<div class="col-md-6 mb-3">
-												<label for="nombreProducto" class="form-label">Nombre:</label>
-												<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
-												<span id="snombreProducto"></span>
-											</div>
-										</div>
+											<div class="container">
+												<div class="row mb-3">
+													<div class="col-md-6">
+														<label for="codProducto" class="form-label">Código de producto:</label>
+														<input type="text" class="form-control" id="codProducto" name="codProducto" required>
+														<span id="scodProducto"></span>
+													</div>
+													<div class="col-md-6">
+														<label for="nombreProducto" class="form-label">Nombre:</label>
+														<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
+														<span id="snombreProducto"></span>
+													</div>
+												</div>
 
-										<div class="row">
-											<div class="col-md-6 mb-3">
-												<label for="ultimoPrecio">Último precio</label>
-												<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
-												<span id="sultimoPrecio"></span>
-												<div class="form-check">
-													<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio</label>
-													<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
+												<div class="row mb-3">
+													<div class="col-md-6">
+														<label for="ultimoPrecio">Último precio</label>
+														<div class="d-flex align-items-center">
+															<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
+															<div class="form-check ms-2">
+																<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio</label>
+																<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
+															</div>
+														</div>
+														<span id="sultimoPrecio"></span>
+													</div>
+													<div class="col-md-6">
+														<label for="categoria" class="form-label">Categoría:</label>
+														<select class="form-control" name="categoria" id="categoria">
+															<option value='disabled' disabled selected>Seleccione una categoria</option>
+															<?php
+															foreach ($categorias as $categoria) {
+																echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+															}
+															?>
+														</select>
+														<span id="scategoria" class="error"></span>
+													</div>
+												</div>
+
+												<div class="mb-3">
+													<label for="descProducto" class="form-label">Descripción:</label>
+													<textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
+													<span id="sdescProducto"></span>
 												</div>
 											</div>
 
-											<div class="col-md-6 mb-3">
-												<label for="categoria" class="form-label">Categoría:</label>
-												<select class="form-control" name="categoria" id="categoria">
-													<option value='disabled' disabled selected>Seleccione una categoria</option>
-													<?php
-													foreach ($categorias as $categoria) {
-														echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
-													}
-													?>
-												</select>
-												<span id="scategoria" class="error"></span>
+											<br>
+											<div class="row mt-3 d-flex justify-content-center align-items-center">
+
 											</div>
-										</div>
+										</form>
 								</div>
-								<div class="mb-3">
-									<label for="descProducto" class="form-label">Descripción:</label>
-									<textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
-									<span id="sdescProducto"></span>
+							</div>
+							<br>
+							<div class="row mt-3 d-flex justify-content-center align-items-center">
+								<div class="col-md-2">
+									<button type="button" class="btn btn-dark" id="proceso"></button>
 								</div>
+							</div>
 					</form>
 				</div>
-			</div>
-			<br>
-			<div class="row mt-3 d-flex justify-content-center align-items-center">
-				<div class="col-md-2">
-					<button type="button" class="btn btn-dark" id="proceso"></button>
-				</div>
-			</div>
-			</form>
-		</div>
-		<script>
-			document.addEventListener('DOMContentLoaded', (event) => {
-				const checkbox = document.getElementById('habilitarPromedio');
-				const input = document.getElementById('ultimoPrecio');
-				input.disabled = true;
-				checkbox.checked = false;
-			});
+				<script>
+					document.addEventListener('DOMContentLoaded', (event) => {
+						const checkbox = document.getElementById('habilitarPromedio');
+						const input = document.getElementById('ultimoPrecio');
+						input.disabled = true;
+						checkbox.checked = false;
+					});
 
-			function toggleInput() {
-				const checkbox = document.getElementById('habilitarPromedio');
-				const input = document.getElementById('ultimoPrecio');
-				input.disabled = !checkbox.checked;
-			}
-		</script>
-	</div>
-	</div>
+					function toggleInput() {
+						const checkbox = document.getElementById('habilitarPromedio');
+						const input = document.getElementById('ultimoPrecio');
+						input.disabled = !checkbox.checked;
+					}
+				</script>
+			</div>
+		</div>
 	</div>
 	</div>
 	<!-- Fin del Modal -->
