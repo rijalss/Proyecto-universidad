@@ -68,18 +68,24 @@
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label for="codCategoria">Código Categoría</label>
                                     <input class="form-control" type="text" id="codCategoria" name="codCategoria">
                                     <span id="scodCategoria"></span>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label for="nombreCategoria">Nombre de Categoría</label>
                                     <input class="form-control" type="text" id="nombreCategoria" name="nombreCategoria">
                                     <span id="snombreCategoria"></span>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                                <div class="col">
+                                    <br>
+                                    <hr />
+                                </div>
+                            </div>
                         <div class="row mt-3">
                             <div class="col-md-12 text-center">
                                 <button type="button" class="btn btn-primary" id="proceso"></button>
