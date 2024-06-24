@@ -1,13 +1,14 @@
 <?php
 
-require_once('auxiliar/categoria.php');
+require_once('model/conexion.php');
 
-class Producto extends Categoria
+class Producto extends Conexion
 {
     private $codProducto;
     private $nombreProducto;
     private $ultimoPrecio;
     private $descProducto;
+    private $clCategoria;
 
     //////////////////////////SET//////////////////////////
 
@@ -29,6 +30,11 @@ class Producto extends Categoria
     function set_descProducto($valor)
     {
         $this->descProducto = $valor;
+    }
+
+    function set_clCategoria($valor)
+    {
+        $this->clCategoria = $valor;
     }
 
     //////////////////////////GET//////////////////////////
@@ -234,17 +240,17 @@ class Producto extends Categoria
         }
     }
 
-        public function obtenerCategoria()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        try {
-            $p = $co->prepare("SELECT * FROM categoria");
-            $p->execute();
-            $r = $p->fetchAll(PDO::FETCH_ASSOC);
-            return $r;
-        } catch (Exception $e) {
-            return []; 
-        }
-    }
+    // public function obtenerCategoria()
+    // {
+    //     $co = $this->conecta();
+    //     $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     try {
+    //         $p = $co->prepare("SELECT * FROM categoria");
+    //         $p->execute();
+    //         $r = $p->fetchAll(PDO::FETCH_ASSOC);
+    //         return $r;
+    //     } catch (Exception $e) {
+    //         return []; 
+    //     }
+    // }
 }

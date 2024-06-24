@@ -5,6 +5,7 @@ if (!is_file("model/" . $pagina . ".php")) {
     exit;
 }
 require_once("model/" . $pagina . ".php");
+require_once("model/auxiliar/categoria.php");
 if (is_file("views/" . $pagina . ".php")) {
 
     if (!empty($_POST)) {
@@ -35,8 +36,8 @@ if (is_file("views/" . $pagina . ".php")) {
     }
     
     // Obtener categorías para la vista
-    $c = new Producto();
-    $categorias = $c->obtenerCategoria();
+    $c = new Categoria();
+    $categorias = $c->obtenerCategorias();
 
     require_once("views/" . $pagina . ".php");
 } else {

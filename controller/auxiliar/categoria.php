@@ -5,44 +5,34 @@ if (!is_file("model/auxiliar/" . $pagina . ".php")) {
     exit;
 }
 require_once("model/auxiliar/" . $pagina . ".php");
-
-
 if (is_file("views/auxiliar/" . $pagina . ".php")) {
 
-    $c = new Categoria();
-
     if (!empty($_POST)) {
-        $accion = isset($_POST['accion']) ? $_POST['accion'] : null;
+
+        $p = new Categoria();
+        
+        $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo json_encode($c->consultar());
+            echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
-            if (isset($_POST['nombreCategoria']) && $_POST['nombreCategoria'] != null) {
-                $c->set_nombreCategoria($_POST['nombreCategoria']);
-                echo json_encode($c->eliminar());
-            } else {
-                echo json_encode(array("status" => "error", "message" => "nombreCategoria no puede ser null"));
-            }
-        } elseif ($accion == 'incluir') {
-            if (isset($_POST['nombreCategoria']) && $_POST['nombreCategoria'] != null) {
-                $c->set_nombreCategoria($_POST['nombreCategoria']);
-                echo json_encode($c->incluir());
-            } else {
-                echo json_encode(array("status" => "error", "message" => "nombreCategoria no puede ser null"));
-            }
-        } elseif ($accion == 'modificar') {
-            if (isset($_POST['clCategoria']) && isset($_POST['nombreCategoria']) && $_POST['nombreCategoria'] != null) {
-                $c->set_clCategoria($_POST['clCategoria']);
-                $c->set_nombreCategoria($_POST['nombreCategoria']);
-                echo json_encode($c->modificar());
-            } else {
-                echo json_encode(array("status" => "error", "message" => "clCategoria y nombreCategoria no pueden ser null"));
-            }
+            $p->set_codCategoria($_POST['codCategoria']);
+            echo  json_encode($p->eliminar());
         } else {
-            echo json_encode(array("status" => "error", "message" => "Acción no válida"));
+            $p->set_codCategoria($_POST['codCategoria']);
+            $p->set_nombreCategoria($_POST['nombreCategoria']);
+            if ($accion == 'incluir') {
+                echo  json_encode($p->incluir());
+            } elseif ($accion == 'modificar') {
+                echo  json_encode($p->modificar());
+            }
         }
         exit;
     }
+    
+    // Obtener categorías para la vista
+//  //   $c = new Producto();
+//    // $categorias = $c->obtenerCategoria();
 
     require_once("views/auxiliar/" . $pagina . ".php");
 } else {

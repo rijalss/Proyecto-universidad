@@ -22,68 +22,74 @@
     <!-- Header -->
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
-<div class="container" style="width: 75%;">
-    <section  class="d-flex flex-column align-items-center sm-4" > 
-        <br><br><br><br>
-        <h2 class="text-primary text-center">Gestionar Categoría</h2>
-        <div class="container">
-            <div class="text-left">
-                <button class="btn btn-success" id="incluir">Registrar Categoría</button>
-            </div>
-        </div>
-        <div  class="container card shadow mb-4 ">
-            <!-- todo el contenido ira dentro de esta etiqueta-->
-            <br>
-            <div class="container mt-3">
-            </div>
-            <div class="container text-center ">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="tablacategoria">
-                        <thead>
-                            <tr>
-                                <th>Nombre de Categoría</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultadoconsulta"></tbody>
-                    </table>
+    <div class="container" style="width: 75%;">
+        <section class="d-flex flex-column align-items-center sm-4">
+            <br><br><br><br>
+            <h2 class="text-primary text-center">Gestionar Categoría</h2>
+            <div class="container">
+                <div class="text-left">
+                    <button class="btn btn-success" id="incluir">Registrar Categoría</button>
                 </div>
             </div>
-        </div>
-        <!-- fin de container -->
-    </section>
-</div>
+            <div class="container card shadow mb-4 ">
+                <!-- todo el contenido ira dentro de esta etiqueta-->
+                <br>
+                <div class="container mt-3">
+                </div>
+                <div class="container text-center ">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tablacategoria">
+                            <thead>
+                                <tr>
+                                    <th>Código Categoría</th>
+                                    <th>Nombre de Categoría</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultadoconsulta"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- fin de container -->
+        </section>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modal1">
-    <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Formulario de Categorías</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" id="f" autocomplete="off">
-                    <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="nombreCategoria">Nombre de Categoría</label>
-                                <input class="form-control" type="text" id="nombreCategoria" name="nombreCategoria">
-                                <span id="snombreCategoria"></span>
+        <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Formulario de Categorías</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="f" autocomplete="off">
+                        <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="codCategoria">Código Categoría</label>
+                                    <input class="form-control" type="text" id="codCategoria" name="codCategoria">
+                                    <span id="scodCategoria"></span>
+                                </div>
+                                <div class="col-12">
+                                    <label for="nombreCategoria">Nombre de Categoría</label>
+                                    <input class="form-control" type="text" id="nombreCategoria" name="nombreCategoria">
+                                    <span id="snombreCategoria"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12 text-center">
-                            <button type="button" class="btn btn-primary" id="proceso"></button>
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary" id="proceso"></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- Fin del Modal -->
 
     <!-- Footer -->

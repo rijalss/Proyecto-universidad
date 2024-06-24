@@ -71,6 +71,15 @@ $(document).ready(function(){
 
     // VALIDACIONES
 
+    $("#codCategoria").on("keypress",function(e){
+		validarkeypress(/^[0-9-\b]*$/,e);
+	});
+	
+	$("#codCategoria").on("keyup",function(){
+		validarkeyup(/^[0-9]{4,10}$/,$(this),
+		$("#scodCategoria"),"Este formato permite de 4 a 10 carácteres");
+	});
+
     $("#nombreCategoria").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 	});
@@ -86,23 +95,25 @@ $(document).ready(function(){
             if(validarenvio()){
                 var datos = new FormData();
                 datos.append('accion','incluir');
+                datos.append('codCategoria',$("#codCategoria").val());
                 datos.append('nombreCategoria',$("#nombreCategoria").val());
     
                 enviaAjax(datos);
             }
         }
-        // else if($(this).text()=="MODIFICAR"){
-        //     if(validarenvio()){
-        //         var datos = new FormData();
-        //         datos.append('accion','modificar');
-        //         datos.append('nombreCategoria',$("#nombreCategoria").val());
+        else if($(this).text()=="MODIFICAR"){
+            if(validarenvio()){
+                var datos = new FormData();
+                datos.append('accion','modificar');
+                datos.append('codCategoria',$("#codCategoria").val());
+                datos.append('nombreCategoria',$("#nombreCategoria").val());
     
-        //         enviaAjax(datos);
-        //     }
-        // }
+                enviaAjax(datos);
+            }
+        }
         if ($(this).text() == "ELIMINAR") {
-            if (validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#nombreCategoria"),
-                $("#snombreCategoria"), "El formato debe tener máximo de 30 carácteres") == 0) {
+            if (validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#codCategoria"),
+                $("#scodCategoria"), "El formato debe tener máximo de 30 carácteres") == 0) {
                 muestraMensaje("error", 4000, "ERROR!", "Seleccionó una categoría incorrecta <br/> por favor verifique nuevamente");
             } else {
                 // Mostrar confirmación usando SweetAlert
@@ -120,7 +131,7 @@ $(document).ready(function(){
                         // Si se confirma, proceder con la eliminación
                         var datos = new FormData();
                         datos.append('accion', 'eliminar');
-                        datos.append('nombreCategoria', $("#nombreCategoria").val());
+                        datos.append('codCategoria', $("#codCategoria").val());
                         enviaAjax(datos);
                     } else {
                         muestraMensaje("info", 2000, "Información", "La eliminación ha sido cancelada.");
@@ -140,7 +151,13 @@ $(document).ready(function(){
     });
     
     function validarenvio() {
-        if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
+        if(validarkeyup(/^[0-9]{4,10}$/,$("#codCategoria"),
+			$("#scodCategoria"),"El formato no debe pasar de los 10 carácteres")==0){
+			muestraMensaje("error",4000,"ERROR!","El código de la Categoria debe coincidir con el formato <br/>" + 
+			"se permiten de 4 a 10 carácteres");
+			return false;					
+		}	
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
             $("#nombreCategoria"), $("#snombreCategoria"), "No debe contener más de 30 carácteres") == 0) {
             muestraMensaje("error", 4000, "ERROR!", "El nombre de la categoría <br/> No debe estar vacío, ni contener más de 30 carácteres");
             return false;
@@ -201,12 +218,14 @@ $(document).ready(function(){
 
         if(accion==0){
             $("#proceso").text("MODIFICAR");
+            $("#codCategoria").val($(linea).find("td:eq(0)").text());
+            $("#nombreCategoria").val($(linea).find("td:eq(1)").text());
         }
         else{
             $("#proceso").text("ELIMINAR");
         }
-        
-        $("#nombreCategoria").val($(linea).find("td:eq(0)").text());
+        $("#codCategoria").val($(linea).find("td:eq(0)").text());
+        $("#nombreCategoria").val($(linea).find("td:eq(1)").text());
         
         $("#modal1").modal("show");
     }
@@ -269,6 +288,7 @@ function enviaAjax(datos) {
 }
 
 function limpia(){
+    $("#codCategoria").val('');
 	$("#nombreCategoria").val('');
 
 }
