@@ -1,16 +1,18 @@
 <?php
+
 require_once('conexion.php');
 
 class Empleado extends Conexion
 {
+
     private $cedulaEmpleado;
     private $nombreEmpleado;
     private $apellidoEmpleado;
     private $correoEmpleado;
     private $telefonoEmpleado;
-    private $contrasena;
+    private $prefijoCedula;
     private $clCargo;
-    private $descCargo;
+   
 
     //////////////////////////SET//////////////////////////
 
@@ -39,20 +41,15 @@ class Empleado extends Conexion
         $this->telefonoEmpleado = $valor;
     }
 
-    public function set_contrasena($valor)
-    {
-        $this->contrasena = $valor;
-    }
-
     public function set_clCargo($valor)
     {
         $this->clCargo = $valor;
     }
-
-    public function set_descCargo($valor)
+    function set_prefijoCedula($valor)
     {
-        $this->descCargo = $valor;
+        $this->prefijoCedula = $valor;
     }
+   
 
     //////////////////////////GET//////////////////////////
 
@@ -81,9 +78,9 @@ class Empleado extends Conexion
         return $this->telefonoEmpleado;
     }
 
-    public function get_contrasena()
+    function get_prefijoCedula()
     {
-        return $this->contrasena;
+        return $this->prefijoCedula;
     }
 
     public function get_clCargo()
@@ -91,280 +88,194 @@ class Empleado extends Conexion
         return $this->clCargo;
     }
 
-    public function get_descCargo()
-    {
-        return $this->descCargo;
-    }
 
     //////////////////////////METODOS//////////////////////////
 
-    public function incluir()
+
+    function incluir()
     {
+        $r = array();
+
         if (!$this->existe($this->cedulaEmpleado)) {
+            //1 Se llama a la funcion conecta 
             $co = $this->conecta();
             $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $r = array();
+            //2 Se ejecuta el sql
             try {
-                $p = $co->prepare("INSERT INTO empleado (
+                $co->query("INSERT INTO empleado(
+                    prefijoCedula,
                     cedulaEmpleado,
                     nombreEmpleado,
                     apellidoEmpleado,
-                    correoEmpleado,
                     telefonoEmpleado,
-                    contrasena,
+                    correoEmpleado,
                     clCargo
-                ) VALUES (
-                    :cedulaEmpleado,
-                    :nombreEmpleado,
-                    :apellidoEmpleado,
-                    :correoEmpleado,
-                    :telefonoEmpleado,
-                    :contrasena,
-                    :clCargo
+                    ) VALUES (
+                    '$this->prefijoCedula',
+                    '$this->cedulaEmpleado',
+                    '$this->nombreEmpleado',
+                    '$this->apellidoEmpleado',
+                    '$this->telefonoEmpleado',
+                    '$this->correoEmpleado',
+                    '$this->clCargo'
                 )");
-                $p->bindParam(':cedulaEmpleado', $this->cedulaEmpleado);
-                $p->bindParam(':nombreEmpleado', $this->nombreEmpleado);
-                $p->bindParam(':apellidoEmpleado', $this->apellidoEmpleado);
-                $p->bindParam(':correoEmpleado', $this->correoEmpleado);
-                $p->bindParam(':telefonoEmpleado', $this->telefonoEmpleado);
-                $p->bindParam(':contrasena', $this->contrasena);
-                $p->bindParam(':clCargo', $this->clCargo);
-
-                $p->execute();
-
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el empleado correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'Ya existe el empleado';
+            $r['mensaje'] = 'ERROR! <br/> El EMPLEADO colocado ya existe!';
         }
-
         return $r;
     }
 
-    public function modificar()
+    function modificar()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
-
         if ($this->existe($this->cedulaEmpleado)) {
             try {
-                $p = $co->prepare("UPDATE empleado SET 
-                    nombreEmpleado = :nombreEmpleado,
-                    apellidoEmpleado = :apellidoEmpleado,
-                    correoEmpleado = :correoEmpleado,
-                    telefonoEmpleado = :telefonoEmpleado,
-                    contrasena = :contrasena,
-                    clCargo = :clCargo
-                    WHERE cedulaEmpleado = :cedulaEmpleado
+                $co->query("UPDATE empleado 
+                SET nombreEmpleado = '$this->nombreEmpleado',
+                telefonoEmpleado = '$this->telefonoEmpleado',
+                correoEmpleado = '$this->correoEmpleado',
+                clCargo = '$this->clCargo',
+                apellidoEmpleado = '$this->apellidoEmpleado',
+                prefijoCedula = '$this->prefijoCedula'
+                WHERE cedulaEmpleado = '$this->cedulaEmpleado'
                 ");
-                $p->bindParam(':cedulaEmpleado', $this->cedulaEmpleado);
-                $p->bindParam(':nombreEmpleado', $this->nombreEmpleado);
-                $p->bindParam(':apellidoEmpleado', $this->apellidoEmpleado);
-                $p->bindParam(':correoEmpleado', $this->correoEmpleado);
-                $p->bindParam(':telefonoEmpleado', $this->telefonoEmpleado);
-                $p->bindParam(':contrasena', $this->contrasena);
-                $p->bindParam(':clCargo', $this->clCargo);
-
-                $p->execute();
-
                 $r['resultado'] = 'modificar';
-                $r['mensaje'] = 'Registro Modificado';
+                $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el empleado correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
+                $r['mensaje'] =  $e->getMessage();
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] = 'No existe la cédula del empleado';
+            $r['mensaje'] =  'ERROR! <br/> El EMPLEADO colocado NO existe!';
         }
-
         return $r;
     }
 
-    public function eliminar()
+    function eliminar()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         if ($this->existe($this->cedulaEmpleado)) {
             try {
-                $p = $co->prepare("DELETE FROM empleado 
-                    WHERE cedulaEmpleado = :cedulaEmpleado
-                ");
-                $p->bindParam(':cedulaEmpleado', $this->cedulaEmpleado);
-
-                $p->execute();
+                $co->query("DELETE FROM empleado 
+						WHERE cedulaEmpleado = '$this->cedulaEmpleado'
+						");
                 $r['resultado'] = 'eliminar';
-                $r['mensaje'] = 'Registro Eliminado';
+                $r['mensaje'] =  'Registro Eliminado! <br/> Se eliminó el empleado correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
+                $r['mensaje'] =  $e->getMessage();
             }
         } else {
             $r['resultado'] = 'eliminar';
-            $r['mensaje'] = 'No existe la cédula del empleado';
+            $r['mensaje'] =  'ERROR! <br/> El EMPLEADO colocado NO existe!';
         }
         return $r;
     }
 
-    public function consultar()
+
+    function consultar()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-            $resultado = $co->query("SELECT e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.correoEmpleado, e.telefonoEmpleado, e.contrasena, c.descCargo
-                FROM Empleado e
-                JOIN Cargo c ON e.clCargo = c.clCargo");
 
+            $resultado = $co->query("SELECT e.prefijoCedula, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpleado, e.correoEmpleado, c.nombreCargo
+                                    FROM empleado e
+                                    JOIN cargo c ON e.clCargo = c.clCargo");
             if ($resultado) {
+
                 $respuesta = '';
-                foreach ($resultado as $row) {
-                    $respuesta .= "<tr style='cursor:pointer' onclick='coloca(this);'>";
-                    $respuesta .= "<td>" . $row['cedulaEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['nombreEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['apellidoEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['telefonoEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['correoEmpleado'] . "</td>";
-                    $respuesta .= "<td>" . $row['descCargo'] . "</td>";
-                    $respuesta .= "</tr>";
+                foreach ($resultado as $r) {
+                    $respuesta = $respuesta . "<tr>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['nombreEmpleado'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['apellidoEmpleado'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['telefonoEmpleado'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['correoEmpleado'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['nombreCargo'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta = $respuesta . "<button type='button'
+                    class='btn btn-warning small-width d-inline-block mr-1' 
+                    onclick='pone(this,0)'
+                    style='margin-right: 5px;'
+                    >Modificar</button>";
+                    $respuesta = $respuesta . "<button type='button'
+                    class='btn btn-danger small-width d-inline-block' 
+                    onclick='pone(this,1)'
+                    >Eliminar</button>";
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "</tr>";
                 }
+
                 $r['resultado'] = 'consultar';
-                $r['mensaje'] = $respuesta;
+                $r['mensaje'] =  $respuesta;
             } else {
                 $r['resultado'] = 'consultar';
-                $r['mensaje'] = '';
+                $r['mensaje'] =  '';
             }
         } catch (Exception $e) {
             $r['resultado'] = 'error';
-            $r['mensaje'] = $e->getMessage();
+            $r['mensaje'] =  $e->getMessage();
         }
         return $r;
     }
+
 
     private function existe($cedulaEmpleado)
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
+
             $resultado = $co->query("SELECT * FROM empleado WHERE cedulaEmpleado='$cedulaEmpleado'");
+
+
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
+
                 return true;
             } else {
-                return false;
+
+                return false;;
             }
         } catch (Exception $e) {
             return false;
         }
     }
 
-    public function consultatr()
+    public function obtenercargos()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        try {
-            $stmt = $co->prepare("SELECT e.*, c.descCargo 
-                FROM Empleado e
-                INNER JOIN Cargo c ON e.clCargo = c.clCargo 
-                WHERE e.cedulaEmpleado = :cedulaEmpleado");
-            $stmt->execute(['cedulaEmpleado' => $this->cedulaEmpleado]);
-            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
-            if ($fila) {
-                $r['resultado'] = 'encontro';
-                $r['mensaje'] = $fila;
-            } else {
-                $r['resultado'] = 'noencontro';
-                $r['mensaje'] = '';
-            }
-        } catch (Exception $e) {
-            $r['resultado'] = 'error';
-            $r['mensaje'] = $e->getMessage();
-        }
-        return $r;
-    }
-
-    // CARGOS
-
-    public function obtenerCargos()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $p = $co->prepare("SELECT * FROM Cargo");
+        $p = $co->prepare("SELECT * FROM cargo");
         $p->execute();
         $r = $p->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
 
-    public function incluirCargo()
-    {
-        if (!$this->existeCargo($this->descCargo)) {
-            $co = $this->conecta();
-            $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $r = array();
-            try {
-                $p = $co->prepare("INSERT INTO Cargo (descCargo) VALUES (:descCargo)");
-                $p->bindParam(':descCargo', $this->descCargo);
-                $p->execute();
-
-                $r['resultado'] = 'incluirCargo';
-                $r['mensaje'] = 'Cargo Incluido';
-            } catch (Exception $e) {
-                $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
-            }
-        } else {
-            $r['resultado'] = 'incluirCargo';
-            $r['mensaje'] = 'Ya existe el cargo';
-        }
-
-        return $r;
-    }
-
-    public function eliminarCargo()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        if ($this->existeCargo($this->descCargo)) {
-            try {
-                $p = $co->prepare("DELETE FROM Cargo WHERE descCargo = :descCargo");
-                $p->bindParam(':descCargo', $this->descCargo);
-                $p->execute();
-                $r['resultado'] = 'eliminarCargo';
-                $r['mensaje'] = 'Cargo Eliminado';
-            } catch (Exception $e) {
-                $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
-            }
-        } else {
-            $r['resultado'] = 'eliminarCargo';
-            $r['mensaje'] = 'No existe el cargo';
-        }
-        return $r;
-    }
-
-    private function existeCargo($descCargo)
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        try {
-            $resultado = $co->query("SELECT * FROM Cargo WHERE descCargo='$descCargo'");
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
-            if ($fila) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            return false;
-        }
-    }
 }

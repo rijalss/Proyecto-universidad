@@ -160,7 +160,7 @@ class Producto extends Categoria
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, c.nombreCategoria
+            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, p.nombreCategoria
                 FROM producto p
                 JOIN categoria c ON p.clCategoria = c.clCategoria");
 
