@@ -41,8 +41,8 @@
                         <table class="table table-striped table-hover" id="tablacategoria">
                             <thead>
                                 <tr>
-                                    <th>Código Categoría</th>
-                                    <th>Nombre de Categoría</th>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

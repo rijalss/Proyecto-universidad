@@ -43,8 +43,8 @@
 								<th>Código</th>
 								<th>Nombre</th>
 								<th>Último precio</th>
-								<th>Descripción</th>
 								<th>Categoría</th>
+								<th>Descripción</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>

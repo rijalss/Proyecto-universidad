@@ -166,7 +166,7 @@ class Producto extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, p.nombreCategoria
+            $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, c.nombreCategoria
                 FROM producto p
                 JOIN categoria c ON p.clCategoria = c.clCategoria");
 
@@ -185,10 +185,10 @@ class Producto extends Conexion
                     $respuesta = $respuesta . $r['ultimoPrecio'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['descProducto'];
+                    $respuesta = $respuesta . $r['nombreCategoria'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['nombreCategoria'];
+                    $respuesta = $respuesta . $r['descProducto'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<button type='button'
