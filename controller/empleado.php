@@ -7,57 +7,43 @@ if (!is_file("model/" . $pagina . ".php")) {
 require_once("model/" . $pagina . ".php");
 if (is_file("views/" . $pagina . ".php")) {
 
-    $o = new Empleado();
-    $c = new Empleado();
-    $cargos = $c->obtenerCargos();
-
     if (!empty($_POST)) {
-        $accion = isset($_POST['accion']) ? $_POST['accion'] : null;
-        $accionCargo = isset($_POST['accionCargo']) ? $_POST['accionCargo'] : null;
+
+        $p = new Empleado ();
+        $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($o->consultar());
-        } elseif ($accion == 'consultatr') {
-            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
-            echo  json_encode($o->consultatr());
+            echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
-            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
-            echo  json_encode($o->eliminar());
-        } elseif ($accionCargo == 'eliminarCargo') {
-            if (isset($_POST['descCargo']) && $_POST['descCargo'] != null) {
-                $o->set_descCargo($_POST['descCargo']);
-                echo  json_encode($o->eliminarCargo());
-            } else {
-                echo json_encode(array("status" => "error", "message" => "descCargo no puede ser null"));
-            }
+            $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
+            echo  json_encode($p->eliminar());
         } else {
-           
-            $o->set_cedulaEmpleado(isset($_POST['cedulaEmpleado']) ? $_POST['cedulaEmpleado'] : null);
-            $o->set_nombreEmpleado(isset($_POST['nombreEmpleado']) ? $_POST['nombreEmpleado'] : null);
-            $o->set_apellidoEmpleado(isset($_POST['apellidoEmpleado']) ? $_POST['apellidoEmpleado'] : null);
-            $o->set_correoEmpleado(isset($_POST['correoEmpleado']) ? $_POST['correoEmpleado'] : null);
-            $o->set_telefonoEmpleado(isset($_POST['telefonoEmpleado']) ? $_POST['telefonoEmpleado'] : null);
-            $o->set_contrasena(isset($_POST['contrasena']) ? $_POST['contrasena'] : null);
-            $o->set_clCargo(isset($_POST['clCargo']) ? $_POST['clCargo'] : null);
-
+            $p->set_prefijoCedula($_POST['prefijoCedula']);
+            $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
+            $p->set_nombreEmpleado($_POST['nombreEmpleado']);
+            $p->set_apellidoEmpleado($_POST['apellidoEmpleado']);
+            $p->set_correoEmpleado($_POST['correoEmpleado']);
+            $p->set_telefonoEmpleado($_POST['telefonoEmpleado']);
+            $p->set_clCargo($_POST['cargo']);
             if ($accion == 'incluir') {
-                echo  json_encode($o->incluir());
+                echo  json_encode($p->incluir());
             } elseif ($accion == 'modificar') {
-                echo  json_encode($o->modificar());
-            } elseif ($accionCargo == 'incluirCargo') {
-                if (isset($_POST['descCargo']) && $_POST['descCargo'] != null) {
-                    $o->set_descCargo($_POST['descCargo']);
-                    echo  json_encode($o->incluirCargo());
-                } else {
-                    echo json_encode(array("status" => "error", "message" => "descCargo no puede ser null"));
-                }
+                echo  json_encode($p->modificar());
             }
         }
         exit;
     }
 
+    //require_once("model/auxiliar/cargo.php");
+    $c = new Empleado();
+    $cargos = $c->obtenerCargos();
+
     require_once("views/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";
 }
-?>
+
+
+
+
+

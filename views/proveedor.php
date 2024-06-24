@@ -113,7 +113,7 @@
 						<br>
 						<div class="row mt-3 d-flex justify-content-center align-items-center">
 							<div class="col-md-2">
-								<button type="button" class="btn btn-primary" id="proceso"></button>
+								<button type="button" class="btn btn-dark" id="proceso"></button>
 							</div>
 						</div>
 					</form>

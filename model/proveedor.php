@@ -112,7 +112,7 @@ class Proveedor extends Conexion
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'ERROR! <br/> El RIF colocado ya existe!';
+            $r['mensaje'] = 'ERROR! <br/> El EMPLEADO colocado ya existe!';
         }
         return $r;
     }

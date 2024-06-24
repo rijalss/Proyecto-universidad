@@ -102,15 +102,15 @@ $(document).ready(function(){
 	
 	$("#telefonoProveedor").on("keyup",function(){
 		validarkeyup(/^[0-9]{10,11}$/,$(this),
-		$("#stelefonoProveedor"),"El formato debe contener 11 carácteres");
+		$("#stelefonoProveedor"),"El formato sólo permite un número válido");
 	});
     $("#direccionProveedor").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]*$/,e);
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC.!@#$%^&*()-_=+[\]{};:'",<>/?\\|~`]*$/,e);
 	});
 	
 	$("#direccionProveedor").on("keyup",function(){
 		validarkeyup(
-      /^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{4,30}$/,
+      /^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC.!@#$%^&*()-_=+[\]{};:'",<>/?\\|~`]{4,30}$/,
       $(this),
       $("#sdireccionProveedor"),
       "Este formato no debe estar vacío / permite un máximo 30 carácteres"
@@ -204,8 +204,8 @@ function validarenvio(){
 		return false;
 	}	
 	else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{10,11}$/,
-		$("#telefonoProveedor"),$("#stelefonoProveedor"),"Debe contender 11 carácteres")==0){
-		muestraMensaje("error",4000,"ERROR!","El teléfono del proveedor <br/>Solo numeros y/o debe contener 11 carácteres");
+		$("#telefonoProveedor"),$("#stelefonoProveedor"),"El formato debe ser un número de teléfono válido")==0){
+		muestraMensaje("error",4000,"ERROR!","El teléfono del proveedor <br/> Debe ser un número de teléfono válido");
 		return false;
 	}
     else if(validarkeyup(/^[A-Za-z0-9_\u00f1\u00d1\u00E0-\u00FC-]{3,30}[@]{1}[A-Za-z0-9]{3,8}[.]{1}[A-Za-z]{2,3}$/,
@@ -213,7 +213,7 @@ function validarenvio(){
 		muestraMensaje("error",4000,"ERROR!","El correo del proveedor <br/> No debe estar vacío, ni contener más de 30 carácteres");
 		return false;
 	}
-    else if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC!@#$%^&*()\-_=+[\]{};:'",.<>/?\\|~`]{1,30}$/,
+    else if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC.!@#$%^&*()-_=+[\]{};:'",<>/?\\|~`]{1,30}$/,
 		$("#direccionProveedor"),$("#sdireccionProveedor"),"No debe contener más de 30 carácteres")==0){
 		muestraMensaje("error",4000,"ERROR!","La dirección del proveedor <br/> No debe estar vacío, ni contener más de 30 carácteres");
 		return false;
