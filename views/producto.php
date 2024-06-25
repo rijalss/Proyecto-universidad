@@ -95,7 +95,7 @@
 														<div class="d-flex align-items-center">
 															<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
 															<div class="form-check ms-2">
-																<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio</label>
+																<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio:</label>
 																<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
 															</div>
 														</div>
