@@ -5,13 +5,13 @@ function consultar(){
 }
 function destruyeDT(){
 	//1 se destruye el datatablet
-	if ($.fn.DataTable.isDataTable("#tablaalmacen")) {
-            $("#tablaalmacen").DataTable().destroy();
+	if($.fn.DataTable.isDataTable("#tablaarea")) {
+        $("#tablaarea").DataTable().destroy();
     }
 }
 function crearDT(){
-    if (!$.fn.DataTable.isDataTable("#tablaalmacen")) {
-         var table = $("#tablaalmacen").DataTable({
+    if (!$.fn.DataTable.isDataTable("#tablaarea")) {
+         var table = $("#tablaarea").DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
@@ -21,9 +21,9 @@ function crearDT(){
             "responsive": true,
             language: {
                 lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron almacenes",
+                zeroRecords: "No se encontraron Área",
                 info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay almacenes registrados",
+                infoEmpty: "No hay Áreas registradas",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
                 search: "Buscar",
                 paginate: {
@@ -69,40 +69,29 @@ $(document).ready(function(){
 	
 //////////////////////////////VALIDACIONES/////////////////////////////////////
 
-	$("#codAlmacen").on("keypress",function(e){
+	$("#codArea").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 	
-	$("#codAlmacen").on("keyup",function(){
+	$("#codArea").on("keyup",function(){
 		validarkeyup(/^[0-9]{4,10}$/,$(this),
-		$("#scodAlmacen"),"Este formato permite de 4 a 10 carácteres");
+		$("#scodArea"),"Este formato permite de 4 a 10 carácteres");
 	});
 
-	$("#nombreAlmacen").on("keypress", function (e) {
+	$("#nombreArea").on("keypress", function (e) {
 	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
 	});
 
-	$("#nombreAlmacen").on("keyup", function () {
+	$("#nombreArea").on("keyup", function () {
 	validarkeyup(
     /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/,
     $(this),
-    $("#snombreAlmacen"),
+    $("#snombreArea"),
     "Este formato no debe estar vacío / permite un máximo 30 carácteres"
   );
 	});
 
-	$("#direccionAlmacen").on("keypress", function (e) {
-	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
-	});
 
-	$("#direccionAlmacen").on("keyup", function () {
-	validarkeyup(
-    /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-    $(this),
-    $("#sdireccionAlmacen"),
-    "Este formato no debe estar vacío / permite un máximo 200 carácteres"
-  );
-	});
 
 //////////////////////////////BOTONES/////////////////////////////////////
 
@@ -116,10 +105,9 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
-			datos.append('codAlmacen',$("#codAlmacen").val());
-			datos.append('nombreAlmacen',$("#nombreAlmacen").val());
-			datos.append('direccionAlmacen',$("#direccionAlmacen").val());
-
+			datos.append('codArea',$("#codArea").val());
+			datos.append('nombreArea',$("#nombreArea").val());
+			datos.append('clAlmacen',$("#almacen").val());
 			enviaAjax(datos);
 		}
 	}
@@ -127,21 +115,21 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
-			datos.append("codAlmacen", $("#codAlmacen").val());
-			datos.append("nombreAlmacen", $("#nombreAlmacen").val());
-			datos.append("direccionAlmacen", $("#direccionAlmacen").val());
-
+			datos.append("codArea", $("#codArea").val());
+			datos.append("nombreArea", $("#nombreArea").val());
+			datos.append('clAlmacen',$("#almacen").val());
+		
 			enviaAjax(datos);
 		}
 	}
 	if($(this).text()=="ELIMINAR"){
-		if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,$("#codAlmacen"),
-		$("#scodAlmacen"),"El formato debe tener de 11 carácteres")==0){
+		if(validarkeyup(/^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,$("#codArea"),
+		$("#scodArea"),"El formato debe tener de 11 carácteres")==0){
 		muestraMensaje("error",4000,"ERROR!","Seleccionó un código incorrecto <br/> por favor verifique nuevamente");
 		}else {
 			// Mostrar confirmación usando SweetAlert
 			Swal.fire({
-				title: '¿Está seguro de eliminar este Almacén?',
+				title: '¿Está seguro de eliminar esta Área?',
 				text: "Esta acción no se puede deshacer.",
 				icon: 'warning',
 				showCancelButton: true,
@@ -154,7 +142,7 @@ $("#proceso").on("click",function(){
 					// Si se confirma, proceder con la eliminación
 					var datos = new FormData();
 					datos.append('accion', 'eliminar');
-					datos.append('codAlmacen', $("#codAlmacen").val());
+					datos.append('codArea', $("#codArea").val());
 					enviaAjax(datos);
 				} else {
 					muestraMensaje("error", 2000, "INFORMACIÓN", "La eliminación ha sido cancelada.");
@@ -175,30 +163,25 @@ $("#proceso").on("click",function(){
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
-		// var categoriaSeleccionada = $("#categoria").val();
+		var almacenSeleccionado = $("#almacen").val();
 
-        // if (categoriaSeleccionada === null || categoriaSeleccionada === "0") {
-		// 	muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una categoría! <br/> Recuerde que debe tener alguna registrada!"); 
-        //     return false;
-        // }
-		if(validarkeyup(/^[0-9]{4,10}$/,$("#codAlmacen"),
-			$("#scodAlmacen"),"El formato no debe pasar de los 10 carácteres")==0){
-			muestraMensaje("error",4000,"ERROR!","El código del Almacén debe coincidir con el formato <br/>" + 
+        if (almacenSeleccionado === null || almacenSeleccionado  === "0") {
+			muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una Almacén! <br/> Recuerde que debe tener alguna registrada!"); 
+            return false;
+         }
+		if(validarkeyup(/^[0-9]{4,10}$/,$("#codArea"),
+			$("#scodArea"),"El formato no debe pasar de los 10 carácteres")==0){
+			muestraMensaje("error",4000,"ERROR!","El código del Área debe coincidir con el formato <br/>" + 
 			"se permiten de 4 a 10 carácteres");
 			return false;					
 		}	
 		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-			$("#nombreAlmacen"),$("#nombreAlmacen"),"No debe contener más de 30 carácteres")==0){
-			muestraMensaje("error",4000,"ERROR!","El nombre del Almacén debe coincidir con el formato <br/>" + 
+			$("#nombreArea"),$("#nombreArea"),"No debe contener más de 30 carácteres")==0){
+			muestraMensaje("error",4000,"ERROR!","El nombre del Área debe coincidir con el formato <br/>" + 
 			"No debe estar vacío, ni contener más de 30 carácteres");
 			return false;
 		}
-		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-			$("#direccionAlmacen"),$("#direccionAlmacen"),"No debe contener más de 200 carácteres")==0){
-			muestraMensaje("error",4000,"ERROR!","La descripción del Almacén debe coincidir con el formato <br/>" + 
-			"No debe estar vacío, ni contener más de 200 carácteres");
-			return false;
-		}
+		
 		
 	return true;
 	}
@@ -257,38 +240,33 @@ function pone(pos,accion){
 
     if(accion==0){
     	$("#proceso").text("MODIFICAR");
-		$("#codAlmacen").val($(linea).find("td:eq(0)").text());
+		$("#codArea").val($(linea).find("td:eq(0)").text());
 		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
-    	$("#nombreAlmacen").val($(linea).find("td:eq(1)").text());
-    	$("#direccionAlmacen").val($(linea).find("td:eq(2)").text());
-    	/*$("#descProducto").val($(linea).find("td:eq(3)").text());   
-
-		var nombreCategoria = $(linea).find("td:eq(4)").text();
-		$('#categoria option').filter(function() {
-            return $(this).text() == nombreCategoria;
+    	$("#nombreArea").val($(linea).find("td:eq(1)").text());
+    	
+		var nombreAlmacen = $(linea).find("td:eq(2)").text();
+		$('#almacen option').filter(function() {
+            return $(this).text() == nombreAlmacen;
         }).prop('selected', true).change();
 
-    	$("#modal1").modal("show");
-		*/
+    
+		
 		
     	$("#modal1").modal("show");
     }
     else{
     	$("#proceso").text("ELIMINAR");
-		$("#codAlmacen").val($(linea).find("td:eq(0)").text());
+		$("#codArea").val($(linea).find("td:eq(0)").text());
 		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
 
-    	$("#nombreAlmacen").val($(linea).find("td:eq(1)").text());
+    	$("#nombreArea").val($(linea).find("td:eq(1)").text());
 		// $("#ultimoPrecio").prop("readonly", true); //WOW CON READONLY 
 
 
-    	$("#direccionAlmacen").val($(linea).find("td:eq(2)").text());    
-		// $("#descProducto").prop("readonly", true); //WOW CON READONLY 
-
-		// var nombreCategoria = $(linea).find("td:eq(4)").text();
-		// $('#categoria option').filter(function() {
-        //     return $(this).text() == nombreCategoria;
-        // }).prop('selected', true).change();
+    	var nombreAlmacen= $(linea).find("td:eq(3)").text();
+		$('#almacen option').filter(function() {
+            return $(this).text() == nombreAlmacen;
+        }).prop('selected', true).change();
 
    		$("#modal1").modal("show");
     }
@@ -319,7 +297,7 @@ function enviaAjax(datos) {
 		   crearDT();
         }else if (lee.resultado == "incluir") {
     	    muestraMensaje('info', 4000,'INCLUIR', lee.mensaje);
-		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el Almacén correctamente'){
+		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el Área correctamente'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
@@ -327,14 +305,14 @@ function enviaAjax(datos) {
     	    muestraMensaje('info', 4000,'MODIFICAR', lee.mensaje);
            if (
              lee.mensaje ==
-             "Registro Modificado!<br/> Se modificó el Almacén correctamente"
+             "Registro Modificado!<br/> Se modificó el Área correctamente"
            ) {
              $("#modal1").modal("hide");
              consultar();
            }
         }else if (lee.resultado == "eliminar") {
     	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
-		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el Almacén correctamente'){
+		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el Área correctamente'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }
@@ -358,8 +336,9 @@ function enviaAjax(datos) {
 }
 
 function limpia(){
-	$("#codAlmacen").val('');
-	$("#nombreAlmacen").val('');
-	$("#direccionAlmacen").val('');
+	$("#codArea").val('');
+	$("#nombreArea").val('');
+	$("#almacen").val('disabled');
+	
 	
 }
