@@ -92,17 +92,17 @@ $(document).ready(function(){
 	});
 
 	$("#ultimoPrecio").on("keypress", function (e) {
-	validarkeypress(/^[0-9-\b]*$/, e);
+		validarkeypress(/^[0-9.,\b]*$/, e);
 	});
-
+	
 	$("#ultimoPrecio").on("keyup", function () {
-	validarkeyup(
-		/^[0-9]{0,10}$/,
-		$(this),
-		$("#sultimoPrecio"),
-		"Este formato no permite cantidades negativas"
-	);
-	});
+		validarkeyup(
+			/^[0-9]{0,10}([.,][0-9]{0,2})?$/,
+			$(this),
+			$("#sultimoPrecio"),
+			"Este formato no permite cantidades negativas"
+		);
+	})
 
 	$("#descProducto").on("keypress", function (e) {
 	validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
