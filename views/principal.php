@@ -11,12 +11,15 @@
 </head>
 
 <body>
-    <nav>
-        <div class="navbar bg-primary fixed-top">
-            <div class="container-fluid">
-                <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
-            </div>
-    </nav>
+<nav class="navbar bg-primary fixed-top">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
+    <div class="d-flex justify-content-end">
+      <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt="Salir"></a>
+    </div>
+  </div>
+</nav>
+
 
     <!-- Title -->
     <br><br><br><br>
@@ -32,6 +35,16 @@
     <!-- Container de cards -->
     <div class="container">
         <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Productos</h5>
+                        <p class="card-text">Mantén la gestión tus productos bajo control.</p>
+                        <a href="?pagina=producto" class="btn btn-primary">Gestionar Producto</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
@@ -55,9 +68,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Productos</h5>
-                        <p class="card-text">Mantén la gestión tus productos bajo control.</p>
-                        <a href="?pagina=producto" class="btn btn-primary">Gestionar Producto</a>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
+                        <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
+                        <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias</a>
                     </div>
                 </div>
             </div>
@@ -68,16 +81,6 @@
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/truck.svg" alt=""> Proveedores</h5>
                         <p class="card-text">Gestiona tus proveedores con facilidad.</p>
                         <a href="?pagina=proveedor" class="btn btn-primary">Gestionar Proveedor</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
-                        <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
-                        <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias</a>
                     </div>
                 </div>
             </div>

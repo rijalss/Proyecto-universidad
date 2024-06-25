@@ -25,10 +25,10 @@
 
     <section class="d-flex flex-column align-items-center">
         <br><br><br><br>
-        <h2 class="text-primary text-center">Gestionar Proveedor</h2>
+        <h2 class="text-primary text-center">Gestionar Notas de Salida</h2>
         <div class="container">
             <div class="text-left">
-                <button class="btn btn-success" id="incluir">Registrar Proveedor</button>
+                <button class="btn btn-success" id="incluir">Registrar Nota de Salida</button>
             </div>
         </div>
         <div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->

@@ -35,11 +35,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=almacen">Gestionar Almacen</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?pagina=complemento">Gestionar Complementos</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="complementosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestionar Complementos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="complementosDropdown">
+                            <li><a class="dropdown-item" href="?pagina=categoria">Gestionar Categoría</a></li>
+                            <li><a class="dropdown-item" href="?pagina=cargo">Gestionar Cargo</a></li>
+                            <li><a class="dropdown-item" href="?pagina=area">Gestionar Area</a></li>
+                        </ul>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/img/box-arrow-left.svg" alt=""> Salir</a>
+                        <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt=""> Salir</a>
                     </li>
                 </ul>
             </div>
