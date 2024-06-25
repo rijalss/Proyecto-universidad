@@ -4,98 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventas</title>
+    <title>Proveedor</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
+<div id="mensajes" style="display:none">
+    <?php
+    if (!empty($mensaje)) {
+        echo $mensaje;
+    }
+    ?>
+</div>
+
 <body>
     <!-- Header -->
-    <?php require_once("public/components/extra.php"); ?>
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <div class="container-center m-5">
-        <div class="container-fluid">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="container text-center h2 text-primary">Gestionar <br> notas de salida</h6>
-                    <br>
-                    <form method="post" action="" id="">
+    <section class="d-flex flex-column align-items-center">
+        <br><br><br><br>
+        <h2 class="text-primary text-center">Gestionar Proveedor</h2>
+        <div class="container">
+            <div class="text-left">
+                <button class="btn btn-success" id="incluir">Registrar Proveedor</button>
+            </div>
+        </div>
+        <div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
+            <br>
+            <div class="container">
+            </div>
+            <div class="container text-center">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="tablaproveedor">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultadoconsulta"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- fin de container -->
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal1">
+        <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Formulario de Categorías</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="f" autocomplete="off">
+                        <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-
-                                <!-- Select para registrar en la base de datos -->
-
-                                <div class="col">
-                                    <label for="nombreProducto">Producto</label>
-                                    <select class="form-control" name="nombreProducto" id="nombreProducto">
-                                        <option value="" disabled selected>Seleccione un producto</option>
-                                        <option value="1">Lapiz</option>
-                                        <option value="2">Globos</option>
-                                        <option value="3">Carrito</option>
-                                    </select>
+                                <div class="col-6">
+                                    <label for="producto">Producto</label>
+                                    <input class="form-control" type="text" id="producto" name="producto">
+                                    <span id="sproducto"></span>
                                 </div>
-                                <div class="col">
-                                    <label for="cantidadVenta">Cantidad del producto</label>
-                                    <input class="form-control" type="number" id="cantidadVenta" name="cantidadVenta" />
-                                    <span id="scantidadVenta"></span>
+                                <div class="col-6">
+                                    <label for="cantidadSalida">Cantidad</label>
+                                    <input class="form-control" type="text" id="cantidadSalida" name="cantidadSalida">
+                                    <span id="scantidadSalida"></span>
                                 </div>
-                                <div class="col">
-                                    <label for="precioVenta">Precio en el mostrador</label>
-                                    <input class="form-control" type="number" id="precioVenta" name="precioVenta" />
-                                    <span id="sprecioVenta"></span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="precioSalida">Precio en el mostrador</label>
+                                    <input class="form-control" type="text" id="precioSalida" name="precioSalida">
+                                    <span id="sprecioSalida"></span>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
                                 <br>
                                 <hr />
                             </div>
                         </div>
-
-                        <!-- Botonera para cumplir acciones -->
-
-                        <div class="row container text-center">
-                            <div class="col  mb-4">
-                                <button type="button" class="btn btn-primary " id="incluir" name="incluir">INCLUIR</button>
-                            </div>
-                            <div class="col mb-4">
-                                <button type="button" class="btn btn-success" id="consultar" data-toggle="modal" data-target="#modal1" name="consultar">CONSULTAR</button>
-                            </div>
-                            <div class="col mb-4">
-                                <button type="button" class="btn btn-warning" id="modificar" name="modificar">MODIFICAR</button>
-                            </div>
-                            <div class="col mb-4">
-                                <button type="button" class="btn btn-danger" id="eliminar" name="eliminar">ELIMINAR</button>
-                            </div>
-                            <div class="col mb-4">
-                                <a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary" id="proceso"></button>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-    </div>
+    <!-- Fin del Modal -->
 
     <!-- Footer -->
     <?php require_once("public/components/footer.php"); ?>
+    <?php require_once("public/components/extra.php"); ?>
     <!-- Footer -->
-    <!-- fin de container -->
+    </div> <!-- fin de container -->
 
     <!-- Scripts -->
+
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="public/js/salida.js"></script>
+    <!-- CAMBIAR!!!!!!!!!!!!!!!!!!! -->
+    <script type="text/javascript" src="public/js/proveedor.js"></script>
     <!-- Scripts -->
 </body>
 

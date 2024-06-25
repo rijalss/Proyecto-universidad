@@ -50,8 +50,7 @@ function crearDT(){
         });
 
         $("div.dataTables_filter").css({
-            "margin-bottom": "50px",
-			"margin-top": "10px",
+            "margin-bottom": "70px",
         });
 
         $("div.dataTables_filter label").css({
@@ -61,7 +60,7 @@ function crearDT(){
         $("div.dataTables_filter input").css({
             "width": "300px",
             "float": "right",
-            "margin-left": "5px",
+            "margin-right": "10px",
         });
     }         
 }

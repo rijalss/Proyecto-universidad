@@ -4,100 +4,59 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Existencias</title>
+	<title>Proveedor</title>
 	<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
+<div id="mensajes" style="display:none">
+	<?php
+	if (!empty($mensaje)) {
+		echo $mensaje;
+	}
+	?>
+</div>
+
 <body>
 	<!-- Header -->
 	<?php require_once("public/components/menu.php"); ?>
-	<?php require_once("public/components/extra.php"); ?>
 	<!-- Header -->
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="container-center m-5">
-		<div class="container-fluid">
 
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="container text-center h2 text-primary">Listar Existencias</h6>
-					<br>
-					<form method="post">
-						<div class="container">
-							<div class="card-body">
-								<div class="table-responsive">
-									<table id="exampl" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th scope="col">Cantidad de existencias</th>
-												<th scope="col">Código de producto</th>
-												<th scope="col">Nombre del producto</th>
-												<th scope="col">Área</th>
-												<th scope="col">Categoría</th>
-												<th scope="col">Acciones</th>
-											</tr>
-										</thead>
-
-										<tbody>
-											<tr>
-												<td>150</td>
-												<td>001</td>
-												<td>Producto A</td>
-												<td>Electrónica</td>
-												<td>Gadgets</td>
-												<td> <button class="btn btn-warning"><a href=><img class="imgmini" src=" "></a>Modificar</button> <button class="btn btn-danger"><a href=><img class="imgmini" src=" "></a>Eliminar</button> </td>
-											</tr>
-											<tr>
-												<td>75</td>
-												<td>002</td>
-												<td>Producto B</td>
-												<td>Hogar</td>
-												<td>Muebles</td>
-												<td> <button class="btn btn-warning"><a href=><img class="imgmini" src=" "></a>Modificar</button> <button class="btn btn-danger"><a href=><img class="imgmini" src=" "></a>Eliminar</button> </td>
-											</tr>
-											<tr>
-												<td>200</td>
-												<td>003</td>
-												<td>Producto C</td>
-												<td>Oficina</td>
-												<td>Accesorios</td>
-												<td> <button class="btn btn-warning"><a href=><img class="imgmini" src=" "></a>Modificar</button> <button class="btn btn-danger"><a href=><img class="imgmini" src=" "></a>Eliminar</button> </td>
-											</tr>
-										</tbody>
-									</table>
-
-									<div class="col mb-4">
-										<a href="?pagina=principal" class="btn btn-secondary">REGRESAR</a>
-									</div>
-
-
-								</div>
-							</div>
-
-						</div>
-					</form>
+	<section class="d-flex flex-column align-items-center">
+		<br><br><br><br>
+		<h2 class="text-primary text-center">Listar Existencias</h2>
+		
+		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
+			<br>
+			<div class="container">
+			</div>
+			<div class="container text-center">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover" id="tablaexistencia">
+						<thead>
+							<tr>
+								
+							</tr>
+						</thead>
+						<tbody id="resultadoconsulta"></tbody>
+					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div>
-		<!-- Footer -->
-		<?php require_once("public/components/footer.php"); ?>
-		<!-- Footer -->
+		</div> <!-- fin de container -->
+	</section>
+
+	<!-- Footer -->
+	<?php require_once("public/components/footer.php"); ?>
+	<?php require_once("public/components/extra.php"); ?>
+	<!-- Footer -->
 	</div> <!-- fin de container -->
 
 	<!-- Scripts -->
+
 	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="public/js/datatable.js"></script>
-	<!-- <script src="public/js/jquery-3.7.0.js"></script>
-	<script src="public/js/jquery.dataTables.min.js"></script> 
-	<script src="public/js/dataTables.bootstrap5.min.js"></script> -->
+	<script type="text/javascript" src="public/js/existencia.js"></script>
 	<!-- Scripts -->
 </body>
 

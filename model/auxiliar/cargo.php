@@ -87,21 +87,12 @@ class Cargo extends Conexion
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta .= "<tr>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['codCargo'];
-                    $respuesta = $respuesta . "</td>";
+                    $respuesta .= "<td>" . $r['codCargo'] . "</td>";
                     $respuesta .= "<td>" . $r['nombreCargo'] . "</td>";
-                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-warning small-width d-inline-block mr-1' 
-                    onclick='pone(this,0)'
-                    style='margin-right: 5px;'
-                    >Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-danger small-width d-inline-block' 
-                    onclick='pone(this,1)'
-                    >Eliminar</button>";
-                    $respuesta = $respuesta . "</td>";
+                    $respuesta .= "<td style='max-width: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-inline-block mr-1' onclick='pone(this,0)' style='margin-right: 5px'>Modificar</button>";
+                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-inline-block'  onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta .= "</td>";
                     $respuesta .= "</tr>";
                 }
 

@@ -18,7 +18,7 @@ if (is_file("views/" . $pagina . ".php")) {
             $p->set_rifProveedor($_POST['rifProveedor']);
             echo  json_encode($p->eliminar());
         } else {
-            $p->set_prefijo($_POST['prefijo']); 
+            $p->set_prefijoRif($_POST['prefijoRif']); 
             $p->set_rifProveedor($_POST['rifProveedor']);
             $p->set_nombreProveedor($_POST['nombreProveedor']);
             $p->set_telefonoProveedor($_POST['telefonoProveedor']);

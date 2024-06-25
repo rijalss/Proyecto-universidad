@@ -47,8 +47,7 @@ function crearDT(){
         });
 
         $("div.dataTables_filter").css({
-            "margin-bottom": "50px",
-			"margin-top": "10px",
+            "margin-bottom": "70px",
         });
 
         $("div.dataTables_filter label").css({
@@ -58,7 +57,7 @@ function crearDT(){
         $("div.dataTables_filter input").css({
             "width": "300px",
             "float": "right",
-            "margin-left": "10px",
+            "margin-right": "10px",
         });
     }         
 }
@@ -166,7 +165,7 @@ function validarenvio(){
 		var almacenSeleccionado = $("#almacen").val();
 
         if (almacenSeleccionado === null || almacenSeleccionado  === "0") {
-			muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una Almacén! <br/> Recuerde que debe tener alguna registrada!"); 
+			muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una Almacén! <br/> Recuerde que debe tener uno registrado!"); 
             return false;
          }
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codArea"),

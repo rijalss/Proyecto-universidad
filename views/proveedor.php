@@ -72,13 +72,13 @@
 							<div class="row mb-3">
 
 								<div class="col-1">
-									<label for="prefijo"></label>
-									<select class="form-control" name="prefijo" id="prefijo">
+									<label for="prefijoRif"></label>
+									<select class="form-control" name="prefijoRif" id="prefijoRif">
 										<option value="J">J</option>
 										<option value="V">V</option>
 										<option value="G">G</option>
 									</select>
-									<span id="sprefijo"></span>
+									<span id="sprefijoRif"></span>
 								</div>
 								<div class="col-3">
 									<label for="rifProveedor">Rif</label>

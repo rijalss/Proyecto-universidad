@@ -10,8 +10,8 @@ class Proveedor extends Conexion
     private $telefonoProveedor;
     private $correoProveedor;
     private $direccionProveedor;
-    private $prefijo;
-    
+    private $prefijoRif;
+
     //////////////////////////SET//////////////////////////
 
     function set_rifProveedor($valor)
@@ -19,9 +19,9 @@ class Proveedor extends Conexion
         $this->rifProveedor = $valor;
     }
 
-    function set_prefijo($valor)
+    function set_prefijoRif($valor)
     {
-        $this->prefijo = $valor;
+        $this->prefijoRif = $valor;
     }
 
     function set_nombreProveedor($valor)
@@ -51,9 +51,9 @@ class Proveedor extends Conexion
         return $this->rifProveedor;
     }
 
-    function get_prefijo()
+    function get_prefijoRif()
     {
-        return $this->prefijo;
+        return $this->prefijoRif;
     }
 
     function get_nombreProveedor()
@@ -78,7 +78,7 @@ class Proveedor extends Conexion
 
     //////////////////////////METODOS//////////////////////////
 
-    
+
     function incluir()
     {
         $r = array();
@@ -90,14 +90,14 @@ class Proveedor extends Conexion
             //2 Se ejecuta el sql
             try {
                 $co->query("INSERT INTO proveedor(
-                    prefijo,
+                    prefijoRif,
                     rifProveedor,
                     nombreProveedor,
                     telefonoProveedor,
                     correoProveedor,
                     direccionProveedor
                     ) VALUES (
-                    '$this->prefijo',
+                    '$this->prefijoRif',
                     '$this->rifProveedor',
                     '$this->nombreProveedor',
                     '$this->telefonoProveedor',
@@ -129,7 +129,7 @@ class Proveedor extends Conexion
                 telefonoProveedor = '$this->telefonoProveedor',
                 correoProveedor = '$this->correoProveedor',
                 direccionProveedor = '$this->direccionProveedor',
-                prefijo = '$this->prefijo'
+                prefijoRif = '$this->prefijoRif'
                 WHERE rifProveedor = '$this->rifProveedor'
                 ");
                 $r['resultado'] = 'modificar';
@@ -184,7 +184,7 @@ class Proveedor extends Conexion
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
                     $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['prefijo'] .'-'. $r['rifProveedor'];
+                    $respuesta = $respuesta . $r['prefijoRif'] . '-' . $r['rifProveedor'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreProveedor'];

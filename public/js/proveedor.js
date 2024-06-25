@@ -128,7 +128,7 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
-			datos.append('prefijo',$("#prefijo").val());
+			datos.append('prefijoRif',$("#prefijoRif").val());
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -142,7 +142,7 @@ $("#proceso").on("click",function(){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
-			datos.append('prefijo',$("#prefijo").val()); 
+			datos.append('prefijoRif',$("#prefijoRif").val()); 
 			datos.append('rifProveedor',$("#rifProveedor").val());
 			datos.append('telefonoProveedor',$("#telefonoProveedor").val());
 			datos.append('nombreProveedor',$("#nombreProveedor").val());
@@ -285,7 +285,7 @@ function pone(pos,accion){
     
     var rifProveedor = $(linea).find("td:eq(0)").text();
     $("#rifProveedor").val(rifProveedor.substring(2)); 
-    $("#prefijo").val(rifProveedor.substring(0, 1));
+    $("#prefijoRif").val(rifProveedor.substring(0, 1));
     $("#nombreProveedor").val($(linea).find("td:eq(1)").text());
     $("#telefonoProveedor").val($(linea).find("td:eq(2)").text());
     $("#correoProveedor").val($(linea).find("td:eq(3)").text());

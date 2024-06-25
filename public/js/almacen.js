@@ -97,10 +97,10 @@ $(document).ready(function(){
 
 	$("#direccionAlmacen").on("keyup", function () {
 	validarkeyup(
-    /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+    /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/,
     $(this),
     $("#sdireccionAlmacen"),
-    "Este formato no debe estar vacío / permite un máximo 200 carácteres"
+    "Este formato no debe estar vacío / permite un máximo 30 carácteres"
   );
 	});
 
@@ -175,12 +175,6 @@ $("#proceso").on("click",function(){
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
-		// var categoriaSeleccionada = $("#categoria").val();
-
-        // if (categoriaSeleccionada === null || categoriaSeleccionada === "0") {
-		// 	muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una categoría! <br/> Recuerde que debe tener alguna registrada!"); 
-        //     return false;
-        // }
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codAlmacen"),
 			$("#scodAlmacen"),"El formato no debe pasar de los 10 carácteres")==0){
 			muestraMensaje("error",4000,"ERROR!","El código del Almacén debe coincidir con el formato <br/>" + 
@@ -193,10 +187,10 @@ function validarenvio(){
 			"No debe estar vacío, ni contener más de 30 carácteres");
 			return false;
 		}
-		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-			$("#direccionAlmacen"),$("#direccionAlmacen"),"No debe contener más de 200 carácteres")==0){
+		else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
+			$("#direccionAlmacen"),$("#direccionAlmacen"),"No debe contener más de 30 carácteres")==0){
 			muestraMensaje("error",4000,"ERROR!","La descripción del Almacén debe coincidir con el formato <br/>" + 
-			"No debe estar vacío, ni contener más de 200 carácteres");
+			"No debe estar vacío, ni contener más de 30 carácteres");
 			return false;
 		}
 		
@@ -258,38 +252,15 @@ function pone(pos,accion){
     if(accion==0){
     	$("#proceso").text("MODIFICAR");
 		$("#codAlmacen").val($(linea).find("td:eq(0)").text());
-		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
     	$("#nombreAlmacen").val($(linea).find("td:eq(1)").text());
-    	$("#direccionAlmacen").val($(linea).find("td:eq(2)").text());
-    	/*$("#descProducto").val($(linea).find("td:eq(3)").text());   
-
-		var nombreCategoria = $(linea).find("td:eq(4)").text();
-		$('#categoria option').filter(function() {
-            return $(this).text() == nombreCategoria;
-        }).prop('selected', true).change();
-
-    	$("#modal1").modal("show");
-		*/
-		
+    	$("#direccionAlmacen").val($(linea).find("td:eq(2)").text());	
     	$("#modal1").modal("show");
     }
     else{
     	$("#proceso").text("ELIMINAR");
 		$("#codAlmacen").val($(linea).find("td:eq(0)").text());
-		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
-
     	$("#nombreAlmacen").val($(linea).find("td:eq(1)").text());
-		// $("#ultimoPrecio").prop("readonly", true); //WOW CON READONLY 
-
-
     	$("#direccionAlmacen").val($(linea).find("td:eq(2)").text());    
-		// $("#descProducto").prop("readonly", true); //WOW CON READONLY 
-
-		// var nombreCategoria = $(linea).find("td:eq(4)").text();
-		// $('#categoria option').filter(function() {
-        //     return $(this).text() == nombreCategoria;
-        // }).prop('selected', true).change();
-
    		$("#modal1").modal("show");
     }
     

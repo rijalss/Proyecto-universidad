@@ -33,16 +33,16 @@
         </div>
         <div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
             <br>
-            <div class="container">
+            <div class="container ">
             </div>
             <div class="container text-center">
-                <div class="table-responsive">
+                <div class="table-responsive ">
                     <table class="table table-striped table-hover" id="tablaalmacen">
                         <thead>
                             <tr>
                                 <th>Código</th>
-                                <th>Nombre Almacén</th>
-                                <th>Direccion</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -66,18 +66,18 @@
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row-6">
-                                <label for="codAlmacen" class="form-label">Código de Almacén:</label>
+                                <label for="codAlmacen" class="form-label">Código</label>
                                 <input type="text" class="form-control" id="codAlmacen" name="codAlmacen" required>
                                 <span id="scodAlmacen"></span>
-
+                                <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="nombreAlmacen" class="form-label">Nombre de Almacén:</label>
+                                        <label for="nombreAlmacen" class="form-label">Nombre</label>
                                         <input type="text" class="form-control" id="nombreAlmacen" name="nombreAlmacen" required>
                                         <span id="snombreAlmacen"></span>
                                     </div>
                                     <div class="col-6">
-                                        <label for="direccionAlmacen" class="form-label">Direccion de Almacén:</label>
+                                        <label for="direccionAlmacen" class="form-label">Dirección</label>
                                         <input type="text" class="form-control" id="direccionAlmacen" name="direccionAlmacen" required>
                                         <span id="sdireccionAlmacen"></span>
                                     </div>
@@ -86,6 +86,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
+                                <br>
                                 <hr />
                             </div>
                         </div>

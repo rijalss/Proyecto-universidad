@@ -18,6 +18,7 @@
     ?>
 </div>
 
+
 <body>
     <!-- Header -->
     <?php require_once("public/components/menu.php"); ?>
@@ -42,8 +43,8 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Nombre de Área</th>
-                                    <th>Nombre de Almacén</th>
+                                    <th>Nombre</th>
+                                    <th class="text-nowrap" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis;">Almacén</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -70,19 +71,19 @@
                         <div class="container">
                             <div class="row-6">
                                 <div class="col-12">
-                                    <label for="codArea">Código de Área</label>
+                                    <label for="codArea">Código</label>
                                     <input class="form-control" type="text" id="codArea" name="codArea">
                                     <span id="scodArea"></span>
                                 </div>
-
+                                <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="nombreArea" class="form-label">Nombre del Área</label>
+                                        <label for="nombreArea" class="form-label">Nombre</label>
                                         <input class="form-control" type="text" id="nombreArea" name="nombreArea">
                                         <span id="snombreArea"></span>
                                     </div>
                                     <div class="col-6">
-                                        <label for="almacen" class="form-label">Almacén:</label>
+                                        <label for="almacen" class="form-label">Almacén</label>
                                         <select class="form-control" name="almacen" id="almacen">
                                             <option value='disabled' disabled selected>Seleccione un almacén</option>
                                             <?php
@@ -98,7 +99,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <hr/>
+                                <br>
+                                <hr />
                             </div>
                         </div>
                         <div class="row mt-3">

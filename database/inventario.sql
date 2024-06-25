@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2024 a las 08:03:12
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Tiempo de generación: 25-06-2024 a las 08:39:36
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,18 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `almacen` (
-  `codAlmacen` int(11) NOT NULL,
-  `nombreAlmacen` varchar(100) DEFAULT NULL,
-  `direccionAlmacen` varchar(255) DEFAULT NULL
+  `clAlmacen` int(10) NOT NULL,
+  `codAlmacen` int(10) NOT NULL,
+  `nombreAlmacen` varchar(30) NOT NULL,
+  `direccionAlmacen` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `almacen`
 --
 
-INSERT INTO `almacen` (`codAlmacen`, `nombreAlmacen`, `direccionAlmacen`) VALUES
-(1, 'Almacén Central', 'Zona Industrial 123'),
-(2, 'Almacén Secundario', 'Zona Comercial 456');
+INSERT INTO `almacen` (`clAlmacen`, `codAlmacen`, `nombreAlmacen`, `direccionAlmacen`) VALUES
+(1, 1234, 'carrera 1', 'carrera 1 entre calle 2 y 3');
 
 -- --------------------------------------------------------
 
@@ -48,38 +48,18 @@ INSERT INTO `almacen` (`codAlmacen`, `nombreAlmacen`, `direccionAlmacen`) VALUES
 --
 
 CREATE TABLE `area` (
-  `codArea` int(11) NOT NULL,
-  `descripcionArea` varchar(255) DEFAULT NULL,
-  `codAlmacen` int(11) DEFAULT NULL
+  `clArea` int(10) NOT NULL,
+  `codArea` int(10) NOT NULL,
+  `nombreArea` varchar(30) NOT NULL,
+  `clAlmacen` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `area`
 --
 
-INSERT INTO `area` (`codArea`, `descripcionArea`, `codAlmacen`) VALUES
-(1, 'Área de Electrónica', 1),
-(2, 'Área de Ropa', 1),
-(3, 'Área de Alimentos', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `banco`
---
-
-CREATE TABLE `banco` (
-  `codBanco` int(11) NOT NULL,
-  `nombreBanco` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `banco`
---
-
-INSERT INTO `banco` (`codBanco`, `nombreBanco`) VALUES
-(1, 'Banco A'),
-(2, 'Banco B');
+INSERT INTO `area` (`clArea`, `codArea`, `nombreArea`, `clAlmacen`) VALUES
+(1, 1234, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -88,18 +68,17 @@ INSERT INTO `banco` (`codBanco`, `nombreBanco`) VALUES
 --
 
 CREATE TABLE `cargo` (
-  `codCargo` int(11) NOT NULL,
-  `descripcionCargo` varchar(100) DEFAULT NULL
+  `clCargo` int(10) NOT NULL,
+  `codCargo` int(10) NOT NULL,
+  `nombreCargo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cargo`
 --
 
-INSERT INTO `cargo` (`codCargo`, `descripcionCargo`) VALUES
-(1, 'Gerente'),
-(2, 'Supervisor'),
-(3, 'Vendedor');
+INSERT INTO `cargo` (`clCargo`, `codCargo`, `nombreCargo`) VALUES
+(1, 1234, 'director');
 
 -- --------------------------------------------------------
 
@@ -108,106 +87,75 @@ INSERT INTO `cargo` (`codCargo`, `descripcionCargo`) VALUES
 --
 
 CREATE TABLE `categoria` (
-  `codCategoria` int(11) NOT NULL,
-  `nombreCategoria` varchar(100) DEFAULT NULL
+  `clCategoria` int(10) NOT NULL,
+  `codCategoria` int(10) NOT NULL,
+  `nombreCategoria` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`codCategoria`, `nombreCategoria`) VALUES
-(1, 'Electrónica'),
-(2, 'Ropa'),
-(3, 'Alimentos');
+INSERT INTO `categoria` (`clCategoria`, `codCategoria`, `nombreCategoria`) VALUES
+(1, 1234, 'lacteo');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Estructura de tabla para la tabla `detalleencargo`
 --
 
-CREATE TABLE `cliente` (
-  `cedulaCliente` varchar(20) NOT NULL,
-  `nombreCliente` varchar(100) DEFAULT NULL,
-  `apellidoCliente` varchar(100) DEFAULT NULL,
-  `telefonoCliente` varchar(15) DEFAULT NULL
+CREATE TABLE `detalleencargo` (
+  `precioEncargo` decimal(10,2) NOT NULL,
+  `cantidadEncargo` int(10) NOT NULL,
+  `clEncargo` int(10) NOT NULL,
+  `clExistencia` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`cedulaCliente`, `nombreCliente`, `apellidoCliente`, `telefonoCliente`) VALUES
-('V-11223344-5', 'María', 'Rodríguez', '04141122334'),
-('V-55667788-9', 'Juan', 'Martínez', '04145566778');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalleentrega`
+-- Estructura de tabla para la tabla `detallesalida`
 --
 
-CREATE TABLE `detalleentrega` (
-  `codDetalleEntrega` int(11) NOT NULL,
-  `precioEntregas` decimal(10,2) DEFAULT NULL,
-  `cantidadEntregas` int(11) DEFAULT NULL,
-  `codEntrega` int(11) DEFAULT NULL,
-  `codExistencia` int(11) DEFAULT NULL
+CREATE TABLE `detallesalida` (
+  `cantidadSalida` int(10) NOT NULL,
+  `precioSalida` decimal(10,2) NOT NULL,
+  `clExistencia` int(10) NOT NULL,
+  `clSalida` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalleentrega`
---
-
-INSERT INTO `detalleentrega` (`codDetalleEntrega`, `precioEntregas`, `cantidadEntregas`, `codEntrega`, `codExistencia`) VALUES
-(1, 1500.00, 10, 1, 1),
-(2, 3000.00, 5, 2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalleventa`
+-- Estructura de tabla para la tabla `empleado`
 --
 
-CREATE TABLE `detalleventa` (
-  `codDetalleVenta` int(11) NOT NULL,
-  `cantidadVenta` int(11) DEFAULT NULL,
-  `precioVentas` decimal(10,2) DEFAULT NULL,
-  `codExistencia` int(11) DEFAULT NULL,
-  `codVenta` int(11) DEFAULT NULL
+CREATE TABLE `empleado` (
+  `clEmpleado` int(10) NOT NULL,
+  `prefijoCedula` char(1) NOT NULL,
+  `cedulaEmpleado` int(10) NOT NULL,
+  `nombreEmpleado` varchar(30) NOT NULL,
+  `apellidoEmpleado` varchar(30) NOT NULL,
+  `correoEmpleado` varchar(30) NOT NULL,
+  `telefonoEmpleado` bigint(11) NOT NULL,
+  `clCargo` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalleventa`
---
-
-INSERT INTO `detalleventa` (`codDetalleVenta`, `cantidadVenta`, `precioVentas`, `codExistencia`, `codVenta`) VALUES
-(1, 2, 3000.00, 1, 1001),
-(2, 1, 1500.00, 2, 1002);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entregas`
+-- Estructura de tabla para la tabla `encargo`
 --
 
-CREATE TABLE `entregas` (
-  `codEntrega` int(11) NOT NULL,
-  `observacion` varchar(255) DEFAULT NULL,
-  `fechaEntrega` date DEFAULT NULL,
-  `numFactura` int(11) DEFAULT NULL,
-  `codProveedor` int(11) DEFAULT NULL,
-  `cedulaTrabajador` varchar(20) DEFAULT NULL
+CREATE TABLE `encargo` (
+  `clEncargo` int(10) NOT NULL,
+  `observacion` varchar(200) NOT NULL,
+  `fechaEncargo` datetime NOT NULL,
+  `numFactura` int(10) NOT NULL,
+  `clProveedor` int(10) NOT NULL,
+  `clEmpleado` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `entregas`
---
-
-INSERT INTO `entregas` (`codEntrega`, `observacion`, `fechaEntrega`, `numFactura`, `codProveedor`, `cedulaTrabajador`) VALUES
-(1, 'Entrega puntual', '2024-01-01', 1001, 1, 'V-12345678-9'),
-(2, 'Entrega incompleta', '2024-02-15', 1002, 2, 'V-98765432-1');
 
 -- --------------------------------------------------------
 
@@ -216,20 +164,11 @@ INSERT INTO `entregas` (`codEntrega`, `observacion`, `fechaEntrega`, `numFactura
 --
 
 CREATE TABLE `existencia` (
-  `codExistencia` int(11) NOT NULL,
-  `cantidadExistencia` int(11) DEFAULT NULL,
-  `codArea` int(11) DEFAULT NULL,
-  `codProducto` int(11) DEFAULT NULL
+  `clExistencia` int(10) NOT NULL,
+  `cantidadExistencia` int(10) NOT NULL,
+  `clArea` int(10) NOT NULL,
+  `clProducto` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `existencia`
---
-
-INSERT INTO `existencia` (`codExistencia`, `cantidadExistencia`, `codArea`, `codProducto`) VALUES
-(1, 100, 1, 1),
-(2, 50, 2, 2),
-(3, 200, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -238,20 +177,13 @@ INSERT INTO `existencia` (`codExistencia`, `cantidadExistencia`, `codArea`, `cod
 --
 
 CREATE TABLE `producto` (
-  `codProducto` int(11) NOT NULL,
-  `descripcionProducto` varchar(255) DEFAULT NULL,
-  `nombreProducto` varchar(100) DEFAULT NULL,
-  `codCategoria` int(11) DEFAULT NULL
+  `clProducto` int(10) NOT NULL,
+  `codProducto` int(10) NOT NULL,
+  `nombreProducto` varchar(30) NOT NULL,
+  `descProducto` varchar(30) NOT NULL,
+  `ultimoPrecio` decimal(10,2) NOT NULL,
+  `clCategoria` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`codProducto`, `descripcionProducto`, `nombreProducto`, `codCategoria`) VALUES
-(1, 'Descripción del producto A', 'Producto A', 1),
-(2, 'Descripción del producto B', 'Producto B', 2),
-(3, 'Descripción del producto C', 'Producto C', 3);
 
 -- --------------------------------------------------------
 
@@ -260,67 +192,27 @@ INSERT INTO `producto` (`codProducto`, `descripcionProducto`, `nombreProducto`, 
 --
 
 CREATE TABLE `proveedor` (
-  `codProveedor` int(11) NOT NULL,
-  `nombreProveedor` varchar(100) DEFAULT NULL,
-  `telefonoProveedor` varchar(15) DEFAULT NULL,
-  `direccionProveedor` varchar(255) DEFAULT NULL,
-  `correoProveedor` varchar(100) DEFAULT NULL,
-  `rifProveedor` varchar(20) DEFAULT NULL
+  `clProveedor` int(10) NOT NULL,
+  `prefijoRif` char(1) NOT NULL,
+  `rifProveedor` int(10) NOT NULL,
+  `nombreProveedor` varchar(30) NOT NULL,
+  `telefonoProveedor` bigint(11) NOT NULL,
+  `direccionProveedor` varchar(30) NOT NULL,
+  `correoProveedor` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`codProveedor`, `nombreProveedor`, `telefonoProveedor`, `direccionProveedor`, `correoProveedor`, `rifProveedor`) VALUES
-(1, 'Proveedor A', '123456789', 'Calle Falsa 123', 'proveedora@example.com', 'J-12345678-9'),
-(2, 'Proveedor B', '987654321', 'Avenida Siempre Viva 742', 'proveedorb@example.com', 'J-98765432-1');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trabajador`
+-- Estructura de tabla para la tabla `salida`
 --
 
-CREATE TABLE `trabajador` (
-  `cedulaTrabajador` varchar(20) NOT NULL,
-  `nombreTrabajador` varchar(100) DEFAULT NULL,
-  `apellidoTrabajador` varchar(100) DEFAULT NULL,
-  `correoTrabajador` varchar(100) DEFAULT NULL,
-  `telefonoTrabajador` varchar(15) DEFAULT NULL,
-  `codCargo` int(11) DEFAULT NULL
+CREATE TABLE `salida` (
+  `clSalida` int(10) NOT NULL,
+  `codSalida` int(10) NOT NULL,
+  `fechaSalida` datetime NOT NULL,
+  `clEmpleado` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `trabajador`
---
-
-INSERT INTO `trabajador` (`cedulaTrabajador`, `nombreTrabajador`, `apellidoTrabajador`, `correoTrabajador`, `telefonoTrabajador`, `codCargo`) VALUES
-('V-12345678-9', 'Carlos', 'Pérez', 'carlos.perez@example.com', '04141234567', 1),
-('V-98765432-1', 'Ana', 'Gómez', 'ana.gomez@example.com', '04149876543', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas`
---
-
-CREATE TABLE `ventas` (
-  `numFactura` int(11) NOT NULL,
-  `fechaVenta` datetime DEFAULT NULL,
-  `tipoPago` varchar(50) DEFAULT NULL,
-  `cedulaCliente` varchar(20) DEFAULT NULL,
-  `codBanco` int(11) DEFAULT NULL,
-  `cedulaTrabajador` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ventas`
---
-
-INSERT INTO `ventas` (`numFactura`, `fechaVenta`, `tipoPago`, `cedulaCliente`, `codBanco`, `cedulaTrabajador`) VALUES
-(1001, '2024-03-01 10:00:00', 'Tarjeta de Crédito', 'V-11223344-5', 1, 'V-12345678-9'),
-(1002, '2024-03-15 14:30:00', 'Efectivo', 'V-55667788-9', 2, 'V-98765432-1');
 
 --
 -- Índices para tablas volcadas
@@ -330,85 +222,203 @@ INSERT INTO `ventas` (`numFactura`, `fechaVenta`, `tipoPago`, `cedulaCliente`, `
 -- Indices de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  ADD PRIMARY KEY (`codAlmacen`);
+  ADD PRIMARY KEY (`clAlmacen`);
 
 --
 -- Indices de la tabla `area`
 --
 ALTER TABLE `area`
-  ADD PRIMARY KEY (`codArea`);
-
---
--- Indices de la tabla `banco`
---
-ALTER TABLE `banco`
-  ADD PRIMARY KEY (`codBanco`);
+  ADD PRIMARY KEY (`clArea`),
+  ADD KEY `areaAlmacen` (`clAlmacen`);
 
 --
 -- Indices de la tabla `cargo`
 --
 ALTER TABLE `cargo`
-  ADD PRIMARY KEY (`codCargo`);
+  ADD PRIMARY KEY (`clCargo`);
 
 --
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`codCategoria`);
+  ADD PRIMARY KEY (`clCategoria`);
 
 --
--- Indices de la tabla `cliente`
+-- Indices de la tabla `detalleencargo`
 --
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`cedulaCliente`);
+ALTER TABLE `detalleencargo`
+  ADD KEY `detalleencargoExistencia` (`clExistencia`),
+  ADD KEY `detalleencargoEncargo` (`clEncargo`);
 
 --
--- Indices de la tabla `detalleentrega`
+-- Indices de la tabla `detallesalida`
 --
-ALTER TABLE `detalleentrega`
-  ADD PRIMARY KEY (`codDetalleEntrega`);
+ALTER TABLE `detallesalida`
+  ADD KEY `detallesalidaExistencia` (`clExistencia`),
+  ADD KEY `detallesalidaSalida` (`clSalida`);
 
 --
--- Indices de la tabla `detalleventa`
+-- Indices de la tabla `empleado`
 --
-ALTER TABLE `detalleventa`
-  ADD PRIMARY KEY (`codDetalleVenta`);
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`clEmpleado`),
+  ADD KEY `empleadoCargo` (`clCargo`);
 
 --
--- Indices de la tabla `entregas`
+-- Indices de la tabla `encargo`
 --
-ALTER TABLE `entregas`
-  ADD PRIMARY KEY (`codEntrega`);
+ALTER TABLE `encargo`
+  ADD PRIMARY KEY (`clEncargo`),
+  ADD KEY `encargoProveedor` (`clProveedor`),
+  ADD KEY `encargoEmpleado` (`clEmpleado`);
 
 --
 -- Indices de la tabla `existencia`
 --
 ALTER TABLE `existencia`
-  ADD PRIMARY KEY (`codExistencia`);
+  ADD PRIMARY KEY (`clExistencia`),
+  ADD KEY `existenciaArea` (`clArea`),
+  ADD KEY `existenciaProducto` (`clProducto`);
 
 --
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`codProducto`);
+  ADD PRIMARY KEY (`clProducto`),
+  ADD KEY `productoCategoria` (`clCategoria`);
 
 --
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`codProveedor`);
+  ADD PRIMARY KEY (`clProveedor`);
 
 --
--- Indices de la tabla `trabajador`
+-- Indices de la tabla `salida`
 --
-ALTER TABLE `trabajador`
-  ADD PRIMARY KEY (`cedulaTrabajador`);
+ALTER TABLE `salida`
+  ADD PRIMARY KEY (`clSalida`),
+  ADD KEY `salidaEmpleado` (`clEmpleado`);
 
 --
--- Indices de la tabla `ventas`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`numFactura`);
+
+--
+-- AUTO_INCREMENT de la tabla `almacen`
+--
+ALTER TABLE `almacen`
+  MODIFY `clAlmacen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `area`
+--
+ALTER TABLE `area`
+  MODIFY `clArea` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `cargo`
+--
+ALTER TABLE `cargo`
+  MODIFY `clCargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `clCategoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `clEmpleado` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `encargo`
+--
+ALTER TABLE `encargo`
+  MODIFY `clEncargo` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `existencia`
+--
+ALTER TABLE `existencia`
+  MODIFY `clExistencia` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `clProducto` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  MODIFY `clProveedor` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `salida`
+--
+ALTER TABLE `salida`
+  MODIFY `clSalida` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `area`
+--
+ALTER TABLE `area`
+  ADD CONSTRAINT `areaAlmacen` FOREIGN KEY (`clAlmacen`) REFERENCES `almacen` (`clAlmacen`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalleencargo`
+--
+ALTER TABLE `detalleencargo`
+  ADD CONSTRAINT `detalleencargoEncargo` FOREIGN KEY (`clEncargo`) REFERENCES `encargo` (`clEncargo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalleencargoExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detallesalida`
+--
+ALTER TABLE `detallesalida`
+  ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `salida` (`clSalida`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `encargo`
+--
+ALTER TABLE `encargo`
+  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `existencia`
+--
+ALTER TABLE `existencia`
+  ADD CONSTRAINT `existenciaArea` FOREIGN KEY (`clArea`) REFERENCES `area` (`clArea`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `salida`
+--
+ALTER TABLE `salida`
+  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

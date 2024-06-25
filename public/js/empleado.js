@@ -236,7 +236,7 @@ function validarenvio() {
       "error",
       4000,
       "ERROR!",
-      "Por favor, seleccione un cargo! <br/> Recuerde que debe tener alguna registrada!"
+      "Por favor, seleccione un cargo! <br/> Recuerde que debe tener uno registrado!"
     );
     return false;
   } else if (

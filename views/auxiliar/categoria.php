@@ -69,23 +69,23 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="codCategoria">Código Categoría</label>
+                                    <label for="codCategoria">Código</label>
                                     <input class="form-control" type="text" id="codCategoria" name="codCategoria">
                                     <span id="scodCategoria"></span>
                                 </div>
                                 <div class="col-6">
-                                    <label for="nombreCategoria">Nombre de Categoría</label>
+                                    <label for="nombreCategoria">Nombre</label>
                                     <input class="form-control" type="text" id="nombreCategoria" name="nombreCategoria">
                                     <span id="snombreCategoria"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                                <div class="col">
-                                    <br>
-                                    <hr />
-                                </div>
+                            <div class="col">
+                                <br>
+                                <hr />
                             </div>
+                        </div>
                         <div class="row mt-3">
                             <div class="col-md-12 text-center">
                                 <button type="button" class="btn btn-primary" id="proceso"></button>

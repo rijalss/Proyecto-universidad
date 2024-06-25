@@ -40,14 +40,12 @@
 					<table class="table table-striped table-hover" id="tablaempleado">
 						<thead>
 							<tr>
-								<th>Cedula</th>
+								<th>Cédula</th>
 								<th>Nombre</th>
 								<th>Apellido</th>
-								<th>Telefono</th>
+								<th>Teléfono</th>
 								<th>Correo</th>
 								<th>Cargo</th>
-
-
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -122,8 +120,8 @@
 												</div>
 												<div class="row">
 													<div class="col">
-													
-														<hr/>
+
+														<hr />
 													</div>
 												</div>
 												<div class="row justify-content-center">
