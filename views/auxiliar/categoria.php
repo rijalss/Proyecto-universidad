@@ -88,7 +88,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-primary" id="proceso"></button>
+                                <button type="button" class="btn btn-dark" id="proceso"></button>
                             </div>
                         </div>
                     </form>
