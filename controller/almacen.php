@@ -7,51 +7,35 @@ if (!is_file("model/" . $pagina . ".php")) {
 require_once("model/" . $pagina . ".php");
 if (is_file("views/" . $pagina . ".php")) {
 
-    $o = new Almacen();
-    $a = new Almacen();
-    $almacenes = $a->obtenerAlmacen();
-
     if (!empty($_POST)) {
-        $accion = isset($_POST['accion']) ? $_POST['accion'] : null;
-        $accionArea = isset($_POST['accionArea']) ? $_POST['accionArea'] : null;
+
+        $p = new Almacen();
+        
+        $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($o->consultar());
-        } elseif ($accion == 'consultatr') {
-            $o->set_nombreAlmacen(isset($_POST['nombreAlmacen']) ? $_POST['nombreAlmacen'] : null);
-            echo  json_encode($o->consultatr());
+            echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
-            $o->set_nombreAlmacen(isset($_POST['nombreAlmacen']) ? $_POST['nombreAlmacen'] : null);
-            echo  json_encode($o->eliminar());
-        } elseif ($accionArea == 'eliminarArea') {
-            if (isset($_POST['nombreArea']) && $_POST['nombreArea'] != null) {
-                $o->set_nombreArea($_POST['nombreArea']);
-                echo  json_encode($o->eliminarArea());
-            } else {
-                echo json_encode(array("status" => "error", "message" => "nombreArea no puede ser null"));
-            }
+            $p->set_codAlmacen($_POST['codAlmacen']);
+            echo  json_encode($p->eliminar());
         } else {
-            $o->set_nombreAlmacen(isset($_POST['nombreAlmacen']) ? $_POST['nombreAlmacen'] : null);
-            $o->set_direccionAlmacen(isset($_POST['direccionAlmacen']) ? $_POST['direccionAlmacen'] : null);
-            
+            $p->set_codAlmacen($_POST['codAlmacen']);
+            $p->set_nombreAlmacen($_POST['nombreAlmacen']);
+            $p->set_direccionAlmacen($_POST['direccionAlmacen']);
             if ($accion == 'incluir') {
-                echo  json_encode($o->incluir());
+                echo  json_encode($p->incluir());
             } elseif ($accion == 'modificar') {
-                echo  json_encode($o->modificar());
-            } elseif ($accionArea == 'incluirArea') {
-                if (isset($_POST['nombreArea']) && $_POST['nombreArea'] != null) {
-                    $o->set_nombreArea($_POST['nombreArea']);
-                    echo  json_encode($o->incluirArea());
-                } else {
-                    echo json_encode(array("status" => "error", "message" => "nombreArea no puede ser null"));
-                }
+                echo  json_encode($p->modificar());
             }
         }
         exit;
     }
+    
+    // Obtener categorías para la vista
+//  //   $c = new Producto();
+//    // $categorias = $c->obtenerCategoria();
 
     require_once("views/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";
 }
-
