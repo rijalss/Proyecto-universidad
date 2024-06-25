@@ -278,12 +278,13 @@ function pone(pos,accion){
 		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
     	$("#nombreProducto").val($(linea).find("td:eq(1)").text());
     	$("#ultimoPrecio").val($(linea).find("td:eq(2)").text());
-    	$("#descProducto").val($(linea).find("td:eq(3)").text());   
-
-		var nombreCategoria = $(linea).find("td:eq(4)").text();
+		var nombreCategoria = $(linea).find("td:eq(3)").text();
 		$('#categoria option').filter(function() {
             return $(this).text() == nombreCategoria;
         }).prop('selected', true).change();
+    	$("#descProducto").val($(linea).find("td:eq(4)").text());   
+
+		
 
     	$("#modal1").modal("show");
 		
