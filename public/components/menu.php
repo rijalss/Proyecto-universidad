@@ -15,6 +15,9 @@
                         <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="?pagina=usuario">Gestionar Usuario</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="?pagina=producto">Gestionar Producto</a>
                     </li>
                     <li>

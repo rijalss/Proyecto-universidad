@@ -11,15 +11,17 @@
 </head>
 
 <body>
-<nav class="navbar bg-primary fixed-top">
+<!-- <nav class="navbar bg-primary fixed-top">
   <div class="container-fluid">
     <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
     <div class="d-flex justify-content-end">
       <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt="Salir"></a>
     </div>
   </div>
-</nav>
-
+</nav> -->
+	<!-- Header -->
+	<?php require_once("public/components/menu.php"); ?>
+	<!-- Header -->
 
     <!-- Title -->
     <br><br><br><br>
@@ -48,9 +50,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Encargos</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Notas de Entrada</h5>
                         <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio.</p>
-                        <a href="?pagina=entrada" class="btn btn-primary">Gestionar Encargo</a>
+                        <a href="?pagina=entrada" class="btn btn-primary">Gestionar Notas de Entrada</a>
                     </div>
                 </div>
             </div>

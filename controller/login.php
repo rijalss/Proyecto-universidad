@@ -21,7 +21,7 @@ if (is_file("views/" . $pagina . ".php")) {
                 exit;
             } else {
                 // Si no coinciden, muestra un mensaje de error 
-                echo "<script>lert('Correo o contraseña incorrectos'); window.location.href='index.php';</script>";
+                echo "<script>alert('Correo o contraseña incorrectos'); window.location.href='index.php';</script>";
                 exit;
             }
         }

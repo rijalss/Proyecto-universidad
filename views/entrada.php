@@ -25,10 +25,10 @@
 
     <section class="d-flex flex-column align-items-center">
         <br><br><br><br>
-        <h2 class="text-primary text-center">Gestionar Encargo</h2>
+        <h2 class="text-primary text-center">Gestionar Notas de Entrada</h2>
         <div class="container">
             <div class="text-left">
-                <button class="btn btn-success" id="incluir">Registrar Encargo</button>
+                <button class="btn btn-success" id="incluir">Registrar Notas de Entrada</button>
             </div>
         </div>
         <div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
