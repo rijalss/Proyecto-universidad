@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2024 a las 08:39:36
+-- Tiempo de generación: 01-07-2024 a las 03:35:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -102,14 +102,14 @@ INSERT INTO `categoria` (`clCategoria`, `codCategoria`, `nombreCategoria`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalleencargo`
+-- Estructura de tabla para la tabla `detalleentrada`
 --
 
-CREATE TABLE `detalleencargo` (
-  `precioEncargo` decimal(10,2) NOT NULL,
-  `cantidadEncargo` int(10) NOT NULL,
-  `clEncargo` int(10) NOT NULL,
-  `clExistencia` int(10) NOT NULL
+CREATE TABLE `detalleentrada` (
+  `precioEntrada` decimal(10,2) NOT NULL,
+  `cantidadEntrada` int(10) NOT NULL,
+  `clEntrada` int(10) NOT NULL,
+  `clProducto` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -145,21 +145,6 @@ CREATE TABLE `empleado` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `encargo`
---
-
-CREATE TABLE `encargo` (
-  `clEncargo` int(10) NOT NULL,
-  `observacion` varchar(200) NOT NULL,
-  `fechaEncargo` datetime NOT NULL,
-  `numFactura` int(10) NOT NULL,
-  `clProveedor` int(10) NOT NULL,
-  `clEmpleado` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `existencia`
 --
 
@@ -168,6 +153,33 @@ CREATE TABLE `existencia` (
   `cantidadExistencia` int(10) NOT NULL,
   `clArea` int(10) NOT NULL,
   `clProducto` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notaentrada`
+--
+
+CREATE TABLE `notaentrada` (
+  `clEntrada` int(10) NOT NULL,
+  `fechaEntrada` datetime NOT NULL,
+  `numFactura` int(10) NOT NULL,
+  `clProveedor` int(10) NOT NULL,
+  `clEmpleado` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notasalida`
+--
+
+CREATE TABLE `notasalida` (
+  `clSalida` int(10) NOT NULL,
+  `codSalida` int(10) NOT NULL,
+  `fechaSalida` datetime NOT NULL,
+  `clEmpleado` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -201,19 +213,6 @@ CREATE TABLE `proveedor` (
   `correoProveedor` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `salida`
---
-
-CREATE TABLE `salida` (
-  `clSalida` int(10) NOT NULL,
-  `codSalida` int(10) NOT NULL,
-  `fechaSalida` datetime NOT NULL,
-  `clEmpleado` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Índices para tablas volcadas
 --
@@ -244,11 +243,11 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`clCategoria`);
 
 --
--- Indices de la tabla `detalleencargo`
+-- Indices de la tabla `detalleentrada`
 --
-ALTER TABLE `detalleencargo`
-  ADD KEY `detalleencargoExistencia` (`clExistencia`),
-  ADD KEY `detalleencargoEncargo` (`clEncargo`);
+ALTER TABLE `detalleentrada`
+  ADD KEY `detalleencargoEncargo` (`clEntrada`),
+  ADD KEY `detalleencargoProducto` (`clProducto`);
 
 --
 -- Indices de la tabla `detallesalida`
@@ -265,20 +264,27 @@ ALTER TABLE `empleado`
   ADD KEY `empleadoCargo` (`clCargo`);
 
 --
--- Indices de la tabla `encargo`
---
-ALTER TABLE `encargo`
-  ADD PRIMARY KEY (`clEncargo`),
-  ADD KEY `encargoProveedor` (`clProveedor`),
-  ADD KEY `encargoEmpleado` (`clEmpleado`);
-
---
 -- Indices de la tabla `existencia`
 --
 ALTER TABLE `existencia`
   ADD PRIMARY KEY (`clExistencia`),
   ADD KEY `existenciaArea` (`clArea`),
   ADD KEY `existenciaProducto` (`clProducto`);
+
+--
+-- Indices de la tabla `notaentrada`
+--
+ALTER TABLE `notaentrada`
+  ADD PRIMARY KEY (`clEntrada`),
+  ADD KEY `encargoProveedor` (`clProveedor`),
+  ADD KEY `encargoEmpleado` (`clEmpleado`);
+
+--
+-- Indices de la tabla `notasalida`
+--
+ALTER TABLE `notasalida`
+  ADD PRIMARY KEY (`clSalida`),
+  ADD KEY `salidaEmpleado` (`clEmpleado`);
 
 --
 -- Indices de la tabla `producto`
@@ -292,13 +298,6 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`clProveedor`);
-
---
--- Indices de la tabla `salida`
---
-ALTER TABLE `salida`
-  ADD PRIMARY KEY (`clSalida`),
-  ADD KEY `salidaEmpleado` (`clEmpleado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -335,16 +334,22 @@ ALTER TABLE `empleado`
   MODIFY `clEmpleado` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `encargo`
---
-ALTER TABLE `encargo`
-  MODIFY `clEncargo` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `existencia`
 --
 ALTER TABLE `existencia`
   MODIFY `clExistencia` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `notaentrada`
+--
+ALTER TABLE `notaentrada`
+  MODIFY `clEntrada` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `notasalida`
+--
+ALTER TABLE `notasalida`
+  MODIFY `clSalida` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -359,12 +364,6 @@ ALTER TABLE `proveedor`
   MODIFY `clProveedor` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `salida`
---
-ALTER TABLE `salida`
-  MODIFY `clSalida` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -375,31 +374,24 @@ ALTER TABLE `area`
   ADD CONSTRAINT `areaAlmacen` FOREIGN KEY (`clAlmacen`) REFERENCES `almacen` (`clAlmacen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `detalleencargo`
+-- Filtros para la tabla `detalleentrada`
 --
-ALTER TABLE `detalleencargo`
-  ADD CONSTRAINT `detalleencargoEncargo` FOREIGN KEY (`clEncargo`) REFERENCES `encargo` (`clEncargo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalleencargoExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE;
+ALTER TABLE `detalleentrada`
+  ADD CONSTRAINT `detalleencargoEncargo` FOREIGN KEY (`clEntrada`) REFERENCES `notaentrada` (`clEntrada`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalleencargoProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallesalida`
 --
 ALTER TABLE `detallesalida`
   ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `salida` (`clSalida`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `notasalida` (`clSalida`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `encargo`
---
-ALTER TABLE `encargo`
-  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `existencia`
@@ -409,16 +401,23 @@ ALTER TABLE `existencia`
   ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `notaentrada`
+--
+ALTER TABLE `notaentrada`
+  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `notasalida`
+--
+ALTER TABLE `notasalida`
+  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `salida`
---
-ALTER TABLE `salida`
-  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
