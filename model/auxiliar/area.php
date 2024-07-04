@@ -6,7 +6,6 @@ class Area extends Conexion
 {
     private $codArea;
     private $nombreArea;
-    private $clAlmacen;
     //////////////////////////SET//////////////////////////
 
     function set_codArea($valor)
@@ -17,11 +16,6 @@ class Area extends Conexion
     function set_nombreArea($valor)
     {
         $this->nombreArea = $valor;
-    }
-
-    function set_clAlmacen($valor)
-    {
-        $this->clAlmacen = $valor;
     }
 
     //////////////////////////GET//////////////////////////
@@ -36,10 +30,6 @@ class Area extends Conexion
         return $this->nombreArea;
     }
 
-    function get_clAlmacen()
-    {
-        return $this->clAlmacen;
-    }
 
 
     //////////////////////////METODOS//////////////////////////
@@ -56,12 +46,10 @@ class Area extends Conexion
             try {
                 $co->query("INSERT INTO area(
                     codArea,
-                    nombreArea,
-                    clAlmacen
+                    nombreArea
                     ) VALUES (
                     '$this->codArea',
-                    '$this->nombreArea',
-                    '$this->clAlmacen'
+                    '$this->nombreArea'
                     )");
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el Área correctamente';
@@ -84,8 +72,7 @@ class Area extends Conexion
         if ($this->existe($this->codArea)) {
             try {
                 $co->query("UPDATE area 
-                SET nombreArea = '$this->nombreArea',
-                clAlmacen = '$this->clAlmacen'
+                SET nombreArea = '$this->nombreArea'
                 WHERE codArea = '$this->codArea'
                 ");
                 $r['resultado'] = 'modificar';
@@ -138,9 +125,7 @@ class Area extends Conexion
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT a.codArea, a.nombreArea, al.nombreAlmacen
-                FROM area a
-                JOIN almacen al ON a.clAlmacen =al.clAlmacen");
+            $resultado = $co->query("SELECT * FROM area");
 
             if ($resultado) {
 
@@ -152,9 +137,6 @@ class Area extends Conexion
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreArea'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['nombreAlmacen'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<button type='button'

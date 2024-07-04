@@ -44,7 +44,6 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Nombre</th>
-                                    <th class="text-nowrap" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis;">Almacén</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -62,43 +61,28 @@
         <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Formulario de Áreas</h5>
+                    <h5 class="modal-title">Formulario de Areas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="f" autocomplete="off">
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
-                            <div class="row-6">
-                                <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
                                     <label for="codArea">Código</label>
                                     <input class="form-control" type="text" id="codArea" name="codArea">
                                     <span id="scodArea"></span>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="nombreArea" class="form-label">Nombre</label>
-                                        <input class="form-control" type="text" id="nombreArea" name="nombreArea">
-                                        <span id="snombreArea"></span>
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="almacen" class="form-label">Almacén</label>
-                                        <select class="form-control" name="almacen" id="almacen">
-                                            <option value='disabled' disabled selected>Seleccione un almacén</option>
-                                            <?php
-                                            foreach ($almacenes as $almacen) {
-                                                echo "<option value='" . $almacen['clAlmacen'] . "'>" . $almacen['nombreAlmacen'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <span id="salmacen" class="error"></span>
-                                    </div>
+                                <div class="col-6">
+                                    <label for="nombreArea">Nombre</label>
+                                    <input class="form-control" type="text" id="nombreArea" name="nombreArea">
+                                    <span id="snombreArea"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col">
                                 <br>
                                 <hr />
                             </div>

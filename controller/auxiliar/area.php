@@ -7,7 +7,6 @@ if (!is_file("model/auxiliar/" . $pagina . ".php")) {
 
 
 require_once("model/auxiliar/" . $pagina . ".php");
-require_once("model/almacen.php");
 
 if (is_file("views/auxiliar/" . $pagina . ".php")) {
 
@@ -16,8 +15,6 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
 
         $p = new Area();
         
-
-
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
@@ -28,8 +25,6 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
         } else {
             $p->set_codArea($_POST['codArea']);
             $p->set_nombreArea($_POST['nombreArea']);
-            $p->set_clAlmacen($_POST['clAlmacen']);
-           // $p->set_clCategoria($_POST['categoria']);
 
             if ($accion == 'incluir') {
                 echo  json_encode($p->incluir());
@@ -41,11 +36,6 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
     }
     
     // Obtener categorías para la vista
-    $al= new Almacen();
-    $almacenes = $al->obtenerAlmacen();
-
-
-
     require_once("views/auxiliar/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";

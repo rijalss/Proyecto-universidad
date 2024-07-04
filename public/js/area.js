@@ -106,7 +106,6 @@ $("#proceso").on("click",function(){
 			datos.append('accion','incluir');
 			datos.append('codArea',$("#codArea").val());
 			datos.append('nombreArea',$("#nombreArea").val());
-			datos.append('clAlmacen',$("#almacen").val());
 			enviaAjax(datos);
 		}
 	}
@@ -116,7 +115,6 @@ $("#proceso").on("click",function(){
 			datos.append('accion','modificar');
 			datos.append("codArea", $("#codArea").val());
 			datos.append("nombreArea", $("#nombreArea").val());
-			datos.append('clAlmacen',$("#almacen").val());
 		
 			enviaAjax(datos);
 		}
@@ -162,12 +160,6 @@ $("#proceso").on("click",function(){
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
-		var almacenSeleccionado = $("#almacen").val();
-
-        if (almacenSeleccionado === null || almacenSeleccionado  === "0") {
-			muestraMensaje("error",4000,"ERROR!","Por favor, seleccione una Almacén! <br/> Recuerde que debe tener uno registrado!"); 
-            return false;
-         }
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codArea"),
 			$("#scodArea"),"El formato no debe pasar de los 10 carácteres")==0){
 			muestraMensaje("error",4000,"ERROR!","El código del Área debe coincidir con el formato <br/>" + 
@@ -242,13 +234,6 @@ function pone(pos,accion){
 		$("#codArea").val($(linea).find("td:eq(0)").text());
 		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
     	$("#nombreArea").val($(linea).find("td:eq(1)").text());
-    	
-		var nombreAlmacen = $(linea).find("td:eq(2)").text();
-		$('#almacen option').filter(function() {
-            return $(this).text() == nombreAlmacen;
-        }).prop('selected', true).change();
-
-    
 		
 		
     	$("#modal1").modal("show");
@@ -260,12 +245,6 @@ function pone(pos,accion){
 
     	$("#nombreArea").val($(linea).find("td:eq(1)").text());
 		// $("#ultimoPrecio").prop("readonly", true); //WOW CON READONLY 
-
-
-    	var nombreAlmacen= $(linea).find("td:eq(3)").text();
-		$('#almacen option').filter(function() {
-            return $(this).text() == nombreAlmacen;
-        }).prop('selected', true).change();
 
    		$("#modal1").modal("show");
     }
@@ -337,7 +316,6 @@ function enviaAjax(datos) {
 function limpia(){
 	$("#codArea").val('');
 	$("#nombreArea").val('');
-	$("#almacen").val('disabled');
 	
 	
 }

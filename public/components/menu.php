@@ -35,9 +35,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=empleado">Gestionar Empleado</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?pagina=almacen">Gestionar Almacen</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="complementosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Gestionar Complementos

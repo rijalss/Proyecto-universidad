@@ -99,15 +99,6 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/shop-window.svg" alt=""> Almacenes</h5>
-                        <p class="card-text">Maneja y Gestiona tus almacenes.</p>
-                        <a href="?pagina=almacen" class="btn btn-primary">Gestionar Almacen</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/wrench-adjustable-circle.svg" alt=""> Complementos</h5>
                         <p class="card-text">Gestiona los datos que complementan a tu sistema.</p>
                         <a href="?pagina=complemento" class="btn btn-primary">Gestionar Complementos</a>
