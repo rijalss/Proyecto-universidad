@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<!-- <nav class="navbar bg-primary fixed-top">
+    <!-- <nav class="navbar bg-primary fixed-top">
   <div class="container-fluid">
     <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
     <div class="d-flex justify-content-end">
@@ -19,9 +19,9 @@
     </div>
   </div>
 </nav> -->
-	<!-- Header -->
-	<?php require_once("public/components/menu.php"); ?>
-	<!-- Header -->
+    <!-- Header -->
+    <?php require_once("public/components/menu.php"); ?>
+    <!-- Header -->
 
     <!-- Title -->
     <br><br><br><br>
@@ -90,7 +90,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Empleados</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-standing.svg" alt=""> Empleados</h5>
                         <p class="card-text">Gestiona tus empleados con facilidad.</p>
                         <a href="?pagina=empleado" class="btn btn-primary">Gestionar Empleado</a>
                     </div>
@@ -102,6 +102,15 @@
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/wrench-adjustable-circle.svg" alt=""> Complementos</h5>
                         <p class="card-text">Gestiona los datos que complementan a tu sistema.</p>
                         <a href="?pagina=complemento" class="btn btn-primary">Gestionar Complementos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Gestionar Usuario</h5>
+                        <p class="card-text">Gestiona los usuarios que cuentan con acceso a tu sistema.</p>
+                        <a href="?pagina=usuario" class="btn btn-primary">Gestionar Complementos</a>
                     </div>
                 </div>
             </div>

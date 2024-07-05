@@ -105,14 +105,14 @@ class Proveedor extends Conexion
                     '$this->direccionProveedor'
                 )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el proveedor correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el proveedor correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'ERROR! <br/> El EMPLEADO colocado ya existe!';
+            $r['mensaje'] = 'ERROR! <br/> El RIF colocado ya existe!';
         }
         return $r;
     }

@@ -21,7 +21,7 @@
                         <a class="nav-link" href="?pagina=producto">Gestionar Producto</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="?pagina=entrada">Gestionar Encargo</a>
+                        <a class="nav-link" href="?pagina=entrada">Gestionar Notas de Entrada</a>
                     </li>
                     <li>
                         <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>

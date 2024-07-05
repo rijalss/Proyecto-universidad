@@ -61,7 +61,7 @@ class Categoria extends Conexion
                     '$this->nombreCategoria'
                     )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó la categoría correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró la categoría correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();

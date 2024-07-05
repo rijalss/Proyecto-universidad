@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2024 a las 03:35:26
+-- Tiempo de generación: 05-07-2024 a las 05:31:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,42 +24,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `almacen`
---
-
-CREATE TABLE `almacen` (
-  `clAlmacen` int(10) NOT NULL,
-  `codAlmacen` int(10) NOT NULL,
-  `nombreAlmacen` varchar(30) NOT NULL,
-  `direccionAlmacen` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `almacen`
---
-
-INSERT INTO `almacen` (`clAlmacen`, `codAlmacen`, `nombreAlmacen`, `direccionAlmacen`) VALUES
-(1, 1234, 'carrera 1', 'carrera 1 entre calle 2 y 3');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `area`
 --
 
 CREATE TABLE `area` (
   `clArea` int(10) NOT NULL,
   `codArea` int(10) NOT NULL,
-  `nombreArea` varchar(30) NOT NULL,
-  `clAlmacen` int(30) NOT NULL
+  `nombreArea` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `area`
---
-
-INSERT INTO `area` (`clArea`, `codArea`, `nombreArea`, `clAlmacen`) VALUES
-(1, 1234, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -73,12 +45,6 @@ CREATE TABLE `cargo` (
   `nombreCargo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `cargo`
---
-
-INSERT INTO `cargo` (`clCargo`, `codCargo`, `nombreCargo`) VALUES
-(1, 1234, 'director');
 
 -- --------------------------------------------------------
 
@@ -92,12 +58,6 @@ CREATE TABLE `categoria` (
   `nombreCategoria` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`clCategoria`, `codCategoria`, `nombreCategoria`) VALUES
-(1, 1234, 'lacteo');
 
 -- --------------------------------------------------------
 
@@ -141,6 +101,7 @@ CREATE TABLE `empleado` (
   `telefonoEmpleado` bigint(11) NOT NULL,
   `clCargo` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -197,6 +158,7 @@ CREATE TABLE `producto` (
   `clCategoria` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
 -- --------------------------------------------------------
 
 --
@@ -213,22 +175,28 @@ CREATE TABLE `proveedor` (
   `correoProveedor` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(10) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `almacen`
---
-ALTER TABLE `almacen`
-  ADD PRIMARY KEY (`clAlmacen`);
-
---
 -- Indices de la tabla `area`
 --
 ALTER TABLE `area`
-  ADD PRIMARY KEY (`clArea`),
-  ADD KEY `areaAlmacen` (`clAlmacen`);
+  ADD PRIMARY KEY (`clArea`);
 
 --
 -- Indices de la tabla `cargo`
@@ -300,38 +268,38 @@ ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`clProveedor`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `usuario`
 --
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de la tabla `almacen`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-ALTER TABLE `almacen`
-  MODIFY `clAlmacen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `clArea` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `clArea` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `clCargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `clCargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `clCategoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `clCategoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `clEmpleado` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `clEmpleado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `existencia`
@@ -355,23 +323,23 @@ ALTER TABLE `notasalida`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `clProducto` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `clProducto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `clProveedor` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `clProveedor` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `area`
---
-ALTER TABLE `area`
-  ADD CONSTRAINT `areaAlmacen` FOREIGN KEY (`clAlmacen`) REFERENCES `almacen` (`clAlmacen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalleentrada`

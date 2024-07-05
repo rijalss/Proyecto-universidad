@@ -61,7 +61,7 @@ class Cargo extends Conexion
                     '$this->nombreCargo'
                     )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el cargo correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el cargo correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();

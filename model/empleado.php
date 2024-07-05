@@ -120,7 +120,7 @@ class Empleado extends Conexion
                     '$this->clCargo'
                 )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el empleado correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el empleado correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();

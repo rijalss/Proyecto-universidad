@@ -90,7 +90,7 @@ class Producto extends Conexion
                     '$this->clCategoria'
                     )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el producto correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el producto correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();

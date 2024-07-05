@@ -52,7 +52,7 @@ class Area extends Conexion
                     '$this->nombreArea'
                     )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el Área correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el Área correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();

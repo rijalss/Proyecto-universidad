@@ -125,7 +125,7 @@ if($.trim($("#mensajes").text()) != ""){
 	}
 	
 $("#proceso").on("click",function(){
-	if($(this).text()=="INCLUIR"){
+	if($(this).text()=="REGISTRAR"){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
@@ -184,7 +184,7 @@ $("#proceso").on("click",function(){
 
 	$("#incluir").on("click",function(){
 		limpia();
-		$("#proceso").text("INCLUIR");
+		$("#proceso").text("REGISTRAR");
 		$("#modal1").modal("show");
 	});
 });
@@ -339,8 +339,8 @@ function enviaAjax(datos) {
            $("#resultadoconsulta").html(lee.mensaje);
 		   crearDT();
         }else if (lee.resultado == "incluir") {
-    	    muestraMensaje('info', 4000,'INCLUIR', lee.mensaje);
-		   if(lee.mensaje=='Registro Incluido!<br/> Se incluyó el producto correctamente'){
+    	    muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
+		   if(lee.mensaje=='Registro Incluido!<br/> Se registró el producto correctamente'){
 			   $("#modal1").modal("hide");
 			   consultar();
 		   }

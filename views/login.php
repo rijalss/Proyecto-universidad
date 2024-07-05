@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="mb-5">
-                  <h3>Inciar Sesión</h3>
+                  <h3>Iniciar Sesión</h3>
                 </div>
               </div>
             </div>
@@ -32,12 +32,12 @@
               <div class="row gy-3 gy-md-4 overflow-hidden">
 
                 <div class="col-12">
-                  <label for="email" class="form-label">Correo <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                  <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="username" id="username" required>
                 </div>
 
                 <div class="col-12">
-                  <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                  <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                   <input type="password" class="form-control" name="password" id="password" value="" required>
                 </div>
 
