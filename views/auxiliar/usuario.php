@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categoría</title>
+    <title>Usuario</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
@@ -41,9 +41,9 @@
                         <table class="table table-striped table-hover" id="tablausuario">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Username</th>
                                     <th>Password</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="resultadoconsulta"></tbody>
@@ -60,7 +60,7 @@
         <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Formulario de Categorías</h5>
+                    <h5 class="modal-title">Formulario de Usuarios</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -109,7 +109,7 @@
 
     <script src="public/bootstrap/js/sidebar.js"></script>
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="public/js/categoria.js"></script>
+    <script type="text/javascript" src="public/js/usuario.js"></script>
     <!-- Scripts -->
 </body>
 

@@ -37,6 +37,15 @@
     <!-- Container de cards -->
     <div class="container">
         <div class="row">
+        <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Usuarios</h5>
+                        <p class="card-text">Gestiona los usuarios que cuentan con acceso a tu sistema.</p>
+                        <a href="?pagina=usuario" class="btn btn-primary">Gestionar Usuario</a>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
@@ -46,7 +55,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
@@ -102,15 +110,6 @@
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/wrench-adjustable-circle.svg" alt=""> Complementos</h5>
                         <p class="card-text">Gestiona los datos que complementan a tu sistema.</p>
                         <a href="?pagina=complemento" class="btn btn-primary">Gestionar Complementos</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Gestionar Usuario</h5>
-                        <p class="card-text">Gestiona los usuarios que cuentan con acceso a tu sistema.</p>
-                        <a href="?pagina=usuario" class="btn btn-primary">Gestionar Complementos</a>
                     </div>
                 </div>
             </div>
