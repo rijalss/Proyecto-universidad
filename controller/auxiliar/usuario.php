@@ -21,6 +21,8 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
         } else {
             $u->set_username($_POST['username']);
             $u->set_password($_POST['password']);
+            $u->set_id($_POST['id']);
+
             if ($accion == 'incluir') {
                 echo  json_encode($u->incluir());
             } elseif ($accion == 'modificar') {

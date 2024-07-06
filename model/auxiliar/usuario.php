@@ -6,6 +6,7 @@ class Usuario extends Conexion
 {
     private $username;
     private $password;
+    private $id;
     //////////////////////////SET//////////////////////////
 
     function set_username($valor)
@@ -18,6 +19,11 @@ class Usuario extends Conexion
         $this->password = $valor;
     }
 
+    function set_id($valor)
+    {
+        $this->id = $valor;
+    }
+
     //////////////////////////GET//////////////////////////
 
     function get_username()
@@ -28,6 +34,11 @@ class Usuario extends Conexion
     function get_password()
     {
         return $this->password;
+    }
+
+    function get_id()
+    {
+        return $this->id;
     }
 
     //////////////////////////METODOS//////////////////////////
@@ -67,12 +78,12 @@ class Usuario extends Conexion
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
-        if ($this->existe($this->username)) {
+        if ($this->existeid($this->id)) {
             try {
                 $co->query("UPDATE usuario 
-                SET password = '$this->password'
-                WHERE username = '$this->username'
-                ");
+                SET username = '$this->username', password = '$this->password'
+                WHERE id = '$this->id'
+            ");
                 $r['resultado'] = 'modificar';
                 $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el usuario correctamente';
             } catch (Exception $e) {
@@ -85,6 +96,7 @@ class Usuario extends Conexion
         }
         return $r;
     }
+
 
 
     function eliminar()
@@ -131,6 +143,9 @@ class Usuario extends Conexion
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
                     $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['id'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['username'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
@@ -171,6 +186,28 @@ class Usuario extends Conexion
         try {
 
             $resultado = $co->query("SELECT * FROM usuario WHERE username='$username'");
+
+
+            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+            if ($fila) {
+
+                return true;
+            } else {
+
+                return false;;
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    private function existeid($id)
+    {
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+
+            $resultado = $co->query("SELECT * FROM usuario WHERE id='$id'");
 
 
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);

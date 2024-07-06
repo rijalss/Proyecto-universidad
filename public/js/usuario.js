@@ -104,6 +104,7 @@ $(document).ready(function(){
             if(validarenvio()){
                 var datos = new FormData();
                 datos.append('accion','modificar');
+                datos.append('id', $("#id").val());
                 datos.append('username',$("#username").val());
                 datos.append('password',$("#password").val());
     
@@ -217,14 +218,16 @@ $(document).ready(function(){
 
         if(accion==0){
             $("#proceso").text("MODIFICAR");
-            $("#username").val($(linea).find("td:eq(0)").text());
-            $("#password").val($(linea).find("td:eq(1)").text());
+            $("#id").val($(linea).find("td:eq(0)").text());
+            $("#username").val($(linea).find("td:eq(1)").text());
+            $("#password").val($(linea).find("td:eq(2)").text());
         }
         else{
             $("#proceso").text("ELIMINAR");
         }
-        $("#username").val($(linea).find("td:eq(0)").text());
-        $("#password").val($(linea).find("td:eq(1)").text());
+        $("#id").val($(linea).find("td:eq(0)").text());
+        $("#username").val($(linea).find("td:eq(1)").text());
+        $("#password").val($(linea).find("td:eq(2)").text());
         
         $("#modal1").modal("show");
     }
@@ -289,5 +292,5 @@ function enviaAjax(datos) {
 function limpia(){
     $("#username").val('');
 	$("#password").val('');
-
+	$("#id").val('');
 }

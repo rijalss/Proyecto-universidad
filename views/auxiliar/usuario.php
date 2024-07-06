@@ -41,6 +41,7 @@
                         <table class="table table-striped table-hover" id="tablausuario">
                             <thead>
                                 <tr>
+                                    <th>id</th>
                                     <th>Username</th>
                                     <th>Password</th>
                                     <th>Acciones</th>
@@ -68,12 +69,16 @@
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-2">
+                                    <label for="id">id</label>
+                                    <input class="form-control" type="text" id="id" name="id" readonly>
+                                </div>
+                                <div class="col-5">
                                     <label for="username">Username</label>
                                     <input class="form-control" type="text" id="username" name="username">
                                     <span id="susername"></span>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-5">
                                     <label for="password">Password</label>
                                     <input class="form-control" type="text" id="password" name="password">
                                     <span id="spassword"></span>
