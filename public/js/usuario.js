@@ -94,6 +94,7 @@ $(document).ready(function(){
             if(validarenvio()){
                 var datos = new FormData();
                 datos.append('accion','incluir');
+                datos.append('id',$("#id").val());
                 datos.append('username',$("#username").val());
                 datos.append('password',$("#password").val());
     
