@@ -161,7 +161,7 @@ $(document).ready(function(){
 function validarenvio(){
     var empleadoseleccionado = $("#empleado").val();
     var proveedorseleccionado = $("#proveedor").val();
-    var fecha = $("#fecchaEntrada").val();
+   
 
      if (empleadoseleccionado === null || empleadoseleccionado === "0") {
         muestraMensaje("error",4000,"ERROR!","Por favor, seleccione un empleado! <br/> Recuerde que debe tener alguno registrado!"); 
