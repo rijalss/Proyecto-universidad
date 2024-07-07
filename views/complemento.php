@@ -16,7 +16,8 @@
     <!-- Header -->
 
     <!-- Title -->
-    <br><br><br><br>
+    
+    <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
     <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Complementos!</h1>
     <?php
     /*
@@ -25,8 +26,10 @@
         echo "<h2 class=\"display-4 text-center text-uppercase font-weight-bold\">$nombreEmpleado!</h2>";
         */
     ?>
-    <br><br>
+    
     <!-- Container de cards -->
+     </section>
+     
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-3">

@@ -10,20 +10,13 @@
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
-<div id="mensajes" style="display:none">
-    <?php
-    if (!empty($mensaje)) {
-        echo $mensaje;
-    }
-    ?>
-</div>
 
 <body>
     <!-- Header -->
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
     <div class="container" style="width: 75%;">
-        <section class="d-flex flex-column align-items-center sm-4">
+    <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;"> 
             <br><br><br><br>
             <h2 class="text-primary text-center">Gestionar Cargo</h2>
             <div class="container">

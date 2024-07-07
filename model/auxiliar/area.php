@@ -139,15 +139,10 @@ class Area extends Conexion
                     $respuesta = $respuesta . $r['nombreArea'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-warning small-width d-inline-block mr-1' 
-                    onclick='pone(this,0)'
-                    style='margin-right: 5px;'
-                    >Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-danger small-width d-inline-block' 
-                    onclick='pone(this,1)'
-                    >Eliminar</button>";
+                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta = $respuesta . "</div>";
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "</tr>";
                 }

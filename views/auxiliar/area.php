@@ -10,13 +10,7 @@
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
-<div id="mensajes" style="display:none">
-    <?php
-    if (!empty($mensaje)) {
-        echo $mensaje;
-    }
-    ?>
-</div>
+
 
 
 <body>
@@ -24,8 +18,8 @@
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
     <div class="container" style="width: 75%;">
-        <section class="d-flex flex-column align-items-center sm-4">
-            <br><br><br><br>
+    <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;"> 
+           
             <h2 class="text-primary text-center">Gestionar Área</h2>
             <div class="container">
                 <div class="text-left">

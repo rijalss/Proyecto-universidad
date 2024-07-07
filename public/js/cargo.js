@@ -6,8 +6,8 @@ function consultar(){
 
 function destruyeDT(){
 	//1 se destruye el datatablet
-	if ($.fn.DataTable.isDataTable("#tablacargo")) {
-            $("#tablacargo").DataTable().destroy();
+	if ($.fn.DataTable.isDataTable("#tablaentrada")) {
+            $("#tablaentrada").DataTable().destroy();
     }
 }
 

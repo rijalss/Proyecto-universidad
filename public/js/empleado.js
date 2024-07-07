@@ -135,10 +135,7 @@ $(document).ready(function () {
 
   //////////////////////////////BOTONES/////////////////////////////////////
 
-  if ($.trim($("#mensajes").text()) != "") {
-    //icono,tiempo,titulo,mensaje
-    muestraMensaje("success", 4000, "Resultado", $("#mensajes").html());
-  }
+  
 
   $("#proceso").on("click", function () {
     if ($(this).text() == "REGISTRAR") {

@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
-    if($.trim($("#mensajes").text()) != ""){
-        muestraMensaje($("#mensajes").html());
-    }
+  
         
         $("#cantidadVenta").on("keypress",function(e){
             validarkeypress(/^[0-9-\b]*$/,e);
