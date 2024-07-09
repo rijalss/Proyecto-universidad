@@ -135,7 +135,7 @@ class Entrada extends Conexion{
             }
         } else {
             $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'ERROR! <br/> La factura ya existe colocado ya existe!';
+            $r['mensaje'] = 'ERROR! <br/> EL NÚMERO DE FACTURA colocado ya existe!';
         }
         return $r;
     }
@@ -234,7 +234,7 @@ class Entrada extends Conexion{
             }
         } else {
             $r['resultado'] = 'modificar';
-            $r['mensaje'] =  'ERROR! <br/> La factura colocada NO existe!';
+            $r['mensaje'] =  'ERROR! <br/> EL NÚMERO DE FACTURA colocado ya existe!';
         }
         return $r;
     }
@@ -257,7 +257,7 @@ class Entrada extends Conexion{
             }
         } else {
             $r['resultado'] = 'eliminar';
-            $r['mensaje'] =  'ERROR! <br/> La factura colocada NO existe!!';
+            $r['mensaje'] =  'ERROR! <br/> EL NÚMERO DE FACTURA colocada NO existe!!';
         }
         return $r;
     }

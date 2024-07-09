@@ -121,18 +121,25 @@ $(document).ready(function(){
 
 
 	
-$("#proceso").on("click",function(){
-	if($(this).text()=="REGISTRAR"){
-		if(validarenvio()){
-			var datos = new FormData();
-			datos.append('accion','incluir');
-			datos.append('codProducto',$("#codProducto").val());
-			datos.append('nombreProducto',$("#nombreProducto").val());
-			datos.append('ultimoPrecio',$("#ultimoPrecio").val());
-			datos.append('descProducto',$("#descProducto").val());
-			datos.append("categoria", $("#categoria").val());
+$("#proceso").on("click", function() {
+	if ($(this).text() == "REGISTRAR") {
+		if (validarenvio()) {
+		var datos = new FormData();
+		datos.append('accion', 'incluir');
+		datos.append('codProducto', $("#codProducto").val());
+		datos.append('nombreProducto', $("#nombreProducto").val());
 
-			enviaAjax(datos);
+		// Verificar si ultimoPrecio está vacío
+		var ultimoPrecio = $("#ultimoPrecio").val();
+		if (ultimoPrecio === "") {
+		  ultimoPrecio = "0"; // Asignar 0 si está vacío
+		}
+
+		datos.append('ultimoPrecio', ultimoPrecio);
+		datos.append('descProducto', $("#descProducto").val());
+		datos.append("categoria", $("#categoria").val());
+
+		enviaAjax(datos);
 		}
 	}
 	else if($(this).text()=="MODIFICAR"){

@@ -134,6 +134,7 @@ $(document).ready(function(){
                         enviaAjax(datos);
                     } else {
                         muestraMensaje("info", 2000, "Información", "La eliminación ha sido cancelada.");
+                        $("#modal1").modal("hide");
                     }
                 });
             }

@@ -24,7 +24,7 @@ if (is_file("views/" . $pagina . ".php")) {
             header("Location: ?pagina=principal");
         } else {
              // si no existe, se muestra un mensaje de error
-            echo "<script>alert('Correo o contraseña incorrectos'); window.location.href='index.php';</script>";
+            echo "<script>alert('Usuario o contraseña INCORRECTOS!'); window.location.href='index.php';</script>";
         }
     }
 
