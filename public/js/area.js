@@ -21,7 +21,7 @@ function crearDT(){
             "responsive": true,
             language: {
                 lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron Área",
+                zeroRecords: "No se encontraron Áreas",
                 info: "Página _PAGE_ de _PAGES_",
                 infoEmpty: "No hay Áreas registradas",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
