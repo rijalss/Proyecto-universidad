@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <!-- Rectángulo de fondo eliminado para transparencia -->
+    <circle cx="512" cy="512" r="312" fill="#00467f" stroke="#00467f" />
+    <rect x="200" y="412" width="624" height="200" fill="#ffffff" stroke="#ffffff" />
+    <circle cx="512" cy="512" r="262" fill="none" stroke="#ffffff" stroke-width="20" />
+
+    <!-- Líneas ajustadas dentro del círculo -->
+    <line x1="216" y1="432" x2="260" y2="432" stroke="#00467f" stroke-width="20" />
+    <line x1="766" y1="432" x2="810" y2="432" stroke="#00467f" stroke-width="20" />
+    <line x1="216" y1="472" x2="260" y2="472" stroke="#00467f" stroke-width="20" />
+    <line x1="766" y1="472" x2="810" y2="472" stroke="#00467f" stroke-width="20" />
+    <line x1="216" y1="512" x2="260" y2="512" stroke="#00467f" stroke-width="20" />
+    <line x1="766" y1="512" x2="810" y2="512" stroke="#00467f" stroke-width="20" />
+    <line x1="216" y1="552" x2="260" y2="552" stroke="#00467f" stroke-width="20" />
+    <line x1="766" y1="552" x2="810" y2="552" stroke="#00467f" stroke-width="20" />
+    <line x1="216" y1="592" x2="260" y2="592" stroke="#00467f" stroke-width="20" />
+    <line x1="766" y1="592" x2="810" y2="592" stroke="#00467f" stroke-width="20" />
+
+    <!-- Texto -->
+    <text x="280" y="510" fill="#00467f" font-size="82" font-family="DejaVuSans-Bold">MERCANTIL</text>
+    <text x="370" y="570" fill="#00467f" font-size="62" font-family="DejaVuSans-Bold">A&amp;K 2008</text>
+</svg>

@@ -38,7 +38,7 @@
                                 <th>Proveedor</th>
                                 <th>Factura</th>
                                 <th>Fecha</th>
-                                <th>empleado</th>
+                                <th>Empleado</th>
                                <!-- <th>cantidad producto</th>
                                 <th>precio</th>
                                 <th>area</th>-->

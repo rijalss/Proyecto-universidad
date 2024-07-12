@@ -11,34 +11,21 @@
 </head>
 
 <body>
-    <!-- <nav class="navbar bg-primary fixed-top">
-  <div class="container-fluid">
-    <a href="#" class="navbar-brand text-white">Sistema de Inventario - MERCANTIL A&K 2008, C.A</a>
-    <div class="d-flex justify-content-end">
-      <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt="Salir"></a>
-    </div>
-  </div>
-</nav> -->
+
     <!-- Header -->
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
 
     <!-- Title -->
     <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-    <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
-    <?php
-    /*
-        session_start();
-        $nombreEmpleado = $_SESSION['nombreEmpleado'];
-        echo "<h2 class=\"display-4 text-center text-uppercase font-weight-bold\">$nombreEmpleado!</h2>";
-        */
-    ?>
+        <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
+        <img src="public/img/logo.png" height="110px" width="160px" style="margin: 0; padding: 0;">
     </section>
-   
+
     <!-- Container de cards -->
     <div class="container">
         <div class="row">
-        <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/person-add.svg" alt=""> Usuarios</h5>
@@ -60,7 +47,7 @@
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/house-down.svg" alt=""> Notas de Entrada</h5>
-                        <p class="card-text">Gestiona el abastencimiento de tus productos en tu negocio.</p>
+                        <p class="card-text">Gestiona el abastencimiento de los productos en tu negocio.</p>
                         <a href="?pagina=entrada" class="btn btn-primary">Gestionar Notas de Entrada</a>
                     </div>
                 </div>

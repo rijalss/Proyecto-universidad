@@ -24,9 +24,9 @@ function crearDT(){
             "responsive": true,
             language: {
                 lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron categorias",
+                zeroRecords: "No se encontraron categorías",
                 info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay categorias registradass",
+                infoEmpty: "No hay categorías registradas",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
                 search: "Buscar",
                 paginate: {

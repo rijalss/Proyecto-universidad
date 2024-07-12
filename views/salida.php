@@ -22,7 +22,7 @@
         <h2 class="text-primary text-center">Gestionar Notas de Salida</h2>
         <div class="container">
             <div class="text-left">
-                <button class="btn btn-success" id="incluir">Registrar Nota de Salida</button>
+                <button class="btn btn-success" id="incluir">Registrar Notas de Salida</button>
             </div>
         </div>
         <div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
