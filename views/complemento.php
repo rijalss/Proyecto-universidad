@@ -35,7 +35,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/img/categorization.png" alt=""> Categorias</h5>
+                        <h5 class="card-title"><img width="20PX" src="public/icons/img/categorization.png" alt=""> Categorías</h5>
                         <p class="card-text">Gestiona las categorías que tendran tus productos</p>
                         <a href="?pagina=categoria" class="btn btn-primary">Gestionar Categoría</a>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/area.svg" alt="">Áreas</h5>
                         <p class="card-text">Gestiona tus áreas dentro de tus almacenes.</p>
-                        <a href="?pagina=area" class="btn btn-primary">Gestionar Area</a>
+                        <a href="?pagina=area" class="btn btn-primary">Gestionar Área</a>
                     </div>
                 </div>
             </div>
