@@ -56,7 +56,7 @@
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/area.svg" alt="">Áreas</h5>
-                        <p class="card-text">Gestiona tus áreas dentro de tus almacenes.</p>
+                        <p class="card-text">Gestiona las áreas disponibles.</p>
                         <a href="?pagina=area" class="btn btn-primary">Gestionar Área</a>
                     </div>
                 </div>

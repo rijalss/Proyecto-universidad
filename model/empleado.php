@@ -267,9 +267,9 @@ class Empleado extends Conexion
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $p = $co->prepare("SELECT * FROM cargo");
-        $p->execute();
-        $r = $p->fetchAll(PDO::FETCH_ASSOC);
+        $c = $co->prepare("SELECT * FROM cargo");
+        $c->execute();
+        $r = $c->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
 

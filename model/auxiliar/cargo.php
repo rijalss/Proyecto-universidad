@@ -175,15 +175,4 @@ class Cargo extends Conexion
             return false;
         }
     }
-
-    public function obtenercargos()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $p = $co->prepare("SELECT * FROM cargo");
-        $p->execute();
-        $r = $p->fetchAll(PDO::FETCH_ASSOC);
-        return $r;
-    }
-
 }
