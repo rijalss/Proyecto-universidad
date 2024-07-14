@@ -17,7 +17,7 @@
 	<!-- Header -->
 
 	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-		
+
 		<h2 class="text-primary text-center">Gestionar Producto</h2>
 		<div class="container">
 			<div class="text-left">
@@ -49,7 +49,7 @@
 	</section>
 
 	<!-- Modal -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="modal1">
+	<div class="modal fade" tabindex="-1" role="dialog" id="modalProducto">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -130,20 +130,6 @@
 							</div>
 					</form>
 				</div>
-				<script>
-					document.addEventListener('DOMContentLoaded', (event) => {
-						const checkbox = document.getElementById('habilitarPromedio');
-						const input = document.getElementById('ultimoPrecio');
-						input.disabled = true;
-						checkbox.checked = false;
-					});
-
-					function toggleInput() {
-						const checkbox = document.getElementById('habilitarPromedio');
-						const input = document.getElementById('ultimoPrecio');
-						input.disabled = !checkbox.checked;
-					}
-				</script>
 			</div>
 		</div>
 	</div>

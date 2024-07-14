@@ -10,8 +10,7 @@ class Producto extends Conexion
     private $descProducto;
     private $clCategoria;
 
-    //////////////////////////SET//////////////////////////
-
+    // SETTERS
     function set_codProducto($valor)
     {
         $this->codProducto = $valor;
@@ -37,8 +36,7 @@ class Producto extends Conexion
         $this->clCategoria = $valor;
     }
 
-    //////////////////////////GET//////////////////////////
-
+    // GETTERS
     function get_codProducto()
     {
         return $this->codProducto;
@@ -64,7 +62,7 @@ class Producto extends Conexion
         return $this->descProducto;
     }
 
-    //////////////////////////METODOS//////////////////////////
+    // METÓDOS
 
     function incluir()
     {
@@ -113,9 +111,8 @@ class Producto extends Conexion
                 SET nombreProducto = '$this->nombreProducto',
                 descProducto = '$this->descProducto',
                 ultimoPrecio = '$this->ultimoPrecio',
-                clCategoria = '$this->clCategoria'
-                WHERE codProducto = '$this->codProducto'
-                ");
+                clCategoria = '$this->clCategoria' 
+                WHERE codProducto = '$this->codProducto'");
                 $r['resultado'] = 'modificar';
                 $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el producto correctamente';
             } catch (Exception $e) {
@@ -137,10 +134,7 @@ class Producto extends Conexion
         $r = array();
         if ($this->existe($this->codProducto)) {
             try {
-                $p = $co->prepare("DELETE from producto 
-					    WHERE
-						codProducto = :codProducto
-						");
+                $p = $co->prepare("DELETE from producto WHERE codProducto = :codProducto");
                 $p->bindParam(':codProducto', $this->codProducto);
 
 
@@ -220,7 +214,6 @@ class Producto extends Conexion
 
             $resultado = $co->query("SELECT * FROM producto WHERE codProducto='$codProducto'");
 
-
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
 
@@ -233,18 +226,4 @@ class Producto extends Conexion
             return false;
         }
     }
-
-    // public function obtenerCategoria()
-    // {
-    //     $co = $this->conecta();
-    //     $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     try {
-    //         $p = $co->prepare("SELECT * FROM categoria");
-    //         $p->execute();
-    //         $r = $p->fetchAll(PDO::FETCH_ASSOC);
-    //         return $r;
-    //     } catch (Exception $e) {
-    //         return []; 
-    //     }
-    // }
 }
