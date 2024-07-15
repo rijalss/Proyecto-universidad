@@ -69,7 +69,7 @@
     <!-- Footer -->
 
     <!-- Scripts -->
-    <script src="public/bootstrap/js/sidebar.js"></script>
+ 
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
 </body>

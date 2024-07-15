@@ -180,7 +180,7 @@
 
     <!-- Scripts -->
 
-    <script src="public/bootstrap/js/sidebar.js"></script>
+   
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Pendiente a cambiar esto!!!!!!!!!!!!!!!!!!!!! -->
     <script type="text/javascript" src="public/js/entrada.js"></script>
