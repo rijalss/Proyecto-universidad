@@ -387,7 +387,7 @@ function enviaAjax(datos) {
                     $("#resultadoconsulta").html(lee.mensaje);
                     crearDT();
                 } else if (lee.resultado == "incluir") {
-                    muestraMensaje("success", 4000, "REGISTRAR", lee.mensaje);
+                    muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Incluido!<br/> Se registró el producto correctamente"
@@ -396,7 +396,7 @@ function enviaAjax(datos) {
                         consultar();
                     }
                 } else if (lee.resultado == "modificar") {
-                    muestraMensaje("success", 4000, "MODIFICAR", lee.mensaje);
+                    muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Modificado!<br/> Se modificó el producto correctamente"
@@ -405,7 +405,7 @@ function enviaAjax(datos) {
                         consultar();
                     }
                 } else if (lee.resultado == "eliminar") {
-                    muestraMensaje("success", 4000, "ELIMINAR", lee.mensaje);
+                    muestraMensaje("info", 4000, "ELIMINAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Eliminado! <br/> Se eliminó el producto correctamente"
