@@ -4,7 +4,7 @@ function consultar(){
 	enviaAjax(datos);	
 }
 function destruyeDT(){
-	//1 se destruye el datatablet
+	// se destruye el datatablet
 	if ($.fn.DataTable.isDataTable("#tablaproveedor")) {
             $("#tablaproveedor").DataTable().destroy();
     }

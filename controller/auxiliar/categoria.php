@@ -9,31 +9,28 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
 
     if (!empty($_POST)) {
 
-        $p = new Categoria();
+        $obj1 = new Categoria();
         
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($p->consultar());
+            echo  json_encode($obj1->consultar());
         } elseif ($accion == 'eliminar') {
-            $p->set_codCategoria($_POST['codCategoria']);
-            echo  json_encode($p->eliminar());
+            $obj1->setcodCategoria($_POST['codCategoria']);
+            echo  json_encode($obj1->eliminar());
         } else {
-            $p->set_codCategoria($_POST['codCategoria']);
-            $p->set_nombreCategoria($_POST['nombreCategoria']);
+            $obj1->setcodCategoria($_POST['codCategoria']);
+            $obj1->setnombreCategoria($_POST['nombreCategoria']);
             if ($accion == 'incluir') {
-                echo  json_encode($p->incluir());
+                echo  json_encode($obj1->incluir());
             } elseif ($accion == 'modificar') {
-                echo  json_encode($p->modificar());
+                echo  json_encode($obj1->modificar());
             }
         }
         exit;
     }
     
-    // Obtener categorías para la vista
-//  //   $c = new Producto();
-//    // $categorias = $c->obtenerCategoria();
-
+   
     require_once("views/auxiliar/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";

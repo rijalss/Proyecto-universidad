@@ -5,14 +5,14 @@ function consultar(){
 }
 
 function destruyeDT(){
-	//1 se destruye el datatablet
-	if ($.fn.DataTable.isDataTable("#tablaentrada")) {
-            $("#tablaentrada").DataTable().destroy();
+	
+	if ($.fn.DataTable.isDataTable("#tablacargo")) {
+            $("#tablacargo").DataTable().destroy();
     }
 }
 
 function crearDT(){
-    // 2 se construye la datatable
+    
     if (!$.fn.DataTable.isDataTable("#tablacargo")) {
          var table = $("#tablacargo").DataTable({
             "paging": true,
@@ -68,7 +68,7 @@ function crearDT(){
 $(document).ready(function(){
     consultar();
 
-    // VALIDACIONES
+  
 	$("#codCargo").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
@@ -86,7 +86,7 @@ $(document).ready(function(){
         $(this), $("#snombreCargo"),"Este campo debe estar lleno / Máximo 30 carácteres");
 	});
 
-    // BOTONES
+    
     $("#proceso").on("click",function(){
         if($(this).text()=="REGISTRAR"){
             if(validarenvio()){
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 $("#scodCargo"), "El formato debe tener máximo de 30 carácteres") == 0) {
                 muestraMensaje("error", 4000, "ERROR!", "Seleccionó un cargo incorrecto <br/> por favor verifique nuevamente");
             } else {
-                // Mostrar confirmación usando SweetAlert
+                
                 Swal.fire({
                     title: '¿Está seguro de eliminar el cargo?',
                     text: "Se eliminaran todas los empleados con ese cargo!",
@@ -125,7 +125,7 @@ $(document).ready(function(){
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Si se confirma, proceder con la eliminación
+                       
                         var datos = new FormData();
                         datos.append('accion', 'eliminar');
                         datos.append('codCargo', $("#codCargo").val());
@@ -209,7 +209,7 @@ $(document).ready(function(){
         }
         
 
-        //funcion para pasar de la lista a el formulario
+       
     function pone(pos,accion){
         
         linea=$(pos).closest('tr');
@@ -227,7 +227,7 @@ $(document).ready(function(){
         $("#modal1").modal("show");
     }
 
-    //funcion que envia y recibe datos por AJAX
+    
 function enviaAjax(datos) {
     $.ajax({
       async: true,
@@ -238,9 +238,9 @@ function enviaAjax(datos) {
       processData: false,
       cache: false,
       beforeSend: function () {},
-      timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
+      timeout: 10000, 
       success: function (respuesta) {
-      // console.log(respuesta);
+      
         try {
           var lee = JSON.parse(respuesta);
           if (lee.resultado == "consultar") {
@@ -269,7 +269,7 @@ function enviaAjax(datos) {
              muestraMensaje(lee.mensaje);
           }
        }catch (e) {
-          console.error("Error en análisis JSON:", e); // Registrar el error para depuración
+          console.error("Error en análisis JSON:", e); 
           alert("Error en JSON " + e.name + ": " + e.message);
       }
       },

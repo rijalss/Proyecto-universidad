@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedor</title>
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <title>Salida</title>
+    
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -52,7 +52,7 @@
         <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Formulario de Categorías</h5>
+                    <h5 class="modal-title">Formulario de salida</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -109,7 +109,7 @@
    
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- CAMBIAR!!!!!!!!!!!!!!!!!!! -->
-    <script type="text/javascript" src="public/js/proveedor.js"></script>
+    <script type="text/javascript" src="public/js/salida.js"></script>
     <!-- Scripts -->
 </body>
 

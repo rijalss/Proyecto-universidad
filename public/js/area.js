@@ -4,7 +4,7 @@ function consultar(){
 	enviaAjax(datos);	
 }
 function destruyeDT(){
-	//1 se destruye el datatablet
+	
 	if($.fn.DataTable.isDataTable("#tablaarea")) {
         $("#tablaarea").DataTable().destroy();
     }
@@ -66,7 +66,6 @@ $(document).ready(function(){
 
 	consultar();
 	
-//////////////////////////////VALIDACIONES/////////////////////////////////////
 
 	$("#codArea").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
@@ -89,11 +88,6 @@ $(document).ready(function(){
     "Este formato no debe estar vacío / permite un máximo 30 carácteres"
   );
 	});
-
-
-
-//////////////////////////////BOTONES/////////////////////////////////////
-
 
 	
 $("#proceso").on("click",function(){
@@ -121,7 +115,7 @@ $("#proceso").on("click",function(){
 		$("#scodArea"),"El formato debe tener de 11 carácteres")==0){
 		muestraMensaje("error",4000,"ERROR!","Seleccionó un código incorrecto <br/> por favor verifique nuevamente");
 		}else {
-			// Mostrar confirmación usando SweetAlert
+			
 			Swal.fire({
 				title: '¿Está seguro de eliminar esta Área?',
 				text: "Esta acción no se puede deshacer.",
@@ -133,14 +127,14 @@ $("#proceso").on("click",function(){
 				cancelButtonText: 'Cancelar'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					// Si se confirma, proceder con la eliminación
+					
 					var datos = new FormData();
 					datos.append('accion', 'eliminar');
 					datos.append('codArea', $("#codArea").val());
 					enviaAjax(datos);
 				} else {
 					muestraMensaje("error", 2000, "INFORMACIÓN", "La eliminación ha sido cancelada.");
-					$("#modal1").modal("hide");
+					$("#modalArea").modal("hide");
 				}
 			});
 		}
@@ -150,11 +144,10 @@ $("#proceso").on("click",function(){
 	$("#incluir").on("click",function(){
 		limpia();
 		$("#proceso").text("REGISTRAR");
-		$("#modal1").modal("show");
+		$("#modalArea").modal("show");
 	});
 });
 
-//////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio(){
 		if(validarkeyup(/^[0-9]{4,10}$/,$("#codArea"),
@@ -174,7 +167,6 @@ function validarenvio(){
 	return true;
 	}
 
-//Función para mostrar mensajes
 
 function muestraMensaje(icono,tiempo,titulo,mensaje){
 
@@ -188,7 +180,7 @@ function muestraMensaje(icono,tiempo,titulo,mensaje){
 	});
 }
 
-//Función para validar por Keypress
+
 function validarkeypress(er,e){
 	
 	key = e.keyCode;
@@ -207,7 +199,7 @@ function validarkeypress(er,e){
     
 }
 
-//Función para validar por keyup
+
 function validarkeyup(er,etiqueta,etiquetamensaje,
 mensaje){
 	a = er.test(etiqueta.val());
@@ -221,7 +213,7 @@ mensaje){
 	}
 }
 
-//funcion para pasar de la lista a el formulario
+
 function pone(pos,accion){
     
     linea=$(pos).closest('tr');
@@ -229,28 +221,25 @@ function pone(pos,accion){
     if(accion==0){
     	$("#proceso").text("MODIFICAR");
 		$("#codArea").val($(linea).find("td:eq(0)").text());
-		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
     	$("#nombreArea").val($(linea).find("td:eq(1)").text());
 		
 		
-    	$("#modal1").modal("show");
+    	$("#modalArea").modal("show");
     }
     else{
     	$("#proceso").text("ELIMINAR");
 		$("#codArea").val($(linea).find("td:eq(0)").text());
-		// $("#codProducto").prop("readonly", true); //WOW CON READONLY 
 
     	$("#nombreArea").val($(linea).find("td:eq(1)").text());
-		// $("#ultimoPrecio").prop("readonly", true); //WOW CON READONLY 
-
-   		$("#modal1").modal("show");
+		
+   		$("#modalArea").modal("show");
     }
     
     
 }
 
 
-//funcion que envia y recibe datos por AJAX
+
 function enviaAjax(datos) {
   $.ajax({
     async: true,
@@ -261,9 +250,9 @@ function enviaAjax(datos) {
     processData: false,
     cache: false,
     beforeSend: function () {},
-    timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
+    timeout: 10000, 
     success: function (respuesta) {
-    // console.log(respuesta);
+    
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
@@ -273,7 +262,7 @@ function enviaAjax(datos) {
         }else if (lee.resultado == "incluir") {
     	    muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
 		   if(lee.mensaje=='Registro Incluido!<br/> Se registró el Área correctamente'){
-			   $("#modal1").modal("hide");
+			   $("#modalArea").modal("hide");
 			   consultar();
 		   }
         }else if (lee.resultado == "modificar") {
@@ -282,20 +271,20 @@ function enviaAjax(datos) {
              lee.mensaje ==
              "Registro Modificado!<br/> Se modificó el Área correctamente"
            ) {
-             $("#modal1").modal("hide");
+             $("#modalArea").modal("hide");
              consultar();
            }
         }else if (lee.resultado == "eliminar") {
     	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
 		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el Área correctamente'){
-			   $("#modal1").modal("hide");
+			   $("#modalArea").modal("hide");
 			   consultar();
 		   }
         }else if (lee.resultado == "error") {
 		   muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
         }
      }catch (e) {
-        console.error("Error en análisis JSON:", e); // Registrar el error para depuración
+        console.error("Error en análisis JSON:", e); 
     	alert("Error en JSON " + e.name + ": " + e.message);
 	}
     },

@@ -4,8 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Proveedor</title>
-	<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+	<title>Existencia</title>
+	
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>

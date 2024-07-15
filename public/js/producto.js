@@ -4,13 +4,13 @@ function consultar() {
     enviaAjax(datos);
 }
 function destruyeDT() {
-    //1 Se destruye la Datatable
+  
     if ($.fn.DataTable.isDataTable("#tablaproducto")) {
         $("#tablaproducto").DataTable().destroy();
     }
 }
 
-// Se construye la datatable
+
 function crearDT() {
     if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
         var table = $("#tablaproducto").DataTable({

@@ -6,7 +6,8 @@ class Area extends Conexion
 {
     private $codArea;
     private $nombreArea;
-    //////////////////////////SET//////////////////////////
+
+    //SETTERS
 
     function set_codArea($valor)
     {
@@ -18,7 +19,7 @@ class Area extends Conexion
         $this->nombreArea = $valor;
     }
 
-    //////////////////////////GET//////////////////////////
+    //GETTERS
 
     function get_codArea()
     {
@@ -32,100 +33,16 @@ class Area extends Conexion
 
 
 
-    //////////////////////////METODOS//////////////////////////
-
-    function incluir()
-    {
-        $r = array();
-
-        if (!$this->existe($this->codArea)) {
-            //1 Se llama a la funcion conecta 
-            $co = $this->conecta();
-            $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //2 Se ejecuta el sql
-            try {
-                $co->query("INSERT INTO area(
-                    codArea,
-                    nombreArea
-                    ) VALUES (
-                    '$this->codArea',
-                    '$this->nombreArea'
-                    )");
-                $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el Área correctamente';
-            } catch (Exception $e) {
-                $r['resultado'] = 'error';
-                $r['mensaje'] = $e->getMessage();
-            }
-        } else {
-            $r['resultado'] = 'incluir';
-            $r['mensaje'] = 'ERROR! <br/> El CÓDIGO colocado ya existe!';
-        }
-        return $r;
-    }
-
-    function modificar()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        if ($this->existe($this->codArea)) {
-            try {
-                $co->query("UPDATE area 
-                SET nombreArea = '$this->nombreArea'
-                WHERE codArea = '$this->codArea'
-                ");
-                $r['resultado'] = 'modificar';
-                $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el Área correctamente';
-            } catch (Exception $e) {
-                $r['resultado'] = 'error';
-                $r['mensaje'] =  $e->getMessage();
-            }
-        } else {
-            $r['resultado'] = 'modificar';
-            $r['mensaje'] =  'ERROR! <br/> El CÓDIGO colocado NO existe!';
-        }
-        return $r;
-    }
-
-
-    function eliminar()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        if ($this->existe($this->codArea)) {
-            try {
-                $p = $co->prepare("DELETE from area 
-					    WHERE
-						codArea = :codArea
-						");
-                $p->bindParam(':codArea', $this->codArea);
-
-
-                $p->execute();
-                $r['resultado'] = 'eliminar';
-                $r['mensaje'] =  'Registro Eliminado! <br/> Se eliminó el Área correctamente';
-            } catch (Exception $e) {
-                $r['resultado'] = 'error';
-                $r['mensaje'] =  $e->getMessage();
-            }
-        } else {
-            $r['resultado'] = 'eliminar';
-            $r['mensaje'] =  'No existe el codigo de la área';
-        }
-        return $r;
-    }
-
+    //METODOS 
 
     function consultar()
     {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conex = $this->conecta();
+        $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT * FROM area");
+            $resultado = $conex->query("SELECT * FROM area");
 
             if ($resultado) {
 
@@ -160,14 +77,96 @@ class Area extends Conexion
         return $r;
     }
 
+    function incluir()
+    {
+        $r = array();
 
+        if (!$this->existe($this->codArea)) {
+            
+            $conex = $this->conecta();
+            $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            try {
+                $conex->query("INSERT INTO area(
+                    codArea,
+                    nombreArea
+                    ) VALUES (
+                    '$this->codArea',
+                    '$this->nombreArea'
+                    )");
+                $r['resultado'] = 'incluir';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el Área correctamente';
+            } catch (Exception $e) {
+                $r['resultado'] = 'error';
+                $r['mensaje'] = $e->getMessage();
+            }
+        } else {
+            $r['resultado'] = 'incluir';
+            $r['mensaje'] = 'ERROR! <br/> El CÓDIGO colocado ya existe!';
+        }
+        return $r;
+    }
+
+    function modificar()
+    {
+        $conex = $this->conecta();
+        $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
+        if ($this->existe($this->codArea)) {
+            try {
+                $conex->query("UPDATE area 
+                SET nombreArea = '$this->nombreArea'
+                WHERE codArea = '$this->codArea'
+                ");
+                $r['resultado'] = 'modificar';
+                $r['mensaje'] =  'Registro Modificado!<br/> Se modificó el Área correctamente';
+            } catch (Exception $e) {
+                $r['resultado'] = 'error';
+                $r['mensaje'] =  $e->getMessage();
+            }
+        } else {
+            $r['resultado'] = 'modificar';
+            $r['mensaje'] =  'ERROR! <br/> El CÓDIGO colocado NO existe!';
+        }
+        return $r;
+    }
+
+
+    function eliminar()
+    {
+        $conex = $this->conecta();
+        $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
+        if ($this->existe($this->codArea)) {
+            try {
+                $p = $conex->prepare("DELETE from area 
+					    WHERE
+						codArea = :codArea
+						");
+                $p->bindParam(':codArea', $this->codArea);
+                $p->execute();
+                $r['resultado'] = 'eliminar';
+                $r['mensaje'] =  'Registro Eliminado! <br/> Se eliminó el Área correctamente';
+            } catch (Exception $e) {
+                $r['resultado'] = 'error';
+                $r['mensaje'] =  $e->getMessage();
+            }
+        } else {
+            $r['resultado'] = 'eliminar';
+            $r['mensaje'] =  'No existe el codigo de la área';
+        }
+        return $r;
+    }
+
+
+   
     private function existe($codArea)
     {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conex = $this->conecta();
+        $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
 
-            $resultado = $co->query("SELECT * FROM area WHERE codArea='$codArea'");
+            $resultado = $conex->query("SELECT * FROM area WHERE codArea='$codArea'");
 
 
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -183,16 +182,5 @@ class Area extends Conexion
         }
     }
 
-        /*public function obtenerCategoria(){
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        try {
-            $p = $co->prepare("SELECT * FROM categoria");
-            $p->execute();
-            $r = $p->fetchAll(PDO::FETCH_ASSOC);
-            return $r;
-        } catch (Exception $e) {
-            return []; 
-        }
-    }*/
+      
 }

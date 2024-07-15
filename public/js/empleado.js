@@ -197,7 +197,7 @@ $(document).ready(function () {
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            // Si se confirma, proceder con la eliminación
+            
             var datos = new FormData();
             datos.append("accion", "eliminar");
             datos.append("cedulaEmpleado", $("#cedulaEmpleado").val());
@@ -391,7 +391,7 @@ function enviaAjax(datos) {
     processData: false,
     cache: false,
     beforeSend: function () {},
-    timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
+    timeout: 10000, 
     success: function (respuesta) {
       // console.log(respuesta);
       try {

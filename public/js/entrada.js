@@ -5,14 +5,14 @@ function consultar(){
 }
 
 function destruyeDT(){
-	//1 se destruye el datatablet
+	// se destruye el datatable
 	if ($.fn.DataTable.isDataTable("#tablaentrada")) {
             $("#tablaentrada").DataTable().destroy();
     }
 }
 
 function crearDT(){
-    // 2 se construye la datatable
+    //  se construye la datatable
     if (!$.fn.DataTable.isDataTable("#tablaentrada")) {
          var table = $("#tablaentrada").DataTable({
             "paging": true,
@@ -157,7 +157,7 @@ $(document).ready(function(){
     $("#modal1").modal("show");
     });
 });
-
+ // se valida lo que se envia
 function validarenvio(){
     var empleadoseleccionado = $("#empleado").val();
     var proveedorseleccionado = $("#proveedor").val();
@@ -241,7 +241,7 @@ function validarkeyup(er,etiqueta,etiquetamensaje,
     }
     
 
-    //funcion para pasar de la lista a el formulario
+    
 function pone(pos,accion){
     
     linea=$(pos).closest('tr');
@@ -315,7 +315,7 @@ function enviaAjax(datos) {
              muestraMensaje(lee.mensaje);
           }
        }catch (e) {
-          console.error("Error en análisis JSON:", e); // Registrar el error para depuración
+          console.error("Error en análisis JSON:", e); 
           alert("Error en JSON " + e.name + ": " + e.message);
       }
       },

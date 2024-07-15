@@ -10,7 +10,7 @@ require_once("model/auxiliar/" . $pagina . ".php");
 
 if (is_file("views/auxiliar/" . $pagina . ".php")) {
 
-    //llenar
+    
     if (!empty($_POST)) {
 
         $p = new Area();
@@ -35,7 +35,7 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
         exit;
     }
     
-    // Obtener categorías para la vista
+    
     require_once("views/auxiliar/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";

@@ -5,14 +5,14 @@ function consultar(){
 }
 
 function destruyeDT(){
-	//1 se destruye el datatablet
+	
 	if ($.fn.DataTable.isDataTable("#tablacategoria")) {
             $("#tablacategoria").DataTable().destroy();
     }
 }
 
 function crearDT(){
-    // 2 se construye la datatable
+    
     if (!$.fn.DataTable.isDataTable("#tablacategoria")) {
          var table = $("#tablacategoria").DataTable({
             "paging": true,
@@ -88,7 +88,7 @@ $(document).ready(function(){
         $(this), $("#snombreCategoria"),"Este campo debe estar lleno / Máximo 30 carácteres");
 	});
 
-    // BOTONES
+    // acciones del boton del modal
     $("#proceso").on("click",function(){
         if($(this).text()=="REGISTRAR"){
             if(validarenvio()){
@@ -115,7 +115,7 @@ $(document).ready(function(){
                 $("#scodCategoria"), "El formato debe tener máximo de 30 carácteres") == 0) {
                 muestraMensaje("error", 4000, "ERROR!", "Seleccionó una categoría incorrecta <br/> por favor verifique nuevamente");
             } else {
-                // Mostrar confirmación usando SweetAlert
+                /* SweetAlert*/
                 Swal.fire({
                     title: '¿Está seguro de eliminar esta categoría?',
                     text: "Se eliminaran todas los productos con esta categoría!",
@@ -126,8 +126,7 @@ $(document).ready(function(){
                     confirmButtonText: 'Sí, eliminar',
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Si se confirma, proceder con la eliminación
+                    if (result.isConfirmed) {// Se confirma la eliminacion
                         var datos = new FormData();
                         datos.append('accion', 'eliminar');
                         datos.append('codCategoria', $("#codCategoria").val());
@@ -230,7 +229,7 @@ $(document).ready(function(){
         $("#modal1").modal("show");
     }
 
-    //funcion que envia y recibe datos por AJAX
+    
 function enviaAjax(datos) {
     $.ajax({
       async: true,
@@ -272,7 +271,7 @@ function enviaAjax(datos) {
              muestraMensaje(lee.mensaje);
           }
        }catch (e) {
-          console.error("Error en análisis JSON:", e); // Registrar el error para depuración
+          console.error("Error en análisis JSON:", e); 
           alert("Error en JSON " + e.name + ": " + e.message);
       }
       },

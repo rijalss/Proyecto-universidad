@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área</title>
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -51,8 +51,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="modal1">
-        <div class="modal-dialog modal-md" role="document"> <!-- Cambiado modal-lg a modal-md -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalArea">
+        <div class="modal-dialog modal-md" role="document"> 
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Formulario de Areas</h5>
@@ -100,12 +100,11 @@
     </div>
     <!-- fin de container -->
 
-    <!-- Scripts -->
 
-    <script src="public/bootstrap/js/sidebar.js"></script>
+   
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="public/js/area.js"></script>
-    <!-- Scripts -->
+
 </body>
 
 </html>

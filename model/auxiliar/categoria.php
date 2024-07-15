@@ -1,41 +1,40 @@
 <?php
 require_once("model/conexion.php");
-class Categoria extends Conexion
-{
+class Categoria extends Conexion{
     private $clCategoria;
     private $nombreCategoria;
     private $codCategoria;
 
     // SETTERS
 
-    function set_codCategoria($valor)
+    function setcodCategoria($valor)
     {
         $this->codCategoria = $valor;
     }
 
-    function set_clCategoria($valor)
+    function setclCategoria($valor)
     {
         $this->clCategoria = $valor;
     }
 
-    function set_nombreCategoria($valor)
+    function setnombreCategoria($valor)
     {
         $this->nombreCategoria = $valor;
     }
 
     // GETTERS
 
-    function get_clCategoria()
+    function getclCategoria()
     {
         return $this->clCategoria;
     }
 
-    function get_nombreCategoria()
+    function getnombreCategoria()
     {
         return $this->nombreCategoria;
     }
 
-    function get_codCategoria()
+    function getcodCategoria()
     {
         return $this->codCategoria;
     }
@@ -43,8 +42,7 @@ class Categoria extends Conexion
 
     // INCLUIR
 
-    function incluir()
-    {
+    public function incluir(){
         $r = array();
 
         if (!$this->existe($this->codCategoria)) {
@@ -75,8 +73,7 @@ class Categoria extends Conexion
 
     // CONSULTAR
 
-    function consultar()
-    {
+    public function consultar(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
@@ -113,8 +110,7 @@ class Categoria extends Conexion
 
     // ELIMINAR
 
-    function eliminar()
-    {
+    public function eliminar(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
@@ -135,9 +131,7 @@ class Categoria extends Conexion
     }
 
     // MODIFICAR
-
-    function modificar()
-    {
+    public function modificar(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
@@ -162,8 +156,7 @@ class Categoria extends Conexion
 
     // FUNCIÓN "EXISTE"
 
-    private function existe($codCategoria)
-    {
+    public function existe($codCategoria){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
@@ -185,8 +178,7 @@ class Categoria extends Conexion
     }
 
 
-    public function obtenerCategorias()
-    {
+    public function obtenerCategorias(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $p = $co->prepare("SELECT * FROM categoria");
