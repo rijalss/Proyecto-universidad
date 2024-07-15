@@ -10,6 +10,8 @@ class Producto extends Conexion
     private $descProducto;
     private $clCategoria;
 
+
+
     // SETTERS
     function set_codProducto($valor)
     {
@@ -211,16 +213,12 @@ class Producto extends Conexion
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
-
             $resultado = $co->query("SELECT * FROM producto WHERE codProducto='$codProducto'");
-
             $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
-
                 return true;
             } else {
-
-                return false;;
+                return false;
             }
         } catch (Exception $e) {
             return false;
