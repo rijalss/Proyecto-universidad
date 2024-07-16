@@ -13,23 +13,23 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
     
     if (!empty($_POST)) {
 
-        $p = new Area();
+        $a = new Area();
         
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($p->consultar());
+            echo  json_encode($a->consultar());
         } elseif ($accion == 'eliminar') {
-            $p->set_codArea($_POST['codArea']);
-            echo  json_encode($p->eliminar());
+            $a->set_codArea($_POST['codArea']);
+            echo  json_encode($a->eliminar());
         } else {
-            $p->set_codArea($_POST['codArea']);
-            $p->set_nombreArea($_POST['nombreArea']);
+            $a->set_codArea($_POST['codArea']);
+            $a->set_nombreArea($_POST['nombreArea']);
 
             if ($accion == 'incluir') {
-                echo  json_encode($p->incluir());
+                echo  json_encode($a->incluir());
             } elseif ($accion == 'modificar') {
-                echo  json_encode($p->modificar());
+                echo  json_encode($a->modificar());
             }
         }
         exit;
