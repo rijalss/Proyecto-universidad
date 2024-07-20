@@ -32,7 +32,7 @@
      
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/img/categorization.png" alt=""> Categorías</h5>
@@ -42,22 +42,12 @@
                 </div>
             </div>
 
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/employee.svg" alt="">Cargos</h5>
                         <p class="card-text">Gestiona los cargos que tendras para tus empleados.</p>
                         <a href="?pagina=cargo" class="btn btn-primary">Gestionar Cargo</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card shadow w-100 h-100 p-3">
-                    <div class="card-body">
-                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/area.svg" alt="">Áreas</h5>
-                        <p class="card-text">Gestiona las áreas disponibles.</p>
-                        <a href="?pagina=area" class="btn btn-primary">Gestionar Área</a>
                     </div>
                 </div>
             </div>

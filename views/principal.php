@@ -16,8 +16,9 @@
 
     <!-- Title -->
     <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-        <h1 class="display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
+        <h1 class="text-primary display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
         <img src="public/img/logo.png" height="110px" width="160px" style="margin: 0; padding: 0;">
+        <br>
     </section>
 
     <!-- Container de cards -->

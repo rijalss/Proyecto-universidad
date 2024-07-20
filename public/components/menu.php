@@ -42,7 +42,6 @@
                         <ul class="dropdown-menu" aria-labelledby="complementosDropdown">
                             <li><a class="dropdown-item" href="?pagina=categoria">Gestionar Categoría</a></li>
                             <li><a class="dropdown-item" href="?pagina=cargo">Gestionar Cargo</a></li>
-                            <li><a class="dropdown-item" href="?pagina=area">Gestionar Área</a></li>
                         </ul>
                     </li>
 
