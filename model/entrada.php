@@ -7,13 +7,34 @@ class Entrada extends Conexion{
     private $factura;
     private $clProveedor;
     private $clEmpleado;
-    private $clProducto;
-    private $clArea;
-    private $cantidadEntrada;
-    private $precioEntrada;
+
+    private $productos=array();
+    private $cantidadEntrada=array();
+    private $precioEntrada=array();
     // falta los campos de existencia
    
-    
+
+    public function addproductos($producto){
+        $this->productos[]=$producto;
+    }
+    public function consultarProductos() {
+        return $this->productos;
+    }
+    public function addcantidad( $cantidadEntrada){
+        $this->cantidadEntrada[]=$cantidadEntrada;
+    }
+    public function consultarcantidad() {
+        return $this->cantidadEntrada;
+
+    }
+    public function addprecio( $precioEntrada){
+        $this->precioEntrada[]=$precioEntrada;
+    }
+    public function consultarprecio() {
+        return $this->precioEntrada;
+    }
+
+
     public function setClEntrada($clEntrada)
     {
         $this->clEntrada = $clEntrada;
@@ -64,45 +85,10 @@ class Entrada extends Conexion{
         return $this->clEmpleado;
     }
     
-    public function setClProducto($clProducto)
-    {
-        $this->clProducto = $clProducto;
-    }
+   
+
     
-    public function getClProducto()
-    {
-        return $this->clProducto;
-    }
     
-    public function setClArea($clArea)
-    {
-        $this->clArea = $clArea;
-    }
-    
-    public function getClArea()
-    {
-        return $this->clArea;
-    }
-    
-    public function setCantidadEntrada($cantidadEntrada)
-    {
-        $this->cantidadEntrada = $cantidadEntrada;
-    }
-    
-    public function getCantidadEntrada()
-    {
-        return $this->cantidadEntrada;
-    }
-    
-    public function setPrecioEntrada($precioEntrada)
-    {
-        $this->precioEntrada = $precioEntrada;
-    }
-    
-    public function getPrecioEntrada()
-    {
-        return $this->precioEntrada;
-    }
     //////////////////////////SET//////////////////////////
     function incluir()
     {
@@ -114,8 +100,10 @@ class Entrada extends Conexion{
             $co = $this->conecta();
             $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //2 Se ejecuta el sql
+
+           
             try {
-                $co->query("INSERT INTO notaentrada(
+                $sql="INSERT INTO notaentrada(
                     fechaEntrada,
                     numFactura,
                     clProveedor,
@@ -126,7 +114,41 @@ class Entrada extends Conexion{
                     '$this->clProveedor',
                     '$this->clEmpleado'
                     
-                )");
+                )";
+                $co->query($sql);
+                $this->clEntrada= $co->lastInsertId();
+
+                print_r($this->precioEntrada,);
+                print_r($this->clEntrada);
+                print_r($this->cantidadEntrada);
+                print_r($this->productos);
+                
+                
+                for ($i=0; $i < count($this->precioEntrada); $i++) {
+                    $sql="INSERT INTO administrarentrada (precioEntrada, cantidadEntrada, clEntrada, clExistencia) 
+                           VALUES ('".$this->precioEntrada[$i]."','".$this->cantidadEntrada[$i]."','".$this->clEntrada."','2')";
+                    $co->query($sql);
+                }
+
+            
+                 
+                
+
+
+/*
+
+                for ($i=0; $i < count($this->precioEntrada); $i++) { ¿
+                    $sql="UPDATE existencia 
+                             SET 
+                            cantidadExistencia='".$this->cantidadEntrada[$i]."'
+                            WHERE clProducto = '".$this->productos[$i]."
+                                 ";
+                    $co->query($sql);
+                }
+                
+
+*/
+
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] = 'Registro Incluido!<br/> Se registró la nota de entrada correctamente';
             } catch (Exception $e) {
@@ -168,7 +190,8 @@ class Entrada extends Conexion{
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreEmpleado'];
-                    $respuesta = $respuesta . "</td>";
+                    
+                 
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
                     $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";

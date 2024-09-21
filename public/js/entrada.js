@@ -77,6 +77,8 @@ $(document).ready(function(){
 		validarkeyup(/^[1-9]{8,10}$/,$(this),
 		$("#snumFactura"),"El formato tiene un máximo de 10 carácteres");
 	});
+
+    
 /*
 	$("#cantidadEntrega").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
@@ -99,13 +101,28 @@ $(document).ready(function(){
     $("#proceso").on("click",function(){
         if($(this).text()=="REGISTRAR"){
             if(validarenvio()){
+                
                 var datos = new FormData();
                 datos.append('accion','incluir');
                 datos.append('proveedor',$("#proveedor").val());
 		        datos.append('numFactura',$("#numFactura").val());
 		        datos.append('fechaEntrada',$("#fechaEntrada").val());
 		        datos.append('empleado',$("#empleado").val());
-                enviaAjax(datos);
+                
+
+                $('select[name="producto[]"]').each(function() {
+                    datos.append('producto[]', $(this).val());
+                });
+                
+                 $('input[name="cantidad[]"]').each(function() {
+                datos.append('cantidad[]', $(this).val());
+                });
+                $('input[name="precio[]"]').each(function() {
+                datos.append('precio[]', $(this).val());
+                });
+                console.log(datos);
+ 
+               enviaAjax(datos);
             }
         }
         else if($(this).text()=="MODIFICAR"){
@@ -116,8 +133,7 @@ $(document).ready(function(){
 		        datos.append('numFactura',$("#numFactura").val());
 		        datos.append('fechaEntrada',$("#fechaEntrada").val());
 		        datos.append('empleado',$("#empleado").val());
-    
-                enviaAjax(datos);
+                
             }
         }
         if ($(this).text() == "ELIMINAR") {
@@ -285,7 +301,7 @@ function enviaAjax(datos) {
       beforeSend: function () {},
       timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
       success: function (respuesta) {
-      // console.log(respuesta);
+      console.log(respuesta);
         try {
           var lee = JSON.parse(respuesta);
           if (lee.resultado == "consultar") {
@@ -329,9 +345,95 @@ function enviaAjax(datos) {
       complete: function () {},
     });
 }
-    function limpia(){
+function limpia(){
 	$("#numFactura").val('');
 	$("#fechaEntrada").val('');
 	$("#empleado").val("disabled");
     $("#proveedor").val("disabled");
     }
+
+
+function agregarNuevoProducto() {
+
+    var divgrande = $('<div>', {// V
+        class: 'd-flex align-items-center p-2'
+    });
+
+    var selectContainer = $('<div>', {// V
+
+    class: 'col-3 px-1'
+    });
+    var cantidadContainer = $('<div>', {// V
+        class: 'col-1 px-1'
+      });
+    var precioContainer = $('<div>', {// V
+        class: 'col-1 px-1'
+      });
+
+
+    var deleteButtonContainer = $('<div>', { //V
+    class: 'col-1 align-items-end '
+    });
+
+    var newSelect = $('<select>', {// V
+    name: 'producto[]',
+    class: 'form-control',
+   
+    style:"width:98%",
+}); 
+var newOption = $('<option>', { //V
+    value: '',
+    text: 'Seleccione un Producto'
+});
+
+newSelect.append(newOption);
+
+$.each(productos, function(index, producto) {
+    var option = $('<option>', {
+        value: producto.clProducto,
+        text: producto.nombreProducto
+    });
+    newSelect.append(option);
+});
+selectContainer.append(newSelect);
+// inputs
+var cantidadInput = $('<input>', {
+    type: 'text',
+    name: 'cantidad[]',
+    class: 'form-control',
+    placeholder: 'Cantidad'
+  });
+  cantidadContainer.append(cantidadInput);
+
+  var precioInput = $('<input>', {
+    type: 'text',
+    name: 'precio[]',
+    class: 'form-control',
+    placeholder: 'Precio'
+  });
+  precioContainer.append(precioInput);
+
+
+var deleteButton = $('<button>', {
+    class: 'btn btn-danger',
+   
+});
+deleteButton.on('click', function() {
+    $(this).closest('.d-flex').remove();// para elimnar los componentes con sus divs
+});
+
+deleteButton.append('<img width="20PX" src="public/icons/svg/dash-circle.svg"" alt="">');
+
+deleteButtonContainer.append(deleteButton);
+
+    divgrande.append(selectContainer);
+    divgrande.append(cantidadContainer);
+    divgrande.append(precioContainer);
+    divgrande.append(deleteButtonContainer); 
+
+
+$('#new-inputs-container').append(divgrande);
+
+}
+
+ $('#btnProducto').on('click', agregarNuevoProducto);

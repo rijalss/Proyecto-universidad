@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas de entrada</title>
 
+   <Header>
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -39,10 +40,9 @@
                                 <th>Factura</th>
                                 <th>Fecha</th>
                                 <th>Empleado</th>
-                               <!-- <th>cantidad producto</th>
-                                <th>precio</th>
-                                <th>area</th>-->
                                 <th>Acciones</th>
+                                <!--<th>cantidad producto</th>
+                                <th>precio</th>-->
                             </tr>
                         </thead>
                         <tbody id="resultadoconsulta"></tbody>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" autocomplete="off">
+                    <form method="post" autocomplete="off" id="myForm">
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row mb-3">
@@ -107,48 +107,45 @@
 											?>
                                 </select>
                                 <span id="sempleado"></span>
+                             </div>
                             </div>
-
-                            <div class="col-3">
-                                <label for="producto">Productos</label>
-                                <select class="form-control" name="producto" id="producto">
+                               
+                         <div class="row mb-3">
+                           
+                        
+                                <div class="col-3">
+                         
+                                <label for="producto">Productos</label>  
+                         
+                                <select class="form-control" name="producto[]" id="producto">
                                 <option value='disabled' disabled selected>Seleccione un Producto</option>
                                 <?php
-										foreach ($productos as $producto) {
-											echo "<option value='". $producto['clProducto'] . "'>" . $producto['nombreProducto'] . "</option>";
-											}
-												?>
+                                    foreach ($productoss as $productos) {
+                                        echo "<option value='". $productos['clProducto'] . "'>" . $productos['nombreProducto'] . "</option>";
+                                        }
+                                            ?>
                                 </select>
                                 <span id="sproducto"></span>
                             </div>
-                            <div class="col-3  d-flex align-items-end">
-                            <button type="button" class="btn btn-primary" id="btnProducto"><img width="20PX" src="public/icons/svg/plus-circle.svg" alt=""> </button>
+
+                            <div class="col-1 px-1 d-flex align-items-end  ">
+                            <input type="text" class="form-control" name="cantidad[]" id="cantidadProducto" placeholder="Cantidad">
                             </div>
-                          <!-- 
-                                <div class="col-6">
-                                    <label for="cantidadEntrada">Cantidad</label>
-                                    <input class="form-control" type="text" id="cantidadEntrada" name="cantidadEntrada">
-                                    <span id="scantidadEntrada"></span>
-                                </div>
-                                <div class="col-6">
-                                    <label for="precioEntrada">Precio</label>
-                                    <input class="form-control" type="text" id="precioEntrada" name="precioEntrada">
-                                    <span id="sprecioEntrada"></span>
-                                </div>
-                            </div>
+
+                         <div class="col-1 px-1 d-flex align-items-end ">
+                        <input type="text" class="form-control" name="precio[]" id="precioProducto" placeholder="Precio">
                         </div>
-                       
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="area">Áreas</label>
-                                <select class="form-control" name="area" id="area">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <span id="sarea"></span>
-                            </div>
-                            -->
+
+                        <div class="col-1 d-flex align-items-end ">
+                        <button type="button" class="btn btn-primary" id="btnProducto"><img width="20PX" src="public/icons/svg/plus-circle.svg" alt=""> </button>
+                        </div>
+                        
+                           
+                         </div>
+                        
+                        <div id="new-inputs-container" class=" row mb-3 "></div>
+                            
+                         
 
                         <div class="row">
                             <div class="col-12">
@@ -185,6 +182,10 @@
   
     <script type="text/javascript" src="public/js/entrada.js"></script>
     <!-- Scripts -->
+    <script>
+    var productos = <?php echo $productos_json ?>;
+    </script>
+
 </body>
 
 </html>
