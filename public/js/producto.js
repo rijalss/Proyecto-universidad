@@ -95,6 +95,13 @@ $(document).ready(function () {
             $("#scodProducto"),
             "Este formato permite de 4 a 10 carácteres"
         );
+        if ($("#codProducto").val().length <= 10) {
+			var datos = new FormData();
+			datos.append('accion', 'existe');
+			datos.append('codProducto', $(this).val());
+			enviaAjax(datos);
+		}
+
     });
 
     $("#nombreProducto").on("keypress", function (e) {
@@ -413,8 +420,13 @@ function enviaAjax(datos) {
                         $("#modalProducto").modal("hide");
                         consultar();
                     }
+                }else if (lee.resultado == "existe") {		
+                    if (lee.mensaje == 'El código de producto ya existe!') {
+                        muestraMensaje('info', 4000,'Atencion', lee.mensaje);
+                    }		
                 } else if (lee.resultado == "error") {
                     muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
+                    console.log(lee.mensaje);
                 }
             } catch (e) {
                 console.error("Error en análisis JSON:", e); // Registrar el error para depuración

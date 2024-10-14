@@ -1,39 +1,35 @@
 <?php
+
 require_once('conexion.php');
 
-class Entrada extends Conexion{
+class Salida extends Conexion{
     
-	public function registrar($idproducto,$idproveedor,$cantidad,$precio,$numfactura,$idempleado){
-		$r = array();
-	
-	if (!$this->buscar($numfactura)){
+	function registrar($idproducto,$cantidad,$precio,$idempleado){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+
 		try{
+
+
+			
 		   $fecha = date('Y-m-d');
-		   $sql="INSERT INTO notaentrada(
-			fechaEntrada,
-			numFactura,
-			clProveedor,
-			clEmpleado
+		   $sql="INSERT INTO notasalida ( fechaSalida, clEmpleado
 			) VALUES (
 			'$fecha',
-			'$numfactura',
-			'$idproveedor',
 			'$idempleado'	
 		)";
-		   $guarda = $co->query($sql);
-			$lid = $co->lastInsertId();
+		 
+	$guarda = $co->query($sql);
+	$lid = $co->lastInsertId();
 
-			$tamano = count($idproducto);
+	$tamano = count($idproducto);
 
-for($i=0; $i<$tamano; $i++){
-    $sql = "INSERT INTO administrarentrada (precioEntrada, cantidadEntrada, clEntrada, clExistencia) 
-            VALUES ('$precio[$i]', '$cantidad[$i]', '$lid', '$idproducto[$i]')";
-    $co->query($sql);
-}
-
-
+	for($i=0; $i<$tamano; $i++){
+		$sql = "INSERT INTO administrarsalida (precioSalida, cantidadSalida, clSalida, clExistencia) 
+				VALUES ('$precio[$i]', '$cantidad[$i]', '$lid', '$idproducto[$i]')";
+		$co->query($sql);
+	}
 
 	// Obtener las cantidades de existencia actuales
 	$exist = $co->query("SELECT clExistencia, cantidadExistencia FROM existencia");
@@ -42,38 +38,44 @@ for($i=0; $i<$tamano; $i++){
 		$existencias[$row['clExistencia']] = $row['cantidadExistencia'];
 	}
 
+	$alertas = [];
+
 	for($i=0; $i<$tamano; $i++){
 		$idProd = $idproducto[$i];
 		$cantidadActual = isset($existencias[$idProd]) ? $existencias[$idProd] : 0;
-		$Total = $cantidadActual + $cantidad[$i];
+		$Total = $cantidadActual - $cantidad[$i];
+
+		if ($Total < 0) {
+			
+			$r['resultado'] = 'error';
+			$r['mensaje'] = "Error: No se puede restar más de las existencias disponibles para el producto ID $idProd.";
+			continue;
+		}
+
+		if ($Total == 0) {
+			$alertas[] = "Alerta: La existencia del producto ID $idProd ha quedado en cero.";
+			
+		}
+
+		if ($Total <= 10   ) {
+			$alertas[] = "Alerta: La existencia del producto ID $idProd es igual o menor a 10.";				
+		}
 
 		$co->query("UPDATE existencia SET cantidadExistencia = $Total WHERE clExistencia = $idProd");
 	}
 
-	$r['resultado'] = 'registrar';
-	$r['mensaje'] = 'Registro Incluido!<br/> Se registró la nota de entrada correctamente';
+
+	if (!empty($alertas)) {
+		$r['alertas'] = $alertas;
+	}
 
 	} catch(Exception $e) {
 		$r['resultado'] = 'error';
 		$r['mensaje'] = $e->getMessage();
 	}
-}else {
-	$r['resultado'] = 'registrar';
-	$r['mensaje'] = 'ERROR! <br/> El numero de factura ya existe!';
-}
+	
 	return $r;
-		
-	}
-	
-	
-	public function obtenerproveedor(){
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $p = $co->prepare("SELECT clProveedor,nombreProveedor FROM proveedor ");
-        $p->execute();
-        $r = $p->fetchAll(PDO::FETCH_ASSOC);
-        return $r;
-    }
+}	
 
     public function obtenerempleado(){
         $co = $this->conecta();
@@ -91,7 +93,7 @@ for($i=0; $i<$tamano; $i++){
 		$r = array();
 		try{
 			
-			$resultado = $co->query("Select * from producto");
+			$resultado = $co->query("SELECT * FROM producto p JOIN existencia e on p.clProducto = e.clProducto ");
 			
 			if($resultado){
 				
@@ -106,6 +108,9 @@ for($i=0; $i<$tamano; $i++){
 						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td>";
 							$respuesta = $respuesta.$r['nombreProducto'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td>";
+							$respuesta = $respuesta.$r['cantidadExistencia'];
 						$respuesta = $respuesta."</td>";
 						
 					$respuesta = $respuesta."</tr>";
@@ -125,35 +130,11 @@ for($i=0; $i<$tamano; $i++){
 		
 	}
 	
-	function buscar($numfactura){
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        try {
-
-            $stmt = $co->prepare("SELECT * FROM notaentrada WHERE numFactura = :numFactura");
-            $stmt->execute(['numFactura' => $numfactura]);
-            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
-            
-            if ($fila) {
-
-                $r['resultado'] = 'encontro';
-                $r['mensaje'] = 'El numero de factura ya existe!';
-
-            }
-           
-        } catch (Exception $e) {
-            $r['resultado'] = 'error';
-            $r['mensaje'] =  $e->getMessage();
-        }
-        return $r;
-    }
+	
 
 
 	
-
+	
 	
 }
-
-
 ?>

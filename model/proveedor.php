@@ -242,4 +242,29 @@ class Proveedor extends Conexion
             return false;
         }
     }
+
+    function buscar(){
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
+        try {
+
+            $stmt = $co->prepare("SELECT * FROM proveedor WHERE rifProveedor = :rifProveedor");
+            $stmt->execute(['rifProveedor' => $this->rifProveedor]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
+            
+            if ($fila) {
+
+                $r['resultado'] = 'encontro';
+                $r['mensaje'] = 'El rif ya existe!';
+
+            }
+           
+        } catch (Exception $e) {
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
+        }
+        return $r;
+    }
+
 }

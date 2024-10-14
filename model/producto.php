@@ -1,18 +1,15 @@
 <?php
 
-require_once('model/conexion.php');
+require_once('conexion.php');
 
-class Producto extends Conexion
-{
+class Producto extends Conexion{
     private $codProducto;
     private $nombreProducto;
     private $ultimoPrecio;
     private $descProducto;
     private $clCategoria;
-
-
-
-    // SETTERS
+    22
+    // SETTER
     function set_codProducto($valor)
     {
         $this->codProducto = $valor;
@@ -89,6 +86,12 @@ class Producto extends Conexion
                     '$this->descProducto',
                     '$this->clCategoria'
                     )");
+                    $lid = $co->lastInsertId();
+                    
+                    $co->query("INSERT INTO existencia (cantidadExistencia, clProducto) VALUES (0,'$lid')");
+
+
+
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] = 'Registro Incluido!<br/> Se registró el producto correctamente';
             } catch (Exception $e) {
@@ -208,20 +211,23 @@ class Producto extends Conexion
     }
 
 
-    private function existe($codProducto)
-    {
+    public function existe($codProducto){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
         try {
-            $resultado = $co->query("SELECT * FROM producto WHERE codProducto='$codProducto'");
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+        
+            $stmt = $co->prepare("SELECT * FROM producto WHERE codProducto=:codProducto");
+            $stmt->execute(['codProducto' => $codProducto]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
-                return true;
-            } else {
-                return false;
-            }
+                $r['resultado'] = 'existe';
+                $r['mensaje'] = 'El código de producto ya existe!';
+            } 
         } catch (Exception $e) {
-            return false;
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
     }
 }

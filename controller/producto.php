@@ -36,6 +36,10 @@ if (is_file("views/" . $pagina . ".php")) {
                     echo json_encode($p->modificar());
                 }
                 break;
+            case 'existe': 
+            $respuesta =$p->existe(isset($_POST['codProducto']) ? $_POST['codProducto'] : null);
+            echo  json_encode($respuesta);
+            break;
             default:
                 echo "Acción no válida";
                 break;

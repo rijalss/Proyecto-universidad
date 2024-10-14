@@ -16,7 +16,10 @@ if (is_file("views/" . $pagina . ".php")) {
             echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
             $p->set_rifProveedor($_POST['rifProveedor']);
-            echo  json_encode($p->eliminar());
+            echo  json_encode($p->eliminar());            
+        }elseif ($accion == 'buscar') {
+            $p->set_rifProveedor(isset($_POST['rifProveedor']) ? $_POST['rifProveedor'] : null);
+            echo  json_encode($p->buscar());
         } else {
             $p->set_prefijoRif($_POST['prefijoRif']); 
             $p->set_rifProveedor($_POST['rifProveedor']);

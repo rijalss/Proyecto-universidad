@@ -1,7 +1,6 @@
 <?php
 require_once("model/conexion.php");
-class Cargo extends Conexion
-{
+class Cargo extends Conexion{
     private $clCargo;
     
     private $nombreCargo;

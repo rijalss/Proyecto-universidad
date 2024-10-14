@@ -76,6 +76,12 @@ $(document).ready(function(){
 	$("#rifProveedor").on("keyup",function(){
 		validarkeyup(/^[A-Za-z0-9]{8,9}$/,$(this),
 		$("#srifProveedor"),"El formato permite de 8 a 9 carácteres");
+		if ($("#rifProveedor").val().length <= 9) {
+			var datos = new FormData();
+			datos.append('accion', 'buscar');
+			datos.append('rifProveedor', $(this).val());
+			enviaAjax(datos, 'buscar');
+		}
 	});
 
 	$("#nombreProveedor").on("keypress",function(e){
@@ -324,6 +330,10 @@ function enviaAjax(datos) {
                $("#modal1").modal("hide");
                consultar();
 		   }
+		}else if (lee.resultado == "encontro") {		
+			if (lee.mensaje == 'El rif ya existe!') {
+				alert(lee.mensaje);
+			}		
         }else if (lee.resultado == "eliminar") {
     	    muestraMensaje('info', 4000,'ELIMINAR', lee.mensaje);
 		   if(lee.mensaje=='Registro Eliminado! <br/> Se eliminó el proveedor correctamente'){
