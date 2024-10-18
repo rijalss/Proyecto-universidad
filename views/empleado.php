@@ -5,18 +5,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Empleado</title>
-	
+	<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
+
+<div id="mensajes" style="display:none">
+	<?php
+	if (!empty($mensaje)) {
+		echo $mensaje;
+	}
+	?>
+</div>
 
 <body>
 	<!-- Header -->
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-		
+	<section class="d-flex flex-column align-items-center">
+		<br><br><br><br>
 		<h2 class="text-primary text-center">Gestionar Empleado</h2>
 		<div class="container">
 			<div class="text-left">
@@ -32,15 +40,15 @@
 					<table class="table table-striped table-hover" id="tablaempleado">
 						<thead>
 							<tr>
-
 								<th>Perfil</th>
-
 								<th>Cédula</th>
 								<th>Nombre</th>
 								<th>Apellido</th>
-								<th>Teléfono</th>
+								<th>Telefono</th>
 								<th>Correo</th>
 								<th>Cargo</th>
+
+
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -134,8 +142,8 @@
 													</div>
 												</div>
 													<div class="col">
-
-														<hr />
+													
+														<hr/>
 													</div>
 												</div>
 												<div class="row justify-content-center">
@@ -180,7 +188,7 @@
 
 	<!-- Scripts -->
 
-
+	<script src="public/bootstrap/js/sidebar.js"></script>
 	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="public/js/empleado.js"></script>
 	<!-- Scripts -->
