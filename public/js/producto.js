@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("ultimoPrecio");
     input.disabled = true;
     checkbox.checked = false;
-});
+}); 
 
 function toggleInput() {
     const checkbox = document.getElementById("habilitarPromedio");
@@ -80,157 +80,189 @@ function toggleInput() {
 }
 
 $(document).ready(function () {
-    consultar();
+  //control de input para mostrar imagen
+  $("#archivo").on("change", function () {
+    mostrarImagen(this);
+  });
+  //
 
-    // Validaciones
+  $("#imagen").on("error", function () {
+    $(this).prop("src", "public/img/producto/producto.jpg");
+  });
 
-    $("#codProducto").on("keypress", function (e) {
-        validarkeypress(/^[0-9-\b]*$/, e);
-    });
 
-    $("#codProducto").on("keyup", function () {
-        validarkeyup(
-            /^[0-9]{4,10}$/,
-            $(this),
-            $("#scodProducto"),
-            "Este formato permite de 4 a 10 carácteres"
-        );
-        if ($("#codProducto").val().length <= 10) {
-			var datos = new FormData();
-			datos.append('accion', 'existe');
-			datos.append('codProducto', $(this).val());
-			enviaAjax(datos);
-		}
+  consultar();
 
-    });
+  // Validaciones
 
-    $("#nombreProducto").on("keypress", function (e) {
-        validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
-    });
+  $("#codProducto").on("keypress", function (e) {
+    validarkeypress(/^[0-9-\b]*$/, e);
+  });
 
-    $("#nombreProducto").on("keyup", function () {
-        validarkeyup(
-            /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/,
-            $(this),
-            $("#snombreProducto"),
-            "Este formato no debe estar vacío / permite un máximo 30 carácteres"
-        );
-    });
+  $("#codProducto").on("keyup", function () {
+    validarkeyup(
+      /^[0-9]{4,10}$/,
+      $(this),
+      $("#scodProducto"),
+      "Este formato permite de 4 a 10 carácteres"
+    );
+    if ($("#codProducto").val().length <= 10) {
+      var datos = new FormData();
+      datos.append("accion", "existe");
+      datos.append("codProducto", $(this).val());
+      enviaAjax(datos);
+    }
+  });
 
-    $("#ultimoPrecio").on("keypress", function (e) {
-        validarkeypress(/^[0-9.,\b]*$/, e);
-    });
+  $("#nombreProducto").on("keypress", function (e) {
+    validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
+  });
 
-    $("#ultimoPrecio").on("keyup", function () {
-        validarkeyup(
-            /^[0-9]{0,10}([.,][0-9]{0,2})?$/,
-            $(this),
-            $("#sultimoPrecio"),
-            "Este formato no permite cantidades negativas"
-        );
-    });
+  $("#nombreProducto").on("keyup", function () {
+    validarkeyup(
+      /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/,
+      $(this),
+      $("#snombreProducto"),
+      "Este formato no debe estar vacío / permite un máximo 30 carácteres"
+    );
+  });
 
-    $("#descProducto").on("keypress", function (e) {
-        validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
-    });
+  $("#ultimoPrecio").on("keypress", function (e) {
+    validarkeypress(/^[0-9.,\b]*$/, e);
+  });
 
-    $("#descProducto").on("keyup", function () {
-        validarkeyup(
-            /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-            $(this),
-            $("#sdescProducto"),
-            "Este formato no debe estar vacío / permite un máximo 200 carácteres"
-        );
-    });
+  $("#ultimoPrecio").on("keyup", function () {
+    validarkeyup(
+      /^[0-9]{0,10}([.,][0-9]{0,2})?$/,
+      $(this),
+      $("#sultimoPrecio"),
+      "Este formato no permite cantidades negativas"
+    );
+  });
 
-    // BOTONES
+  $("#descProducto").on("keypress", function (e) {
+    validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
+  });
 
-    $("#proceso").on("click", function () {
-        if ($(this).text() == "REGISTRAR") {
-            if (validarenvio()) {
-                var datos = new FormData();
-                datos.append("accion", "incluir");
-                datos.append("codProducto", $("#codProducto").val());
-                datos.append("nombreProducto", $("#nombreProducto").val());
+  $("#descProducto").on("keyup", function () {
+    validarkeyup(
+      /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
+      $(this),
+      $("#sdescProducto"),
+      "Este formato no debe estar vacío / permite un máximo 200 carácteres"
+    );
+  });
 
-                // Verificar si ultimoPrecio está vacío
-                var ultimoPrecio = $("#ultimoPrecio").val();
-                if (ultimoPrecio === "") {
-                    ultimoPrecio = "0"; // Asignar 0 si está vacío
-                }
+  // BOTONES
 
-                datos.append("ultimoPrecio", ultimoPrecio);
-                datos.append("descProducto", $("#descProducto").val());
-                datos.append("categoria", $("#categoria").val());
+  $("#proceso").on("click", function () {
+    if ($(this).text() == "REGISTRAR") {
+      if (validarenvio()) {
+        var datos = new FormData();
+        datos.append("accion", "incluir");
+        datos.append("codProducto", $("#codProducto").val());
+        datos.append("nombreProducto", $("#nombreProducto").val());
 
-                enviaAjax(datos);
-            }
-        } else if ($(this).text() == "MODIFICAR") {
-            if (validarenvio()) {
-                var datos = new FormData();
-                datos.append("accion", "modificar");
-                datos.append("codProducto", $("#codProducto").val());
-                datos.append("nombreProducto", $("#nombreProducto").val());
-                datos.append("ultimoPrecio", $("#ultimoPrecio").val());
-                datos.append("descProducto", $("#descProducto").val());
-                datos.append("categoria", $("#categoria").val());
-
-                enviaAjax(datos);
-            }
+        // Verificar si ultimoPrecio está vacío
+        var ultimoPrecio = $("#ultimoPrecio").val();
+        if (ultimoPrecio === "") {
+          ultimoPrecio = "0"; // Asignar 0 si está vacío
         }
-        if ($(this).text() == "ELIMINAR") {
-            if (
-                validarkeyup(
-                    /^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,
-                    $("#codProducto"),
-                    $("#scodProducto"),
-                    "El formato debe tener de 11 carácteres"
-                ) == 0
-            ) {
-                muestraMensaje(
-                    "error",
-                    4000,
-                    "ERROR!",
-                    "Seleccionó un código incorrecto <br/> por favor verifique nuevamente"
-                );
-            } else {
-                // Mostrar confirmación usando SweetAlert
-                Swal.fire({
-                    title: "¿Está seguro de eliminar este producto?",
-                    text: "Esta acción no se puede deshacer.",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Sí, eliminar",
-                    cancelButtonText: "Cancelar",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Si se confirma, proceder con la eliminación
-                        var datos = new FormData();
-                        datos.append("accion", "eliminar");
-                        datos.append("codProducto", $("#codProducto").val());
-                        enviaAjax(datos);
-                    } else {
-                        muestraMensaje(
-                            "error",
-                            2000,
-                            "INFORMACIÓN",
-                            "La eliminación ha sido cancelada."
-                        );
-                        $("#modalProducto").modal("hide");
-                    }
-                });
-            }
-        }
-    });
 
-    $("#incluir").on("click", function () {
-        limpia();
-        $("#proceso").text("REGISTRAR");
-        $("#modalProducto").modal("show");
-    });
+        datos.append("ultimoPrecio", ultimoPrecio);
+        datos.append("descProducto", $("#descProducto").val());
+        datos.append("categoria", $("#categoria").val());
+
+        enviaAjax(datos);
+      }
+    } else if ($(this).text() == "MODIFICAR") {
+      if (validarenvio()) {
+        var datos = new FormData();
+        datos.append("accion", "modificar");
+        datos.append("codProducto", $("#codProducto").val());
+        datos.append("nombreProducto", $("#nombreProducto").val());
+        datos.append("ultimoPrecio", $("#ultimoPrecio").val());
+        datos.append("descProducto", $("#descProducto").val());
+        datos.append("categoria", $("#categoria").val());
+
+        enviaAjax(datos);
+      }
+    }
+    if ($(this).text() == "ELIMINAR") {
+      if (
+        validarkeyup(
+          /^[[A-Za-z0-9,\#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,11}$/,
+          $("#codProducto"),
+          $("#scodProducto"),
+          "El formato debe tener de 11 carácteres"
+        ) == 0
+      ) {
+        muestraMensaje(
+          "error",
+          4000,
+          "ERROR!",
+          "Seleccionó un código incorrecto <br/> por favor verifique nuevamente"
+        );
+      } else {
+        // Mostrar confirmación usando SweetAlert
+        Swal.fire({
+          title: "¿Está seguro de eliminar este producto?",
+          text: "Esta acción no se puede deshacer.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, eliminar",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Si se confirma, proceder con la eliminación
+            var datos = new FormData();
+            datos.append("accion", "eliminar");
+            datos.append("codProducto", $("#codProducto").val());
+            enviaAjax(datos);
+          } else {
+            muestraMensaje(
+              "error",
+              2000,
+              "INFORMACIÓN",
+              "La eliminación ha sido cancelada."
+            );
+            $("#modalProducto").modal("hide");
+          }
+        });
+      }
+    }
+  });
+
+  $("#incluir").on("click", function () {
+    limpia();
+    $("#proceso").text("REGISTRAR");
+    $("#modalProducto").modal("show");
+  });
 });
+
+
+//funcion para mostrar la imagen antes de subirla al servidor
+      function mostrarImagen(f) {
+	
+        var tamano = f.files[0].size;
+           var megas = parseInt(tamano / 1024);
+           
+           if(megas > 1024){
+           muestraMensaje("La imagen debe ser igual o menor a 1024 K");
+               $(f).val('');
+           }
+           else{	
+           if (f.files && f.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+             $('#imagen').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(f.files[0]);
+           }
+         }
+      }
 
 // Validaciones antes de envío
 
@@ -362,35 +394,26 @@ function pone(pos, accion) {
 
     if (accion == 0) {
         $("#proceso").text("MODIFICAR");
-        $("#codProducto").val($(linea).find("td:eq(0)").text());
-        $("#nombreProducto").val($(linea).find("td:eq(1)").text());
-        $("#ultimoPrecio").val($(linea).find("td:eq(2)").text());
-        var nombreCategoria = $(linea).find("td:eq(3)").text();
-        $("#categoria option")
-            .filter(function () {
-                return $(this).text() == nombreCategoria;
-            })
-            .prop("selected", true)
-            .change();
-        $("#descProducto").val($(linea).find("td:eq(4)").text());
-
-        $("#modalProducto").modal("show");
+        
     } else {
         $("#proceso").text("ELIMINAR");
-        $("#codProducto").val($(linea).find("td:eq(0)").text());
-        $("#nombreProducto").val($(linea).find("td:eq(1)").text());
-        $("#ultimoPrecio").val($(linea).find("td:eq(2)").text());
-        $("#descProducto").val($(linea).find("td:eq(3)").text());
-        var nombreCategoria = $(linea).find("td:eq(4)").text();
-        $("#categoria option")
-            .filter(function () {
-                return $(this).text() == nombreCategoria;
-            })
-            .prop("selected", true)
-            .change();
-
-        $("#modalProducto").modal("show");
+      
     }
+    $("#codProducto").val($(linea).find("td:eq(1)").text());
+    $("#nombreProducto").val($(linea).find("td:eq(2)").text());
+    $("#ultimoPrecio").val($(linea).find("td:eq(3)").text());
+    var nombreCategoria = $(linea).find("td:eq(4)").text();
+    $("#categoria option")
+        .filter(function () {
+            return $(this).text() == nombreCategoria;
+        })
+        .prop("selected", true)
+        .change();
+        $("#imagen").prop("src","public/img/producto/"+$(linea).find("td:eq(1)").text()+".png");
+
+    $("#descProducto").val($(linea).find("td:eq(4)").text());
+
+    $("#modalProducto").modal("show");
 }
 
 //funcion que envia y recibe datos por AJAX
@@ -406,7 +429,7 @@ function enviaAjax(datos) {
         beforeSend: function () {},
         timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
         success: function (respuesta) {
-            // console.log(respuesta);
+             console.log(respuesta);
             try {
                 var lee = JSON.parse(respuesta);
                 if (lee.resultado == "consultar") {
@@ -449,8 +472,8 @@ function enviaAjax(datos) {
                     console.log(lee.mensaje);
                 }
             } catch (e) {
-                console.error("Error en análisis JSON:", e); // Registrar el error para depuración
-                alert("Error en JSON " + e.name + ": " + e.message);
+                console.log("Error en análisis JSON:", e); // Registrar el error para depuración
+                console.log("Error en JSON " + e.name + ": " + e.message);
             }
         },
         error: function (request, status, err) {
@@ -470,4 +493,5 @@ function limpia() {
     $("#descProducto").val("");
     $("#ultimoPrecio").val("");
     $("#categoria").val("disabled");
+    $('#imagen').prop("src","public/img/producto/producto.jpg");
 }

@@ -23,46 +23,41 @@ if (is_file("views/" . $pagina . ".php")) {
                 echo json_encode($p->eliminar());
                 break;
             case 'incluir':
+                
+                $p->set_codProducto($_POST['codProducto']);
+                $p->set_nombreProducto($_POST['nombreProducto']);
+                $p->set_ultimoPrecio($_POST['ultimoPrecio']);
+                $p->set_descProducto($_POST['descProducto']);
+                $p->set_clCategoria($_POST['categoria']);
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/producto/'.$_POST['codProducto'].'.png');
+                          
+                    } 
+                }
+                echo  json_encode($p->incluir());
+                break;
             case 'modificar':
                 $p->set_codProducto($_POST['codProducto']);
                 $p->set_nombreProducto($_POST['nombreProducto']);
                 $p->set_ultimoPrecio($_POST['ultimoPrecio']);
                 $p->set_descProducto($_POST['descProducto']);
                 $p->set_clCategoria($_POST['categoria']);
-
-
-                
-                if ($accion == 'incluir') {
-                    $mensaje=$p->incluir();
-                   
-                    if($mensaje['resultado'] == 'incluir'){
-                        if(isset($_FILES['imagenarchivo'])){	
-                            if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
-                            move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
-                            'public/img/productos/'.$_POST['codProducto'].'.png');
-                            } 
-                        }
-                    }
-                    echo json_encode($mensaje);
-
-                   
-                } elseif ($accion == 'modificar') {
-                    $mensaje=$p->modificar();
-
-                    if($mensaje['resultado'] == 'modificar'){
-				   
-                        if(isset($_FILES['imagenarchivo'])){	
-                           
-                            if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
-                                
-                                move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
-                                'public/img/productos/'.$_POST['codProducto'].'.png');
-                                  
-                            } 
-                        }
-                    }
-                   echo json_encode($mensaje);
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/producto/'.$_POST['codProducto'].'.png');
+                          
+                    } 
                 }
+                echo  json_encode($p->modificar());
+
+
                 break;
             case 'existe': 
             $respuesta =$p->existe(isset($_POST['codProducto']) ? $_POST['codProducto'] : null);

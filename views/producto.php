@@ -33,6 +33,7 @@
 					<table class="table table-striped table-hover" id="tablaproducto">
 						<thead>
 							<tr>
+								<th>Foto</th>
 								<th>Código</th>
 								<th>Nombre</th>
 								<th>Último precio</th>
@@ -108,25 +109,25 @@
 													</div>
 												</div>
 												<!-- Aquí sección de imagenes -->
-													<div class="row">
-														<div class="col-md-12">
-														<hr/>
-														<center>
-															<label for="archivo"  style="cursor:pointer">
-															
-																<img src="public/img/img-1.jpg" id="imagen" 
-																class="img-fluid w-25 mb-3 centered"
-																style="object-fit:scale-down">
-																Click aqui para subir foto	
-															</label>
-															<input id="imagenArchivo"  
-															type="file" 
-															style="display:none" 
-															accept=".png,.jpg,.jpeg"
-															name="imagenarchivo"/>
-														</center>
-														</div>
+												<div class="row">
+													<div class="col-md-12">
+													<hr/>
+													<center>
+														<label for="archivo"  style="cursor:pointer">
+														
+															<img src="public/img/producto/producto.jpg" id="imagen" 
+															class="img-fluid rounded-circle w-25 mb-3 centered"
+															style="object-fit:scale-down">
+															Click aqui para subir foto	
+														</label>
+														<input id="archivo"  
+														type="file" 
+														style="display:none" 
+														accept=".png,.jpg,.jpeg"
+														name="imagenarchivo"/>
+													</center>
 													</div>
+												</div>
 												<div class="mb-3">
 													<label for="descProducto" class="form-label">Descripción:</label>
 													<textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
