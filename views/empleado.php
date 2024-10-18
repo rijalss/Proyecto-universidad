@@ -41,7 +41,7 @@
 						<thead>
 							<tr>
 								<th>Perfil</th>
-								<th>Cedula</th>
+								<th>Cédula</th>
 								<th>Nombre</th>
 								<th>Apellido</th>
 								<th>Telefono</th>

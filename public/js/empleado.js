@@ -91,6 +91,12 @@ $(document).ready(function () {
       $("#scedulaEmpleado"),
       "El formato debe ser un número de cedula válido"
     );
+    if ($("#cedulaEmpleado").val().length <= 10) {
+			var datos = new FormData();
+			datos.append('accion', 'existe');
+			datos.append('cedulaEmpleado', $(this).val());
+			enviaAjax(datos);
+		}
   });
 
   $("#nombreEmpleado").on("keypress", function (e) {
@@ -433,7 +439,7 @@ function enviaAjax(datos) {
     beforeSend: function () {},
     timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
     success: function (respuesta) {
-      // console.log(respuesta);
+      //console.log(respuesta);
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
@@ -469,8 +475,12 @@ function enviaAjax(datos) {
           ) {
             $("#modal1").modal("hide");
             consultar();
-          }
-        } else if (lee.resultado == "error") {
+          } 
+        } else if (lee.resultado == "existe") {		
+          if (lee.mensaje == 'La cédula del empleado ya existe!') 
+              muestraMensaje('info', 4000,'Atención', lee.mensaje);
+            
+      } else if (lee.resultado == "error") {
           muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
         }
       } catch (e) {

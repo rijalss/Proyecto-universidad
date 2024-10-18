@@ -17,7 +17,11 @@ if (is_file("views/" . $pagina . ".php")) {
         } elseif ($accion == 'eliminar') {
             $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
             echo  json_encode($p->eliminar());
-        } else {
+        }elseif($accion == 'existe') {
+            $resultado = $p->existe($_POST['cedulaEmpleado']);
+            echo json_encode($resultado);
+        }
+         else {
             $p->set_prefijoCedula($_POST['prefijoCedula']);
             $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
             $p->set_nombreEmpleado($_POST['nombreEmpleado']);
@@ -48,7 +52,10 @@ if (is_file("views/" . $pagina . ".php")) {
                 }
                 echo  json_encode($p->modificar());
             }
-        }
+        }  
+        
+      
+          
         exit;
     }
 
@@ -60,8 +67,3 @@ if (is_file("views/" . $pagina . ".php")) {
 } else {
     echo "pagina en construccion";
 }
-
-
-
-
-

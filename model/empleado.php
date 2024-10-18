@@ -248,28 +248,27 @@ class Empleado extends Conexion
         return $r;
     }
 
-
-    private function existe($cedulaEmpleado)
-    {
+    public function existe($cedulaEmpleado){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
         try {
-
-            $resultado = $co->query("SELECT * FROM empleado WHERE cedulaEmpleado='$cedulaEmpleado'");
-
-
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+        
+            $stmt = $co->prepare("SELECT * FROM empleado WHERE cedulaEmpleado=:cedulaEmpleado");
+            $stmt->execute(['cedulaEmpleado' => $cedulaEmpleado]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
-
-                return true;
-            } else {
-
-                return false;;
-            }
+                $r['resultado'] = 'existe';
+                $r['mensaje'] = 'La cédula del empleado ya existe!';
+            } 
         } catch (Exception $e) {
-            return false;
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
     }
+
+
 
     public function obtenercargos()
     {
