@@ -200,6 +200,15 @@ class Empleado extends Conexion
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
+                       // Construir la URL de la imagen de perfil
+                       $imagenURL = "public/img/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png"; // Asegúrate que la imagen siga este patrón
+                    
+                       // Comprobar si la imagen existe
+                       if (file_exists($imagenURL)) {
+                           $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
+                       } else {
+                           $respuesta .= "<td><img src='public/img/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                       }
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
                     $respuesta = $respuesta . "</td>";
@@ -218,17 +227,11 @@ class Empleado extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreCargo'];
                     $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-warning small-width d-inline-block mr-1' 
-                    onclick='pone(this,0)'
-                    style='margin-right: 5px;'
-                    >Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button'
-                    class='btn btn-danger small-width d-inline-block' 
-                    onclick='pone(this,1)'
-                    >Eliminar</button>";
-                    $respuesta = $respuesta . "</td>";
+                    $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta .= "</td>";
+                    
                     $respuesta = $respuesta . "</tr>";
                 }
 

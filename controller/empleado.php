@@ -26,8 +26,26 @@ if (is_file("views/" . $pagina . ".php")) {
             $p->set_telefonoEmpleado($_POST['telefonoEmpleado']);
             $p->set_clCargo($_POST['cargo']);
             if ($accion == 'incluir') {
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          
+                    } 
+                }
                 echo  json_encode($p->incluir());
             } elseif ($accion == 'modificar') {
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          
+                    } 
+                }
                 echo  json_encode($p->modificar());
             }
         }
