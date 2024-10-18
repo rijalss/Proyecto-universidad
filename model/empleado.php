@@ -120,7 +120,7 @@ class Empleado extends Conexion
                     '$this->clCargo'
                 )");
                 $r['resultado'] = 'incluir';
-                $r['mensaje'] = 'Registro Incluido!<br/> Se registró el empleado correctamente';
+                $r['mensaje'] = 'Registro Incluido!<br/> Se incluyó el empleado correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
                 $r['mensaje'] = $e->getMessage();
@@ -227,13 +227,11 @@ class Empleado extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreCargo'];
                     $respuesta = $respuesta . "</td>";
-
                     $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
                     $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
                     $respuesta .= "</td>";
                     
-
                     $respuesta = $respuesta . "</tr>";
                 }
 
@@ -276,9 +274,9 @@ class Empleado extends Conexion
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $c = $co->prepare("SELECT * FROM cargo");
-        $c->execute();
-        $r = $c->fetchAll(PDO::FETCH_ASSOC);
+        $p = $co->prepare("SELECT * FROM cargo");
+        $p->execute();
+        $r = $p->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
 
