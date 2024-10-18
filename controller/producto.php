@@ -30,10 +30,38 @@ if (is_file("views/" . $pagina . ".php")) {
                 $p->set_descProducto($_POST['descProducto']);
                 $p->set_clCategoria($_POST['categoria']);
 
+
+                
                 if ($accion == 'incluir') {
-                    echo json_encode($p->incluir());
+                    $mensaje=$p->incluir();
+                   
+                    if($mensaje['resultado'] == 'incluir'){
+                        if(isset($_FILES['imagenarchivo'])){	
+                            if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                            move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                            'public/img/productos/'.$_POST['codProducto'].'.png');
+                            } 
+                        }
+                    }
+                    echo json_encode($mensaje);
+
+                   
                 } elseif ($accion == 'modificar') {
-                    echo json_encode($p->modificar());
+                    $mensaje=$p->modificar();
+
+                    if($mensaje['resultado'] == 'modificar'){
+				   
+                        if(isset($_FILES['imagenarchivo'])){	
+                           
+                            if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                                
+                                move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                                'public/img/productos/'.$_POST['codProducto'].'.png');
+                                  
+                            } 
+                        }
+                    }
+                   echo json_encode($mensaje);
                 }
                 break;
             case 'existe': 

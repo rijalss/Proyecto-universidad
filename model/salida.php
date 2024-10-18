@@ -10,9 +10,6 @@ class Salida extends Conexion{
 		$r = array();
 
 		try{
-
-
-			
 		   $fecha = date('Y-m-d');
 		   $sql="INSERT INTO notasalida ( fechaSalida, clEmpleado
 			) VALUES (
