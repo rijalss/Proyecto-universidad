@@ -9,13 +9,12 @@ if (is_file("views/" . $pagina . ".php")) {
 
     if (!empty($_POST)) {
 
-        $e = new Empleado ();
+        $p = new Empleado ();
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($e->consultar());
+            echo  json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
-
             $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
             echo  json_encode($p->eliminar());
         }elseif($accion == 'existe') {
@@ -52,7 +51,6 @@ if (is_file("views/" . $pagina . ".php")) {
                     } 
                 }
                 echo  json_encode($p->modificar());
->>>>>>> empleado
             }
         }  
         
@@ -61,6 +59,7 @@ if (is_file("views/" . $pagina . ".php")) {
         exit;
     }
 
+    //require_once("model/auxiliar/cargo.php");
     $c = new Empleado();
     $cargos = $c->obtenerCargos();
 
