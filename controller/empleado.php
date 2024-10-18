@@ -15,22 +15,49 @@ if (is_file("views/" . $pagina . ".php")) {
         if ($accion == 'consultar') {
             echo  json_encode($e->consultar());
         } elseif ($accion == 'eliminar') {
-            $e->set_cedulaEmpleado($_POST['cedulaEmpleado']);
-            echo  json_encode($e->eliminar());
-        } else {
-            $e->set_prefijoCedula($_POST['prefijoCedula']);
-            $e->set_cedulaEmpleado($_POST['cedulaEmpleado']);
-            $e->set_nombreEmpleado($_POST['nombreEmpleado']);
-            $e->set_apellidoEmpleado($_POST['apellidoEmpleado']);
-            $e->set_correoEmpleado($_POST['correoEmpleado']);
-            $e->set_telefonoEmpleado($_POST['telefonoEmpleado']);
-            $e->set_clCargo($_POST['cargo']);
-            if ($accion == 'incluir') {
-                echo  json_encode($e->incluir());
-            } elseif ($accion == 'modificar') {
-                echo  json_encode($e->modificar());
-            }
+
+            $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
+            echo  json_encode($p->eliminar());
+        }elseif($accion == 'existe') {
+            $resultado = $p->existe($_POST['cedulaEmpleado']);
+            echo json_encode($resultado);
         }
+         else {
+            $p->set_prefijoCedula($_POST['prefijoCedula']);
+            $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
+            $p->set_nombreEmpleado($_POST['nombreEmpleado']);
+            $p->set_apellidoEmpleado($_POST['apellidoEmpleado']);
+            $p->set_correoEmpleado($_POST['correoEmpleado']);
+            $p->set_telefonoEmpleado($_POST['telefonoEmpleado']);
+            $p->set_clCargo($_POST['cargo']);
+            if ($accion == 'incluir') {
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          
+                    } 
+                }
+                echo  json_encode($p->incluir());
+            } elseif ($accion == 'modificar') {
+                if(isset($_FILES['imagenarchivo'])){	
+					     
+                    if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
+                        
+                          move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
+                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          
+                    } 
+                }
+                echo  json_encode($p->modificar());
+>>>>>>> empleado
+            }
+        }  
+        
+      
+          
         exit;
     }
 
@@ -41,8 +68,3 @@ if (is_file("views/" . $pagina . ".php")) {
 } else {
     echo "pagina en construccion";
 }
-
-
-
-
-

@@ -64,8 +64,20 @@ function crearDT() {
 }
 
 $(document).ready(function () {
+    //control de input para mostrar imagen 
+    $("#archivo").on("change",function(){
+      
+      mostrarImagen(this);
+    });
+  //			
+  
+  $("#imagen").on("error",function(){
+    $(this).prop("src","public/img/perfil.jpg");
+  });
   consultar();
 
+  
+    
   //////////////////////////////VALIDACIONES/////////////////////////////////////
 
   $("#cedulaEmpleado").on("keypress", function (e) {
@@ -79,6 +91,12 @@ $(document).ready(function () {
       $("#scedulaEmpleado"),
       "El formato debe ser un número de cedula válido"
     );
+    if ($("#cedulaEmpleado").val().length <= 10) {
+			var datos = new FormData();
+			datos.append('accion', 'existe');
+			datos.append('cedulaEmpleado', $(this).val());
+			enviaAjax(datos);
+		}
   });
 
   $("#nombreEmpleado").on("keypress", function (e) {
@@ -140,7 +158,7 @@ $(document).ready(function () {
   $("#proceso").on("click", function () {
     if ($(this).text() == "REGISTRAR") {
       if (validarenvio()) {
-        var datos = new FormData();
+        var datos = new FormData($('#f')[0]);
         datos.append("accion", "incluir");
         datos.append("prefijoCedula", $("#prefijoCedula").val());
         datos.append("cedulaEmpleado", $("#cedulaEmpleado").val());
@@ -155,7 +173,7 @@ $(document).ready(function () {
       }
     } else if ($(this).text() == "MODIFICAR") {
       if (validarenvio()) {
-        var datos = new FormData();
+        var datos = new FormData($('#f')[0]);
         datos.append("accion", "modificar");
         datos.append("prefijoCedula", $("#prefijoCedula").val());
         datos.append("cedulaEmpleado", $("#cedulaEmpleado").val());
@@ -185,6 +203,9 @@ $(document).ready(function () {
           "Seleccionó un código incorrecto <br/> por favor verifique nuevamente"
         );
       } else {
+
+
+
         // Mostrar confirmación usando SweetAlert
         Swal.fire({
           title: "¿Está seguro de eliminar este producto?",
@@ -222,7 +243,27 @@ $(document).ready(function () {
     $("#modal1").modal("show");
   });
 });
-
+      //funcion para mostrar la imagen antes de subirla al servidor
+      function mostrarImagen(f) {
+	
+        var tamano = f.files[0].size;
+           var megas = parseInt(tamano / 1024);
+           
+           if(megas > 1024){
+           muestraMensaje("La imagen debe ser igual o menor a 1024 K");
+               $(f).val('');
+           }
+           else{	
+           if (f.files && f.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+             $('#imagen').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(f.files[0]);
+           }
+         }
+      }
+      //fin de funcion mostrar imagen
 //////////////////////////////VALIDACIONES ANTES DEL ENVIO/////////////////////////////////////
 
 function validarenvio() {
@@ -361,18 +402,20 @@ function pone(pos, accion) {
 
   if (accion == 0) {
     $("#proceso").text("MODIFICAR");
+
   } else {
     $("#proceso").text("ELIMINAR");
   }
 
-  var cedulaEmpleado = $(linea).find("td:eq(0)").text();
+  var cedulaEmpleado = $(linea).find("td:eq(1)").text();
   $("#cedulaEmpleado").val(cedulaEmpleado.substring(2));
   $("#prefijoCedula").val(cedulaEmpleado.substring(0, 1));
   $("#nombreEmpleado").val($(linea).find("td:eq(2)").text());
-  $("#apellidoEmpleado").val($(linea).find("td:eq(1)").text());
-  $("#telefonoEmpleado").val($(linea).find("td:eq(3)").text());
-  $("#correoEmpleado").val($(linea).find("td:eq(4)").text());
-  var nombreCargo = $(linea).find("td:eq(5)").text();
+  $("#apellidoEmpleado").val($(linea).find("td:eq(3)").text());
+  $("#telefonoEmpleado").val($(linea).find("td:eq(4)").text());
+  $("#correoEmpleado").val($(linea).find("td:eq(5)").text());
+  $("#imagen").prop("src","public/img/"+$(linea).find("td:eq(1)").text()+".png");
+  var nombreCargo = $(linea).find("td:eq(6)").text();
 		$('#cargo option').filter(function() {
             return $(this).text() == nombreCargo;
         }).prop('selected', true).change();
@@ -393,7 +436,7 @@ function enviaAjax(datos) {
     beforeSend: function () {},
     timeout: 10000, 
     success: function (respuesta) {
-      // console.log(respuesta);
+      //console.log(respuesta);
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
@@ -410,6 +453,9 @@ function enviaAjax(datos) {
             consultar();
           }
         } else if (lee.resultado == "modificar") {
+          destruyeDT();
+          $("#resultadoconsulta").html(lee.mensaje);
+          crearDT();
           muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
           if (
             lee.mensaje ==
@@ -426,13 +472,17 @@ function enviaAjax(datos) {
           ) {
             $("#modal1").modal("hide");
             consultar();
-          }
-        } else if (lee.resultado == "error") {
+          } 
+        } else if (lee.resultado == "existe") {		
+          if (lee.mensaje == 'La cédula del empleado ya existe!') 
+              muestraMensaje('info', 4000,'Atención', lee.mensaje);
+            
+      } else if (lee.resultado == "error") {
           muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
         }
       } catch (e) {
         console.error("Error en análisis JSON:", e); // Registrar el error para depuración
-        alert("Error en JSON " + e.name + ": " + e.message);
+        console.log("Error en JSON " + e.name + ": " + e.message);
       }
     },
     error: function (request, status, err) {
@@ -452,6 +502,6 @@ function limpia() {
   $("#telefonoEmpleado").val("");
   $("#apellidoEmpleado").val("");
   $("#correoEmpleado").val("");
-
+	$('#imagen').prop("src","public/img/perfil.jpg");
   $("#cargo").val("disabled");
 }

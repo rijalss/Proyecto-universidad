@@ -200,6 +200,15 @@ class Empleado extends Conexion
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
+                       // Construir la URL de la imagen de perfil
+                       $imagenURL = "public/img/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png"; // Asegúrate que la imagen siga este patrón
+                    
+                       // Comprobar si la imagen existe
+                       if (file_exists($imagenURL)) {
+                           $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
+                       } else {
+                           $respuesta .= "<td><img src='public/img/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                       }
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
                     $respuesta = $respuesta . "</td>";
@@ -218,12 +227,13 @@ class Empleado extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreCargo'];
                     $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
-                    $respuesta = $respuesta . "</div>";
-                    $respuesta = $respuesta . "</td>";
+
+                    $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta .= "</td>";
+                    
+
                     $respuesta = $respuesta . "</tr>";
                 }
 
@@ -240,28 +250,27 @@ class Empleado extends Conexion
         return $r;
     }
 
-
-    private function existe($cedulaEmpleado)
-    {
+    public function existe($cedulaEmpleado){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
         try {
-
-            $resultado = $co->query("SELECT * FROM empleado WHERE cedulaEmpleado='$cedulaEmpleado'");
-
-
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+        
+            $stmt = $co->prepare("SELECT * FROM empleado WHERE cedulaEmpleado=:cedulaEmpleado");
+            $stmt->execute(['cedulaEmpleado' => $cedulaEmpleado]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
-
-                return true;
-            } else {
-
-                return false;;
-            }
+                $r['resultado'] = 'existe';
+                $r['mensaje'] = 'La cédula del empleado ya existe!';
+            } 
         } catch (Exception $e) {
-            return false;
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
     }
+
+
 
     public function obtenercargos()
     {
