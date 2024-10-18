@@ -153,10 +153,13 @@ $(document).ready(function () {
 
   //////////////////////////////BOTONES/////////////////////////////////////
 
-  
+  if ($.trim($("#mensajes").text()) != "") {
+    //icono,tiempo,titulo,mensaje
+    muestraMensaje("success", 4000, "Resultado", $("#mensajes").html());
+  }
 
   $("#proceso").on("click", function () {
-    if ($(this).text() == "REGISTRAR") {
+    if ($(this).text() == "INCLUIR") {
       if (validarenvio()) {
         var datos = new FormData($('#f')[0]);
         datos.append("accion", "incluir");
@@ -218,7 +221,7 @@ $(document).ready(function () {
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            
+            // Si se confirma, proceder con la eliminación
             var datos = new FormData();
             datos.append("accion", "eliminar");
             datos.append("cedulaEmpleado", $("#cedulaEmpleado").val());
@@ -239,7 +242,7 @@ $(document).ready(function () {
 
   $("#incluir").on("click", function () {
     limpia();
-    $("#proceso").text("REGISTRAR");
+    $("#proceso").text("INCLUIR");
     $("#modal1").modal("show");
   });
 });
@@ -274,7 +277,7 @@ function validarenvio() {
       "error",
       4000,
       "ERROR!",
-      "Por favor, seleccione un cargo! <br/> Recuerde que debe tener uno registrado!"
+      "Por favor, seleccione un cargo! <br/> Recuerde que debe tener alguna registrada!"
     );
     return false;
   } else if (
@@ -434,7 +437,7 @@ function enviaAjax(datos) {
     processData: false,
     cache: false,
     beforeSend: function () {},
-    timeout: 10000, 
+    timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
     success: function (respuesta) {
       //console.log(respuesta);
       try {
@@ -444,10 +447,10 @@ function enviaAjax(datos) {
           $("#resultadoconsulta").html(lee.mensaje);
           crearDT();
         } else if (lee.resultado == "incluir") {
-          muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
+          muestraMensaje("info", 4000, "INCLUIR", lee.mensaje);
           if (
             lee.mensaje ==
-            "Registro Incluido!<br/> Se registró el empleado correctamente"
+            "Registro Incluido!<br/> Se incluyó el empleado correctamente"
           ) {
             $("#modal1").modal("hide");
             consultar();
