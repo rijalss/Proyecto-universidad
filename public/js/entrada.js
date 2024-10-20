@@ -132,7 +132,7 @@ $(document).ready(function(){
             var l = `
               <tr>
                <td>
-               <button type="button" class="btn btn-primary" onclick="eliminalineadetalle(this)">X</button>
+               <button type="button" class="btn btn-danger" onclick="eliminalineadetalle(this)">X</button>
                </td>
                <td style="display:none">
                    <input type="text" name="idp[]" style="display:none"

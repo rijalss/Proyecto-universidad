@@ -63,13 +63,7 @@
 	    </div>
     </div>
 	<!-- FIN DE FILA INPUT Y BUSCAR CLIENTE -->
-	
-	<!-- FILA DE DATOS DEL CLIENTE -->
-	<div class="row">
-		<div class="col-md-12" id="datosdelproveedor">
-		   
-		</div>
-	</div>
+
 	<!-- FIN DE FILA DATOS DEL CLIENTE -->
 		
 	<div class="row">
@@ -93,16 +87,19 @@
 		</div>
 	</div>
 	<!-- FILA DE DETALLES DE LA VENTA -->
+
+<div class="table-responsive card shadow">
+	
 	<div class="row">
 		<div class="col-md-12">
 		   <table class="table table-striped table-hover">
 				<thead>
 				  <tr>
 				    <th>X</th>
-					<th style="display:none">Id</th>
+					<th style="display:none">Cl</th>
 					<th>Codigo</th>
 					<th>Nombre</th>
-					<th>CANT</th>
+					<th>Cantidad</th>
 					<th>Precio</th>
 				  </tr>
 				</thead>
@@ -112,65 +109,41 @@
 			</table>
 		</div>
 	</div>
+</div>
+
 	<!-- FIN DE FILA DETALLES DE LA VENTA -->
 </div>
 </form>
 </div> <!-- fin de container -->
 </section>
-
-<!-- seccion del modal productos -->
-<div class="modal fade" tabindex="-1" role="dialog"  id="modalproductos">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-header text-light bg-info">
-        <h5 class="modal-title">Listado de productos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-content">
-		<table class="table table-striped table-hover">
-		<thead>
-		  <tr>
-		    <th style="display:none">Id</th>
-			<th>Codigo</th>
-			<th>Nombre</th>
+<div class="modal fade" tabindex="-1" role="dialog" id="modalproductos">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Listado de productos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped table-hover">
+						<thead>
+		 					 <tr>
+		    					<th style="display:none">Id</th>
+								<th>Codigo</th>
+								<th>Nombre</th>
 			
-		  </tr>
-		</thead>
-		<tbody id="listadoproductos">
+		 							 </tr>
+						</thead>
+						<tbody id="listadoproductos">
 		 
-		</tbody>
-		</table>
-    </div>
-	<div class="modal-footer bg-light">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-    </div>
-  </div>
+						</tbody>
+					</table>		
+				</div>
+			</div>
+		</div>
+<!-- seccion del modal productos -->
 </div>
 
-<div class="container">	  
-<div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-   <div class="modal-dialog">
-     <div class="modal-content">
-     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="modalcerrar">&times;</button>
-            <div id="cabezerademodal">
-			</div>
-     </div>
-     <div class="modal-body">
-            <h4>Resultado</h4>
-            <div id="contenidodemodal">
-			</div>    
-     </div>
-     <div class="modal-footer">
-        <a href="#" data-dismiss="modal" class="btn btn-primary">
-		<span class="glyphicon glyphicon-home"></span>
-		Cerrar</a>
-     </div>
-    </div>
-   </div>
-</div>
-</div>
 <!--fin de seccion modal-->
 
 <?php require_once("public/components/footer.php"); ?>
