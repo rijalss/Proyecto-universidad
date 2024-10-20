@@ -2,7 +2,7 @@ function consultar() {
     var datos = new FormData();
     datos.append("accion", "consultar");
     enviaAjax(datos);
-}
+} 
 function destruyeDT() {
   
     if ($.fn.DataTable.isDataTable("#tablaproducto")) {

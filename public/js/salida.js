@@ -1,7 +1,15 @@
+function carga_productos() {
+  var datos = new FormData();
+
+  datos.append("accion", "listadoproductos"); 
+
+  enviaAjax(datos);
+}
+
 $(document).ready(function () {
 
   carga_productos();
-
+ 
     $("#listadodeproductos").on("click", function () {
     $("#modalproductos").modal("show");
   });
@@ -39,7 +47,7 @@ function carga_productos() {
 
 function verificaproductos() {
   var existe = false;
-  if ($("#detalledeventa tr").length > 0) {
+  if ($("#salidadetalle tr").length > 0) {
     existe = true;
   }
   return existe;
@@ -49,12 +57,11 @@ function colocaproducto(linea) {
   var id = $(linea).find("td:eq(0)").text();
   var encontro = false;
 
-  $("#detalledeventa tr").each(function () {
+  $("#salidadetalle tr").each(function () {
     if (id * 1 == $(this).find("td:eq(1)").text() * 1) {
       encontro = true;
       var t = $(this).find("td:eq(5)").children();
       t.val(t.val() * 1 + 1);
-      modificasubtotal(t);
     }
   });
 
@@ -63,7 +70,7 @@ function colocaproducto(linea) {
       `
 		  <tr>
 		   <td>
-		   <button type="button" class="btn btn-danger" onclick="eliminalineadetalle(this)">X</button>
+		   <button type="button" class="btn btn-danger" onclick="eliminarsalidadetalle(this)">X</button>
 		   </td>
 		   <td style="display:none">
 			   <input type="text" name="idp[]" class="h" style="display:none"
@@ -82,19 +89,19 @@ function colocaproducto(linea) {
       $(linea).find("td:eq(3)").text() +
       `</td>
 		   <td>
-		      <input type="text" value="1" name="cant[]" class="c" onkeyup="modificasubtotal(this)"/>
+		      <input type="text" value="1" name="cant[]" class="c"/>
 		   </td>
 		   <td>
 		       
-		      <input type="text" value="1" name="precio[]" onkeyup="modificasubtotal(this)"/></td>
+		      <input type="text" value="1" name="precio[]"/></td>
 		   
 		   </tr>`;
-    $("#detalledeventa").append(l);
+    $("#salidadetalle").append(l);
   }
 }
 
 
-function eliminalineadetalle(boton) {
+function eliminarsalidadetalle(boton) {
   $(boton).closest("tr").remove();
 }
 
@@ -173,8 +180,9 @@ function enviaAjax(datos) {
           $("#listadoproductos").html(lee.mensaje);
         } else if (lee.resultado == "registrar") {
           
-         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
-        
+        muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
+        limpia();
+        carga_productos();
         } 
          else if (lee.resultado == "error") {
           muestraMensaje('error', 4000,'ERROR',lee.mensaje);
@@ -198,4 +206,5 @@ function enviaAjax(datos) {
 
 function limpia() {
   $("#empleado").val("disabled");
+  $("#salidadetalle tr").remove();
 }

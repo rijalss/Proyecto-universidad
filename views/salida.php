@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Notas de salida</title>
 
-	<Header>
-		<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="public/bootstrap/css/style.css">
+
+	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
 <body>
@@ -45,64 +45,64 @@
 								} ?>
 							</select>
 						</div>
-				
-					
-					<div class="col-md-6 p-4">
-						<div class="col-md-2 input-group">
-							<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
-							<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
-							<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
+
+
+						<div class="col-md-6 p-4">
+							<div class="col-md-2 input-group">
+								<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
+								<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
+								<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="row">
-					<div class="col">
-						<hr />
-					</div>
-				</div>
-
-				<div class="table-responsive card shadow"> <!-- container card shadow mb-4 -->
 					<div class="row">
-						<div class="col-md-12">
-							<table class="table table-striped table-hover" id="tabSalida">
-								<thead>
-									<tr>
-										<th>X</th>
-										<th style="display:none">Id</th>
-										<th>Codigo</th>
-										<th>Nombre</th>
-										<th >Cantidad disponible</th>
-										<th>Cantidad salida</th>
-										<th>Precio salida</th>
-									</tr>
-								</thead>
-								<tbody id="detalledeventa">
-
-								</tbody>
-							</table>
+						<div class="col">
+							<hr />
 						</div>
 					</div>
-		  		 </div>
-	      </div>
-	  </form>
-   </div>
-</section>
+
+					<div class="table-responsive card shadow"> <!-- container card shadow mb-4 -->
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-striped table-hover" id="tabSalida">
+									<thead class="text-center">
+										<tr>
+											<th>X</th>
+											<th style="display:none">Id</th>
+											<th>Codigo</th>
+											<th>Nombre</th>
+											<th>Cantidad disponible</th>
+											<th>Cantidad salida</th>
+											<th>Precio salida</th>
+										</tr>
+									</thead>
+									<tbody class="text-center" id="salidadetalle">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
 
 	<div class="modal fade" tabindex="-1" role="dialog" id="modalproductos">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Listado de Productos</h5>
+					<h5 class="modal-title ">Listado de Productos</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="container text-center">
+					<div class="container">
 						<div class="row mb-3">
 							<div class="container ">
 								<table class="table table-striped table-hover align-middle">
-									<thead>
+									<thead class="text-center">
 										<tr>
 											<th style="display:none">Id</th>
 											<th>Codigo</th>
@@ -110,7 +110,7 @@
 											<th>Cantidad disponible</th>
 										</tr>
 									</thead>
-									<tbody id="listadoproductos">
+									<tbody class="text-center" id="listadoproductos">
 
 									</tbody>
 								</table>
