@@ -1,115 +1,116 @@
-<html> 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas de entrada</title>
+<html>
 
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Notas de entrada</title>
+
+	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
 <body>
-<!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
-<?php require_once("public/components/menu.php"); ?>
+	<!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
+	<?php require_once("public/components/menu.php"); ?>
 
 
-<section class="d-flex flex-column " style="margin-top: 110px;">
-	
-<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
-<form method="post" action="" id="f">
-<input type="text" name="accion" id="accion" style="display:none"/>
-        <h2 class="text-primary text-center">Gestionar Notas de Entrada</h2>
+	<section class="d-flex flex-column " style="margin-top: 110px;">
 
-        <div class="container">
-            <div class="text-left">
-                <button type="button" class="btn btn-success" id="registrar" name="registrar">Registrar Notas de Entrada</button>
-            </div>
-        </div>
+		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
+			<form method="post" action="" id="f">
+				<input type="text" name="accion" id="accion" style="display:none" />
+				<h2 class="text-primary text-center">Gestionar Notas de Entrada</h2>
+
+				<div class="container">
+					<div class="text-left">
+						<button type="button" class="btn btn-success" id="registrar" name="registrar">Registrar Notas de Entrada</button>
+					</div>
+				</div>
 
 
-	<div class="row">
-		<div class="col">
-			<hr/>
-		</div>
-	</div>
-	<div class="container">
-        <div class="row">
-		    <div class="col-md-3 ">
-			    <label for="numfactura">Factura</label>
-		        <input class="form-control" type="text" id="numfactura" name="numfactura" />
-                <span id="snumfactura"></span>
-		    </div>
-            <div class="col-md-3">
-                 <label for="proveedor">Proveedor</label>
-                    <select class="form-control" name="proveedor" id="proveedor">
-                        <option value='disabled' disabled selected>Seleccione un Proveedor</option>        
-                            <?php
-						    foreach ($proveedores  as $proveedor) {
-						    echo "<option value='" . $proveedor['clProveedor'] . "'>" . $proveedor['nombreProveedor'] . "</option>";
-											}?>
-                     </select>
-            </div>
-            <div class="col-md-3">
-                <label for="empleado">Empleado</label>
-                <select class="form-control" name="empleado" id="empleado">
-                <option value='disabled' disabled selected>Seleccione un Empleado</option>
-                <?php
-				foreach ($empleados as $empleado) {
-				echo "<option value='" . $empleado['clEmpleado'] . "'>" . $empleado['nombreEmpleado'] . "</option>";
-									}?>
-                              </select>
-            </div>
-    
-	    </div>
-    </div>
-	<!-- FIN DE FILA INPUT Y BUSCAR CLIENTE -->
+				<div class="row">
+					<div class="col">
+						<hr />
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 ">
+							<label for="numfactura">Factura</label>
+							<input class="form-control" type="text" id="numfactura" name="numfactura" />
+							<span id="snumfactura"></span>
+						</div>
+						<div class="col-md-3">
+							<label for="proveedor">Proveedor</label>
+							<select class="form-control" name="proveedor" id="proveedor">
+								<option value='disabled' disabled selected>Seleccione un Proveedor</option>
+								<?php
+								foreach ($proveedores  as $proveedor) {
+									echo "<option value='" . $proveedor['clProveedor'] . "'>" . $proveedor['nombreProveedor'] . "</option>";
+								} ?>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<label for="empleado">Empleado</label>
+							<select class="form-control" name="empleado" id="empleado">
+								<option value='disabled' disabled selected>Seleccione un Empleado</option>
+								<?php
+								foreach ($empleados as $empleado) {
+									echo "<option value='" . $empleado['clEmpleado'] . "'>" . $empleado['nombreEmpleado'] . "</option>";
+								} ?>
+							</select>
+						</div>
 
-	<!-- FIN DE FILA DATOS DEL CLIENTE -->
-		
-	<div class="row">
-		<div class="col">
-			<hr/>
-		</div>
-	</div>
+					</div>
+				</div>
+				<!-- FIN DE FILA INPUT Y BUSCAR CLIENTE -->
 
-    <!-- FILA DE BUSQUEDA DE PRODUCTOS -->
-	<div class="row">
-		<div class="col-md-8 input-group">
-		   <input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
-		   <input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none"/>
-		   <button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
-		</div>
-	</div>
-	<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
-	<div class="row">
-		<div class="col">
-			<hr/>
-		</div>
-	</div>
-	<!-- FILA DE DETALLES DE LA VENTA -->
+				<!-- FIN DE FILA DATOS DEL CLIENTE -->
 
-<div class="table-responsive card shadow">
-	
-	<div class="row">
-		<div class="col-md-12">
-		   <table class="table table-striped table-hover" id="tablaentrada">
-				<thead>
-				  <tr>
-				    <th>X</th>
-					<th style="display:none">Cl</th>
-					<th>Codigo</th>
-					<th>Nombre</th>
-					<th>Cantidad</th>
-					<th>Precio</th>
-				  </tr>
-				</thead>
-				<tbody id="productosentrada">
+				<div class="row">
+					<div class="col">
+						<hr />
+					</div>
+				</div>
 
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+				<!-- FILA DE BUSQUEDA DE PRODUCTOS -->
+				<div class="row">
+					<div class="col-md-8 input-group">
+						<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
+						<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
+						<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
+					</div>
+				</div>
+				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
+				<div class="row">
+					<div class="col">
+						<hr />
+					</div>
+				</div>
+				<!-- FILA DE DETALLES DE LA VENTA -->
+
+				<div class="table-responsive card shadow">
+
+					<div class="row">
+						<div class="col-md-12">
+							<table class="table table-striped table-hover" id="tablaentrada">
+								<thead class="text-center">
+									<tr>
+										<th>X</th>
+										<th style="display:none">Cl</th>
+										<th>Codigo</th>
+										<th>Nombre</th>
+										<th>Cantidad</th>
+										<th>Precio</th>
+									</tr>
+								</thead>
+								<tbody class="text-center" id="productosentrada">
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
 	<!-- FIN DE FILA DETALLES DE LA VENTA -->
 </div>
@@ -136,22 +137,23 @@
 						<tbody class="text-center" id="listadoproductos">
 		 
 						</tbody>
-					</table>		
+					</table>
 				</div>
 			</div>
 		</div>
-<!-- seccion del modal productos -->
-</div>
+		<!-- seccion del modal productos -->
+	</div>
 
-<!--fin de seccion modal-->
+	<!--fin de seccion modal-->
 
-<?php require_once("public/components/footer.php"); ?>
-<?php require_once("public/components/extra.php");
+	<?php require_once("public/components/footer.php"); ?>
+	<?php require_once("public/components/extra.php");
 
-?>
+	?>
 
-<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
-<script type="text/javascript" src="public/js/entrada.js"></script>
+	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<script type="text/javascript" src="public/js/entrada.js"></script>
 </body>
+
 </html>
