@@ -102,7 +102,7 @@ $(document).ready(function(){
     function verificaproductos(){
         var existe = false;
        
-        if($("#detalledeventa tr").length > 0){
+        if($("#productosentrada tr").length > 0){
             existe = true;
             
         }
@@ -119,7 +119,7 @@ $(document).ready(function(){
         var id = $(linea).find("td:eq(0)").text();
         var encontro = false;
         
-        $("#detalledeventa tr").each(function(){
+        $("#productosentrada tr").each(function(){
             if(id*1 == $(this).find("td:eq(1)").text()*1){
                 encontro = true
                 var t = $(this).find("td:eq(4)").children();
@@ -132,7 +132,7 @@ $(document).ready(function(){
             var l = `
               <tr>
                <td>
-               <button type="button" class="btn btn-danger" onclick="eliminalineadetalle(this)">X</button>
+               <button type="button" class="btn btn-danger" onclick="eliminarproducto(this)">X</button>
                </td>
                <td style="display:none">
                    <input type="text" name="idp[]" style="display:none"
@@ -155,7 +155,7 @@ $(document).ready(function(){
                   <input type="text" value="1" name="precio[]" "/></td>
                
                </tr>`;
-            $("#detalledeventa").append(l);
+            $("#productosentrada").append(l);
         }
     }
     
@@ -164,7 +164,7 @@ $(document).ready(function(){
     
     
     //funcion para eliminar linea de detalle de ventas
-    function eliminalineadetalle(boton){
+    function eliminarproducto(boton){
         $(boton).closest('tr').remove();
     }
 
@@ -290,7 +290,8 @@ $(document).ready(function(){
     }
     function limpia(){
         $("#numfactura").val('');
-        
         $("#empleado").val("disabled");
         $("#proveedor").val("disabled");
+        $("#productosentrada tr").remove();
+        
         }

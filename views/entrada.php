@@ -92,7 +92,7 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-		   <table class="table table-striped table-hover">
+		   <table class="table table-striped table-hover" id="tablaentrada">
 				<thead>
 				  <tr>
 				    <th>X</th>
@@ -103,7 +103,7 @@
 					<th>Precio</th>
 				  </tr>
 				</thead>
-				<tbody id="detalledeventa">
+				<tbody id="productosentrada">
 
 				</tbody>
 			</table>
