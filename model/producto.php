@@ -8,7 +8,7 @@ class Producto extends Conexion{
     private $ultimoPrecio;
     private $descProducto;
     private $clCategoria;
-    22
+    
     // SETTER
     function set_codProducto($valor)
     {

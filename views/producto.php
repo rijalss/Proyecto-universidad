@@ -48,7 +48,7 @@
 		</div> <!-- fin de container -->
 	</section>
 
-	<!-- Modal -->
+	<!-- Modal --> 
 	<div class="modal fade" tabindex="-1" role="dialog" id="modalProducto">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">

@@ -20,10 +20,7 @@ elseif($accion=='registrar'){
 
     $respuesta = $obj1->registrar($_POST['idp'],$_POST['cant'],$_POST['precio'],$_POST['empleado']);
 echo json_encode($respuesta);
-    } elseif ($accion == 'buscar') {
-$respuesta=$obj1->buscar((isset($_POST['cant']) ? $_POST['cant'] : null),$_POST['idp']);
-            echo  json_encode($respuesta);
-        }
+    } 
 
 
 exit; 
