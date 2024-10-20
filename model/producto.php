@@ -174,6 +174,15 @@ class Producto extends Conexion{
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
+                     // Construir la URL de la imagen de perfil
+                     $imagenURL = "public/img/producto/" . htmlspecialchars($r['codProducto']) . ".png"; // Asegúrate que la imagen siga este patrón
+                    
+                     // Comprobar si la imagen existe
+                     if (file_exists($imagenURL)) {
+                         $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
+                     } else {
+                         $respuesta .= "<td><img src='public/img/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                     }
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['codProducto'];
                     $respuesta = $respuesta . "</td>";
@@ -188,12 +197,10 @@ class Producto extends Conexion{
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['descProducto'];
-                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
-                    $respuesta = $respuesta . "</div>";
-                    $respuesta = $respuesta . "</td>";
+                    $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta .= "</td>";
                     $respuesta = $respuesta . "</tr>";
                 }
 
