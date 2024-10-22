@@ -175,13 +175,13 @@ class Producto extends Conexion{
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
                      // Construir la URL de la imagen de perfil
-                     $imagenURL = "public/img/producto/" . htmlspecialchars($r['codProducto']) . ".png"; // Asegúrate que la imagen siga este patrón
+                     $imagenURL = "public/producto/" . htmlspecialchars($r['codProducto']) . ".png"; // Asegúrate que la imagen siga este patrón
                     
                      // Comprobar si la imagen existe
                      if (file_exists($imagenURL)) {
                          $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
                      } else {
-                         $respuesta .= "<td><img src='public/img/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                         $respuesta .= "<td><img src='public/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
                      }
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['codProducto'];

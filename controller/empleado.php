@@ -37,7 +37,7 @@ if (is_file("views/" . $pagina . ".php")) {
                           move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
                           'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
                           
-                    } 
+                    }  
                 }
                 echo  json_encode($p->incluir());
             } elseif ($accion == 'modificar') {

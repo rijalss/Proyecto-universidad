@@ -1,5 +1,5 @@
 function consultar() {
-    var datos = new FormData();
+  var datos = new FormData($('#f')[0]);
     datos.append("accion", "consultar");
     enviaAjax(datos);
 } 
@@ -10,6 +10,30 @@ function destruyeDT() {
     }
 }
 
+
+//funcion para mostrar la imagen antes de subirla al servidor
+function mostrarImagen(f) {
+	console.log("entro en la funncion mostrar imagen");
+	var tamano = f.files[0].size;
+     var megas = parseInt(tamano / 1024);
+     
+     if(megas > 1024){
+		 muestraMensaje("La imagen debe ser igual o menor a 1024 K");
+         $(f).val('');
+     }
+     else{	
+      console.log("entro en el else");
+		 if (f.files && f.files[0]) {
+		  var reader = new FileReader();
+		  reader.onload = function (e) {
+		   $('#imagen').attr('src', e.target.result);
+       console.log("entro en el segundo if");
+		  }
+		  reader.readAsDataURL(f.files[0]);
+		 }
+	 }  
+}
+//fin de funcion mostrar imagen
  
 function crearDT() {
     if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
@@ -78,21 +102,18 @@ function toggleInput() {
     const input = document.getElementById("ultimoPrecio");
     input.disabled = !checkbox.checked;
 }
-
 $(document).ready(function () {
-  //control de input para mostrar imagen
-  $("#archivo").on("change", function () {
-    mostrarImagen(this);
-  });
-  //
-
-  $("#imagen").on("error", function () {
-    $(this).prop("src", "public/img/producto/producto.jpg");
-  });
-
-
   consultar();
+    //control de input para mostrar imagen 
+    $("#archivo").on("change",function(){
+      
+      mostrarImagen(this);
+    });
+    //			
 
+    $("#imagen").on("error",function(){
+    $(this).prop("src","public/producto/producto.jpg");
+    });
   // Validaciones
 
   $("#codProducto").on("keypress", function (e) {
@@ -107,7 +128,7 @@ $(document).ready(function () {
       "Este formato permite de 4 a 10 carácteres"
     );
     if ($("#codProducto").val().length <= 10) {
-      var datos = new FormData();
+      var datos = new FormData($('#f')[0]);
       datos.append("accion", "existe");
       datos.append("codProducto", $(this).val());
       enviaAjax(datos);
@@ -158,7 +179,7 @@ $(document).ready(function () {
   $("#proceso").on("click", function () {
     if ($(this).text() == "REGISTRAR") {
       if (validarenvio()) {
-        var datos = new FormData();
+        var datos = new FormData($('#f')[0]);
         datos.append("accion", "incluir");
         datos.append("codProducto", $("#codProducto").val());
         datos.append("nombreProducto", $("#nombreProducto").val());
@@ -177,7 +198,7 @@ $(document).ready(function () {
       }
     } else if ($(this).text() == "MODIFICAR") {
       if (validarenvio()) {
-        var datos = new FormData();
+        var datos = new FormData($('#f')[0]);
         datos.append("accion", "modificar");
         datos.append("codProducto", $("#codProducto").val());
         datos.append("nombreProducto", $("#nombreProducto").val());
@@ -217,7 +238,7 @@ $(document).ready(function () {
         }).then((result) => {
           if (result.isConfirmed) {
             // Si se confirma, proceder con la eliminación
-            var datos = new FormData();
+            var datos = new FormData($('#f')[0]);
             datos.append("accion", "eliminar");
             datos.append("codProducto", $("#codProducto").val());
             enviaAjax(datos);
@@ -240,30 +261,8 @@ $(document).ready(function () {
     $("#proceso").text("REGISTRAR");
     $("#modalProducto").modal("show");
   });
-});
 
-
-//funcion para mostrar la imagen antes de subirla al servidor
-      function mostrarImagen(f) {
-	
-        var tamano = f.files[0].size;
-           var megas = parseInt(tamano / 1024);
-           
-           if(megas > 1024){
-           muestraMensaje("La imagen debe ser igual o menor a 1024 K");
-               $(f).val('');
-           }
-           else{	
-           if (f.files && f.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-             $('#imagen').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(f.files[0]);
-           }
-         }
-      }
-
+ });
 // Validaciones antes de envío
 
 function validarenvio() {
@@ -342,27 +341,6 @@ function muestraMensaje(icono, tiempo, titulo, mensaje) {
         confirmButtonText: "Aceptar",
     });
 }
-/* Imagen */
-            function mostrarImagen(f) {
-
-                var tamano = f.files[0].size;
-                var megas = parseInt(tamano / 1024);
-
-                if (megas > 1024) {
-                    muestraMensaje("La imagen debe ser igual o menor a 1024 K");
-                    $(f).val('');
-                }
-                else {
-                    if (f.files && f.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            $('#imagen').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(f.files[0]);
-                    }
-                }
-            }
-
 //Función para validar por Keypress
 function validarkeypress(er, e) {
     key = e.keyCode;
@@ -409,9 +387,9 @@ function pone(pos, accion) {
         })
         .prop("selected", true)
         .change();
-        $("#imagen").prop("src","public/img/producto/"+$(linea).find("td:eq(1)").text()+".png");
 
-    $("#descProducto").val($(linea).find("td:eq(4)").text());
+    $("#descProducto").val($(linea).find("td:eq(5)").text());
+    $("#imagen").prop("src","public/producto/"+$(linea).find("td:eq(1)").text()+".png");
 
     $("#modalProducto").modal("show");
 }
@@ -429,7 +407,7 @@ function enviaAjax(datos) {
         beforeSend: function () {},
         timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
         success: function (respuesta) {
-             console.log(respuesta);
+            console.log(respuesta);
             try {
                 var lee = JSON.parse(respuesta);
                 if (lee.resultado == "consultar") {
@@ -437,23 +415,28 @@ function enviaAjax(datos) {
                     $("#resultadoconsulta").html(lee.mensaje);
                     crearDT();
                 } else if (lee.resultado == "incluir") {
+                  consultar();
                     muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Incluido!<br/> Se registró el producto correctamente"
                     ) {
                         $("#modalProducto").modal("hide");
-                        consultar();
-                    }
+                      
+                    }   
                 } else if (lee.resultado == "modificar") {
+                  
                     muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
+                   
                     if (
                         lee.mensaje ==
                         "Registro Modificado!<br/> Se modificó el producto correctamente"
-                    ) {
+                        
+                    ) {  destruyeDT(); 
+                  
                         $("#modalProducto").modal("hide");
-                        consultar();
-                    }
+                        crearDT();
+                    }  consultar();
                 } else if (lee.resultado == "eliminar") {
                     muestraMensaje("info", 4000, "ELIMINAR", lee.mensaje);
                     if (
@@ -493,5 +476,5 @@ function limpia() {
     $("#descProducto").val("");
     $("#ultimoPrecio").val("");
     $("#categoria").val("disabled");
-    $('#imagen').prop("src","public/img/producto/producto.jpg");
+    $('#imagen').prop("src","public/producto/producto.jpg");
 }
