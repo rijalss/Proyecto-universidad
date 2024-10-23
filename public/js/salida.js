@@ -206,5 +206,6 @@ function enviaAjax(datos) {
 
 function limpia() {
   $("#empleado").val("disabled");
+  $("#codigoproducto").val('');
   $("#salidadetalle tr").remove();
 }

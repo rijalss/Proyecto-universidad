@@ -292,6 +292,7 @@ $(document).ready(function(){
         $("#numfactura").val('');
         $("#empleado").val("disabled");
         $("#proveedor").val("disabled");
+        $("#codigoproducto").val('');
         $("#productosentrada tr").remove();
         
         }
