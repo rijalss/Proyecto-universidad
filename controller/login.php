@@ -1,34 +1,34 @@
 <?php
-
 if (!is_file("model/" . $pagina . ".php")) {
-    echo "Falta definir la clase " . $pagina;
+    echo "Falta el modelo";
     exit;
- }
+}
 require_once("model/" . $pagina . ".php");
 if (is_file("views/" . $pagina . ".php")) {
+    if (!empty($_POST)) {
 
-    $e = new Login();
+        $o = new Login();
+        $h= $_POST['accion'];
+       // echo  $h;
+        if ($_POST['accion'] == 'acceder') {
+            $o->set_username($_POST['username']);
+            $o->set_password($_POST['password']);
+            $m = $o->existe();
+            if ($m['resultado'] == 'existe') {
+                session_destroy(); 	
+                session_start(); 
+                $_SESSION['name'] = $m['mensaje'];
 
-    // si el metodo es POST, se ejecuta el metodo Login de la clase Empleado 
-    // y se verifica si el empleado existe en la base de datos 
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-             // se verifica si el empleado existe en la base de datos e inicia sesión
-       if ($e->Login($username, $password)) {
-            session_start();
-            $_SESSION['loggedin'] = true;
-             //$_SESSION['nombreEmpleado'] = $loginResult['nombreEmpleado'];
-             // si existe, se redirecciona a la pagina principal
-            header("Location: ?pagina=principal");
-        } else {
-             // si no existe, se muestra un mensaje de error
-            echo "<script>alert('Usuario o contraseña INCORRECTOS!'); window.location.href='index.php';</script>";
+                header('Location: ?pagina=principal');
+ 
+                die();
+            } else {
+                $mensaje = $m['mensaje'];
+            }
         }
     }
 
     require_once("views/" . $pagina . ".php");
- } else {
-     echo "pagina en construccion";
- }
+} else {
+    echo "Falta la vista";
+}

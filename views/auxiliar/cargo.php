@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+    // Redirigir al usuario a la página de inicio de sesión
+    header('Location: .');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargo</title>
-    
+
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -16,7 +27,7 @@
     <?php require_once("public/components/menu.php"); ?>
     <!-- Header -->
     <div class="container" style="width: 75%;">
-    <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;"> 
+        <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;">
             <h2 class="text-primary text-center">Gestionar Cargo</h2>
             <div class="container">
                 <div class="text-left">
@@ -100,7 +111,7 @@
 
     <!-- Scripts -->
 
-    
+
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="public/js/cargo.js"></script>
     <!-- Scripts -->

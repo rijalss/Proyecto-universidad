@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+    // Redirigir al usuario a la página de inicio de sesión
+    header('Location: .');
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +28,17 @@
 
     <!-- Title -->
     <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-        <h1 class="text-primary display-4 text-center text-uppercase font-weight-bold">Bienvenido!</h1>
+
+        <h1 id="nombre_persona" class="text-primary display-4 text-center text-uppercase font-weight-bold"></h1>
+
+        <?php
+
+        if (isset($_SESSION['name'])) {
+            echo "<script>document.getElementById('nombre_persona').innerHTML = 'Bienvenid@ " . $_SESSION['name'] . "!';</script>";
+        }
+
+        ?>
+
         <img src="public/img/logo.png" height="110px" width="160px" style="margin: 0; padding: 0;">
         <br>
     </section>
@@ -108,7 +130,7 @@
     <!-- Footer -->
 
     <!-- Scripts -->
- 
+
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
 </body>

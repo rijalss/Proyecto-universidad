@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+	// Redirigir al usuario a la página de inicio de sesión
+	header('Location: .');
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Existencia</title>
-	
+
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -16,9 +27,9 @@
 	<!-- Header -->
 
 	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-		
+
 		<h2 class="text-primary text-center">Listar Existencias</h2>
-		
+
 		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<br>
 			<div class="container">
@@ -28,7 +39,7 @@
 					<table class="table table-striped table-hover" id="tablaexistencia">
 						<thead>
 							<tr>
-								
+
 							</tr>
 						</thead>
 						<tbody id="resultadoconsulta"></tbody>

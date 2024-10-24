@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+	// Redirigir al usuario a la página de inicio de sesión
+	header('Location: .');
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +23,8 @@
 
 
 <body>
-<!-- Header -->
-<?php require_once("public/components/menu.php"); ?>
+	<!-- Header -->
+	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
 	<section class="d-flex flex-column align-items-center">
@@ -72,95 +83,95 @@
 											<div class="container">
 												<div class="row mb-3"></div>
 
-													<div class="col">
-														<label for="codProducto">Código Producto</label>
-														<input class="form-control" type="text" id="codProducto" name="codProducto" required />
-														<span id="scodProducto"></span>
-													</div>
-													<div class="col">
-														<label for="nombreProducto">Nombre</label>
-														<input class="form-control" type="text" id="nombreProducto" name="nombreProducto" required />
-														<span id="snombreProducto"></span>
-													</div>
+												<div class="col">
+													<label for="codProducto">Código Producto</label>
+													<input class="form-control" type="text" id="codProducto" name="codProducto" required />
+													<span id="scodProducto"></span>
+												</div>
+												<div class="col">
+													<label for="nombreProducto">Nombre</label>
+													<input class="form-control" type="text" id="nombreProducto" name="nombreProducto" required />
+													<span id="snombreProducto"></span>
+												</div>
 
-													<div class="col">
-														<label for="ultimoPrecio">Último precio</label>
-														<div class="d-flex align-items-center">
-															<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
-															<div class="form-check ms-2">
-																<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio:</label>
-																<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
-															</div>
+												<div class="col">
+													<label for="ultimoPrecio">Último precio</label>
+													<div class="d-flex align-items-center">
+														<input class="form-control" type="number" id="ultimoPrecio" name="ultimoPrecio" min="0" />
+														<div class="form-check ms-2">
+															<label class="form-check-label" for="habilitarPromedio">Habilitar Último precio:</label>
+															<input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
 														</div>
 													</div>
-													<span id="sultimoPrecio"></span>
-
-
 												</div>
-												<div class="row">
-													<div class="col-md-12">
-													<hr/>
+												<span id="sultimoPrecio"></span>
+
+
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<hr />
 													<center>
-														<label for="archivo"  style="cursor:pointer">
-														
-															<img src="public/producto/producto.jpg" id="imagen" 
-															class="img-fluid rounded-circle w-25 mb-3 centered"
-															style="object-fit:scale-down">
-															Click aqui para subir foto	
-														</label>
-														<input id="archivo"  
-														type="file" 
-														style="display:none" 
-														accept=".png,.jpg,.jpeg"
-														name="imagenarchivooo"/>
-													</center>
-													</div>
-												</div>
-												<div class="col-md-6">
-														<label for="categoria" class="form-label">Categoría:</label>
-														<select class="form-control" name="categoria" id="categoria">
-															<option value='disabled' disabled selected>Seleccione una categoria</option>
-															<?php
-															foreach ($categorias as $categoria) {
-																echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
-															}
-															?>
-														</select>
-														<span id="scategoria" class="error"></span>
-													</div>
-														<div class="mb-3">
-															<label for="descProducto" class="form-label">Descripción:</label>
-															<textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
-														<span id="sdescProducto"></span>
-												</div>
-												</div>
-												<div class="row">
-											
-													<div class="col">
-													
-														<hr/>
-													</div>
-												</div>
+														<label for="archivo" style="cursor:pointer">
 
-										</form>
-								
+															<img src="public/producto/producto.jpg" id="imagen"
+																class="img-fluid rounded-circle w-25 mb-3 centered"
+																style="object-fit:scale-down">
+															Click aqui para subir foto
+														</label>
+														<input id="archivo"
+															type="file"
+															style="display:none"
+															accept=".png,.jpg,.jpeg"
+															name="imagenarchivooo" />
+													</center>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<label for="categoria" class="form-label">Categoría:</label>
+												<select class="form-control" name="categoria" id="categoria">
+													<option value='disabled' disabled selected>Seleccione una categoria</option>
+													<?php
+													foreach ($categorias as $categoria) {
+														echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+													}
+													?>
+												</select>
+												<span id="scategoria" class="error"></span>
+											</div>
+											<div class="mb-3">
+												<label for="descProducto" class="form-label">Descripción:</label>
+												<textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
+												<span id="sdescProducto"></span>
+											</div>
 								</div>
-							</div>
-							<br>
-							<div class="row mt-3 d-flex justify-content-center align-items-center">
-								<div class="col-md-2">
-									<button type="button" class="btn btn-dark" id="proceso"></button>
+								<div class="row">
+
+									<div class="col">
+
+										<hr />
+									</div>
 								</div>
-							</div>
+
 					</form>
+
 				</div>
 			</div>
+			<br>
+			<div class="row mt-3 d-flex justify-content-center align-items-center">
+				<div class="col-md-2">
+					<button type="button" class="btn btn-dark" id="proceso"></button>
+				</div>
+			</div>
+			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 	</div>
 	<!-- Fin del Modal -->
 
-	<!-- Footer --> 
+	<!-- Footer -->
 	<?php require_once("public/components/footer.php"); ?>
 	<?php require_once("public/components/extra.php"); ?>
 	<!-- Footer -->

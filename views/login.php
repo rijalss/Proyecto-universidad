@@ -5,6 +5,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 </head>
@@ -28,7 +29,8 @@
               </div>
             </div>
 
-            <form method="post">
+            <form method="post" id="f" action="">
+              <input type="text" name="accion" id="accion" style="display:none" />
               <div class="row gy-3 gy-md-4 overflow-hidden">
 
                 <div class="col-12">
@@ -43,7 +45,7 @@
 
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn bsb-btn-xl btn-primary" type="submit">Inicia ahora</button>
+                    <button class="btn bsb-btn-xl btn-primary" id="acceder" name="acceder">Acceder</button>
                   </div>
                 </div>
 
@@ -57,15 +59,13 @@
     </div>
   </div>
 
-
-
-
-
-
-
-
+  <!-- Footer -->
+  <?php require_once("public/components/footer.php"); ?>
+  <?php require_once("public/components/extra.php"); ?>
+  <!-- Footer -->
 
   <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="public/js/login.js"></script>
 </body>
 
 </html>

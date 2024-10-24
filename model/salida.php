@@ -37,9 +37,9 @@ class Salida extends Conexion{
 
 			// Alertas
 			if ($Total == 0) {
-				$alertas[] = "Alerta: La existencia del producto '$nombreProd' ha quedado en cero.<br/>";
+				$alertas[] = "Alerta: La existencia del producto '$nombreProd' se ha agotado!<br/>";
 			} elseif ($Total <= 10) {
-				$alertas[] = "Alerta: La existencia del producto '$nombreProd' es igual o menor a 10.<br/>";
+				$alertas[] = "Alerta: La existencia del producto '$nombreProd' es baja!<br/>";
 			}
 		}
 

@@ -1,4 +1,16 @@
-<html>
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+	// Redirigir al usuario a la página de inicio de sesión
+	header('Location: .');
+	exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -112,12 +124,12 @@
 					</div>
 				</div>
 
-	<!-- FIN DE FILA DETALLES DE LA VENTA -->
-</div>
-</form>
-</div> <!-- fin de container -->
-</section>
-<div class="modal fade" tabindex="-1" role="dialog" id="modalproductos">
+				<!-- FIN DE FILA DETALLES DE LA VENTA -->
+		</div>
+		</form>
+		</div> <!-- fin de container -->
+	</section>
+	<div class="modal fade" tabindex="-1" role="dialog" id="modalproductos">
 		<div class="modal-dialog " role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -128,14 +140,14 @@
 				<div class="modal-body">
 					<table class="table table-striped table-hover">
 						<thead class="text-center">
-		 					 <tr>
-		    					<th style="display:none">Id</th>
+							<tr>
+								<th style="display:none">Id</th>
 								<th>Codigo</th>
 								<th>Nombre</th>
 							</tr>
 						</thead>
 						<tbody class="text-center" id="listadoproductos">
-		 
+
 						</tbody>
 					</table>
 				</div>

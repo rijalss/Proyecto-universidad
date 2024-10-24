@@ -46,7 +46,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="?pagina=login"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt=""> Salir</a>
+                        <a class="nav-link" href="?pagina=fin"><img width="20PX" src="public/icons/svg/box-arrow-right.svg" alt=""> Salir</a>
                     </li>
                 </ul>
             </div>

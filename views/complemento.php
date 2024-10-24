@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['name'])) {
+    // Redirigir al usuario a la página de inicio de sesión
+    header('Location: .');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
-    
+
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -16,20 +27,20 @@
     <!-- Header -->
 
     <!-- Title -->
-    
+
     <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
-    <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Complementos!</h1>
-    <?php
-    /*
+        <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Complementos!</h1>
+        <?php
+        /*
         session_start();
         $nombreEmpleado = $_SESSION['nombreEmpleado'];
         echo "<h2 class=\"display-4 text-center text-uppercase font-weight-bold\">$nombreEmpleado!</h2>";
         */
-    ?>
-    
-    <!-- Container de cards -->
-     </section>
-     
+        ?>
+
+        <!-- Container de cards -->
+    </section>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -59,7 +70,7 @@
     <!-- Footer -->
 
     <!-- Scripts -->
- 
+
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
 </body>
