@@ -493,5 +493,5 @@ function limpia() {
   $('#imagen').prop("src", "public/producto/producto.jpg");
 
   // Habilitar los campos por si estaban deshabilitados
-  $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', false);
+  $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
 }
