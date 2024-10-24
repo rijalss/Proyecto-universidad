@@ -372,9 +372,13 @@ function pone(pos, accion) {
 
   if (accion == 0) {
       // Para modificar: habilitar los campos
-      $("#proceso").text("MODIFICAR");
+      $("#proceso").text("incluir");
       $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
-  } else {
+  } else if (accion == 0) {
+    // Para modificar: habilitar los campos
+    $("#proceso").text("MODIFICAR");
+    $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
+}else {
       // Para eliminar: desactivar los campos para que no sean editables
       $("#proceso").text("ELIMINAR");
       $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', true);
