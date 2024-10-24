@@ -186,69 +186,72 @@ class Empleado extends Conexion
 
 
     function consultar()
-    {
-        $co = $this->conecta();
-        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $r = array();
-        try {
-
-            $resultado = $co->query("SELECT e.prefijoCedula, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpleado, e.correoEmpleado, c.nombreCargo
-                                    FROM empleado e
-                                    JOIN cargo c ON e.clCargo = c.clCargo");
-            if ($resultado) {
-
-                $respuesta = '';
-                foreach ($resultado as $r) {
-                    $respuesta = $respuesta . "<tr>";
-                       // Construir la URL de la imagen de perfil
-                       $imagenURL = "public/img/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png"; // Asegúrate que la imagen siga este patrón
-                    
-                       // Comprobar si la imagen existe
-                       if (file_exists($imagenURL)) {
-                           $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
-                       } else {
-                           $respuesta .= "<td><img src='public/img/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
-                       }
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['nombreEmpleado'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['apellidoEmpleado'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['telefonoEmpleado'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['correoEmpleado'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td>";
-                    $respuesta = $respuesta . $r['nombreCargo'];
-                    $respuesta = $respuesta . "</td>";
-                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
-                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
-                    $respuesta = $respuesta . "</div>";
-                    $respuesta = $respuesta . "</td>";
-                    
-                    $respuesta = $respuesta . "</tr>";
+{
+    $co = $this->conecta();
+    $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $r = array();
+    try {
+        $resultado = $co->query("SELECT e.prefijoCedula, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpleado, e.correoEmpleado, c.nombreCargo
+                                FROM empleado e
+                                JOIN cargo c ON e.clCargo = c.clCargo");
+        if ($resultado) {
+            $respuesta = '';
+            foreach ($resultado as $r) {
+                $respuesta = $respuesta . "<tr>";
+                
+                // Construir la URL de la imagen de perfil
+                $imagenURL = "public/img/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png";
+                
+                // Comprobar si la imagen existe
+                if (file_exists($imagenURL)) {
+                    // Añadir timestamp a la URL de la imagen para evitar caché
+                    $timestamp = filemtime($imagenURL); // Devuelve la última modificación de la imagen
+                    $respuesta .= "<td><img src='$imagenURL?$timestamp' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
+                } else {
+                    $respuesta .= "<td><img src='public/img/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
                 }
 
-                $r['resultado'] = 'consultar';
-                $r['mensaje'] =  $respuesta;
-            } else {
-                $r['resultado'] = 'consultar';
-                $r['mensaje'] =  '';
+                // Continuar con el resto de los datos del empleado
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['nombreEmpleado'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['apellidoEmpleado'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['telefonoEmpleado'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['correoEmpleado'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['nombreCargo'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
+                $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
+                $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
+                $respuesta = $respuesta . "</div>";
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "</tr>";
             }
-        } catch (Exception $e) {
-            $r['resultado'] = 'error';
-            $r['mensaje'] =  $e->getMessage();
+
+            $r['resultado'] = 'consultar';
+            $r['mensaje'] =  $respuesta;
+        } else {
+            $r['resultado'] = 'consultar';
+            $r['mensaje'] =  '';
         }
-        return $r;
+    } catch (Exception $e) {
+        $r['resultado'] = 'error';
+        $r['mensaje'] =  $e->getMessage();
     }
+    return $r;
+}
+
 
     public function existe($cedulaEmpleado){
         $co = $this->conecta();

@@ -404,27 +404,38 @@ function pone(pos, accion) {
   linea = $(pos).closest("tr");
 
   if (accion == 0) {
-    $("#proceso").text("MODIFICAR");
-
+      // Para modificar: Habilitar los campos y permitir edición
+      $("#proceso").text("MODIFICAR");
+      $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
   } else {
-    $("#proceso").text("ELIMINAR");
+      // Para eliminar: Desactivar los campos para evitar edición
+      $("#proceso").text("ELIMINAR");
+      $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', true);
   }
 
+  // Cargar los datos de la fila seleccionada
   var cedulaEmpleado = $(linea).find("td:eq(1)").text();
-  $("#cedulaEmpleado").val(cedulaEmpleado.substring(2));
-  $("#prefijoCedula").val(cedulaEmpleado.substring(0, 1));
+  $("#cedulaEmpleado").val(cedulaEmpleado.substring(2)); // Solo la cédula sin prefijo
+  $("#prefijoCedula").val(cedulaEmpleado.substring(0, 1)); // Prefijo (V o E)
   $("#nombreEmpleado").val($(linea).find("td:eq(2)").text());
   $("#apellidoEmpleado").val($(linea).find("td:eq(3)").text());
   $("#telefonoEmpleado").val($(linea).find("td:eq(4)").text());
   $("#correoEmpleado").val($(linea).find("td:eq(5)").text());
-  $("#imagen").prop("src","public/img/"+$(linea).find("td:eq(1)").text()+".png");
-  var nombreCargo = $(linea).find("td:eq(6)").text();
-		$('#cargo option').filter(function() {
-            return $(this).text() == nombreCargo;
-        }).prop('selected', true).change();
 
-    	$("#modal1").modal("show");
+  // Agregar timestamp a la URL de la imagen para evitar caché
+  var imagenURL = "public/img/" + cedulaEmpleado + ".png";
+  var timestamp = new Date().getTime(); // Obtener la marca de tiempo actual
+  $("#imagen").prop("src", imagenURL + "?" + timestamp);
+
+  var nombreCargo = $(linea).find("td:eq(6)").text();
+  $('#cargo option').filter(function() {
+      return $(this).text() == nombreCargo;
+  }).prop('selected', true).change();
+
+  $("#modal1").modal("show");
 }
+
+
 
 //funcion que envia y recibe datos por AJAX
 function enviaAjax(datos) {
@@ -439,7 +450,7 @@ function enviaAjax(datos) {
     beforeSend: function () {},
     timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
     success: function (respuesta) {
-      //console.log(respuesta); 
+      console.log(respuesta); 
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {

@@ -368,31 +368,43 @@ function validarkeyup(er, etiqueta, etiquetamensaje, mensaje) {
 
 //funcion para pasar de la lista a el formulario
 function pone(pos, accion) {
-    linea = $(pos).closest("tr");
+  linea = $(pos).closest("tr");
 
-    if (accion == 0) {
-        $("#proceso").text("MODIFICAR");
-        
-    } else {
-        $("#proceso").text("ELIMINAR");
-      
-    }
-    $("#codProducto").val($(linea).find("td:eq(1)").text());
-    $("#nombreProducto").val($(linea).find("td:eq(2)").text());
-    $("#ultimoPrecio").val($(linea).find("td:eq(3)").text());
-    var nombreCategoria = $(linea).find("td:eq(4)").text();
-    $("#categoria option")
-        .filter(function () {
-            return $(this).text() == nombreCategoria;
-        })
-        .prop("selected", true)
-        .change();
+  if (accion == 0) {
+      // Para modificar: habilitar los campos
+      $("#proceso").text("MODIFICAR");
+      $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', false);
+  } else {
+      // Para eliminar: desactivar los campos para que no sean editables
+      $("#proceso").text("ELIMINAR");
+      $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', true);
+  }
 
-    $("#descProducto").val($(linea).find("td:eq(5)").text());
-    $("#imagen").prop("src","public/producto/"+$(linea).find("td:eq(1)").text()+".png");
+  // Cargar los datos de la fila seleccionada
+  $("#codProducto").val($(linea).find("td:eq(1)").text());
+  $("#nombreProducto").val($(linea).find("td:eq(2)").text());
+  $("#ultimoPrecio").val($(linea).find("td:eq(3)").text());
 
-    $("#modalProducto").modal("show");
+  var nombreCategoria = $(linea).find("td:eq(4)").text();
+  $("#categoria option")
+      .filter(function () {
+          return $(this).text() == nombreCategoria;
+      })
+      .prop("selected", true)
+      .change();
+
+  $("#descProducto").val($(linea).find("td:eq(5)").text());
+
+  // Actualizar la URL de la imagen para evitar caché (sin eliminar la imagen)
+  var imagenURL = "public/producto/" + $(linea).find("td:eq(1)").text() + ".png";
+  var timestamp = new Date().getTime(); // Obtener timestamp actual
+  $("#imagen").prop("src", imagenURL + "?" + timestamp); // Actualizar la URL con timestamp
+
+  // Mostrar el modal
+  $("#modalProducto").modal("show");
 }
+
+
 
 //funcion que envia y recibe datos por AJAX
 function enviaAjax(datos) {

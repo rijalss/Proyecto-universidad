@@ -18,6 +18,9 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
         } elseif ($accion == 'eliminar') {
             $obj1->setcodCategoria($_POST['codCategoria']);
             echo  json_encode($obj1->eliminar());
+        }elseif($accion == 'existe') {
+         
+            echo json_encode($obj1->existe($_POST['codCategoria']));
         } else {
             $obj1->setcodCategoria($_POST['codCategoria']);
             $obj1->setnombreCategoria($_POST['nombreCategoria']);

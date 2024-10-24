@@ -93,7 +93,7 @@ if (!isset($_SESSION['name'])) {
 											<div class="container">
 												<div class="row mb-3">
 													<div class="col-1">
-														<label for="prefijoCedula"></label>
+														<label for="prefijoCedula">Prefijo</label>
 														<select class="form-control" name="prefijoCedula" id="prefijoCedula">
 															<option value="V">V</option>
 															<option value="E">E</option>
