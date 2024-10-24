@@ -177,6 +177,7 @@ $(document).ready(function () {
   // BOTONES
 
   $("#proceso").on("click", function () {
+   
     if ($(this).text() == "REGISTRAR") {
       if (validarenvio()) {
         var datos = new FormData($('#f')[0]);
@@ -372,13 +373,9 @@ function pone(pos, accion) {
 
   if (accion == 0) {
       // Para modificar: habilitar los campos
-      $("#proceso").text("incluir");
+      $("#proceso").text("MODIFICAR");
       $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
-  } else if (accion == 0) {
-    // Para modificar: habilitar los campos
-    $("#proceso").text("MODIFICAR");
-    $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
-}else {
+  } else {
       // Para eliminar: desactivar los campos para que no sean editables
       $("#proceso").text("ELIMINAR");
       $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', true);
@@ -487,10 +484,14 @@ function enviaAjax(datos) {
 }
 
 function limpia() {
-    $("#codProducto").val("");
-    $("#nombreProducto").val("");
-    $("#descProducto").val("");
-    $("#ultimoPrecio").val("");
-    $("#categoria").val("disabled");
-    $('#imagen').prop("src","public/producto/producto.jpg");
+  // Limpiar los campos
+  $("#codProducto").val("");
+  $("#nombreProducto").val("");
+  $("#descProducto").val("");
+  $("#ultimoPrecio").val("");
+  $("#categoria").val("disabled");
+  $('#imagen').prop("src", "public/producto/producto.jpg");
+
+  // Habilitar los campos por si estaban deshabilitados
+  $("#codProducto, #nombreProducto, #ultimoPrecio, #categoria, #descProducto").prop('disabled', false);
 }
