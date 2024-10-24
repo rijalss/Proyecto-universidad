@@ -227,10 +227,12 @@ class Empleado extends Conexion
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['nombreCargo'];
                     $respuesta = $respuesta . "</td>";
-                    $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
-                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
-                    $respuesta .= "</td>";
+                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta = $respuesta . "</div>";
+                    $respuesta = $respuesta . "</td>";
                     
                     $respuesta = $respuesta . "</tr>";
                 }
