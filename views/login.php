@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 </head>
 
+<div id="mensajes" style="display:none" 
+data-mensaje="<?php echo !empty($mensaje) ? $mensaje : ''; ?>">
+</div>
+
 <body>
   <div class="container my-5 py-5">
     <div class="card border-dark shadow-lg">
@@ -34,13 +38,15 @@
               <div class="row gy-3 gy-md-4 overflow-hidden">
 
                 <div class="col-12">
-                  <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                  <label for="username" class="form-label">Usuario <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" name="username" id="username" required>
+                  <span id="susername"></span>
                 </div>
 
                 <div class="col-12">
-                  <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                  <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
                   <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" required>
+                  <span id="spassword"></span>
                 </div>
 
                 <div class="col-12">
