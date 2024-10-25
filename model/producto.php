@@ -158,31 +158,36 @@ class Producto extends Conexion{
     }
 
 
-    function consultar()
+    function consultar() 
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-
+    
             $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, c.nombreCategoria
                 FROM producto p
                 JOIN categoria c ON p.clCategoria = c.clCategoria");
-
+    
             if ($resultado) {
-
+    
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
-                     // Construir la URL de la imagen de perfil
-                     $imagenURL = "public/producto/" . htmlspecialchars($r['codProducto']) . ".png"; // Asegúrate que la imagen siga este patrón
                     
-                     // Comprobar si la imagen existe
-                     if (file_exists($imagenURL)) {
-                         $respuesta .= "<td><img src='$imagenURL' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
-                     } else {
-                         $respuesta .= "<td><img src='public/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
-                     }
+                    // Construir la URL de la imagen del producto
+                    $imagenURL = "public/producto/" . htmlspecialchars($r['codProducto']) . ".png"; 
+                    
+                    // Comprobar si la imagen existe
+                    if (file_exists($imagenURL)) {
+                        // Añadir timestamp a la URL de la imagen para evitar caché
+                        $timestamp = filemtime($imagenURL); // Obtener la última modificación del archivo
+                        $respuesta .= "<td><img src='$imagenURL?$timestamp' alt='Imagen del producto' style='width: 50px; height: auto;'></td>";
+                    } else {
+                        $respuesta .= "<td><img src='public/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                    }
+                    
+                    // Continuar con el resto de los datos del producto
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['codProducto'];
                     $respuesta = $respuesta . "</td>";
@@ -197,13 +202,17 @@ class Producto extends Conexion{
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['descProducto'];
-                    $respuesta .= "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta .= "<button type='button' class='btn btn-warning small-width d-block mb-1' onclick='pone(this,0)'>Modificar</button>";
-                    $respuesta .= "<button type='button' class='btn btn-danger small-width d-block' onclick='pone(this,1)'>Eliminar</button>";
-                    $respuesta .= "</td>";
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
+                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
+                    $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
+                    $respuesta = $respuesta . "</div>";
+                    $respuesta = $respuesta . "</td>";
+                    
                     $respuesta = $respuesta . "</tr>";
                 }
-
+    
                 $r['resultado'] = 'consultar';
                 $r['mensaje'] =  $respuesta;
             } else {
@@ -216,6 +225,7 @@ class Producto extends Conexion{
         }
         return $r;
     }
+    
 
 
     public function existe($codProducto){

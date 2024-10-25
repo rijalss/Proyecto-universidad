@@ -76,6 +76,12 @@ $(document).ready(function(){
 	$("#codCargo").on("keyup",function(){
 		validarkeyup(/^[0-9]{4,10}$/,$(this),
 		$("#scodCargo"),"Este formato permite de 4 a 10 carácteres");
+        if ($("#codCargo").val().length <= 10) {
+			var datos = new FormData();
+			datos.append('accion', 'existe');
+			datos.append('codCargo', $(this).val());
+			enviaAjax(datos);
+		}
 	});
     $("#nombreCargo").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
@@ -240,7 +246,7 @@ function enviaAjax(datos) {
       beforeSend: function () {},
       timeout: 10000, 
       success: function (respuesta) {
-      
+        console.log(respuesta); 
         try {
           var lee = JSON.parse(respuesta);
           if (lee.resultado == "consultar") {
@@ -265,7 +271,12 @@ function enviaAjax(datos) {
                  $("#modal1").modal("hide");
                  consultar();
              }
-          }else if (lee.resultado == "error") {
+          }else if (lee.resultado == "existe") {
+            console.log(lee.resultado); 
+            if (lee.mensaje == 'El codigo del cargo ya existe!') 
+                muestraMensaje('info', 4000,'Atención', lee.mensaje);
+              
+        }else if (lee.resultado == "error") {
              muestraMensaje(lee.mensaje);
           }
        }catch (e) {

@@ -159,22 +159,21 @@ class Categoria extends Conexion{
     public function existe($codCategoria){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
         try {
-
-            $resultado = $co->query("SELECT * FROM categoria WHERE codCategoria='$codCategoria'");
-
-
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+        
+            $stmt = $co->prepare("SELECT * FROM categoria WHERE codCategoria=:codCategoria");
+            $stmt->execute(['codCategoria' => $codCategoria]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
-
-                return true;
-            } else {
-
-                return false;;
-            }
+                $r['resultado'] = 'existe';
+                $r['mensaje'] = 'El codigo de la categoría ya existe!';
+            } 
         } catch (Exception $e) {
-            return false;
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
     }
 
 

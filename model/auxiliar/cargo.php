@@ -162,16 +162,24 @@ class Cargo extends Conexion{
 
     // FUNCIÓN "EXISTE"
 
-    private function existe($identificador)
-    {
+
+    public function existe($codCargo){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $r = array();
         try {
-            $resultado = $co->query("SELECT * FROM cargo WHERE codCargo='$identificador' OR nombreCargo='$identificador'");
-            $fila = $resultado->fetchAll(PDO::FETCH_BOTH);
-            return $fila ? true : false;
+        
+            $stmt = $co->prepare("SELECT * FROM cargo WHERE codCargo=:codCargo");
+            $stmt->execute(['codCargo' => $codCargo]);
+            $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
+            if ($fila) {
+                $r['resultado'] = 'existe';
+                $r['mensaje'] = 'El codigo del cargo ya existe!';
+            } 
         } catch (Exception $e) {
-            return false;
+            $r['resultado'] = 'error';
+            $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
     }
 }

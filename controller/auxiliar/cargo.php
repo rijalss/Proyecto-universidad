@@ -22,6 +22,9 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
         } elseif ($accion == 'eliminar') {
             $c->set_codCargo($_POST['codCargo']);
             echo  json_encode($c->eliminar());
+        }elseif($accion == 'existe') {
+         
+            echo json_encode($c->existe($_POST['codCargo']));
         } else {
             $c->set_codCargo($_POST['codCargo']);
             $c->set_nombreCargo($_POST['nombreCargo']);
