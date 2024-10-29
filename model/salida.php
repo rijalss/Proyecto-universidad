@@ -102,7 +102,7 @@ class Salida extends Conexion{
 		$r = array();
 		try{
 			
-			$resultado = $co->query("SELECT * FROM producto p JOIN existencia e on p.clProducto = e.clProducto ");
+			$resultado = $co->query("SELECT * FROM producto p JOIN existencia e on p.clProducto = e.clProducto WHERE cantidadExistencia > 0");
 			
 			if($resultado){
 				
