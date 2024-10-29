@@ -26,7 +26,7 @@ if($.trim($("#mensajes").text()) != ""){
 	$("#password").on("keyup",function(){
 		
 		validarkeyup(/^[A-Za-z0-9]{3,15}$/,
-		$(this),$("#scontraseña"),"Solo letras y numeros entre 3 y 15 caracteres");
+		$(this),$("#spassword"),"Solo letras y numeros entre 3 y 15 caracteres");
 	});
 	
 	
@@ -39,32 +39,28 @@ if($.trim($("#mensajes").text()) != ""){
 
 
 $("#acceder").on("click",function(){
+	event.preventDefault();
 	if(validarenvio()){
-
+		
 		$("#accion").val("acceder");	
 		$("#f").submit();
-	
+		
 	}
 });
-
-
-
-
-	
 	
 });
 
 //Validación de todos los campos antes del envio
 function validarenvio(){
+	
 	if(validarkeyup(/^[A-Za-z0-9]{3,8}$/,$("#username"),
-		$("#susuario"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("La username debe coincidir con el formato <br/>"+ 
-						"99999999");	
+		$("#susername"),"El formato debe ser 9999999")==0){
+	    muestraMensaje("error",4000,"ERROR!","El username debe tener mínimo 3 dígitos y máximo 8");
 		return false;					
 	}	
 	else if(validarkeyup(/^[A-Za-z0-9]{3,15}$/,
 		$("#password"),$("#spassword"),"Solo letras y numeros entre 3 y 15 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras y numeros entre 3 y 15 caracteres");
+		 muestraMensaje("error",4000,"ERROR!","El password debe tener mínimo 3 dígitos y máximo 15");
 		return false;
 	}
 	
@@ -74,15 +70,41 @@ function validarenvio(){
 
 
 //Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	
-	$("#contenidodemodal").html(mensaje);
-			$("#mostrarmodal").modal("show");
-			setTimeout(function() {
-					$("#mostrarmodal").modal("hide");
-			},5000);
+function muestraMensaje(icono,tiempo,titulo,mensaje){
+	Swal.fire({
+	icon:icono,
+    timer:tiempo,	
+    title:titulo,
+	html:mensaje,
+	showConfirmButton:true,
+	confirmButtonText:'Aceptar',
+	});
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const mensajesDiv = document.getElementById("mensajes");
+    const mensaje = mensajesDiv.getAttribute("data-mensaje");
+
+    if (mensaje) {
+        muestraMensaje("error", 4000, "Error", mensaje);
+    }
+});
+/* //Siempre manda el error de usuario o contraseña si no se manda ningún error diferente
+
+function muestraMensaje(icono = "error", tiempo = 4000, titulo = "Error", mensaje = "Error en el usuario o contraseña!!!") {
+    const iconoInvalido = ["success", "error", "warning", "info", "question"];
+    if (!iconoInvalido.includes(icono)) {
+        icono = "error"; // Valor por defecto si el icono no es válido
+    }
+    Swal.fire({
+        icon: icono,
+        timer: tiempo,
+        title: titulo,
+        text: mensaje, 
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+    });
+} */
 
 //Función para validar por Keypress
 function validarkeypress(er,e){
@@ -115,9 +137,5 @@ mensaje){
 		return 0;
 	}
 }
-
-
-
-
 
 

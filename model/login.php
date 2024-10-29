@@ -2,8 +2,6 @@
 
 require_once('conexion.php');
 
-
-
 class Login extends Conexion
 {
 
@@ -56,7 +54,7 @@ class Login extends Conexion
                 $r['mensaje'] =  $fila[0][0];
             } else {
                 $r['resultado'] = 'noexiste';
-                $r['mensaje'] =  "Error en username y/o password !!!";
+                $r['mensaje'] =  "Error en usuario o contraseña!!!";
             }
         } catch (Exception $e) {
             $r['resultado'] = 'error';

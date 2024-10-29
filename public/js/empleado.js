@@ -159,7 +159,7 @@ $(document).ready(function () {
   }
 
   $("#proceso").on("click", function () {
-    if ($(this).text() == "INCLUIR") {
+    if ($(this).text() == "REGISTRAR") {
       if (validarenvio()) {
         var datos = new FormData($('#f')[0]);
         datos.append("accion", "incluir");
@@ -242,7 +242,7 @@ $(document).ready(function () {
 
   $("#incluir").on("click", function () {
     limpia();
-    $("#proceso").text("INCLUIR");
+    $("#proceso").text("REGISTRAR");
     $("#modal1").modal("show");
   });
 });
@@ -458,7 +458,7 @@ function enviaAjax(datos) {
           $("#resultadoconsulta").html(lee.mensaje);
           crearDT();
         } else if (lee.resultado == "incluir") {
-          muestraMensaje("info", 4000, "INCLUIR", lee.mensaje);
+          muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
           if (
             lee.mensaje ==
             "Registro Incluido!<br/> Se incluyó el empleado correctamente"
