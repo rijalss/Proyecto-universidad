@@ -26,9 +26,7 @@
                     <li>
                         <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="?pagina=existencia">Listar Existencias</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="?pagina=proveedor">Gestionar Proveedor</a>
                     </li>
@@ -42,6 +40,19 @@
                         <ul class="dropdown-menu" aria-labelledby="complementosDropdown">
                             <li><a class="dropdown-item" href="?pagina=categoria">Gestionar Categoría</a></li>
                             <li><a class="dropdown-item" href="?pagina=cargo">Gestionar Cargo</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reportesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestionar Reportes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
+                            <li><a class="dropdown-item" href="?pagina=reporteProducto">Reporte de Productos</a></li>
+                            <li><a class="dropdown-item" href="?pagina=reporteNotaEntrada">Reporte de Notas de Entrada</a></li>
+                            <li><a class="dropdown-item" href="?pagina=reporteNotaSalida">Reporte de Notas de Salida</a></li>
+                            <li><a class="dropdown-item" href="?pagina=reporteProveedores">Reportes de Proveedores</a></li>
+                            <li><a class="dropdown-item" href="?pagina=reporteEmpleados">Reportes de Empleados</a></li>
                         </ul>
                     </li>
 

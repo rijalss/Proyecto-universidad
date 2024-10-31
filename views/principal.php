@@ -122,6 +122,15 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-text.svg" alt=""> Reportes</h5>
+                        <p class="card-text">Gestiona los reportes de cada modulo del sistema.</p>
+                        <a href="?pagina=reportes" class="btn btn-primary">Gestionar Reportes</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <br><br>
