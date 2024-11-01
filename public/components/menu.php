@@ -49,10 +49,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
                             <li><a class="dropdown-item" href="?pagina=reporteProducto">Reporte de Productos</a></li>
-                            <li><a class="dropdown-item" href="?pagina=reporteNotaEntrada">Reporte de Notas de Entrada</a></li>
+                            <li><a class="dropdown-item" href="?pagina=rentrada">Reporte de Notas de Entrada</a></li>
                             <li><a class="dropdown-item" href="?pagina=reporteNotaSalida">Reporte de Notas de Salida</a></li>
                             <li><a class="dropdown-item" href="?pagina=reporteProveedores">Reportes de Proveedores</a></li>
-                            <li><a class="dropdown-item" href="?pagina=reporteEmpleados">Reportes de Empleados</a></li>
+                            <li><a class="dropdown-item" href="?pagina=Rempleado">Reportes de Empleados</a></li>
                         </ul>
                     </li>
 

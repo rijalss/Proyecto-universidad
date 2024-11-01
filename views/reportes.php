@@ -15,6 +15,7 @@ if (!isset($_SESSION['name'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="public/img/favicon.ico" >
     <title>Bienvenido</title>
 
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
@@ -58,7 +59,7 @@ if (!isset($_SESSION['name'])) {
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Notas de Entrada</h5>
                         <p class="card-text">Gestiona los reportes de las notas de entrada</p>
-                        <a href="?pagina=reporteNotaEntrada" class="btn btn-primary">Reporte de Notas de Entrada</a>
+                        <a href="?pagina=rentrada" class="btn btn-primary">Reporte de Notas de Entrada</a>
                     </div>
                 </div>
             </div>
@@ -85,7 +86,7 @@ if (!isset($_SESSION['name'])) {
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Empleados</h5>
                         <p class="card-text">Gestiona los reportes de tus empleados</p>
-                        <a href="?pagina=reporteEmpleados" class="btn btn-primary">Reporte de Empleados</a>
+                        <a href="?pagina=Rempleado" class="btn btn-primary">Reporte de Empleados</a>
                     </div>
                 </div>
             </div>
