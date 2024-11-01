@@ -45,19 +45,16 @@ class Rempleado extends Conexion{
                                         JOIN cargo c ON e.clCargo = c.clCargo 
                                         WHERE e.cedulaEmpleado LIKE :cedulaEmpleado 
                                         AND e.nombreEmpleado LIKE :nombreEmpleado 
-                                        AND e.apellidoEmpleado LIKE :apellidoEmpleado");
-    
+                                        AND e.apellidoEmpleado LIKE :apellidoEmpleado 
+                                        AND e.clCargo LIKE :clCargo");
+            
             $resultado->bindValue(':cedulaEmpleado', '%' . $this->cedulaEmpleado . '%');
             $resultado->bindValue(':nombreEmpleado', '%' . $this->nombreEmpleado . '%');
             $resultado->bindValue(':apellidoEmpleado', '%' . $this->apellidoEmpleado . '%');
-           
+            $resultado->bindValue(':clCargo', '%' . $this->clCargo . '%');
+    
             $resultado->execute();
             $fila = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    
-            // Debug: Verifica si hay filas
-            if (!$fila) {
-                throw new Exception("No se encontraron resultados.");
-            }
     
             // Construcción del HTML básico
             $html = "<html><head></head><body>";
@@ -73,45 +70,46 @@ class Rempleado extends Conexion{
             $html .= "<th style='border: 1px solid #ddd; text-align: center;'>Foto</th>";
             $html .= "</tr></thead><tbody>";
     
-            foreach ($fila as $f) {
-                $html .= "<tr>";
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . "</td>";
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['nombreEmpleado'] . "</td>";
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['apellidoEmpleado'] . "</td>";
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['correoEmpleado'] . "</td>";
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['telefonoEmpleado'] . "</td>";
-                // Cambiar clCargo por el nombre del cargo
-                $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['nombreCargo'] . "</td>";
+            if ($fila) {
+                foreach ($fila as $f) {
+                    $html .= "<tr>";
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . "</td>";
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['nombreEmpleado'] . "</td>";
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['apellidoEmpleado'] . "</td>";
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['correoEmpleado'] . "</td>";
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['telefonoEmpleado'] . "</td>";
+                    // Cambiar clCargo por el nombre del cargo
+                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['nombreCargo'] . "</td>";
     
-                  // Construcción de la imagen de perfil en base64
-                  $imagenURL = "public/img/" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . ".png";
-                    
-                  // Comprobar si la imagen existe y convertirla a base64
-                  if (is_file($imagenURL)) {
-                      $imagenData = file_get_contents($imagenURL);
-                      if ($imagenData !== false) {
-                          $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);
-                          $html .= "<td style='border: 1px solid #ddd; text-align: center;'>".
-                                    "<img style='width:90px; height:50px;' src='$imagenURL64' alt=''/></td>";
-                      } else {
-                          // Error al leer el archivo de imagen
-                          $html .= "<td style='border: 1px solid #ddd; text-align: center;'><span>Error: No se pudo leer la imagen</span></td>";
-                      }
-                  } else {
-                      // Imagen por defecto si no se encuentra la imagen personalizada
-                      $imagenPorDefecto = "public/img/perfil.jpg";
-                      $imagenData = file_get_contents($imagenPorDefecto);
-                      if ($imagenData !== false) {
-                          $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);
-                          $html .= "<td style='border: 1px solid #ddd; text-align: center;'>".
-                                    "<img style='width:110px; height:70px;' src='$imagenURL64' alt='Imagen por defecto'/></td>";
-                      } else {
-                          $html .= "<td style='border: 1px solid #ddd; text-align: center;'><span>Error: Imagen por defecto no encontrada</span></td>";
-                      }
-                  }
-  
+                    // Construcción de la imagen de perfil en base64
+                    $imagenURL = "public/img/" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . ".png";
     
-                $html .= "</tr>";
+                    // Comprobar si la imagen existe y convertirla a base64
+                    if (is_file($imagenURL)) {
+                        $imagenData = file_get_contents($imagenURL);
+                        if ($imagenData !== false) {
+                            $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);
+                            $html .= "<td style='border: 1px solid #ddd; text-align: center;'>".
+                                      "<img style='width:90px; height:50px;' src='$imagenURL64' alt=''/></td>";
+                        } else {
+                            // Error al leer el archivo de imagen
+                            $html .= "<td style='border: 1px solid #ddd; text-align: center;'><span>Error: No se pudo leer la imagen</span></td>";
+                        }
+                    } else {
+                        // Imagen por defecto si no se encuentra la imagen personalizada
+                        $imagenPorDefecto = "public/img/perfil.jpg";
+                        $imagenData = file_get_contents($imagenPorDefecto);
+                        if ($imagenData !== false) {
+                            $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);
+                            $html .= "<td style='border: 1px solid #ddd; text-align: center;'>".
+                                      "<img style='width:90px; height:50px;' src='$imagenURL64' alt='Imagen por defecto'/></td>";
+                        } else {
+                            $html .= "<td style='border: 1px solid #ddd; text-align: center;'><span>Error: Imagen por defecto no encontrada</span></td>";
+                        }
+                    }
+    
+                    $html .= "</tr>";
+                }
             }
     
             $html .= "</tbody></table>";
@@ -136,11 +134,10 @@ class Rempleado extends Conexion{
             $pdf->stream('ReporteEmpleado.pdf', array("Attachment" => false));
     
         } catch (Exception $e) {
-            // Mostrar el mensaje de error en caso de excepción
-            echo "Error: " . $e->getMessage();
-            exit;
+            return $e->getMessage();
         }
     }
+    
     
 	
 	

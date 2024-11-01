@@ -28,13 +28,16 @@ if (!isset($_SESSION['name'])) {
 	<!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
 	<?php require_once("public/components/menu.php"); ?>
 
-
+	<section class="d-flex flex-column align-items-center">
+		<br><br><br><br>
+		<h2 class="text-primary text-center">Reportes Empleado</h2>
+	
 	
 
 		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
 		<form method="post" action="" id="f" target="_blank">
 				<input type="text" name="accion" id="accion" style="display:none" />
-				<h2 class="text-primary text-center">Reportes de Empleado</h2>
+				
 
 			
 
@@ -88,7 +91,7 @@ if (!isset($_SESSION['name'])) {
 			
 	<div class="row">
 		<div class="col">
-			   <button type="submit" class="btn btn-primary" id="generar" name="generar">GENERAR PDF</button>
+			   <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
 		</div>
 		
 	</div>
