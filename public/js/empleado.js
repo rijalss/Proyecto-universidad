@@ -242,6 +242,7 @@ $(document).ready(function () {
 
   $("#incluir").on("click", function () {
     limpia();
+ 
     $("#proceso").text("REGISTRAR");
     $("#modal1").modal("show");
   });
@@ -518,4 +519,5 @@ function limpia() {
   $("#correoEmpleado").val("");
 	$('#imagen').prop("src","public/img/perfil.jpg");
   $("#cargo").val("disabled");
+  $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
 }
