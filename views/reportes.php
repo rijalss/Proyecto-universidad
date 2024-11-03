@@ -49,7 +49,7 @@ if (!isset($_SESSION['name'])) {
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Productos</h5>
                         <p class="card-text">Gestiona los reportes de tus productos</p>
-                        <a href="?pagina=reporteProducto" class="btn btn-primary">Reporte de Productos</a>
+                        <a href="?pagina=Rproducto" class="btn btn-primary">Reporte de Productos</a>
                     </div>
                 </div>
             </div>
