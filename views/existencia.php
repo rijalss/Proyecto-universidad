@@ -39,7 +39,12 @@ if (!isset($_SESSION['name'])) {
 					<table class="table table-striped table-hover" id="tablaexistencia">
 						<thead>
 							<tr>
-
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Categoria</th>
+								<th>Ultima Entrada</th>
+								<th>Ultima Salida</th>
+								<th>Ultimo Proveedor</th>								
 							</tr>
 						</thead>
 						<tbody id="resultadoconsulta"></tbody>
