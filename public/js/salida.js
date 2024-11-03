@@ -9,7 +9,7 @@ function carga_productos() {
 $(document).ready(function () {
 
   carga_productos();
- 
+  
     $("#listadodeproductos").on("click", function () {
     $("#modalproductos").modal("show");
   });

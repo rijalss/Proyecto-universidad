@@ -12,18 +12,19 @@ $(document).ready(function () {
    hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
    var fechaActual = hoy.toISOString().slice(0, 10);
   // Asignar la fecha actual al valor del input
-  $("#ffin").val(fechaActual);
-  $("#finicio").val(fechaActual);
+  $("#fecha_inicio").val(fechaActual);
+  $("#fecha_fin").val(fechaActual);
  
   $("#filtrar").on("click",function(){ 
     var datos = new FormData();
-    datos.append('finicio', $("#finicio").val());
-    datos.append('ffin', $("#ffin").val());
+    datos.append('fecha_inicio', $("#fecha_inicio").val());
+    datos.append('fecha_fin', $("#fecha_fin").val());
     datos.append('accion', 'filtrar');
     enviaAjax(datos);
 
   });
 });
+
 
 function enviaAjax(datos) {
   $.ajax({
@@ -40,10 +41,10 @@ function enviaAjax(datos) {
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
-          $("#entrada").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
-        } 
+          $("#Salida").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
+         } 
         if (lee.resultado == "filtrar") {
-          $("#entrada").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
+          $("#Salida").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
         } else {
           console.error("Error en la respuesta:", lee.mensaje);
         }

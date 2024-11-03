@@ -68,7 +68,7 @@ if (!isset($_SESSION['name'])) {
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Notas de Salida</h5>
                         <p class="card-text">Gestiona los reportes de las notas de salida</p>
-                        <a href="?pagina=reporteNotaSalida" class="btn btn-primary">Reporte de Notas de Salida</a>
+                        <a href="?pagina=rsalida" class="btn btn-primary">Reporte de Notas de Salida</a>
                     </div>
                 </div>
             </div>

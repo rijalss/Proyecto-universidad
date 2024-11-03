@@ -138,6 +138,8 @@ class Salida extends Conexion{
 		return $r;
 		
 	}
+
+
 	
 
 }

@@ -1,13 +1,13 @@
 <?php
 
-if (!is_file("model/auxiliar/" . $pagina . ".php")) {
+if (!is_file("model/reportes/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
 }
-require_once("model/auxiliar/" . $pagina . ".php");
+require_once("model/reportes/" . $pagina . ".php");
 
 
-if (is_file("views/auxiliar/" . $pagina . ".php")) {
+if (is_file("views/reportes/" . $pagina . ".php")) {
 
 
 
@@ -32,7 +32,7 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
     $c = new Rempleado();
     $cargos = $c->obtenerCargos();
 
-    require_once("views/auxiliar/" . $pagina . ".php");
+    require_once("views/reportes/" . $pagina . ".php");
 } else {
     echo "pagina en construccion";
 }

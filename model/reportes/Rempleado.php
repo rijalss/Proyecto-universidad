@@ -1,5 +1,5 @@
 <?php
-require_once('library/dompdf/vendor/autoload.php');
+require_once('public/lib/dompdf/vendor/autoload.php');
 use Dompdf\Dompdf; 
 use Dompdf\Options; 
 require_once("model/conexion.php");
