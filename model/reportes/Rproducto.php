@@ -60,9 +60,9 @@ class Rproducto extends Conexion
             $html .= "<div style='width:100%; border: solid 1px #ddd;'>";
             $html .= "<table style='width:100%; border-collapse: collapse;'>";
             $html .= "<thead><tr style='background-color: #007bff; color: #fff; border: 2px solid #0056b3;'>";
+            $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Código</th>";
             $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Nombre</th>";
             $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Descripción</th>";
-            $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Código</th>";
             $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Categoria</th>";
             $html .= "<th style='border: 0px solid #ddd; text-align: center;'>Foto</th>";
             $html .= "</tr></thead><tbody>";
