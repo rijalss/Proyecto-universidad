@@ -12,15 +12,15 @@ if (is_file("views/reportes/" . $pagina . ".php")) {
         $p = new Rproducto();
         $p->set_codProducto($_POST['codProducto']);
         $p->set_nombreProducto($_POST['nombreProducto']);
-        if (!empty($_POST['Categoria'])) {
-            $c->set_clCategoria($_POST['Categoria']);
+        if (!empty($_POST['categoria'])) {
+            $p->set_clCategoria($_POST['categoria']);
     
         } 
             // Generamos el PDF
             $p->generarPDF();   
     }
-    require_once("model/auxiliar/categoria.php");
-    $c = new Categoria();
+   
+    $c = new Rproducto();
     $categorias = $c->obtenerCategorias();
     
 

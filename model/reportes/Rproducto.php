@@ -41,11 +41,11 @@ class Rproducto extends Conexion
         try {
             $resultado = $co->prepare(
                 "SELECT p.*, c.nombreCategoria 
-                                        FROM producto p 
-                                        JOIN categoria c ON p.clCategoria = c.clCategoria 
-                                        WHERE p.codProducto LIKE :codProducto 
-                                        AND p.nombreProducto LIKE :nombreProducto 
-                                        AND p.clCategoria LIKE :clCategoria"
+                FROM producto p 
+                JOIN categoria c ON p.clCategoria = c.clCategoria 
+                WHERE p.codProducto LIKE :codProducto 
+                AND p.nombreProducto LIKE :nombreProducto 
+                AND p.clCategoria LIKE :clCategoria"
             );
 
             $resultado->bindValue(':codProducto', '%' . $this->codProducto . '%');

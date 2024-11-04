@@ -77,7 +77,7 @@ if (!isset($_SESSION['name'])) {
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Proveedores</h5>
                         <p class="card-text">Gestiona los reportes de tus proveedores</p>
-                        <a href="?pagina=reporteProveedores" class="btn btn-primary">Reporte de Proveedores</a>
+                        <a href="?pagina=rproveedor" class="btn btn-primary">Reporte de Proveedores</a>
                     </div>
                 </div>
             </div>
