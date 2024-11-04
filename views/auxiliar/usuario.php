@@ -15,7 +15,7 @@ if (!isset($_SESSION['name'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="public/img/favicon.ico" >
+    <link rel="icon" href="public/img/favicon.ico">
     <title>Usuario</title>
 
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
@@ -49,6 +49,7 @@ if (!isset($_SESSION['name'])) {
                                     <th>id</th>
                                     <th>Username</th>
                                     <th>Password</th>
+                                    <th>Rol</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -76,17 +77,26 @@ if (!isset($_SESSION['name'])) {
                             <div class="row">
                                 <div class="col-2">
                                     <label for="id">id</label>
-                                    <input class="form-control" type="text" id="id" name="id" readonly>
+                                    <input class="form-control" type="text" id="id" name="id">
+                                    <span id="sid"></span>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-4">
                                     <label for="username">Username</label>
                                     <input class="form-control" type="text" id="username" name="username">
                                     <span id="susername"></span>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-3">
                                     <label for="password">Password</label>
                                     <input class="form-control" type="text" id="password" name="password">
                                     <span id="spassword"></span>
+                                </div>
+                                <div class="col-3">
+                                    <label for="rol">Rol</label>
+                                    <select class="form-select" name="rol" id="rol">
+                                        <option value="1">Admin</option>
+                                        <option value="2">User</option>
+                                    </select>
+                                    <span id="srol"></span>
                                 </div>
                             </div>
                         </div>

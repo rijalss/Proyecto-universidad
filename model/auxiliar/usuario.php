@@ -7,6 +7,7 @@ class Usuario extends Conexion
     private $username;
     private $password;
     private $id;
+    private $rol;
     //////////////////////////SET//////////////////////////
 
     function set_username($valor)
@@ -22,6 +23,11 @@ class Usuario extends Conexion
     function set_id($valor)
     {
         $this->id = $valor;
+    }
+
+    function set_rol($valor)
+    {
+        $this->rol = $valor;
     }
 
     //////////////////////////GET//////////////////////////
@@ -40,6 +46,10 @@ class Usuario extends Conexion
     {
         return $this->id;
     }
+    function get_rol()
+    {
+        return $this->rol;
+    }
 
     //////////////////////////METODOS//////////////////////////
 
@@ -55,10 +65,12 @@ class Usuario extends Conexion
             try {
                 $co->query("INSERT INTO usuario(
                     username,
-                    password
+                    password,
+                    rol
                     ) VALUES (
                     '$this->username',
-                    '$this->password'
+                    '$this->password',
+                    '$this->rol'
                     )");
                 $r['resultado'] = 'incluir';
                 $r['mensaje'] = 'Registro Incluido!<br/> Se registró el usuario correctamente';
@@ -81,7 +93,7 @@ class Usuario extends Conexion
         if ($this->existeid($this->id)) {
             try {
                 $co->query("UPDATE usuario 
-                SET username = '$this->username', password = '$this->password'
+                SET username = '$this->username', password = '$this->password', rol = '$this->rol'
                 WHERE id = '$this->id'
             ");
                 $r['resultado'] = 'modificar';
@@ -150,6 +162,9 @@ class Usuario extends Conexion
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['password'];
+                    $respuesta = $respuesta . "</td>";
+                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . $r['rol'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
                     $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";

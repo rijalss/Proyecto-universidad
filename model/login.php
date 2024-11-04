@@ -38,7 +38,7 @@ class Login extends Conexion
         $r = array();
         try {
 
-            $p = $co->prepare("SELECT username FROM usuario 
+            $p = $co->prepare("SELECT rol FROM usuario 
 			WHERE 
 			username=:username
 			AND 

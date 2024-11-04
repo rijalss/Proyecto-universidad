@@ -97,6 +97,7 @@ $(document).ready(function(){
                 datos.append('id',$("#id").val());
                 datos.append('username',$("#username").val());
                 datos.append('password',$("#password").val());
+                datos.append('rol',$("#rol").val());
     
                 enviaAjax(datos);
             }
@@ -108,6 +109,7 @@ $(document).ready(function(){
                 datos.append('id', $("#id").val());
                 datos.append('username',$("#username").val());
                 datos.append('password',$("#password").val());
+                datos.append('rol',$("#rol").val());
     
                 enviaAjax(datos);
             }
@@ -221,6 +223,7 @@ $(document).ready(function(){
             $("#id").val($(linea).find("td:eq(0)").text());
             $("#username").val($(linea).find("td:eq(1)").text());
             $("#password").val($(linea).find("td:eq(2)").text());
+            $("#rol").val($(linea).find("td:eq(3)").text());
         }
         else{
             $("#proceso").text("ELIMINAR");
@@ -228,7 +231,8 @@ $(document).ready(function(){
         $("#id").val($(linea).find("td:eq(0)").text());
         $("#username").val($(linea).find("td:eq(1)").text());
         $("#password").val($(linea).find("td:eq(2)").text());
-        
+        $("#rol").val($(linea).find("td:eq(3)").text());
+
         $("#modal1").modal("show");
     }
 

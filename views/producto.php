@@ -63,8 +63,7 @@ if (!isset($_SESSION['name'])) {
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Formulario   
- de Producto</h5>
+                    <h5 class="modal-title">Formulario de Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -102,7 +101,7 @@ if (!isset($_SESSION['name'])) {
                                     <select class="form-select" name="categoria" id="categoria">   
 
                                         <option value='disabled'   
- disabled selected>Seleccione una categoria</option>
+                                        disabled selected>Seleccione una categoria</option>
                                         <?php
                                         foreach ($categorias as $categoria) {
                                             echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";

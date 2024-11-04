@@ -24,9 +24,9 @@ function crearDT(){
             "responsive": true,
             language: {
                 lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron usuarios",
+                zeroRecords: "No se encontraron productos",
                 info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay usuarios registradass",
+                infoEmpty: "No hay productos registrados",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
                 search: "Buscar",
                 paginate: {
