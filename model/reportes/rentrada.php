@@ -186,7 +186,7 @@ class Rentrada extends Conexion{
             $pdf->render();
     
             // Enviar el PDF al navegador
-            $pdf->stream('ReporteMovimientosdeentrada.pdf', array("Attachment" => true));
+            $pdf->stream('ReporteMovimientosdeentrada.pdf', array("Attachment" => false));
     
            
         } catch (Exception $e) {

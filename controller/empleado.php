@@ -35,7 +35,7 @@ if (is_file("views/" . $pagina . ".php")) {
                     if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
                         
                           move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
-                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          'public/img/img-empleado/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
                           
                     }  
                 }
@@ -46,7 +46,7 @@ if (is_file("views/" . $pagina . ".php")) {
                     if (($_FILES['imagenarchivo']['size'] / 1024) < 1024) {
                         
                           move_uploaded_file($_FILES['imagenarchivo']['tmp_name'], 
-                          'public/img/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
+                          'public/img/img-empleado/'.$_POST['prefijoCedula']."-".$_POST['cedulaEmpleado'].'.png');
                           
                     } 
                 }

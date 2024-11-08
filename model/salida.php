@@ -55,7 +55,7 @@ class Salida extends Conexion{
 		}
 
 		try {
-			$fecha = date('Y-m-d');
+			$fecha = date('Y-m-d H:i:s');
 			$sql = "INSERT INTO notasalida (fechaSalida, clEmpleado) VALUES ('$fecha', '$idempleado')";
 			$guarda = $co->query($sql);
 			$lid = $co->lastInsertId();

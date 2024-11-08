@@ -1,5 +1,4 @@
 <?php
-
 if (!is_file("model/auxiliar/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
@@ -22,6 +21,7 @@ if (is_file("views/auxiliar/" . $pagina . ".php")) {
             $u->set_username($_POST['username']);
             $u->set_password($_POST['password']);
             $u->set_id($_POST['id']);
+            $u->set_rol($_POST['rol']);
 
             if ($accion == 'incluir') {
                 echo  json_encode($u->incluir());

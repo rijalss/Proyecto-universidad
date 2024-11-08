@@ -222,9 +222,12 @@ $(document).ready(function(){
 
         if(accion==0){
             $("#proceso").text("MODIFICAR");
+            $("#codCargo").prop('disabled', true);
+            $("#nombreCargo").prop('disabled', false);
         }
         else{
             $("#proceso").text("ELIMINAR");
+            $("#codCargo, #nombreCargo").prop('disabled', true);
         }
         
         $("#codCargo").val($(linea).find("td:eq(0)").text());
@@ -298,5 +301,6 @@ function enviaAjax(datos) {
 function limpia(){
     $("#codCargo").val('');
 	$("#nombreCargo").val('');
+    $("#codCargo, #nombreCargo").prop('disabled', false);
 
 }

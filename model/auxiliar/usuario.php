@@ -1,5 +1,4 @@
 <?php
-
 require_once('model/conexion.php');
 
 class Usuario extends Conexion
@@ -85,8 +84,7 @@ class Usuario extends Conexion
         return $r;
     }
 
-    function modificar()
-    {
+    function modificar(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
@@ -153,8 +151,8 @@ class Usuario extends Conexion
 
                 $respuesta = '';
                 foreach ($resultado as $r) {
-                    $respuesta = $respuesta . "<tr>";
-                    $respuesta = $respuesta . "<td>";
+                    $respuesta = $respuesta . "<tr class='text-center'>"; // Clase para centrar el contenido de las filas
+                    $respuesta = $respuesta . "<td style='display:none'>";
                     $respuesta = $respuesta . $r['id'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td>";
@@ -167,7 +165,7 @@ class Usuario extends Conexion
                     $respuesta = $respuesta . $r['rol'];
                     $respuesta = $respuesta . "</td>";
                     $respuesta = $respuesta . "<td style='max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'>";
-                    $respuesta = $respuesta . "<div class='d-flex flex-column align-items-center'>";
+                    $respuesta = $respuesta . "<div class='d-flex justify-content-center flex-column align-items-center'>"; // Centrar los botones
                     $respuesta = $respuesta . "<button type='button' class='btn btn-warning btn-sm mb-2' style='width: 100px;' onclick='pone(this,0)'>Modificar</button>";
                     $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
                     $respuesta = $respuesta . "</div>";

@@ -90,8 +90,8 @@ class rproveedor extends Conexion
 
 
 
-            echo $html;
-            exit;
+            // echo $html;
+            // exit;
 
 
 

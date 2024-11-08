@@ -72,7 +72,7 @@ $(document).ready(function () {
   //			
   
   $("#imagen").on("error",function(){
-    $(this).prop("src","public/img/perfil.jpg");
+    $(this).prop("src","public/img/img-empleado/perfil.jpg");
   });
   consultar();
 
@@ -118,7 +118,7 @@ $(document).ready(function () {
 
   $("#telefonoEmpleado").on("keyup", function () {
     validarkeyup(
-      /^[0-9]{11}$/,
+      /^[0-9]{10,11}$/,
       $(this),
       $("#stelefonoEmpleado"),
       "El formato sólo permite un número válido"
@@ -407,7 +407,10 @@ function pone(pos, accion) {
   if (accion == 0) {
       // Para modificar: Habilitar los campos y permitir edición
       $("#proceso").text("MODIFICAR");
-      $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
+      $("#prefijoCedula").prop('disabled', true);
+      $("#cedulaEmpleado").prop('disabled', true);
+          // Agregar timestamp a la URL de la imagen para evitar caché
+     $(" #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
   } else {
       // Para eliminar: Desactivar los campos para evitar edición
       $("#proceso").text("ELIMINAR");
@@ -424,7 +427,7 @@ function pone(pos, accion) {
   $("#correoEmpleado").val($(linea).find("td:eq(5)").text());
 
   // Agregar timestamp a la URL de la imagen para evitar caché
-  var imagenURL = "public/img/" + cedulaEmpleado + ".png";
+  var imagenURL = "public/img/img-empleado/" + cedulaEmpleado + ".png";
   var timestamp = new Date().getTime(); // Obtener la marca de tiempo actual
   $("#imagen").prop("src", imagenURL + "?" + timestamp);
 
@@ -517,7 +520,7 @@ function limpia() {
   $("#telefonoEmpleado").val("");
   $("#apellidoEmpleado").val("");
   $("#correoEmpleado").val("");
-	$('#imagen').prop("src","public/img/perfil.jpg");
+	$('#imagen').prop("src","public/img/img-empleado/perfil.jpg");
   $("#cargo").val("disabled");
   $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
 }

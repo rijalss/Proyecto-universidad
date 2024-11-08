@@ -123,7 +123,7 @@ if (!isset($_SESSION['name'])) {
                                     <hr />
                                     <center>
                                         <label for="archivo" style="cursor:pointer">
-                                            <img src="public/producto/producto.jpg" id="imagen"
+                                            <img src="public/img/img-producto/producto.jpg" id="imagen"
                                                 class="img-fluid rounded-circle w-25 mb-3 centered"
                                                 style="object-fit:scale-down">
                                             Click aqui para subir foto

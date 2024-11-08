@@ -14,10 +14,10 @@
                     <?php
                     //verificamos que exista la variable nivel
                     //que es la que contiene el valor de la sesion
-                    if (!empty($name)) {
+                    if (!empty($_SESSION['rol'])) {
                     ?>
                         <?php
-                        if ($name == 'admin') {
+                        if ($_SESSION['rol'] == 'admin') {
                         ?>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
@@ -38,7 +38,7 @@
                             <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>
                         </li>
                         <?php
-                        if ($name == 'admin') {
+                        if ($_SESSION['rol'] == 'admin') {
                         ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="?pagina=proveedor">Gestionar Proveedor</a>

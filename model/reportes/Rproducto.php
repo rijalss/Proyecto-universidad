@@ -77,7 +77,7 @@ class Rproducto extends Conexion
 
 
                     // Construcción de la imagen de perfil en base64
-                    $imagenURL = "public/producto/" . $f['codProducto'] . ".png";
+                    $imagenURL =  $_SERVER['DOCUMENT_ROOT']. "/public/img/img-producto/" . $f['codProducto'] . ".png";
 
                     // Comprobar si la imagen existe y convertirla a base64
                     if (is_file($imagenURL)) {
@@ -92,7 +92,7 @@ class Rproducto extends Conexion
                         }
                     } else {
                         // Imagen por defecto si no se encuentra la imagen personalizada
-                        $imagenPorDefecto = "public/producto/producto.jpg";
+                        $imagenPorDefecto = "public/img/img-producto/producto.jpg";
                         $imagenData = file_get_contents($imagenPorDefecto);
                         if ($imagenData !== false) {
                             $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);

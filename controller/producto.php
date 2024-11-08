@@ -36,7 +36,7 @@ if (is_file("views/" . $pagina . ".php")) {
                 if (isset($_FILES['imagenarchivooo'])) {
                     if ($_FILES['imagenarchivooo']['error'] == UPLOAD_ERR_OK) {
                         if (($_FILES['imagenarchivooo']['size'] / 1024) < 1024) {
-                            move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/producto/' . $_POST['codProducto'] . '.png');
+                            move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/img/img-producto/' . $_POST['codProducto'] . '.png');
                         }
                     } else {
                         echo "Error al subir el archivo: " . $_FILES['imagenarchivooo']['error'];
@@ -52,7 +52,7 @@ if (is_file("views/" . $pagina . ".php")) {
 					     
                 if (isset($_FILES['imagenarchivooo']) && $_FILES['imagenarchivooo']['size'] > 0) {
                     if (($_FILES['imagenarchivooo']['size'] / 1024) < 1024) {
-                        move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/producto/' . $_POST['codProducto'] . '.png');
+                        move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/img/img-producto/' . $_POST['codProducto'] . '.png');
                     }
                 } else {
                     // Manejo del caso en que no se haya subido un archivo

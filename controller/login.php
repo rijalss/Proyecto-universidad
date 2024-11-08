@@ -13,12 +13,12 @@ if (is_file("views/" . $pagina . ".php")) {
         if ($_POST['accion'] == 'acceder') {
             $o->set_username($_POST['username']);
             $o->set_password($_POST['password']);
-            $m = $o->existe();;
+            $m = $o->existe();
             if ($m['resultado'] == 'existe') {
                 session_destroy(); 	
                 session_start(); 
                 $_SESSION['name'] = $m['mensaje'];
-
+                $_SESSION['rol']= $m['rol'];
                 header('Location: ?pagina=principal');
  
                 die();

@@ -80,10 +80,10 @@ class Rempleado extends Conexion{
                     $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['telefonoEmpleado'] . "</td>";
                     // Cambiar clCargo por el nombre del cargo
                     $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . $f['nombreCargo'] . "</td>";
-    
+
                     // Construcción de la imagen de perfil en base64
-                    $imagenURL = "public/img/" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . ".png";
-    
+                    $imagenURL = $_SERVER['DOCUMENT_ROOT'] . "/public/img/img-empleado/" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . ".png";
+                    
                     // Comprobar si la imagen existe y convertirla a base64
                     if (is_file($imagenURL)) {
                         $imagenData = file_get_contents($imagenURL);
@@ -97,7 +97,7 @@ class Rempleado extends Conexion{
                         }
                     } else {
                         // Imagen por defecto si no se encuentra la imagen personalizada
-                        $imagenPorDefecto = "public/img/perfil.jpg";
+                        $imagenPorDefecto = "public/img/img-empleado/perfil.jpg";
                         $imagenData = file_get_contents($imagenPorDefecto);
                         if ($imagenData !== false) {
                             $imagenURL64 = "data:image/png;base64," . base64_encode($imagenData);

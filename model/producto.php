@@ -2,13 +2,14 @@
 
 require_once('conexion.php');
 
-class Producto extends Conexion{
+class Producto extends Conexion
+{
     private $codProducto;
     private $nombreProducto;
     private $ultimoPrecio;
     private $descProducto;
     private $clCategoria;
-    
+
     // SETTER
     function set_codProducto($valor)
     {
@@ -86,9 +87,9 @@ class Producto extends Conexion{
                     '$this->descProducto',
                     '$this->clCategoria'
                     )");
-                    $lid = $co->lastInsertId();
-                    
-                    $co->query("INSERT INTO existencia (cantidadExistencia, clProducto) VALUES (0,'$lid')");
+                $lid = $co->lastInsertId();
+
+                $co->query("INSERT INTO existencia (cantidadExistencia, clProducto) VALUES (0,'$lid')");
 
 
 
@@ -158,35 +159,35 @@ class Producto extends Conexion{
     }
 
 
-    function consultar() 
+    function consultar()
     {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-    
+
             $resultado = $co->query("SELECT p.codProducto, p.nombreProducto, p.ultimoPrecio, p.descProducto, c.nombreCategoria
                 FROM producto p
                 JOIN categoria c ON p.clCategoria = c.clCategoria");
-    
+
             if ($resultado) {
-    
+
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta = $respuesta . "<tr>";
-                    
+
                     // Construir la URL de la imagen del producto
-                    $imagenURL = "public/producto/" . htmlspecialchars($r['codProducto']) . ".png"; 
-                    
+                    $imagenURL = "public/img/img-producto/" . htmlspecialchars($r['codProducto']) . ".png";
+
                     // Comprobar si la imagen existe
                     if (file_exists($imagenURL)) {
                         // Añadir timestamp a la URL de la imagen para evitar caché
                         $timestamp = filemtime($imagenURL); // Obtener la última modificación del archivo
                         $respuesta .= "<td><img src='$imagenURL?$timestamp' alt='Imagen del producto' style='width: 50px; height: auto;'></td>";
                     } else {
-                        $respuesta .= "<td><img src='public/producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                        $respuesta .= "<td><img src='public/img/img-producto/producto.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
                     }
-                    
+
                     // Continuar con el resto de los datos del producto
                     $respuesta = $respuesta . "<td>";
                     $respuesta = $respuesta . $r['codProducto'];
@@ -209,10 +210,10 @@ class Producto extends Conexion{
                     $respuesta = $respuesta . "<button type='button' class='btn btn-danger btn-sm' style='width: 100px;' onclick='pone(this,1)'>Eliminar</button>";
                     $respuesta = $respuesta . "</div>";
                     $respuesta = $respuesta . "</td>";
-                    
+
                     $respuesta = $respuesta . "</tr>";
                 }
-    
+
                 $r['resultado'] = 'consultar';
                 $r['mensaje'] =  $respuesta;
             } else {
@@ -225,22 +226,23 @@ class Producto extends Conexion{
         }
         return $r;
     }
-    
 
 
-    public function existe($codProducto){
+
+    public function existe($codProducto)
+    {
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-        
+
             $stmt = $co->prepare("SELECT * FROM producto WHERE codProducto=:codProducto");
             $stmt->execute(['codProducto' => $codProducto]);
             $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
             if ($fila) {
                 $r['resultado'] = 'existe';
                 $r['mensaje'] = 'El código de producto ya existe!';
-            } 
+            }
         } catch (Exception $e) {
             $r['resultado'] = 'error';
             $r['mensaje'] =  $e->getMessage();

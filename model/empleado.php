@@ -200,7 +200,7 @@ class Empleado extends Conexion
                 $respuesta = $respuesta . "<tr>";
                 
                 // Construir la URL de la imagen de perfil
-                $imagenURL = "public/img/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png";
+                $imagenURL = "public/img/img-empleado/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png";
                 
                 // Comprobar si la imagen existe
                 if (file_exists($imagenURL)) {
@@ -208,7 +208,7 @@ class Empleado extends Conexion
                     $timestamp = filemtime($imagenURL); // Devuelve la última modificación de la imagen
                     $respuesta .= "<td><img src='$imagenURL?$timestamp' alt='Imagen de perfil' style='width: 50px; height: auto;'></td>";
                 } else {
-                    $respuesta .= "<td><img src='public/img/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
+                    $respuesta .= "<td><img src='public/img/img-empleado/perfil.jpg' alt='Imagen por defecto' style='width: 50px; height: auto;'></td>";
                 }
 
                 // Continuar con el resto de los datos del empleado

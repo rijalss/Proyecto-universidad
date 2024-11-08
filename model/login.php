@@ -31,18 +31,18 @@ class Login extends Conexion
     }
 
 
-    function existe()
-    {
+    function existe(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
 
-            $p = $co->prepare("SELECT rol FROM usuario 
+			
+            $p = $co->prepare("SELECT rol,username FROM usuario 
 			WHERE 
 			username=:username
 			AND 
-			password=:password");
+			password=:password"); // se cambio el rol por username
             $p->bindParam(':username', $this->username);
             $p->bindParam(':password', $this->password);
             $p->execute();
@@ -51,7 +51,8 @@ class Login extends Conexion
             if ($fila) {
 
                 $r['resultado'] = 'existe';
-                $r['mensaje'] =  $fila[0][0];
+                $r['mensaje'] = $fila[0]['username']; // Asumiendo que quieres el username
+                $r['rol'] = $fila[0]['rol'];
             } else {
                 $r['resultado'] = 'noexiste';
                 $r['mensaje'] =  "Error en usuario o contraseña!!!";
@@ -63,3 +64,4 @@ class Login extends Conexion
         return $r;
     }
 }
+

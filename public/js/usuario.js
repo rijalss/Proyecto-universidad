@@ -14,33 +14,34 @@ function destruyeDT(){
 function crearDT(){
     // 2 se construye la datatable
     if (!$.fn.DataTable.isDataTable("#tablausuario")) {
-         var table = $("#tablausuario").DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            language: {
-                lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron usuarios",
-                info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay usuarios registradass",
-                infoFiltered: "(filtrado de _MAX_ registros totales)",
-                search: "Buscar",
-                paginate: {
-                    first: "Primera",
-                    last: "Última",
-                    next: "Siguiente",
-                    previous: "Anterior",
-                },
+    var table = $("#tablausuario").DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        language: {
+            lengthMenu: "Mostrar _MENU_",
+            zeroRecords: "<div style='text-align: center;'>No se encontraron usuarios</div>",
+            emptyTable: "<div style='text-align: center;'>No se encontraron usuarios</div>",
+            info: "Página _PAGE_ de _PAGES_",
+            infoEmpty: "No hay usuarios registrados",
+            infoFiltered: "(filtrado de _MAX_ registros totales)",
+            search: "Buscar",
+            paginate: {
+                first: "Primera",
+                last: "Última",
+                next: "Siguiente",
+                previous: "Anterior",
             },
-            autoWidth: false,
-            order: [[1, "asc"]],
-            dom: "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
-                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        });
+        },
+        autoWidth: false,
+        order: [[1, "asc"]],
+        dom: "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
 
         $("div.dataTables_length select").css({
             "width": "auto",

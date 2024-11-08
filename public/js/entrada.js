@@ -14,8 +14,8 @@ $(document).ready(function(){
     });
     
     $("#numfactura").on("keyup",function(){
-        validarkeyup(/^[1-9]{8,10}$/,$(this),
-        $("#snumfactura"),"El formato tiene un máximo de 10 carácteres");
+        validarkeyup(/^[1-9]{4,10}$/,$(this),
+        $("#snumfactura"),"Este formato permite de 4 a 10 carácteres");
         if ($("#numfactura").val().length <= 9) {
 			var datos = new FormData();
 			datos.append('accion', 'buscar');
@@ -78,10 +78,9 @@ $(document).ready(function(){
             muestraMensaje("error",4000,"ERROR!","Por favor, seleccione un proveedor! <br/> Recuerde que debe tener alguno registrado!"); 
             return false;
         }
-        else if(validarkeyup(/^[1-9]{8,10}$/,$("#numfactura"),
-            $("#snumfactura"),"El formato debe ser 9999999")==0){
-            muestraMensaje("error",4000,"ERROR!","La factura debe coincidir con el formato <br/>"+ 
-                            "99999999");
+        else if(validarkeyup(/^[1-9]{4,10}$/,$("#numfactura"),
+            $("#snumfactura"),"Este formato permite de 4 a 10 carácteres")==0){
+            muestraMensaje("error",4000,"ERROR!","La factura debe coincidir con el formato <br/>");
                            
             return false;					
         }

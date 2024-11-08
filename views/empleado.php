@@ -17,7 +17,7 @@ if (!isset($_SESSION['name'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="public/img/favicon.ico" >
 	<title>Empleado</title>
-	<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['name'])) {
 															<center>
 																<label for="archivo" style="cursor:pointer">
 
-																	<img src="public/img/perfil.jpg" id="imagen"
+																	<img src="public/img/img-empleado/perfil.jpg" id="imagen"
 																		class="img-fluid rounded-circle w-25 mb-3 centered"
 																		style="object-fit:scale-down">
 																	Click aqui para subir foto

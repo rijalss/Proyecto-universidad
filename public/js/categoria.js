@@ -223,11 +223,14 @@ $(document).ready(function(){
 
         if(accion==0){
             $("#proceso").text("MODIFICAR");
-            $("#codCategoria").val($(linea).find("td:eq(0)").text());
-            $("#nombreCategoria").val($(linea).find("td:eq(1)").text());
+            $("#codCategoria").prop('disabled', true);
+            $("#nombreCategoria").prop('disabled', false);
+
+           
         }
         else{
             $("#proceso").text("ELIMINAR");
+            $("#codCategoria, #nombreCategoria").prop('disabled', true);
         }
         $("#codCategoria").val($(linea).find("td:eq(0)").text());
         $("#nombreCategoria").val($(linea).find("td:eq(1)").text());
@@ -300,5 +303,6 @@ function enviaAjax(datos) {
 function limpia(){
     $("#codCategoria").val('');
 	$("#nombreCategoria").val('');
+    $("#codCategoria, #nombreCategoria").prop('disabled', false);
 
 }

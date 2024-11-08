@@ -46,14 +46,14 @@ if (!isset($_SESSION['name'])) {
     <?php
     //verificamos que exista la variable nivel
     //que es la que contiene el valor de la sesion
-    if (!empty($name)) {
+    if (!empty($_SESSION['rol'])) {
     ?>
         <!-- Container de cards -->
 
         <div class="container">
             <div class="row">
                 <?php
-                if ($name == 'admin') {
+                if ($_SESSION['rol'] == 'admin') {
                 ?>
                     <div class="col-md-4 mb-3">
                         <div class="card shadow w-100 h-100 p-3">
@@ -97,7 +97,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
                 <?php
-                if ($name == 'admin') {
+                if ($_SESSION['rol'] == 'admin') {
                 ?>
                     <div class="col-md-4 mb-3">
                         <div class="card shadow w-100 h-100 p-3">

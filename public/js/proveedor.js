@@ -281,9 +281,13 @@ function pone(pos,accion){
 
     if(accion==0){
         $("#proceso").text("MODIFICAR");
+		$("#rifProveedor").prop('disabled', true);
+		$("#prefijoRif").prop('disabled', true);
+		$("#nombreProveedor, #telefonoProveedor, #correoProveedor, #direccionProveedor").prop('disabled', false);
     }
     else{
         $("#proceso").text("ELIMINAR");
+		$("#nombreProveedor, #telefonoProveedor, #correoProveedor, #direccionProveedor").prop('disabled', true);
     }
     
     var rifProveedor = $(linea).find("td:eq(0)").text();

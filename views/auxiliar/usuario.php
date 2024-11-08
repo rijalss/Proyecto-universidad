@@ -1,6 +1,5 @@
 <?php
 
-
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['name'])) {
     // Redirigir al usuario a la página de inicio de sesión
@@ -46,7 +45,7 @@ if (!isset($_SESSION['name'])) {
                         <table class="table table-striped table-hover" id="tablausuario">
                             <thead>
                                 <tr>
-                                    <th>id</th>
+                                    <th style="display:none">id</th>
                                     <th>Username</th>
                                     <th>Password</th>
                                     <th>Rol</th>
@@ -75,7 +74,7 @@ if (!isset($_SESSION['name'])) {
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-2 " style="display:none">
                                     <label for="id">id</label>
                                     <input class="form-control" type="text" id="id" name="id">
                                     <span id="sid"></span>
@@ -93,8 +92,8 @@ if (!isset($_SESSION['name'])) {
                                 <div class="col-3">
                                     <label for="rol">Rol</label>
                                     <select class="form-select" name="rol" id="rol">
-                                        <option value="1">Admin</option>
-                                        <option value="2">User</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
                                     </select>
                                     <span id="srol"></span>
                                 </div>
