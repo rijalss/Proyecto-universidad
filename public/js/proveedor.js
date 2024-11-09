@@ -287,7 +287,7 @@ function pone(pos,accion){
     }
     else{
         $("#proceso").text("ELIMINAR");
-		$("#nombreProveedor, #telefonoProveedor, #correoProveedor, #direccionProveedor").prop('disabled', true);
+		$("#rifProveedor, #prefijoRif, #nombreProveedor, #telefonoProveedor, #correoProveedor, #direccionProveedor").prop('disabled', true);
     }
     
     var rifProveedor = $(linea).find("td:eq(0)").text();
@@ -369,4 +369,5 @@ function limpia(){
 	$("#correoProveedor").val('');
 	$("#direccionProveedor").val('');
 	$("#telefonoProveedor").val('');
+	$("#rifProveedor, #prefijoRif, #nombreProveedor, #telefonoProveedor, #correoProveedor, #direccionProveedor").prop('disabled', false);
 }
