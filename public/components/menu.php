@@ -37,6 +37,9 @@
                         <li>
                             <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="?pagina=existencia">Listar Existencias</a>
+                        </li>
                         <?php
                         if ($_SESSION['rol'] == 'admin') {
                         ?>

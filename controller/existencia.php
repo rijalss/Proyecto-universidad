@@ -14,7 +14,9 @@ if (is_file("views/" . $pagina . ".php")) {
 
         if ($accion == 'consultar') {
             echo  json_encode($p->consultar());
-        } 
+        } else if ($accion == 'consultar_mostrador') {
+            echo  json_encode($p->consultar_mostrador());
+        }
         exit;
     }
 

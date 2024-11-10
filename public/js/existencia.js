@@ -4,17 +4,23 @@ function consultar(){
 	enviaAjax(datos);	
 }
 
-function destruyeDT(){
-	//1 se destruye el datatablet
-	if ($.fn.DataTable.isDataTable("#tablaexistencia")) {
-            $("#tablaexistencia").DataTable().destroy();
+function consultar_mostrador(){
+	var datos = new FormData();
+	datos.append('accion','consultar_mostrador');
+	enviaAjax(datos);	
+}
+
+function destruyeDT(tablaId) {
+    // Destruir la DataTable si ya existe
+    if ($.fn.DataTable.isDataTable(`#${tablaId}`)) {
+        $(`#${tablaId}`).DataTable().destroy();
     }
 }
 
-function crearDT(){
-    // 2 se construye la datatable
-    if (!$.fn.DataTable.isDataTable("#tablaexistencia")) {
-         var table = $("#tablaexistencia").DataTable({
+function crearDT(tablaId) {
+    // Construir la DataTable si no existe
+    if (!$.fn.DataTable.isDataTable(`#${tablaId}`)) {
+        var table = $(`#${tablaId}`).DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
@@ -45,8 +51,7 @@ function crearDT(){
         $("div.dataTables_length select").css({
             "width": "auto",
             "display": "inline",
-			"margin-top": "10px",
-
+            "margin-top": "10px",
         });
 
         $("div.dataTables_filter").css({
@@ -62,12 +67,34 @@ function crearDT(){
             "float": "right",
             "margin-right": "10px",
         });
-    }         
+    }
 }
 
+destruyeDT('tablaalmacen');
+crearDT('tablaalmacen');
+
+destruyeDT('tablamostrador');
+crearDT('tablamostrador');
+
+
 $(document).ready(function(){
-    consultar();   
     
+    consultar();
+
+    $('#tab1').addClass('show active');
+    $('#tab2').removeClass('show active');
+
+    $('#tab1-tab').on('click', function() {
+        $('#tab1').addClass('show active');
+        $('#tab2').removeClass('show active');
+        consultar();
+    });
+
+    $('#tab2-tab').on('click', function() {
+        $('#tab1').removeClass('show active');
+        $('#tab2').addClass('show active');
+        consultar_mostrador();
+    });
 });
 
 function enviaAjax(datos) {
@@ -88,8 +115,10 @@ function enviaAjax(datos) {
         if (lee.resultado == "consultar") {
 		   destruyeDT();	
            $("#resultadoconsulta").html(lee.mensaje);
+           $("#resultadoconsulta_mostrador").html(lee.mensaje);
 		   crearDT();
         }
+        
      }catch (e) {
         console.error("Error en análisis JSON:", e); // Registrar el error para depuración
     	alert("Error en JSON " + e.name + ": " + e.message);
@@ -105,6 +134,3 @@ function enviaAjax(datos) {
     complete: function () {},
   });
 }
-
-    
-
