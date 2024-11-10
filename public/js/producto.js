@@ -30,8 +30,8 @@ function mostrarImagen(f) {
        console.log("entro en el segundo if");
 		  }
 		  reader.readAsDataURL(f.files[0]);
-		 }
-	 }  
+		}
+	}  
 }
 //fin de funcion mostrar imagen
  
@@ -429,25 +429,21 @@ function enviaAjax(datos) {
                     $("#resultadoconsulta").html(lee.mensaje);
                     crearDT();
                 } else if (lee.resultado == "incluir") {
-                  consultar();
+                    consultar();
                     muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Incluido!<br/> Se registró el producto correctamente"
                     ) {
                         $("#modalProducto").modal("hide");
-                      
                     }   
                 } else if (lee.resultado == "modificar") {
-                  
                     muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
-                   
                     if (
                         lee.mensaje ==
                         "Registro Modificado!<br/> Se modificó el producto correctamente"
                         
                     ) {  destruyeDT(); 
-                  
                         $("#modalProducto").modal("hide");
                         crearDT();
                     }  consultar();
@@ -486,13 +482,13 @@ function enviaAjax(datos) {
 
 function limpia() {
   // Limpiar los campos
-  $("#codProducto").val("");
-  $("#nombreProducto").val("");
-  $("#descProducto").val("");
-  $("#ultimoPrecio").val("");
-  $("#categoria").val("disabled");
-  $('#imagen').prop("src", "public/img/img-producto/producto.jpg");
+    $("#codProducto").val("");
+    $("#nombreProducto").val("");
+    $("#descProducto").val("");
+    $("#ultimoPrecio").val("");
+    $("#categoria").val("disabled");
+    $('#imagen').prop("src", "public/img/img-producto/producto.jpg");
 
-  // Habilitar los campos por si estaban deshabilitados
-  $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
+    // Habilitar los campos por si estaban deshabilitados
+    $("#codProducto, #nombreProducto, #categoria, #descProducto").prop('disabled', false);
 }
