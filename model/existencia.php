@@ -73,7 +73,7 @@ class Existencia extends Conexion
 
             $resultado = $co->query("SELECT 
             producto.nombreProducto,
-            existencia.cantidadExistencia,
+            existencia.cantidadMostrador,
             categoria.nombreCategoria,
             notasalida.fechaSalida,
             empleado.nombreEmpleado
@@ -95,7 +95,7 @@ class Existencia extends Conexion
                     $respuesta = $respuesta . "</td>";
 
                     $respuesta = $respuesta . "<td style='text-align: center;'>";
-                    $respuesta = $respuesta . $r['cantidadExistencia'];
+                    $respuesta = $respuesta . $r['cantidadMostrador'];
                     $respuesta = $respuesta . "</td>";
 
                     $respuesta = $respuesta . "<td style='text-align: center;'>";

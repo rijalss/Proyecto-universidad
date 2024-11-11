@@ -53,7 +53,7 @@ if (!isset($_SESSION['name'])) {
 								<thead>
 									<tr>
 										<th>Producto</th>
-										<th>Cantidad</th>
+										<th>Cantidad en Almacén</th>
 										<th>Categoria</th>
 										<th>Ultima Entrada</th>
 										<th>Proveedor</th>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['name'])) {
 								<thead>
 									<tr>
 										<th>Producto</th>
-										<th>Cantidad</th>
+										<th>Cantidad en Mostrador</th>
 										<th>Categoria</th>
 										<th>Ultima Salida</th>
 										<th>Empleado</th>

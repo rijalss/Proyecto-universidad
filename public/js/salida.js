@@ -7,7 +7,7 @@ function carga_productos() {
 }
 
 $(document).ready(function () {
-
+  validarselect();
   carga_productos();
   
     $("#listadodeproductos").on("click", function () {
@@ -26,7 +26,12 @@ $(document).ready(function () {
   $("#registrar").on("click", function () {
     if (validarenvio()== true) {
       if(verificaproductos()== true) {
-    $("#accion").val("registrar");
+        if($("#ubi").val() == "1"){
+          $("#accion").val("registrar");
+        }
+        else if($("#ubi").val() == "2"){
+          $("#accion").val("registrarMostrador");
+        }
 
     var datos = new FormData($("#form")[0]);
     
@@ -157,6 +162,14 @@ function validarkeyup(er, etiqueta, etiquetamensaje, mensaje) {
   }
 }
 
+function validarselect() {
+  const selectElement = document.getElementById('ubi');
+  const handleSelectChange = () => console.log('Valor seleccionado:', selectElement.value);
+
+  handleSelectChange(); 
+  selectElement.addEventListener('change', handleSelectChange); 
+}
+
 function enviaAjax(datos) {
   $.ajax({
     async: true,
@@ -177,17 +190,25 @@ function enviaAjax(datos) {
         console.log(lee.resultado);
 
         if (lee.resultado == "listadoproductos") {
+
           $("#listadoproductos").html(lee.mensaje);
+
         } else if (lee.resultado == "registrar") {
           
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
         limpia();
         carga_productos();
-        } 
-         else if (lee.resultado == "error") {
+
+        } else if (lee.resultado == "registrarMostrador"){
+
+        muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
+        limpia();
+        carga_productos();
+
+        } else if (lee.resultado == "error") {
           muestraMensaje('error', 4000,'ERROR',lee.mensaje);
-        
         }
+
       } catch (e) {
         alert("Error en JSON " + e.name + " !!!");
       }

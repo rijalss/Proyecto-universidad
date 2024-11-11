@@ -10,7 +10,7 @@ if (!isset($_SESSION['name'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8">
@@ -35,8 +35,15 @@ if (!isset($_SESSION['name'])) {
 				<h2 class="text-primary text-center">Gestionar Notas de Salida</h2>
 
 				<div class="container">
-					<div class="text-left">
-						<button type="button" class="btn btn-success" id="registrar" name="registrar">Registrar Notas de Salida</button>
+					<div class="text-left row mb-3">
+						<button type="button" class="btn btn-success col-md-2" style="margin-right: 10px;" id="registrar" name="registrar">Registrar Notas de Salida</button>
+						<div class="col-md-2">
+							<select name="ubi" id="ubi" class="form-select">
+
+								<option value="1" selected>Almacen</option>
+								<option value="2">Mostrador</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<!-- <br> -->
@@ -137,8 +144,8 @@ if (!isset($_SESSION['name'])) {
 		<?php require_once("public/components/extra.php"); ?>
 
 		<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-		<script type="text/javascript" src="public/js/salida.js"></script>
+		<script src="public/js/salida.js"></script>
+		
 </body>
 
 </html>
