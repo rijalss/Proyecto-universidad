@@ -1,7 +1,6 @@
 
 <?php
 
-
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['name'])) {
 	// Redirigir al usuario a la página de inicio de sesión
@@ -19,9 +18,8 @@ if (!isset($_SESSION['name'])) {
 
     <title>Productos</title>
 
-    <link rel="stylesheet"   
- href="public/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css">   
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/bootstrap/css/style.css"> 
 
 </head>
 

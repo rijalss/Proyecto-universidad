@@ -63,7 +63,7 @@ class Rproducto extends Conexion
             th { background-color: #007bff; color: #fff; border-bottom: 2px solid #0056b3; }
             tr:nth-child(even) { background-color: #f2f2f2; }
             tr:hover { background-color: #e0f7fa; }
-              </style>";
+            </style>";
             $html .= "</head><body>";
             $html .= "<div class='container'>";
             $html .= "<div class='header'><h1>Reporte de Productos</h1></div>";
@@ -112,7 +112,6 @@ class Rproducto extends Conexion
                         }
                     }
 
-                   
                     $html .= "</tr>";
                     $html = $html . "</tr>";
                 }
@@ -127,14 +126,6 @@ class Rproducto extends Conexion
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-
-
-
-        // echo $html;
-        // exit;
-
-
-
 
         // Instanciamos un objeto de la clase DOMPDF.
         $pdf = new DOMPDF();

@@ -23,7 +23,7 @@ if (is_file("views/" . $pagina . ".php")) {
             $resultado = $p->existe($_POST['codProducto']);
             echo json_encode($resultado);
         }
-         else {
+        else {
             $p->set_codProducto($_POST['codProducto']);
             $p->set_nombreProducto($_POST['nombreProducto']);
             $p->set_ultimoPrecio($_POST['ultimoPrecio']);
@@ -31,8 +31,6 @@ if (is_file("views/" . $pagina . ".php")) {
             $p->set_clCategoria($_POST['categoria']);
         
             if ($accion == 'incluir') {
-                // ... (código para guardar datos del producto en la base de datos)
-            
                 // Manejo de la subida de archivos
                 if (isset($_FILES['imagenarchivooo']) && $_FILES['imagenarchivooo']['error'] == UPLOAD_ERR_OK) {
                     $target_dir = 'public/img/img-producto/';
@@ -54,24 +52,24 @@ if (is_file("views/" . $pagina . ".php")) {
                 // Incluir el producto y enviar respuesta JSON
                 echo json_encode($p->incluir());
             } elseif ($accion == 'modificar') {
-            
-     
+                // Manejo de la subida de archivos
                 if (isset($_FILES['imagenarchivooo']) && $_FILES['imagenarchivooo']['size'] > 0) {
                     if (($_FILES['imagenarchivooo']['size'] / 1024) < 1024) {
-                        move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/img/img-producto/' . $_POST['codProducto'] . '.png');
+                        if (!move_uploaded_file($_FILES['imagenarchivooo']['tmp_name'], 'public/img/img-producto/' . $_POST['codProducto'] . '.png')) {
+                            // Error al mover el archivo
+                            echo json_encode(['resultado' => 'error', 'mensaje' => 'Error al mover el archivo']);
+                            exit;
+                        }
                     }
-                } else {
-                    // Manejo del caso en que no se haya subido un archivo
-                    echo "No se ha subido una imagen o hay un problema con el archivo.";
                 }
-                
-               
-                echo  json_encode($p->modificar());
+            
+                // Si no se subió un archivo o el archivo no pasó las validaciones
+                $respuesta = $p->modificar();
+                echo json_encode($respuesta);
+                exit;
             }
+            
         }  
-        
-      
-          
         exit;
     }
 
@@ -83,27 +81,3 @@ if (is_file("views/" . $pagina . ".php")) {
 } else {
     echo "pagina en construccion";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
