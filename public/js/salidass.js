@@ -1,16 +1,8 @@
-function carga_productos() {
-  var datos = new FormData();
-
-  datos.append("accion", "listadoproductos"); 
-
-  enviaAjax(datos);
-}
-
 $(document).ready(function () {
   validarselect();
   carga_productos();
   
-    $("#listadodeproductos").on("click", function () {
+  $("#listadodeproductos").on("click", function () {
     $("#modalproductos").modal("show");
   });
 
@@ -24,23 +16,22 @@ $(document).ready(function () {
   });
 
   $("#registrar").on("click", function () {
-    if (validarenvio()== true) {
-      if(verificaproductos()== true) {
-        if($("#ubi").val() == "1"){
+    if (validarenvio() == true) {
+      if (verificaproductos() == true) {
+        if ($("#ubi").val() == "1") {
           $("#accion").val("registrar");
-        }
-        else if($("#ubi").val() == "2"){
+        } else if ($("#ubi").val() == "2") {
           $("#accion").val("registrarMostrador");
         }
 
         var datos = new FormData($("#form")[0]);
-    
         enviaAjax(datos);
-        }else{
-          muestraMensaje("error",4000,"ERROR!","Debe colocar algun producto");
-        }
+      } else {
+        muestraMensaje("error", 4000, "ERROR!", "Debe colocar algun producto");
       }
-   });
+    }
+  });
+
   $("#ubi").on("change", function () {
     carga_productos();
   });
@@ -76,38 +67,11 @@ function colocaproducto(linea) {
   if (!encontro) {
     var l =
       `
-		  <tr>
-		   <td>
-		   <button type="button" class="btn btn-danger" onclick="eliminarsalidadetalle(this)">X</button>
-		   </td>
-		   <td style="display:none">
-			   <input type="text" name="idp[]" class="h" style="display:none"
-			   value="` +
-      $(linea).find("td:eq(0)").text() +
-      `"/>` +
-      $(linea).find("td:eq(0)").text() +
-      `</td>
-		   <td>` +
-      $(linea).find("td:eq(1)").text() +
-      `</td>
-		   <td>` +
-      $(linea).find("td:eq(2)").text() +
-      `</td>
-      <td>` +
-      $(linea).find("td:eq(3)").text() +
-      `</td>
-		   <td>
-		      <input type="text" value="1" name="cant[]" class="c"/>
-		   </td>
-		   <td>
-		       
-		      <input type="text" value="1" name="precio[]"/></td>
-		   
-		   </tr>`;
-    $("#salidadetalle").append(l);
+      <tr>
+       <td>
+      `;
   }
 }
-
 
 function eliminarsalidadetalle(boton) {
   $(boton).closest("tr").remove();
@@ -194,8 +158,8 @@ function enviaAjax(datos) {
 
         if (lee.resultado == "listadoproductos") {
 
-        $("#listadoproductos").html(lee.mensaje);
-        limpia();
+          $("#listadoproductos").html(lee.mensaje);
+
         } else if (lee.resultado == "registrar") {
           
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);

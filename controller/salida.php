@@ -13,13 +13,20 @@ if (is_file("views/" . $pagina . ".php")) {
     $accion = $_POST['accion'];
 
     if ($accion == 'listadoproductos') {
+      
       $respuesta = $obj1->listadoproductos();
       echo json_encode($respuesta);
-    } elseif ($accion == 'registrar') {
+
+    }elseif ($accion == 'listadoMostrador') {
+
+      $respuesta = $obj1->listadoMostrador();
+      echo json_encode($respuesta);
+
+    }elseif ($accion == 'registrar') {
 
       $respuesta = $obj1->registrar($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado']);
       echo json_encode($respuesta);
-    } elseif ($accion == 'registrarMostrador'){
+    }elseif ($accion == 'registrarMostrador'){
 
       $respuesta = $obj1->registrarMostrador($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado']);
       echo json_encode($respuesta);

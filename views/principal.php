@@ -96,18 +96,18 @@ if (!isset($_SESSION['name'])) {
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow w-100 h-100 p-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
+                            <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
+                            <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias</a>
+                        </div>
+                    </div>
+                </div>
                 <?php
                 if ($_SESSION['rol'] == 'admin') {
                 ?>
-                    <div class="col-md-4 mb-3">
-                        <div class="card shadow w-100 h-100 p-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Existencias</h5>
-                                <p class="card-text">Observa las existencias de tus productos, para un manejo eficiente de estos.</p>
-                                <a href="?pagina=existencia" class="btn btn-primary">Listar Existencias</a>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col-md-4 mb-3">
                         <div class="card shadow w-100 h-100 p-3">

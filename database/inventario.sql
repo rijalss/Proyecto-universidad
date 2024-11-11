@@ -97,6 +97,7 @@ CREATE TABLE `empleado` (
 CREATE TABLE `existencia` (
   `clExistencia` int(10) NOT NULL,
   `cantidadExistencia` int(10) NOT NULL,
+  `cantidadMostrador` int(10) NOT NULL,
   `clProducto` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

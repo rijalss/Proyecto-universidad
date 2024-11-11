@@ -139,13 +139,13 @@ if (!isset($_SESSION['name'])) {
 				</div>
 			</div>
 		</div>
+	</div>
+	<?php require_once("public/components/footer.php"); ?>
+	<?php require_once("public/components/extra.php"); ?>
 
-		<?php require_once("public/components/footer.php"); ?>
-		<?php require_once("public/components/extra.php"); ?>
+	<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="public/js/salida.js"></script>
 
-		<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="public/js/salida.js"></script>
-		
 </body>
 
 </html>

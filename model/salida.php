@@ -100,13 +100,13 @@ class Salida extends Conexion{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array('mensaje' => '');
 
-		$exist = $co->query("SELECT clExistencia, cantidadExistencia, nombreProducto FROM existencia INNER JOIN producto ON existencia.clExistencia = producto.clProducto");
+		$exist = $co->query("SELECT clExistencia, cantidadMostrador, nombreProducto FROM existencia INNER JOIN producto ON existencia.clExistencia = producto.clProducto");
 		$existencias = [];
 
 		while ($row = $exist->fetch(PDO::FETCH_ASSOC)
 		) {
 			$existencias[$row['clExistencia']] = [
-				'cantidad' => $row['cantidadExistencia'],
+				'cantidad' => $row['cantidadMostrador'],
 				'nombre' => $row['nombreProducto']
 			];
 		}
@@ -183,8 +183,9 @@ class Salida extends Conexion{
 	}
 
 
-///
 
+	
+///
 
 	
     public function obtenerempleado(){
@@ -238,6 +239,45 @@ class Salida extends Conexion{
 		
 		return $r;
 		
+	}
+	function listadoMostrador()
+	{
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		try {
+
+			$resultado = $co->query("SELECT * FROM producto p JOIN existencia e on p.clProducto = e.clProducto WHERE cantidadMostrador > 0");
+
+			if ($resultado) {
+
+				$respuesta = '';
+				foreach ($resultado as $r) {
+					$respuesta = $respuesta . "<tr style='cursor:pointer' onclick='colocaproducto(this);'>";
+					$respuesta = $respuesta . "<td style='display:none'>";
+					$respuesta = $respuesta . $r['clProducto'];
+					$respuesta = $respuesta . "</td>";
+					$respuesta = $respuesta . "<td>";
+					$respuesta = $respuesta . $r['codProducto'];
+					$respuesta = $respuesta . "</td>";
+					$respuesta = $respuesta . "<td>";
+					$respuesta = $respuesta . $r['nombreProducto'];
+					$respuesta = $respuesta . "</td>";
+					$respuesta = $respuesta . "<td>";
+					$respuesta = $respuesta . $r['cantidadMostrador'];
+					$respuesta = $respuesta . "</td>";
+
+					$respuesta = $respuesta . "</tr>";
+				}
+			}
+			$r['resultado'] = 'listadoproductos';
+			$r['mensaje'] =  $respuesta;
+		} catch (Exception $e) {
+			$r['resultado'] = 'error';
+			$r['mensaje'] =  $e->getMessage();
+		}
+
+		return $r;
 	}
 
 
