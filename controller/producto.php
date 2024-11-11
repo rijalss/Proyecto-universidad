@@ -1,6 +1,5 @@
 <?php
 
-
 if (!is_file("model/" . $pagina . ".php")) {
     echo "Falta definir la clase " . $pagina;
     exit;
@@ -15,15 +14,22 @@ if (is_file("views/" . $pagina . ".php")) {
         $accion = $_POST['accion'];
 
         if ($accion == 'consultar') {
-            echo  json_encode($p->consultar());
+            echo json_encode($p->consultar());
         } elseif ($accion == 'eliminar') {
             $p->set_codProducto($_POST['codProducto']);
-            echo  json_encode($p->eliminar());
-        }elseif($accion == 'existe') {
+            $resultado = $p->eliminar();
+            if ($resultado) {
+                // Eliminar la imagen asociada al producto
+                $imagen_path = 'public/img/img-producto/' . $_POST['codProducto'] . '.png';
+                if (file_exists($imagen_path)) {
+                    unlink($imagen_path);
+                }
+            }
+            echo json_encode($resultado);
+        } elseif ($accion == 'existe') {
             $resultado = $p->existe($_POST['codProducto']);
             echo json_encode($resultado);
-        }
-        else {
+        } else {
             $p->set_codProducto($_POST['codProducto']);
             $p->set_nombreProducto($_POST['nombreProducto']);
             $p->set_ultimoPrecio($_POST['ultimoPrecio']);
@@ -68,7 +74,6 @@ if (is_file("views/" . $pagina . ".php")) {
                 echo json_encode($respuesta);
                 exit;
             }
-            
         }  
         exit;
     }
