@@ -418,20 +418,19 @@ function pone(pos, accion) {
   }
 
   // Cargar los datos de la fila seleccionada
-  var cedulaEmpleado = $(linea).find("td:eq(1)").text();
-  $("#cedulaEmpleado").val(cedulaEmpleado.substring(2)); // Solo la cédula sin prefijo
-  $("#prefijoCedula").val(cedulaEmpleado.substring(0, 1)); // Prefijo (V o E)
-  $("#nombreEmpleado").val($(linea).find("td:eq(2)").text());
-  $("#apellidoEmpleado").val($(linea).find("td:eq(3)").text());
-  $("#telefonoEmpleado").val($(linea).find("td:eq(4)").text());
-  $("#correoEmpleado").val($(linea).find("td:eq(5)").text());
+  $("#prefijoCedula").val($(linea).find("td:eq(1)").text());
+  $("#cedulaEmpleado").val($(linea).find("td:eq(2)").text());
+  $("#nombreEmpleado").val($(linea).find("td:eq(3)").text());
+  $("#apellidoEmpleado").val($(linea).find("td:eq(4)").text());
+  $("#telefonoEmpleado").val($(linea).find("td:eq(5)").text());
+  $("#correoEmpleado").val($(linea).find("td:eq(6)").text());
 
   // Agregar timestamp a la URL de la imagen para evitar caché
-  var imagenURL = "public/img/img-empleado/" + cedulaEmpleado + ".png";
+  var imagenURL = "public/img/img-empleado/" + $(linea).find("td:eq(2)").text() + ".png";
   var timestamp = new Date().getTime(); // Obtener la marca de tiempo actual
   $("#imagen").prop("src", imagenURL + "?" + timestamp);
 
-  var nombreCargo = $(linea).find("td:eq(6)").text();
+  var nombreCargo = $(linea).find("td:eq(7)").text();
   $('#cargo option').filter(function() {
       return $(this).text() == nombreCargo;
   }).prop('selected', true).change();

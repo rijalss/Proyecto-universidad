@@ -97,7 +97,7 @@ class Rempleado extends Conexion
                     $html .= "<td>" . htmlspecialchars($f['correoEmpleado']) . "</td>";
                     $html .= "<td>" . htmlspecialchars($f['telefonoEmpleado']) . "</td>";
                     
-                    $imagenURL = "public/img/img-empleado/" . $f['prefijoCedula'] . '-' . $f['cedulaEmpleado'] . ".png";
+                    $imagenURL = "public/img/img-empleado/" . $f['cedulaEmpleado'] . ".png";
 
 
                     if (is_file($imagenURL)) {

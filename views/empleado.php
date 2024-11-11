@@ -53,6 +53,7 @@ if (!isset($_SESSION['name'])) {
 						<thead>
 							<tr>
 								<th>Perfil</th>
+								<th>Prefijo</th>
 								<th>Cédula</th>
 								<th>Nombre</th>
 								<th>Apellido</th>

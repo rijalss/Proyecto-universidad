@@ -200,7 +200,7 @@ class Empleado extends Conexion
                 $respuesta = $respuesta . "<tr>";
                 
                 // Construir la URL de la imagen de perfil
-                $imagenURL = "public/img/img-empleado/" . htmlspecialchars($r['prefijoCedula'] . '-' . $r['cedulaEmpleado']) . ".png";
+                $imagenURL = "public/img/img-empleado/" . htmlspecialchars( $r['cedulaEmpleado']) . ".png";
                 
                 // Comprobar si la imagen existe
                 if (file_exists($imagenURL)) {
@@ -213,7 +213,10 @@ class Empleado extends Conexion
 
                 // Continuar con el resto de los datos del empleado
                 $respuesta = $respuesta . "<td>";
-                $respuesta = $respuesta . $r['prefijoCedula'] . '-' . $r['cedulaEmpleado'];
+                $respuesta = $respuesta . $r['prefijoCedula'];
+                $respuesta = $respuesta . "</td>";
+                $respuesta = $respuesta . "<td>";
+                $respuesta = $respuesta . $r['cedulaEmpleado'];
                 $respuesta = $respuesta . "</td>";
                 $respuesta = $respuesta . "<td>";
                 $respuesta = $respuesta . $r['nombreEmpleado'];
