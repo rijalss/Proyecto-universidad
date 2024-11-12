@@ -16,7 +16,7 @@ if (!isset($_SESSION['name'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Notas de entrada</title>
-
+	<link rel="icon" href="public/img/favicon.ico">
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>

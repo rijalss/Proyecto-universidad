@@ -8,9 +8,9 @@ require_once("model/conexion.php");
 class Rsalida extends Conexion{
     private $clSalida;
     private $fechaSalida;
-    private $fechaInicio;
-    private $fechaFinal;
-
+    private $fechainicio;
+    private $fechafinal;            
+    private $clEmpleado;
 
     public function set_clSalida($clSalida) {
 
@@ -21,12 +21,12 @@ class Rsalida extends Conexion{
        
         $this->fechaSalida = $fechaSalida;
     }
-    public function set_fechaInicio($fechaInicio)
+    public function set_fechainicio($fechainicio)
     {
-        $this->fechaInicio = $fechaInicio;
+        $this->fechainicio = $fechainicio;
     }
-    public function set_fechaFinal($fechaFinal){
-        $this->fechaFinal = $fechaFinal;
+    public function set_fechafinal($fechafinal){
+        $this->fechafinal = $fechafinal;
     }
 
     public function get_ClSalida(){
@@ -37,27 +37,49 @@ class Rsalida extends Conexion{
         return $this->fechaSalida;
     }
 
-    public function get_fechaInicio(){
-        return $this->fechaInicio;
+    public function get_fechainicio(){
+        return $this->fechainicio;
     }
 
-    public function get_fechaFinal(){
-        return $this->fechaFinal;
+    public function get_fechafinal(){
+        return $this->fechafinal;
     }
 
-    public function GenerarPDF(){
+    public function set_clEmpleado($clEmpleado) {
+
+        $this->clEmpleado = $clEmpleado; 
+    }
+ 
+    public function get_clEmpleado(){
+        return $this->clEmpleado;
+    }
+
+    function generarPDF(){
+
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         try {
-            $resultado = $co->prepare("SELECT * FROM notasalida INNER JOIN empleado on notasalida.clEmpleado=empleado.clEmpleado
-            WHERE (notasalida.fechaSalida >= :fechasinicio and notasalida.fechaSalida <= :fechafin)");
+           
+           $fechasinicio = !empty($this->fechainicio) ? $this->fechainicio : null; 
+            $fechafin = !empty($this->fechafinal) ? $this->fechafinal : null;
+$resultado = $co->prepare(" SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto 
+FROM notasalida
+ INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
+ INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
+  INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
+  INNER JOIN producto ON producto.clProducto = existencia.clProducto WHERE empleado.clEmpleado LIKE :clEmpleado
+  AND (DATE(notasalida.fechaSalida) BETWEEN :fechainicio AND :fechafinal OR :fechainicio IS NULL OR :fechafinal IS NULL) "
 
-            $resultado->bindParam(':fechasinicio', $this->fechaInicio);
-            $resultado->bindParam(':fechafin', $this->fechaFinal);
+);
+
+
+            $resultado->bindvalue(':clEmpleado', '%' . $this->clEmpleado . '%' );
+            $resultado->bindvalue(':fechainicio', $this->fechainicio );
+            $resultado->bindvalue(':fechafinal',  $this->fechafinal );
+
+
             $resultado->execute();
             $fila = $resultado->fetchAll(PDO::FETCH_ASSOC);
-
 
             $html = "<html><head>";
             $html .= "<style>
@@ -73,64 +95,97 @@ class Rsalida extends Conexion{
               </style>";
             $html .= "</head><body>";
             $html .= "<div class='container'>";
-            $html .= "<div class='header'><h1>Reporte de Notas de Salida</h1></div>";
+            $html .= "<div class='header'><h1>Reporte Notas de Salida</h1></div>";
             $html .= "<table>";
-            $html .= "<thead style='border: 1px solid #ddd; text-align: center;'>";
+            $html .= "<thead>";
             $html .= "<tr>";
-            $html .= "<th text-align: center;'>Número de Salida</th>";
-            $html .= "<th text-align: center;'>Fecha</th>";
-            $html .= "<th text-align: center;'>Empleado</th>";
+        
+            $html .= "<th>Nombre Empleado</th>";
+             $html .= "<th>Nombre Producto</th>";
+            $html .= "<th>Fecha de la Salida</th>";
+            $html .= "<th>Cantidad de la Salida</th>";
+           
+          
+            $html .= "</tr>";
+            $html .= "</thead>";
+            $html .= "<tbody>";
 
-            $html .= "</tr></thead><tbody>";
 
             if ($fila) {
                 foreach ($fila as $f) {
                     $html .= "<tr>";
-                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . htmlspecialchars($f['clSalida']) . "</td>";
-                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . htmlspecialchars($f['fechaSalida']) . "</td>";
-                    $html .= "<td style='border: 1px solid #ddd; text-align: center;'>" . htmlspecialchars($f['nombreEmpleado']) . "</td>";
+        
+                    $html .= "<td>" . htmlspecialchars($f['nombreEmpleado']) . "</td>";
+                    $html .= "<td>" . htmlspecialchars($f['nombreProducto']) . "</td>";
+                    $html .= "<td>" . htmlspecialchars($f['fechaSalida']) . "</td>";
+                    $html .= "<td>" . htmlspecialchars($f['cantidadSalida']) . "</td>";
+                    
+
                     $html .= "</tr>";
+                    $html = $html . "</tr>";
                 }
+            } else {
+                $html .= "<tr><td colspan='3'>No hay datos disponibles</td></tr>";
             }
-            $html .= "</tbody></table>";
-            $html .= "</div></body></html>";
 
-            file_put_contents('debug.html', $html);
-
-            $options = new Options();
-            $options->set('isRemoteEnabled', true);
-
-            $pdf = new DOMPDF($options);
-
-            // Configuración del PDF
-            $pdf->set_paper("A4", "portrait");
-            $pdf->load_html(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-
-            // Renderizar el PDF
-            $pdf->render();
-
-            // Enviar el PDF al navegador
-            $pdf->stream('ReporteMovimientosdeentrada.pdf', array("Attachment" => false));
-        } catch (Exception $e) {
-            return $e->getMessage();
+            $html .= "</tbody>";
+            $html .= "</table>";
+            $html .= "</div>";
+            $html .= "</body></html>";
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
+
+
+
+        // echo $html;
+        // exit;
+
+
+
+
+        // Instanciamos un objeto de la clase DOMPDF.
+        $pdf = new DOMPDF();
+
+        // Definimos el tamaño y orientación del papel que queremos.
+        $pdf->set_paper("A4", "portrait");
+
+        // Cargamos el contenido HTML.
+        $pdf->load_html(utf8_decode($html));
+
+        // Renderizamos el documento PDF.
+        $pdf->render();
+
+        // Enviamos el fichero PDF al navegador.
+        $pdf->stream('Reportedesalida.pdf', array("Attachment" => false));
     }
 
-    public function Filtrar(){
+
+    public function filtrar(){
         $co = $this->conecta();
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-            $resultado = $co->query("SELECT * FROM notasalida INNER JOIN empleado on notasalida.clEmpleado=empleado.clEmpleado 
-            WHERE notasalida.fechaSalida BETWEEN '$this->fechaInicio' AND '$this->fechaFinal'");
+            $resultado = $co->prepare("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
+ INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
+ INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
+  INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
+  INNER JOIN producto ON producto.clProducto = existencia.clProducto WHERE DATE(notasalida.fechaSalida) BETWEEN :fechainicio AND :fechafinal");
 
-            if ($resultado) {
+            $resultado->bindvalue(':fechainicio',  $this->fechainicio );
+            $resultado->bindvalue(':fechafinal',  $this->fechafinal );
+            $resultado->execute();
+            $fila = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($fila) {
                 $respuesta = '';
-                foreach ($resultado as $r) {
+                foreach ($fila as $r) {
                     $respuesta .= "<tr>";
-                    $respuesta .= "<td>" . $r['clSalida'] . "</td>";
+                   
                     $respuesta .= "<td>" . $r['fechaSalida'] . "</td>";
                     $respuesta .= "<td>" . $r['nombreEmpleado'] . "</td>";
+                    $respuesta .= "<td>" . $r['nombreProducto'] . "</td>";
+                    $respuesta .= "<td>" . $r['cantidadSalida'] . "</td>";
                     $respuesta .= "</tr>";
                 }
 
@@ -138,7 +193,7 @@ class Rsalida extends Conexion{
                 $r['mensaje'] =  $respuesta;
             } else {
                 $r['resultado'] = 'filtrar';
-                $r['mensaje'] =  'No hay en estas  fechass';
+                $r['mensaje'] =  'No hay en estas  fechas';
             }
         } catch (Exception $e) {
             $r['resultado'] = 'error';
@@ -152,15 +207,21 @@ class Rsalida extends Conexion{
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-            $resultado = $co->query("SELECT * FROM notasalida INNER JOIN empleado on notasalida.clEmpleado=empleado.clEmpleado");
+            $resultado = $co->query("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
+ INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
+ INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
+  INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
+  INNER JOIN producto ON producto.clProducto = existencia.clProducto");
 
             if ($resultado) {
                 $respuesta = '';
                 foreach ($resultado as $r) {
                     $respuesta .= "<tr>";
-                    $respuesta .= "<td>" . $r['clSalida'] . "</td>";
+               
                     $respuesta .= "<td>" . $r['fechaSalida'] . "</td>";
                     $respuesta .= "<td>" . $r['nombreEmpleado'] . "</td>";
+                    $respuesta .= "<td>" . $r['nombreProducto'] . "</td>";
+                    $respuesta .= "<td>" . $r['cantidadSalida'] . "</td>";
                     $respuesta .= "</tr>";
                 }
 
@@ -174,6 +235,15 @@ class Rsalida extends Conexion{
             $r['resultado'] = 'error';
             $r['mensaje'] =  $e->getMessage();
         }
+        return $r;
+    }
+
+    public function obtenerempleado(){
+        $co = $this->conecta();
+        $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $p = $co->prepare("SELECT clEmpleado,nombreEmpleado FROM empleado ");
+        $p->execute();
+        $r = $p->fetchAll(PDO::FETCH_ASSOC);
         return $r;
     }
 }

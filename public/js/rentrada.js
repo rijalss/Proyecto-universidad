@@ -4,25 +4,133 @@ function consultar() {
   enviaAjax(datos);
 }
 
+function destruyeDT() {
+  
+    if ($.fn.DataTable.isDataTable("#tablarentrada")) {
+        $("#tablarentrada").DataTable().destroy();
+    }
+}
+
+function crearDT() {
+    if (!$.fn.DataTable.isDataTable("#tablarentrada")) {
+        var table = $("#tablarentrada").DataTable({
+            paging: true,
+            lengthChange: true,
+            searching: false,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            responsive: true,
+            language: {
+                lengthMenu: "Mostrar _MENU_",
+                zeroRecords: "No se encontraron registros",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay notas de entrada registradas",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                },
+            },
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom:
+                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
+
+        $("div.dataTables_length select").css({
+            width: "auto",
+            display: "inline",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            float: "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            width: "300px",
+            float: "right",
+            "margin-left": "10px",
+        });
+    }
+
+}
+function muestraMensaje(icono,tiempo,titulo,mensaje){
+
+	Swal.fire({
+	icon:icono,
+    timer:tiempo,	
+    title:titulo,
+	html:mensaje,
+	showConfirmButton:true,
+	confirmButtonText:'Aceptar',
+	});
+
+
+}
+function validarFechas() { 
+  var finicio = $('#finicio').val(); 
+  var ffin = $('#ffin').val();
+      if ((finicio === "" && ffin !== "")) { 
+        muestraMensaje("warning",4000,"ATENCION","Por favor, complete la Fecha Inicio .");
+     
+        return false; 
+    } else if ((finicio !== "" && ffin === "")) { 
+      muestraMensaje("warning",4000,"ATENCION","Por favor, complete la Fecha Final.");
+      
+         return false; 
+
+      }
+
+      
+     return true;
+     } 
+    
 
 $(document).ready(function () {
   consultar();
   // Obtener la fecha actual en formato yyyy-MM-dd
-  var hoy = new Date();
+  /*var hoy = new Date();
    hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
    var fechaActual = hoy.toISOString().slice(0, 10);
   // Asignar la fecha actual al valor del input
   $("#ffin").val(fechaActual);
-  $("#finicio").val(fechaActual);
+  $("#finicio").val(fechaActual);*/
+
+  $("#finicio").on("click",function(){
+    $("#ffin").prop('required', true);
+  });
+
+   
+  $("#ffin").on("click",function(){
+    $("#finicio").prop('required', true);
+  });
+
+  $("#filtrar").on("click",function(){
  
-  $("#filtrar").on("click",function(){ 
-    var datos = new FormData();
+   if (validarFechas()) { 
+    console.log("hola");
+   var datos = new FormData();
+   datos.append('accion', 'filtrar');
     datos.append('finicio', $("#finicio").val());
     datos.append('ffin', $("#ffin").val());
-    datos.append('accion', 'filtrar');
     enviaAjax(datos);
 
+  }
   });
+
+  
+  
 });
 
 function enviaAjax(datos) {
@@ -40,10 +148,14 @@ function enviaAjax(datos) {
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
-          $("#entrada").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
-        } 
-        if (lee.resultado == "filtrar") {
-          $("#entrada").html(JSON.stringify(lee.mensaje, null, 2)); // Mostrar el JSON de manera legible
+          destruyeDT();
+          $("#entrada").html(lee.mensaje); // Mostrar el JSON de manera legible
+          crearDT();
+        } else if (lee.resultado == "filtrar") {
+          console.log("entro al ajax de filtar ");
+          destruyeDT()
+          $("#entrada").html(lee.mensaje); 
+           crearDT();   
         } else {
           console.error("Error en la respuesta:", lee.mensaje);
         }
