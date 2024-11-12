@@ -28,10 +28,11 @@ if (!isset($_SESSION['name'])) {
 	<!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
 	<?php require_once("public/components/menu.php"); ?>
 <br><br><br>
+<div class="container" style="width: 70%;">
 	<section class="d-flex flex-column align-items-center py-5">
     <h2 class="text-primary text-center mb-4">Reportes Empleado</h2>
-
-    <div class="container bg-light p-4 rounded shadow-sm border border-dark">
+    <div class="container card shadow mb-4 ">
+    <div class="container p-4">
         <form method="post" action="" id="f" target="_blank">
             <input type="text" name="accion" id="accion" style="display:none" />
 
@@ -78,7 +79,9 @@ if (!isset($_SESSION['name'])) {
             </div>
         </form>
     </div>
+    </div>
 </section>
+</div>
 
 	
 		<!-- seccion del modal productos -->
