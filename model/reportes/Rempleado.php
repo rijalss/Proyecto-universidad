@@ -81,6 +81,7 @@ class Rempleado extends Conexion
             $html .= "<th>Apellido</th>";
             $html .= "<th>Correo</th>";
             $html .= "<th>Telefono</th>";
+            $html .= "<th>Cargo</th>";
          ;
             $html .= "<th>Foto</th>";
             $html .= "</tr>";
@@ -96,6 +97,7 @@ class Rempleado extends Conexion
                     $html .= "<td>" . htmlspecialchars($f['apellidoEmpleado']) . "</td>";
                     $html .= "<td>" . htmlspecialchars($f['correoEmpleado']) . "</td>";
                     $html .= "<td>" . htmlspecialchars($f['telefonoEmpleado']) . "</td>";
+                    $html .= "<td>" . htmlspecialchars($f['nombreCargo']) . "</td>";
                     
                     $imagenURL = "public/img/img-empleado/" . $f['cedulaEmpleado'] . ".png";
 
@@ -151,7 +153,7 @@ class Rempleado extends Conexion
         $pdf = new DOMPDF();
 
         // Definimos el tamaño y orientación del papel que queremos.
-        $pdf->set_paper("A4", "portrait");
+        $pdf->set_paper("A4", "landscape");
 
         // Cargamos el contenido HTML.
         $pdf->load_html(utf8_decode($html));
