@@ -364,6 +364,28 @@ function validarenvio() {
 
 //Función para mostrar mensajes
 
+function muestraMensajeReload(icono, tiempo, titulo, mensaje) {
+  Swal.fire({
+    icon: icono,
+    timer: tiempo,
+    title: titulo,
+    html: mensaje,
+    showConfirmButton: true,
+    confirmButtonText: "Aceptar",
+    allowOutsideClick: false,  // Desactivar clics fuera de la alerta
+    allowEscapeKey: false,     // Desactivar el escape key para cerrar la alerta
+    willClose: () => {
+      reload();
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      reload();
+    }
+  });
+}
+
+
+
 function muestraMensaje(icono, tiempo, titulo, mensaje) {
   Swal.fire({
     icon: icono,
@@ -373,6 +395,7 @@ function muestraMensaje(icono, tiempo, titulo, mensaje) {
     showConfirmButton: true,
     confirmButtonText: "Aceptar",
   });
+  
 }
 
 //Función para validar por Keypress
@@ -461,19 +484,18 @@ function enviaAjax(datos) {
           $("#resultadoconsulta").html(lee.mensaje);
           crearDT();
         } else if (lee.resultado == "incluir") {
-          muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
-          if (
-            lee.mensaje ==
-            "Registro Incluido!<br/> Se incluyó el empleado correctamente"
-          ) {
-            $("#modal1").modal("hide");
-            consultar();
+          muestraMensajeReload("info", 4000, "REGISTRAR", lee.mensaje);
+          if (lee.mensaje == "Registro Incluido!<br/> Se incluyó el empleado correctamente") {
+              $("#modal1").modal("hide");
+              consultar();
           }
-        } else if (lee.resultado == "modificar") {
+       
+      }
+       else if (lee.resultado == "modificar") {
           destruyeDT();
           $("#resultadoconsulta").html(lee.mensaje);
           crearDT();
-          muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
+          muestraMensajeReload("info", 4000, "MODIFICAR", lee.mensaje);
           if (
             lee.mensaje ==
             "Registro Modificado!<br/> Se modificó el empleado correctamente"
@@ -512,14 +534,17 @@ function enviaAjax(datos) {
     complete: function () {},
   });
 }
-
+function reload(){
+  location.reload()
+}
 function limpia() {
   $("#cedulaEmpleado").val("");
   $("#nombreEmpleado").val("");
   $("#telefonoEmpleado").val("");
   $("#apellidoEmpleado").val("");
   $("#correoEmpleado").val("");
-	$('#imagen').prop("src","public/img/img-empleado/perfil.jpg");
+  var timestamp = new Date().getTime(); // Obtener la marca de tiempo actual
+  $("#imagen").prop("src", "public/img/img-empleado/perfil.jpg" + "?" + timestamp);
   $("#cargo").val("disabled");
   $("#cedulaEmpleado, #prefijoCedula, #nombreEmpleado, #apellidoEmpleado, #telefonoEmpleado, #correoEmpleado, #cargo").prop('disabled', false);
 }
