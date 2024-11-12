@@ -1,4 +1,63 @@
+function destruyeDT() {
+  
+    if ($.fn.DataTable.isDataTable("#tablaentrada")) {
+        $("#tablaentrada").DataTable().destroy();
+    }
+}
 
+function crearDT() {
+    if (!$.fn.DataTable.isDataTable("#tablaentrada")) {
+        var table = $("#tablaentrada").DataTable({
+            paging: true,
+            lengthChange: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            responsive: true,
+            language: {
+                lengthMenu: "Mostrar _MENU_",
+                zeroRecords: "No se encontraron productos",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay productos registrados",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                },
+            },
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom:
+                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
+
+        $("div.dataTables_length select").css({
+            width: "auto",
+            display: "inline",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            float: "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            width: "300px",
+            float: "right",
+            "margin-left": "10px",
+        });
+    }
+}
 $(document).ready(function(){
     // Si estoy aca es porque l
     carga_productos();
@@ -115,6 +174,7 @@ $(document).ready(function(){
     
     
     function colocaproducto(linea){
+      //  destruyeDT();
         var id = $(linea).find("td:eq(0)").text();
         var encontro = false;
         
@@ -156,12 +216,10 @@ $(document).ready(function(){
                </tr>`;
             $("#productosentrada").append(l);
         }
+        //crearDT();
     }
     
- 
-    //fin de funcion modifica subtotal
-    
-    
+
     //funcion para eliminar linea de detalle de ventas
     function eliminarproducto(boton){
         $(boton).closest('tr').remove();
@@ -179,11 +237,6 @@ $(document).ready(function(){
         confirmButtonText:'Aceptar',
         });
     }
-    
-    //Funcion que muestra el modal con un mensaje
-    
-    
-    
     
     
     //Función para validar por Keypress
@@ -235,7 +288,7 @@ $(document).ready(function(){
                 beforeSend: function(){
                     //pasa antes de enviar pueden colocar un loader
                     
-                    
+
                 },
                 timeout:10000, //tiempo maximo de espera por la respuesta del servidor
                 success: function(respuesta) {//si resulto exitosa la transmision
@@ -250,7 +303,9 @@ $(document).ready(function(){
                         $('#listadoproductos').html(lee.mensaje);
                     }
                     else if(lee.resultado=='registrar'){
+                       
                         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
+                  
                         limpia();
                     }else if (lee.resultado == "encontro") {		
                         if (lee.mensaje == 'El numero de factura ya existe!') {

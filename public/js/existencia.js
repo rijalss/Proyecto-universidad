@@ -70,12 +70,6 @@ function crearDT(tablaId) {
     }
 }
 
-destruyeDT('tablaalmacen');
-crearDT('tablaalmacen');
-
-destruyeDT('tablamostrador');
-crearDT('tablamostrador');
-
 
 $(document).ready(function(){
     
@@ -113,10 +107,18 @@ function enviaAjax(datos) {
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {
-		   destruyeDT();	
+			
+           destruyeDT('tablaalmacen');
            $("#resultadoconsulta").html(lee.mensaje);
-           $("#resultadoconsulta_mostrador").html(lee.mensaje);
-		   crearDT();
+            crearDT('tablaalmacen');
+
+            destruyeDT('tablamostrador');
+            $("#resultadoconsulta_mostrador").html(lee.mensaje);
+            crearDT('tablamostrador');
+
+         
+          
+		 
         }
         
      }catch (e) {

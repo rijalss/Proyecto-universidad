@@ -1,7 +1,4 @@
 <?php
-
-
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['name'])) {
 	// Redirigir al usuario a la página de inicio de sesión
 	header('Location: .');
@@ -16,7 +13,7 @@ if (!isset($_SESSION['name'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Notas de entrada</title>
-	<link rel="icon" href="public/img/favicon.ico">
+	<link rel="icon" href="public/img/favicon.ico" >
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -34,7 +31,7 @@ if (!isset($_SESSION['name'])) {
 				<h2 class="text-primary text-center">Gestionar Notas de Entrada</h2>
 
 				<div class="container">
-					<div class="text-left">
+					<div class="text-left mb-3">
 						<button type="button" class="btn btn-success" id="registrar" name="registrar">Registrar Notas de Entrada</button>
 					</div>
 				</div>
@@ -46,7 +43,7 @@ if (!isset($_SESSION['name'])) {
 					</div>
 				</div>
 				<div class="container">
-					<div class="row">
+					<div class="row mb-3">
 						<div class="col-md-3 ">
 							<label for="numfactura">Factura</label>
 							<input class="form-control" type="text" id="numfactura" name="numfactura" />
@@ -86,13 +83,15 @@ if (!isset($_SESSION['name'])) {
 				</div>
 
 				<!-- FILA DE BUSQUEDA DE PRODUCTOS -->
-				<div class="row">
-					<div class="col-md-8 input-group">
+			<div class="container">
+				<div class="row mb-3">
+					<div class="col input-group">
 						<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
 						<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
 						<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
 					</div>
 				</div>
+			</div>
 				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
 				<div class="row">
 					<div class="col">
@@ -101,10 +100,10 @@ if (!isset($_SESSION['name'])) {
 				</div>
 				<!-- FILA DE DETALLES DE LA VENTA -->
 
-				<div class="table-responsive card shadow">
+				<div class="table-responsive card shadow ">
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-12" >
 							<table class="table table-striped table-hover" id="tablaentrada">
 								<thead class="text-center">
 									<tr>
@@ -112,8 +111,8 @@ if (!isset($_SESSION['name'])) {
 										<th style="display:none">Cl</th>
 										<th>Codigo</th>
 										<th>Nombre</th>
-										<th>Cantidad</th>
-										<th>Precio</th>
+										<th>Cantidad Entrada</th>
+										<th>Precio Entrada</th>
 									</tr>
 								</thead>
 								<tbody class="text-center" id="productosentrada">
