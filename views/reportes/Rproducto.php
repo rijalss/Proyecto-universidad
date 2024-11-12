@@ -22,73 +22,62 @@ if (!isset($_SESSION['name'])) {
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
-
+<br><br><br>
 <body>
 	<!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
 	<?php require_once("public/components/menu.php"); ?>
 
-	<section class="d-flex flex-column align-items-center">
-		<br><br><br><br>
-		<h2 class="text-primary text-center">Reportes Producto</h2>
+	<section class="d-flex flex-column align-items-center py-5">
+    <h2 class="text-primary text-center mb-4">Reportes Producto</h2>
 
-		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
-			<form method="post" action="" id="f" target="_blank">
-				<input type="text" name="accion" id="accion" style="display:none" />
+    <div class="container bg-light p-4 rounded shadow-sm border border-dark">
+        <form method="post" action="" id="f" target="_blank">
+            <input type="text" name="accion" id="accion" style="display:none" />
 
-				<div class="row">
-					<div class="col">
-						<hr />
-					</div>
-				</div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="codProducto" class="form-label">Código</label>
+                    <input class="form-control" type="text" id="codProducto" name="codProducto" />
+                    <span id="scodProducto" class="form-text"></span>
+                </div>
 
-				<div class="row">
-					<div class="col">
-						<label for="codProducto">Código</label>
-						<input class="form-control" type="text" id="codProducto" name="codProducto" />
-						<span id="scodProducto"></span>
-					</div>
+                <div class="col">
+                    <label for="nombreProducto" class="form-label">Nombre</label>
+                    <input class="form-control" type="text" id="nombreProducto" name="nombreProducto" />
+                    <span id="snombreProducto" class="form-text"></span>
+                </div>
 
-					<div class="col">
-						<label for="nombreProducto">Nombre</label>
-						<input class="form-control" type="text" id="nombreProducto" name="nombreProducto" />
-						<span id="snombreProducto"></span>
-					</div>
+                <div class="col">
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select class="form-select" name="categoria" id="categoria">
+                        <option value='disabled' disabled selected>Seleccione una categoría</option>
+                        <?php
+                        foreach ($categorias as $categoria) {
+                            echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <span id="scategoria" class="form-text text-danger"></span>
+                </div>
+            </div>
 
-					<div class="col">
+            <div class="row mb-3">
+                <div class="col">
+                    <hr />
+                </div>
+            </div>
 
-						<label for="categoria">Categoria</label>
-						<select class="form-select" name="categoria" id="categoria">  
-
-							<option value='disabled'  
-								disabled selected>Seleccione una categoria</option>
-							<?php
-							foreach ($categorias as $categoria) {
-								echo "<option value='" . $categoria['clCategoria'] . "'>" . $categoria['nombreCategoria'] . "</option>";
-							}
-							?>
-						</select>
-						<span id="scategoria" class="error"></span>
-
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col">
-						<hr />
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col">
-						<button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
-					</div>
-
-				</div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 
 
-			</form>
-		</div> <!-- fin de container -->
-	</section>
+
 
 	<!-- seccion del modal productos -->
 	</div>

@@ -12,8 +12,8 @@ if (!isset($_SESSION['name'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Notas de entrada</title>
-
+	<title>Reportes Notas de entrada</title>
+	<link rel="icon" href="public/img/favicon.ico">
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -28,57 +28,83 @@ if (!isset($_SESSION['name'])) {
 		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<form method="post" action="" id="f" target=" _blank">
 				<input type="text" name="accion" id="accion" style="display:none" />
-				<h2 class="text-primary text-center">Reportes de Notas de entrada</h2>
-
+				<h2 class="text-primary text-center">Reportes Notas de entrada</h2>
 
 				<div class="row">
 					<div class="col">
 						<hr />
 					</div>
 				</div>
+
 				<div class="container">
 					<div class="row">
+						<div class="col-md-2 d-flex align-items-end">
+						 <button type="submit" class="btn btn-primary" id="Generar" name="Generar">Crear Reporte PDF</button>
+						 </div>
 
-						<div class="col">
-							<label>&nbsp;</label>
-							<div class="text-left">
-								<button type="submit" class="btn btn-danger" id="Generar" name="Generar">Generar PDF</button>
-								<button type="button" class="btn btn-secondary" id="filtrar" name="filtrar">Filtrar</button>
+						<div class="col-md-3"> 
+							<label for="numfactura">Factura</label> 
+							<input class="form-control" type="text" id="numfactura" name="numfactura" />
+						 </div>
+
+						<div class="col-md-3"> 
+							<label for="proveedor">Proveedor</label>
+							 <select class="form-control" name="proveedor" id="proveedor">
+								<option value='disabled' disabled selected>Seleccione un Proveedor</option> 
+								<?php foreach ($proveedores as $proveedor) {
+									echo "<option value='" . $proveedor['clProveedor'] . "'>" . $proveedor['nombreProveedor'] . "</option>";
+										} ?>
+							</select>
+						 </div>
+
+						<div class="col-md-3"> <label for="empleado">Empleado</label>
+						 <select class="form-control" name="empleado" id="empleado">
+								<option value='disabled' disabled selected>Seleccione un Empleado</option>
+								 <?php foreach ($empleados as $empleado) {
+								 echo "<option value='" . $empleado['clEmpleado'] . "'>" . $empleado['nombreEmpleado'] . "</option>";
+										} ?>
+							</select> 
+						</div>
+
+					</div>
+
+					<div class="row mt-4">
+						<div class="col-md-2 d-flex align-items-end"> 
+							<button type="button" class="btn btn-secondary" id="filtrar" name="filtrar">Filtrar Fechas</button> 
+						</div>
+						<div class="col-md-3">
+							<div class="form-floating">
+							 <input class="form-control" type="date" id="finicio" name="finicio" />
+							  <label for="finicio"><b>Fecha Inicio</b></label> 
 							</div>
 						</div>
-						<div class="col">
-							<div class="mt-3 form-floating">
-								<input class="form-control" type="date" id="finicio" name="finicio" />
-								<label for="finicio"><b>Fecha Inicio</b></label>
-							</div>
-						</div>
-						<div class="col">
-							<div class="mt-3 form-floating">
-								<input class="form-control" type="date" id="ffin" name="ffin" />
-								<label for="ffin"><b>fecha de final</b></label>
-							</div>
+
+						<div class="col-md-3">
+							<div class="form-floating"> <input class="form-control" type="date" id="ffin" name="ffin" />
+							 <label for="ffin"><b>Fecha Final</b></label>
+							 </div>
 						</div>
 
 					</div>
 				</div>
 			</form>
-			<!-- FILA DE BUSQUEDA DE PRODUCTOS -->
 
+			<!-- FILA DE DETALLES DE LA VENTA-->
+			<div class="container card shadow mb-4 ">
+				<div class="container text-center">
+					<div class="table-responsive">
 
-			<!-- FILA DE DETALLES DE LA VENTA -->
-
-			<div class="table-responsive card shadow">
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-striped table-hover" id="tablaentrada">
+						<table class="table table-striped table-hover" id="tablarentrada">
 							<thead class="text-center">
 								<tr>
-									<th style="display:none">Cl</th>
-									<th>Numero de entrada</th>
-									<th>Fecha</th>
+									<br>
+
 									<th>Factura</th>
-									<th>Proveedor</th>
-									<th>Empleado</th>
+									<th>Nombre Empleado</th>
+									<th>Nombre Proveedor</th>
+									<th>Nombre de Producto</th>
+									<th>Fecha de la entrada</th>
+									<th>Cantidad de la Entrada</th>
 								</tr>
 							</thead>
 							<tbody class="text-center" id="entrada">
@@ -89,7 +115,7 @@ if (!isset($_SESSION['name'])) {
 				</div>
 			</div>
 
-			<!-- FIN DE FILA DETALLES DE LA VENTA -->
+
 		</div>
 
 		</div> <!-- fin de container -->

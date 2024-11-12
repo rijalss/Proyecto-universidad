@@ -16,8 +16,7 @@ if (!isset($_SESSION['name'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Notas de salida</title>
-
-
+	<link rel="icon" href="public/img/favicon.ico"> 
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -35,28 +34,21 @@ if (!isset($_SESSION['name'])) {
 				<h2 class="text-primary text-center">Gestionar Notas de Salida</h2>
 
 				<div class="container">
-					<div class="text-left row mb-3">
-						<button type="button" class="btn btn-success col-md-2" style="margin-right: 10px;" id="registrar" name="registrar">Registrar Notas de Salida</button>
-						<div class="col-md-2">
-							<select name="ubi" id="ubi" class="form-select">
-
-								<option value="1" selected>Almacen</option>
-								<option value="2">Mostrador</option>
-							</select>
-						</div>
+					<div class="text-left mb-3">
+						<button type="button" class="btn btn-success" style="margin-right: 10px;" id="registrar" name="registrar">Registrar Notas de Salida</button>
 					</div>
 				</div>
-				<!-- <br> -->
+				
 				<div class="row">
 					<div class="col">
 						<hr />
 					</div>
 				</div>
 				<div class="container ">
-					<div class="row ">
+					<div class="row mb-3">
 						<div class="col-md-3">
 							<label for="empleado">Empleado</label>
-							<select class="form-control" name="empleado" id="empleado">
+							<select class="form-select" name="empleado" id="empleado">
 								<option value='disabled' disabled selected>Seleccione un Empleado</option>
 								<?php
 								foreach ($empleados as $empleado) {
@@ -64,6 +56,12 @@ if (!isset($_SESSION['name'])) {
 								} ?>
 							</select>
 						</div>
+						<div class="col-md-3"> 
+							<label for="ubi">Ubicación</label> <select name="ubi" id="ubi" class="form-select">
+								<option value='disabled' disabled selected>Seleccione una Ubicación</option>
+								<option value="1">Almacen</option>
+								<option value="2">Mostrador</option>
+							</select> </div>
 
 
 						<div class="col-md-6 p-4">
@@ -75,15 +73,10 @@ if (!isset($_SESSION['name'])) {
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col">
-							<hr />
-						</div>
-					</div>
 
-					<div class="table-responsive card shadow"> <!-- container card shadow mb-4 -->
+					<div class="table-responsive card shadow ms-0"> <!-- container card shadow mb-4 -->
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-12">
 								<table class="table table-striped table-hover" id="tabSalida">
 									<thead class="text-center">
 										<tr>
