@@ -331,6 +331,26 @@ function validarenvio() {
 }
 
 //Función para mostrar mensajes de sweetalert
+function muestraMensajeReload(icono, tiempo, titulo, mensaje) {
+  Swal.fire({
+    icon: icono,
+    timer: tiempo,
+    title: titulo,
+    html: mensaje,
+    showConfirmButton: true,
+    confirmButtonText: "Aceptar",
+    allowOutsideClick: false,  // Desactivar clics fuera de la alerta
+    allowEscapeKey: false,     // Desactivar el escape key para cerrar la alerta
+    willClose: () => {
+      reload();
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      reload();
+    }
+  });
+}
+
 
 function muestraMensaje(icono, tiempo, titulo, mensaje) {
     Swal.fire({
@@ -430,7 +450,7 @@ function enviaAjax(datos) {
                     crearDT();
                 } else if (lee.resultado == "incluir") {
                     consultar();
-                    muestraMensaje("info", 4000, "REGISTRAR", lee.mensaje);
+                    muestraMensajeReload("info", 4000, "REGISTRAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Incluido!<br/> Se registró el producto correctamente"
@@ -438,7 +458,7 @@ function enviaAjax(datos) {
                         $("#modalProducto").modal("hide");
                     }   
                 } else if (lee.resultado == "modificar") {
-                    muestraMensaje("info", 4000, "MODIFICAR", lee.mensaje);
+                  muestraMensajeReload("info", 4000, "MODIFICAR", lee.mensaje);
                     if (
                         lee.mensaje ==
                         "Registro Modificado!<br/> Se modificó el producto correctamente"
