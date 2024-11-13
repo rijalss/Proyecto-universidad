@@ -35,7 +35,7 @@
                             <a class="nav-link" href="?pagina=entrada">Gestionar Notas de Entrada</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="?pagina=salida">Gestionar Notas de salida</a>
+                            <a class="nav-link" href="?pagina=salida">Gestionar Notas de Salida</a>
                         </li>
                         <li>
                             <a class="nav-link" href="?pagina=existencia">Listar Existencias</a>
