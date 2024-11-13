@@ -70,7 +70,6 @@ function crearDT(tablaId) {
     }
 }
 
-
 $(document).ready(function(){
     
     consultar();
@@ -115,10 +114,6 @@ function enviaAjax(datos) {
             destruyeDT('tablamostrador');
             $("#resultadoconsulta_mostrador").html(lee.mensaje);
             crearDT('tablamostrador');
-
-         
-          
-		 
         }
         
      }catch (e) {

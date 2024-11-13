@@ -77,6 +77,7 @@ if (!isset($_SESSION['name'])) {
     ?>
 
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="public/js/rproveedor.js"></script>
 
 
 </body>

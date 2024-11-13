@@ -2,8 +2,7 @@
 
 require_once('conexion.php');
 
-class Existencia extends Conexion
-{
+class Existencia extends Conexion{
 
     //////////////////////////METODOS//////////////////////////
 
@@ -75,14 +74,14 @@ class Existencia extends Conexion
             MAX(existencia.cantidadMostrador) AS cantidadMostrador, 
             MAX(categoria.nombreCategoria) AS nombreCategoria, 
             MAX(notasalida.fechaSalida) AS fechaSalida, 
-            MAX(empleado.nombreEmpleado) AS nombreEmpleado
-             FROM notasalida 
-             INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
-             INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
-              INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
-              INNER JOIN producto ON producto.clProducto = existencia.clProducto
-               INNER JOIN categoria ON producto.clCategoria = categoria.clCategoria 
-               GROUP BY producto.nombreProducto;
+            MAX(empleado.nombreEmpleado) AS nombreEmpleado 
+            FROM notasalida 
+            INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
+            INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida 
+            INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
+            INNER JOIN producto ON producto.clProducto = existencia.clProducto
+             INNER JOIN categoria ON producto.clCategoria = categoria.clCategoria 
+             GROUP BY producto.nombreProducto;
             ");
 
             if ($resultado) {

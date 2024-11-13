@@ -16,12 +16,12 @@
                     //que es la que contiene el valor de la sesion
                     if (!empty($_SESSION['rol'])) {
                     ?>
+                     <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
+                            </li>
                         <?php
                         if ($_SESSION['rol'] == 'admin') {
                         ?>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="?pagina=usuario">Gestionar Usuario</a>
                             </li>

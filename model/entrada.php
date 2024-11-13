@@ -10,7 +10,7 @@ class Entrada extends Conexion{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
-			$fecha = date('Y-m-d H:i:s');;
+			$fecha = date('Y-m-d H:i:s');
 
 
 		   $sql="INSERT INTO notaentrada(

@@ -80,11 +80,11 @@ if (!isset($_SESSION['name'])) {
 						</div>
 
 						<div class="col-md-3">
-							<div class="form-floating"> <input class="form-control" type="date" id="ffin" name="ffin" />
+							<div class="form-floating"> 
+								<input class="form-control" type="date" id="ffin" name="ffin" />
 							 <label for="ffin"><b>Fecha Final</b></label>
 							 </div>
 						</div>
-
 					</div>
 				</div>
 			</form>
