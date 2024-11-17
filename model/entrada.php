@@ -1,12 +1,11 @@
 <?php
-require_once('conexion.php');
+require_once('model/conexion.php');
 
 class Entrada extends Conexion{
 
 	public function registrar($idproducto, $idproveedor, $cantidad, $precio, $numfactura, $idempleado) {
 		$r = array();
 	
-<<<<<<< HEAD
 	if (!$this->buscar($numfactura)){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -69,7 +68,6 @@ for($i=0; $i<$tamano; $i++){
 }
 	return $r;
 		
-=======
 		if (!$this->buscar($numfactura)) {
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -147,7 +145,6 @@ for($i=0; $i<$tamano; $i++){
 			$r['mensaje'] = 'ERROR! <br/> El numero de factura ya existe!';
 		}
 		return $r;
->>>>>>> ca126d6f679b91c7649588b3d4592dd9c6390b58
 	}
 	
     /*

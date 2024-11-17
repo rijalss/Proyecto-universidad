@@ -148,7 +148,7 @@ if (!isset($_SESSION['name'])) {
 															<input id="archivo"	type="file"	style="display:none" accept=".png,.jpg,.jpeg" name="imagenarchivo" />
 													</center>
 																		
-																		
+																	
 												</div>
 																
 													<div class="col">

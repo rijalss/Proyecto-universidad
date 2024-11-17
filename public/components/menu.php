@@ -16,9 +16,9 @@
                     //que es la que contiene el valor de la sesion
                     if (!empty($_SESSION['rol'])) {
                     ?>
-                     <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="?pagina=principal">Inicio</a>
+                        </li>
                         <?php
                         if ($_SESSION['rol'] == 'admin') {
                         ?>
@@ -69,6 +69,7 @@
                                 <li><a class="dropdown-item" href="?pagina=Rproducto">Reporte de Productos</a></li>
                                 <li><a class="dropdown-item" href="?pagina=rentrada">Reporte de Notas de Entrada</a></li>
                                 <li><a class="dropdown-item" href="?pagina=rsalida">Reporte de Notas de Salida</a></li>
+                                <li><a class="dropdown-item" href="?pagina=rexistencia">Reportes de Existencias</a></li>
                                 <li><a class="dropdown-item" href="?pagina=rproveedor">Reportes de Proveedores</a></li>
                                 <li><a class="dropdown-item" href="?pagina=Rempleado">Reportes de Empleados</a></li>
                             </ul>
