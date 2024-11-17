@@ -17,18 +17,19 @@
     <section class="d-flex flex-column " style="margin-top: 110px;">
 
         <div class="container">
-            <form method="post" action="" id="form" target=" _blank">
+            <form method="post" action="" id="form" target="_blank">
                 <input type="text" name="accion" id="accion" style="display:none" />
-                <h2 class="text-primary text-center">Reporte Notas de Salida</h2>
+                <h2 class="text-primary text-md-center">Reporte Notas de Salida</h2>
 
                 <div class="row">
                     <div class="col-md">
                         <hr />
                     </div>
                 </div>
+              
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 d-flex align-items-end">
+                        <div class="col-md-2 d-flex align-items-md-end">
                             <button type="submit" class="btn btn-primary mr-2" id="generar" name="generar">Crear Reporte PDF</button>
                         </div>
                         <div class="col-md-3">
@@ -43,7 +44,7 @@
 
                     </div>
                     <div class="row mt-4">
-                        <div class="col-md-2 d-flex align-items-end">
+                        <div class="col-md-2 d-flex align-items-md-end">
                             <button type="button" class="btn btn-secondary" id="filtrar" name="filtrar">Filtrar Fechas</button>
                         </div>
                         <div class="col-md-3">
@@ -63,10 +64,10 @@
                 </div>
             </form>
             <div class="container card shadow mb-4 ">
-                <div class="container text-center">
+                <div class="container text-md-center">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="tabSalida">
-                            <thead class="text-center">
+                            <thead class="text-md-center">
                                 <tr>
                                     <th>Fecha de salida</th>
                                     <th>Nombre Empleado</th>
@@ -74,7 +75,7 @@
                                     <th>Cantidad Salida</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center" id="Salida">
+                            <tbody class="text-md-center" id="Salida">
 
                             </tbody>
                         </table>

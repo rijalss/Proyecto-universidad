@@ -76,19 +76,19 @@ $(document).ready(function(){
 	});
 	
 	$("#username").on("keyup",function(){
-		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-		$("#susername"),"Este formato permite de 4 a 10 carácteres");
+		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/,$(this),
+		$("#susername"),"Este formato permite de 4 a 15 carácteres");
 	});
 
-    $("#password").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
-	});
-	
-	$("#password").on("keyup",function(){
-        validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, 
-        $(this), $("#spassword"),"Este campo debe estar lleno / Máximo 30 carácteres");
-	});
+    $("#password").on("keypress", function (e) {
+        validarkeypress(/^[A-Za-z0-9\b]*$/, e);
+    });
 
+    $("#password").on("keyup", function () {
+
+        validarkeyup(/^[A-Za-z0-9]{4,15}$/,
+            $(this), $("#spassword"), "Solo letras y numeros entre 4 y 15 caracteres");
+    });
     // BOTONES
     $("#proceso").on("click",function(){
         if($(this).text()=="REGISTRAR"){
@@ -116,8 +116,8 @@ $(document).ready(function(){
             }
         }
         if ($(this).text() == "ELIMINAR") {
-            if (validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/, $("#username"),
-                $("#susername"), "El formato debe tener máximo de 30 carácteres") == 0) {
+            if (validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/, $("#username"),
+                $("#susername"), "Este formato permite de 4 a 15 carácteres") == 0) {
                 muestraMensaje("error", 4000, "ERROR!", "Seleccionó un usuario incorrecto <br/> por favor verifique nuevamente");
             } else {
                 Swal.fire({
@@ -154,15 +154,15 @@ $(document).ready(function(){
     });
     
     function validarenvio() {
-        if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,$("#username"),
-			$("#username"),"El formato no debe pasar de los 10 carácteres")==0){
+        if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/,$("#username"),
+			$("#username"),"Este formato permite de 4 a 15 carácteres")==0){
 			muestraMensaje("error",4000,"ERROR!","El usuario debe coincidir con el formato <br/>" + 
-			"se permiten de 4 a 10 carácteres");
+			"se permiten de 4 a 15 carácteres");
 			return false;					
 		}	
-        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-            $("#password"), $("#spassword"), "No debe contener más de 30 carácteres") == 0) {
-            muestraMensaje("error", 4000, "ERROR!", "La contraseña <br/> No debe estar vacía, ni contener más de 30 carácteres");
+        else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/,
+             $("#password"),$("#spassword"),"Solo letras y numeros entre 4 y 15 caracteres")==0){
+		    muestraMensaje("error",4000,"ERROR!","El password debe tener mínimo 4 dígitos y máximo 15");
             return false;
         }
         return true;
@@ -220,15 +220,15 @@ $(document).ready(function(){
         linea=$(pos).closest('tr');
 
         if(accion==0){
+           
             $("#proceso").text("MODIFICAR");
-            $("#id").val($(linea).find("td:eq(0)").text());
-            $("#username").val($(linea).find("td:eq(1)").text());
-            $("#password").val($(linea).find("td:eq(2)").text());
-            $("#rol").val($(linea).find("td:eq(3)").text());
+          
         }
         else{
             $("#proceso").text("ELIMINAR");
+            $("#id, #username, #password, #rol").prop('disabled', true);
         }
+       
         $("#id").val($(linea).find("td:eq(0)").text());
         $("#username").val($(linea).find("td:eq(1)").text());
         $("#password").val($(linea).find("td:eq(2)").text());
@@ -298,4 +298,6 @@ function limpia(){
     $("#username").val('');
 	$("#password").val('');
 	$("#id").val('');
+    $("#rol").val("disabled");
+    $("#username, #password, #id, #rol").prop('disabled', false);
 }

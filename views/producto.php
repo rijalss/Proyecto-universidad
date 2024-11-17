@@ -25,18 +25,18 @@ if (!isset($_SESSION['name'])) {
 
 <body>
     <?php require_once("public/components/menu.php"); ?>
-    <section class="d-flex flex-column align-items-center">
+    <section class="d-flex flex-column align-items-md-center">
         <br><br><br><br>
-        <h2 class="text-primary text-center">Gestionar Producto</h2>
+        <h2 class="text-primary text-md-center">Gestionar Producto</h2>
         <div class="container">
-            <div class="text-left">
+            <div class="text-md-left">
                 <button class="btn btn-success" id="incluir">Registrar Producto</button>
             </div>
         </div>
         <div class="container card shadow mb-4 "> <br>
             <div class="container">
             </div>
-            <div class="container text-center">
+            <div class="container text-md-center">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="tablaproducto">
                         <thead>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['name'])) {
                             <div class="row mb-3">
 							<div class="col-md-6">
                                     <label for="ultimoPrecio" class="form-label">Último Precio</label>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-md-center">
                                         <input type="number" class="form-control" id="ultimoPrecio" name="ultimoPrecio" min="0">
                                         <div class="form-check ms-2">
                                             <input type="checkbox" class="form-check-input" id="habilitarPromedio" onclick="toggleInput()">
@@ -135,7 +135,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                         <br>
-                        <div class="row mt-3 d-flex justify-content-center align-items-center">
+                        <div class="row mt-3 d-flex justify-content-center align-items-md-center">
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-dark" id="proceso"></button>
                             </div>

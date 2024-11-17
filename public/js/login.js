@@ -11,12 +11,12 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	
 	$("#username").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z0-9\b]*$/,e);
+		validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/,e);
 	});
 	
 	$("#username").on("keyup",function(){
-		validarkeyup(/^[A-Za-z0-9\b]{3,8}$/,$(this),
-		$("#susername"),"El formato debe ser 9999999 ");
+		validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/,
+			$(this),$("#susername"),"Este formato permite de 4 a 15 carácteres");
 	});
 	
 	$("#password").on("keypress",function(e){
@@ -25,8 +25,8 @@ if($.trim($("#mensajes").text()) != ""){
 	
 	$("#password").on("keyup",function(){
 		
-		validarkeyup(/^[A-Za-z0-9]{3,15}$/,
-		$(this),$("#spassword"),"Solo letras y numeros entre 3 y 15 caracteres");
+		validarkeyup(/^[A-Za-z0-9]{4,15}$/,
+		$(this),$("#spassword"),"Solo letras y numeros entre 4 y 15 caracteres");
 	});
 	
 	
@@ -53,14 +53,14 @@ $("#acceder").on("click",function(){
 //Validación de todos los campos antes del envio
 function validarenvio(){
 	
-	if(validarkeyup(/^[A-Za-z0-9]{3,8}$/,$("#username"),
-		$("#susername"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("error",4000,"ERROR!","El username debe tener mínimo 3 dígitos y máximo 8");
+	if(validarkeyup(/^[A-Za-z0-9]{4,15}$/,$("#username"),
+		$("#susername"),"Este formato permite de 4 a 15 carácteres")==0){
+	    muestraMensaje("error",4000,"ERROR!","El username debe tener mínimo 4 dígitos y máximo 15");
 		return false;					
 	}	
-	else if(validarkeyup(/^[A-Za-z0-9]{3,15}$/,
-		$("#password"),$("#spassword"),"Solo letras y numeros entre 3 y 15 caracteres")==0){
-		 muestraMensaje("error",4000,"ERROR!","El password debe tener mínimo 3 dígitos y máximo 15");
+	else if(validarkeyup(/^[A-Za-z0-9]{4,15}$/,
+		$("#password"),$("#spassword"),"Solo letras y numeros entre 4 y 15 caracteres")==0){
+		 muestraMensaje("error",4000,"ERROR!","El password debe tener mínimo 4 dígitos y máximo 15");
 		return false;
 	}
 	

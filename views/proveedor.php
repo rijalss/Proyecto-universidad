@@ -28,11 +28,11 @@ if (!isset($_SESSION['name'])) {
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
+	<section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
 
-		<h2 class="text-primary text-center">Gestionar Proveedor</h2>
+		<h2 class="text-primary text-md-center">Gestionar Proveedor</h2>
 		<div class="container">
-			<div class="text-left">
+			<div class="text-md-left">
 				<button class="btn btn-success" id="incluir">Registrar Proveedor</button>
 			</div>
 		</div>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['name'])) {
 			<br>
 			<div class="container">
 			</div>
-			<div class="container text-center">
+			<div class="container text-md-center">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover" id="tablaproveedor">
 						<thead>
@@ -116,7 +116,7 @@ if (!isset($_SESSION['name'])) {
 							</div>
 						</div>
 						<br>
-						<div class="row mt-3 d-flex justify-content-center align-items-center">
+						<div class="row mt-3 d-flex justify-content-center align-items-md-center">
 							<div class="col-md-2">
 								<button type="button" class="btn btn-dark" id="proceso"></button>
 							</div>

@@ -31,9 +31,9 @@ if (!isset($_SESSION['name'])) {
     <div class="container" style="width: 75%;">
         <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;">
 
-            <h2 class="text-primary text-center">Gestionar Categoría</h2>
+            <h2 class="text-primary text-md-center">Gestionar Categoría</h2>
             <div class="container">
-                <div class="text-left">
+                <div class="text-md-left">
                     <button class="btn btn-success" id="incluir">Registrar Categoría</button>
                 </div>
             </div>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['name'])) {
                 <br>
                 <div class="container mt-3">
                 </div>
-                <div class="container text-center ">
+                <div class="container text-md-center ">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="tablacategoria">
                             <thead>
@@ -93,7 +93,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-md-center">
                                 <button type="button" class="btn btn-dark" id="proceso"></button>
                             </div>
                         </div>

@@ -95,6 +95,18 @@ function validarFechas() {
       
      return true;
      } 
+
+
+     function limpia() {
+      // Limpiar los campos
+      $("#numfactura").val("");
+      $("#ffin").val("");
+      $("#finicio").val("");
+      $("#proveedor").val("disabled");
+      $("#empleado").val("disabled");
+        // Habilitar los campos por si estaban deshabilitados
+  
+    }
     
 
 $(document).ready(function () {
@@ -111,11 +123,21 @@ $(document).ready(function () {
     $("#ffin").prop('required', true);
   });
 
-   
+  $("#Generar").on("click",function(){
+
+      setTimeout(function() {  limpia(); 1000}, );
+
+    
+  });
+
+
+
+
+
   $("#ffin").on("click",function(){
     $("#finicio").prop('required', true);
   });
-
+ 
   $("#filtrar").on("click",function(){
  
    if (validarFechas()) { 

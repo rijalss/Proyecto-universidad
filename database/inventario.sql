@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2024 a las 22:38:39
+-- Tiempo de generación: 14-11-2024 a las 04:28:54
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -123,7 +123,6 @@ CREATE TABLE `notaentrada` (
 
 CREATE TABLE `notasalida` (
   `clSalida` int(10) NOT NULL,
-  `codSalida` int(10) NOT NULL,
   `fechaSalida` datetime NOT NULL,
   `clEmpleado` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -323,46 +322,46 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `administrarentrada`
 --
 ALTER TABLE `administrarentrada`
-  ADD CONSTRAINT `administrarEncargoEncargo` FOREIGN KEY (`clEntrada`) REFERENCES `notaentrada` (`clEntrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `administrarentrada_ibfk_1` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `administrarEncargoEncargo` FOREIGN KEY (`clEntrada`) REFERENCES `notaentrada` (`clEntrada`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `administrarentrada_ibfk_1` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `administrarsalida`
 --
 ALTER TABLE `administrarsalida`
-  ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `notasalida` (`clSalida`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `notasalida` (`clSalida`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `existencia`
 --
 ALTER TABLE `existencia`
-  ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `notaentrada`
 --
 ALTER TABLE `notaentrada`
-  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `notasalida`
 --
 ALTER TABLE `notasalida`
-  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

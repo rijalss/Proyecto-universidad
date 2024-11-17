@@ -13,7 +13,7 @@ if (!isset($_SESSION['name'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Notas de entrada</title>
-	<link rel="icon" href="public/img/favicon.ico" >
+	<link rel="icon" href="public/img/favicon.ico">
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
@@ -28,16 +28,17 @@ if (!isset($_SESSION['name'])) {
 		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<form method="post" action="" id="f">
 				<input type="text" name="accion" id="accion" style="display:none" />
-				<h2 class="text-primary text-center">Gestionar Notas de Entrada</h2>
+				<h2 class="text-primary text-md-center">Gestionar Notas de Entrada</h2>
 
 				<div class="container">
-					<div class="text-left mb-3">
+					<div class="text-md-left mb-3">
 						<button type="button" class="btn btn-success" id="registrar" name="registrar">Registrar Notas de Entrada</button>
 					</div>
 				</div>
 
 
 				<div class="row">
+					<div class="col-md">
 					<div class="col-md">
 						<hr />
 					</div>
@@ -78,6 +79,7 @@ if (!isset($_SESSION['name'])) {
 
 				<div class="row">
 					<div class="col-md">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -95,6 +97,7 @@ if (!isset($_SESSION['name'])) {
 				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
 				<div class="row">
 					<div class="col-md">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -105,7 +108,7 @@ if (!isset($_SESSION['name'])) {
 					<div class="row">
 						<div class="col-md-12" >
 							<table class="table table-striped table-hover" id="tablaentrada">
-								<thead class="text-center">
+								<thead class="text-md-center">
 									<tr>
 										<th>X</th>
 										<th style="display:none">Cl</th>
@@ -115,7 +118,7 @@ if (!isset($_SESSION['name'])) {
 										<th>Precio Entrada</th>
 									</tr>
 								</thead>
-								<tbody class="text-center" id="productosentrada">
+								<tbody class="text-md-center" id="productosentrada">
 
 								</tbody>
 							</table>
@@ -138,14 +141,14 @@ if (!isset($_SESSION['name'])) {
 				</div>
 				<div class="modal-body">
 					<table class="table table-striped table-hover">
-						<thead class="text-center">
+						<thead class="text-md-center">
 							<tr>
 								<th style="display:none">Id</th>
 								<th>Codigo</th>
 								<th>Nombre</th>
 							</tr>
 						</thead>
-						<tbody class="text-center" id="listadoproductos">
+						<tbody class="text-md-center" id="listadoproductos">
 
 						</tbody>
 					</table>

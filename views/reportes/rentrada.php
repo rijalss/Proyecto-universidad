@@ -28,7 +28,7 @@ if (!isset($_SESSION['name'])) {
 		<div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<form method="post" action="" id="f" target=" _blank">
 				<input type="text" name="accion" id="accion" style="display:none" />
-				<h2 class="text-primary text-center">Reportes Notas de entrada</h2>
+				<h2 class="text-primary text-md-center">Reportes Notas de entrada</h2>
 
 				<div class="row">
 					<div class="col-md">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['name'])) {
 					</div>
 
 					<div class="row mt-4">
-						<div class="col-md-2 d-flex align-items-end"> 
+						<div class="col-md-2 d-flex align-items-md-end"> 
 							<button type="button" class="btn btn-secondary" id="filtrar" name="filtrar">Filtrar Fechas</button> 
 						</div>
 						<div class="col-md-3">
@@ -80,22 +80,22 @@ if (!isset($_SESSION['name'])) {
 						</div>
 
 						<div class="col-md-3">
-							<div class="form-floating"> <input class="form-control" type="date" id="ffin" name="ffin" />
+							<div class="form-floating"> 
+								<input class="form-control" type="date" id="ffin" name="ffin" />
 							 <label for="ffin"><b>Fecha Final</b></label>
 							 </div>
 						</div>
-
 					</div>
 				</div>
 			</form>
 
 			<!-- FILA DE DETALLES DE LA VENTA-->
 			<div class="container card shadow mb-4 ">
-				<div class="container text-center">
+				<div class="container text-md-center">
 					<div class="table-responsive">
 
 						<table class="table table-striped table-hover" id="tablarentrada">
-							<thead class="text-center">
+							<thead class="text-md-center">
 								<tr>
 									<br>
 
@@ -107,7 +107,7 @@ if (!isset($_SESSION['name'])) {
 									<th>Cantidad de la Entrada</th>
 								</tr>
 							</thead>
-							<tbody class="text-center" id="entrada">
+							<tbody class="text-md-center" id="entrada">
 
 							</tbody>
 						</table>

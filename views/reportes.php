@@ -29,7 +29,7 @@ if (!isset($_SESSION['name'])) {
 
     <!-- Title -->
 
-    <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
+    <section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
         <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Reportes!</h1>
         <?php
         /*

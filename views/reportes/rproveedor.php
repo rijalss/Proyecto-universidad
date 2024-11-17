@@ -26,13 +26,14 @@ if (!isset($_SESSION['name'])) {
 <body>
     <!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
     <?php require_once("public/components/menu.php"); ?>
-<br><br><br>
-    <section class="d-flex flex-column align-items-center py-5">
-    <h2 class="text-primary text-center mb-4">Reportes Proveedor</h2>
-
-    <div class="container bg-light p-4 rounded shadow-sm border border-dark">
-        <form method="post" action="" id="f" target="_blank">
-            <input type="text" name="accion" id="accion" style="display:none" />
+    <br><br><br>
+    <div class="container" style="width: 50%;">
+        <section class="d-flex flex-column align-items-md-center py-5">
+            <h2 class="text-primary text-md-center mb-4">Reportes Proveedor</h2>
+            <div class="container card p-4 shadow mb-5 bg-white rounded">
+                <div class="container>"></div>
+                <form method="post" action="" id="f" target="_blank">
+                    <input type="text" name="accion" id="accion" style="display:none" />
 
             <div class="row mb-3">
                 <div class="col-md">
@@ -60,7 +61,8 @@ if (!isset($_SESSION['name'])) {
             </div>
         </form>
     </div>
-</section>
+    </section>
+    </div>
 
 
     <!-- seccion del modal productos -->
@@ -74,6 +76,7 @@ if (!isset($_SESSION['name'])) {
     ?>
 
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="public/js/rproveedor.js"></script>
 
 
 </body>

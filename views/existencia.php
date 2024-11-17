@@ -27,15 +27,15 @@ if (!isset($_SESSION['name'])) {
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
+	<section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
 
-		<h2 class="text-primary text-center">Listar Existencias</h2>
+		<h2 class="text-primary text-md-center">Listar Existencias</h2>
 
 		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<br>
 			<div class="container  dropdown-menu">
 			</div>
-			<div class="container text-center">
+			<div class="container text-md-center">
 				<div class="table-responsive">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">

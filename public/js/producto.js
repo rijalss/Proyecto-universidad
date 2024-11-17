@@ -15,26 +15,26 @@ function destruyeDT() {
 function mostrarImagen(f) {
 	console.log("entro en la funncion mostrar imagen");
 	var tamano = f.files[0].size;
-     var megas = parseInt(tamano / 1024);
-     
-     if(megas > 1024){
-		 muestraMensaje("La imagen debe ser igual o menor a 1024 K");
-         $(f).val('');
-     }
-     else{	
-      console.log("entro en el else");
-		 if (f.files && f.files[0]) {
-		  var reader = new FileReader();
-		  reader.onload = function (e) {
-		   $('#imagen').attr('src', e.target.result);
-       console.log("entro en el segundo if");
-		  }
-		  reader.readAsDataURL(f.files[0]);
+      var megas = parseInt(tamano / 1024);
+      
+      if(megas > 1024){
+      muestraMensaje("La imagen debe ser igual o menor a 1024 K");
+          $(f).val('');
+      }
+      else{	
+        console.log("entro en el else");
+      if (f.files && f.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#imagen').attr('src', e.target.result);
+        console.log("entro en el segundo if");
+        }
+        reader.readAsDataURL(f.files[0]);
 		}
 	}  
 }
 //fin de funcion mostrar imagen
- 
+
 function crearDT() {
     if (!$.fn.DataTable.isDataTable("#tablaproducto")) {
         var table = $("#tablaproducto").DataTable({
@@ -426,8 +426,6 @@ function pone(pos, accion) {
   $("#modalProducto").modal("show");
 }
 
-
-
 //funcion que envia y recibe datos por AJAX
 function enviaAjax(datos) {
     $.ajax({
@@ -498,6 +496,10 @@ function enviaAjax(datos) {
         },
         complete: function () {},
     });
+}
+
+function reload(){
+  location.reload();
 }
 
 function limpia() {
