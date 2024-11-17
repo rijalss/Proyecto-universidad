@@ -8,14 +8,14 @@ function carga_productos() {
 
 function destruyeDT() {
   
-    if ($.fn.DataTable.isDataTable("#tablarentrada")) {
-        $("#tablarentrada").DataTable().destroy();
+    if ($.fn.DataTable.isDataTable("#tsalida")) {
+        $("#tsalida").DataTable().destroy();
     }
 }
 
-function crearDT() {
-    if (!$.fn.DataTable.isDataTable("#tablarentrada")) {
-        var table = $("#tablarentrada").DataTable({
+function  crearDT ()   {
+    if (!$.fn.DataTable.isDataTable("#tsalida")) {
+        var table = $("#tsalida").DataTable({
             paging: true,
             lengthChange: true,
             searching: false,
@@ -24,10 +24,10 @@ function crearDT() {
             autoWidth: false,
             responsive: true,
             language: {
-                lengthMenu: "Mostrar _MENU_",
-                zeroRecords: "No se encontraron registros",
+                lengthMenu: "",
+                zeroRecords: "No hay productos en el almacen",
                 info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay notas de entrada registradas",
+                infoEmpty: "",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",
                 search: "Buscar",
                 paginate: {
@@ -67,7 +67,62 @@ function crearDT() {
     }
 
 }
+/*
+function crearDTmostrador() {
+    if (!$.fn.DataTable.isDataTable("#tsalida")) {
+        var table = $("#tsalida").DataTable({
+            paging: true,
+            lengthChange: true,
+            searching: false,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            responsive: true,
+            language: {
+                lengthMenu: "",
+                zeroRecords: "No hay productos en el Mradorlce",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                },
+            },
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom:
+                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
 
+        $("div.dataTables_length select").css({
+            width: "auto",
+            display: "inline",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            float: "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            width: "300px",
+            float: "right",
+            "margin-left": "10px",
+        });
+    }
+
+}
+*/
 $(document).ready(function () {
   validarselect();
   carga_productos();
@@ -255,21 +310,22 @@ function enviaAjax(datos) {
         console.log(lee.resultado);
 
         if (lee.resultado == "listadoproductos") {
-
+        destruyeDT();
         $("#listadoproductos").html(lee.mensaje);
         limpia();
+        crearDT();
         } else if (lee.resultado == "registrar") {
-          
+      
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
         limpia();
         carga_productos();
-
+      //  destruyeDT()
         } else if (lee.resultado == "registrarMostrador"){
 
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
         limpia();
         carga_productos();
-
+       // destruyeDT()
         } else if (lee.resultado == "error") {
           muestraMensaje('error', 4000,'ERROR',lee.mensaje);
         }
