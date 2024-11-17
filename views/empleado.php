@@ -15,7 +15,7 @@ if (!isset($_SESSION['name'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="public/img/favicon.ico" >
+	<link rel="icon" href="public/img/favicon.ico">
 	<title>Empleado</title>
 
 	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
@@ -35,11 +35,11 @@ if (!isset($_SESSION['name'])) {
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex flex-column align-items-center">
+	<section class="d-flex flex-column align-items-md-center">
 		<br><br><br><br>
-		<h2 class="text-primary text-center">Gestionar Empleado</h2>
+		<h2 class="text-primary text-md-center">Gestionar Empleado</h2>
 		<div class="container">
-			<div class="text-left">
+			<div class="text-md-left">
 				<button class="btn btn-success" id="incluir">Registrar Empleado</button>
 			</div>
 		</div>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['name'])) {
 			<br>
 			<div class="container">
 			</div>
-			<div class="container text-center">
+			<div class="container text-md-center">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover" id="tablaempleado">
 						<thead>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['name'])) {
 
 											<div class="container">
 												<div class="row mb-3">
-													<div class="col-1">
+													<div class="col-md-1">
 														<label for="prefijoCedula">Prefijo</label>
 														<select class="form-control" name="prefijoCedula" id="prefijoCedula">
 															<option value="V">V</option>
@@ -103,18 +103,18 @@ if (!isset($_SESSION['name'])) {
 														<span id="sprefijoCedula"></span>
 													</div>
 
-													<div class="col">
+													<div class="col-md">
 														<label for="cedulaEmpleado">Cédula</label>
 														<input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" required />
 														<span id="scedulaEmpleado"></span>
 													</div>
-													<div class="col">
+													<div class="col-md">
 														<label for="nombreEmpleado">Nombre</label>
 														<input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" required />
 														<span id="snombreEmpleado"></span>
 													</div>
 
-													<div class="col">
+													<div class="col-md">
 														<label for="apellidoEmpleado">Apellido</label>
 														<input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" required />
 														<span id="sapellidoEmpleado"></span>
@@ -123,12 +123,12 @@ if (!isset($_SESSION['name'])) {
 
 												</div>
 												<div class="row mb-3">
-													<div class="col">
+													<div class="col-md">
 														<label for="correoEmpleado">Correo</label>
 														<input class="form-control" type="email" id="correoEmpleado" name="correoEmpleado" required />
 														<span id="scorreoEmpleado"></span>
 													</div>
-													<div class="col">
+													<div class="col-md">
 														<label for="telefonoEmpleado">Teléfono</label>
 														<input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
 														<span id="stelefonoEmpleado"></span>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['name'])) {
 															</center>
 														</div>
 													</div>
-													<div class="col">
+													<div class="col-md">
 
 														<hr />
 													</div>
@@ -180,7 +180,7 @@ if (!isset($_SESSION['name'])) {
 								</div>
 							</div>
 							<br>
-							<div class="row mt-3 d-flex justify-content-center align-items-center">
+							<div class="row mt-3 d-flex justify-content-center align-items-md-center">
 								<div class="col-md-2">
 									<button type="button" class="btn btn-dark" id="proceso"></button>
 								</div>

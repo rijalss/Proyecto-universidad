@@ -6,6 +6,68 @@ function carga_productos() {
   enviaAjax(datos);
 }
 
+function destruyeDT() {
+  
+    if ($.fn.DataTable.isDataTable("#tablarentrada")) {
+        $("#tablarentrada").DataTable().destroy();
+    }
+}
+
+function crearDT() {
+    if (!$.fn.DataTable.isDataTable("#tablarentrada")) {
+        var table = $("#tablarentrada").DataTable({
+            paging: true,
+            lengthChange: true,
+            searching: false,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+            responsive: true,
+            language: {
+                lengthMenu: "Mostrar _MENU_",
+                zeroRecords: "No se encontraron registros",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay notas de entrada registradas",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                search: "Buscar",
+                paginate: {
+                    first: "Primera",
+                    last: "Última",
+                    next: "Siguiente",
+                    previous: "Anterior",
+                },
+            },
+            autoWidth: false,
+            order: [[1, "asc"]],
+            dom:
+                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        });
+
+        $("div.dataTables_length select").css({
+            width: "auto",
+            display: "inline",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter").css({
+            "margin-bottom": "50px",
+            "margin-top": "10px",
+        });
+
+        $("div.dataTables_filter label").css({
+            float: "left",
+        });
+
+        $("div.dataTables_filter input").css({
+            width: "300px",
+            float: "right",
+            "margin-left": "10px",
+        });
+    }
+
+}
+
 $(document).ready(function () {
   validarselect();
   carga_productos();
@@ -97,11 +159,11 @@ function colocaproducto(linea) {
       $(linea).find("td:eq(3)").text() +
       `</td>
 		   <td>
-		      <input type="text" value="1" name="cant[]" class="c"/>
+		      <input type="number" value="1" name="cant[]" class="c"/>
 		   </td>
 		   <td>
 		       
-		      <input type="text" value="1" name="precio[]"/></td>
+		      <input type="number" value="1" name="precio[]"/></td>
 		   
 		   </tr>`;
     $("#salidadetalle").append(l);

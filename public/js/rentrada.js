@@ -125,7 +125,7 @@ $(document).ready(function () {
 
   $("#Generar").on("click",function(){
 
-      setTimeout(function() {  limpia(); 1}, );
+      setTimeout(function() {  limpia(); 1000}, );
 
     
   });

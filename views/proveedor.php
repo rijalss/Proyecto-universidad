@@ -28,11 +28,11 @@ if (!isset($_SESSION['name'])) {
 	<?php require_once("public/components/menu.php"); ?>
 	<!-- Header -->
 
-	<section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
+	<section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
 
-		<h2 class="text-primary text-center">Gestionar Proveedor</h2>
+		<h2 class="text-primary text-md-center">Gestionar Proveedor</h2>
 		<div class="container">
-			<div class="text-left">
+			<div class="text-md-left">
 				<button class="btn btn-success" id="incluir">Registrar Proveedor</button>
 			</div>
 		</div>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['name'])) {
 			<br>
 			<div class="container">
 			</div>
-			<div class="container text-center">
+			<div class="container text-md-center">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover" id="tablaproveedor">
 						<thead>
@@ -76,7 +76,7 @@ if (!isset($_SESSION['name'])) {
 						<div class="container">
 							<div class="row mb-3">
 
-								<div class="col-1">
+								<div class="col-md-1">
 									<label for="prefijoRif"></label>
 									<select class="form-control" name="prefijoRif" id="prefijoRif">
 										<option value="J">J</option>
@@ -85,17 +85,17 @@ if (!isset($_SESSION['name'])) {
 									</select>
 									<span id="sprefijoRif"></span>
 								</div>
-								<div class="col-3">
+								<div class="col-md-3">
 									<label for="rifProveedor">Rif</label>
 									<input class="form-control" type="text" id="rifProveedor" name="rifProveedor">
 									<span id="srifProveedor"></span>
 								</div>
-								<div class="col-5">
+								<div class="col-md-5">
 									<label for="nombreProveedor">Nombre</label>
 									<input class="form-control" type="text" id="nombreProveedor" name="nombreProveedor">
 									<span id="snombreProveedor"></span>
 								</div>
-								<div class="col-3">
+								<div class="col-md-3">
 									<label for="telefonoProveedor">Teléfono</label>
 									<input class="form-control" type="text" id="telefonoProveedor" name="telefonoProveedor">
 									<span id="stelefonoProveedor"></span>
@@ -103,12 +103,12 @@ if (!isset($_SESSION['name'])) {
 
 							</div>
 							<div class="row mb-3">
-								<div class="col-6">
+								<div class="col-md-6">
 									<label for="correoProveedor">Correo</label>
 									<input class="form-control" type="text" id="correoProveedor" name="correoProveedor">
 									<span id="scorreoProveedor"></span>
 								</div>
-								<div class="col-6">
+								<div class="col-md-6">
 									<label for="direccionProveedor">Dirección</label>
 									<input class="form-control" type="text" id="direccionProveedor" name="direccionProveedor">
 									<span id="sdireccionProveedor"></span>
@@ -116,7 +116,7 @@ if (!isset($_SESSION['name'])) {
 							</div>
 						</div>
 						<br>
-						<div class="row mt-3 d-flex justify-content-center align-items-center">
+						<div class="row mt-3 d-flex justify-content-center align-items-md-center">
 							<div class="col-md-2">
 								<button type="button" class="btn btn-dark" id="proceso"></button>
 							</div>

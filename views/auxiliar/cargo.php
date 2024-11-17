@@ -72,13 +72,13 @@ if (!isset($_SESSION['name'])) {
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="codCargo">Código</label>
                                     <input class="form-control" type="text" id="codCargo" name="codCargo">
                                     <span id="scodCargo"></span>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="nombreCargo">Nombre</label>
                                     <input class="form-control" type="text" id="nombreCargo" name="nombreCargo">
                                     <span id="snombreCargo"></span>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md">
                                 <br>
                                 <hr />
                             </div>

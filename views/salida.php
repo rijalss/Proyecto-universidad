@@ -31,21 +31,29 @@ if (!isset($_SESSION['name'])) {
 		<div class="container">
 			<form method="post" action="" id="form">
 				<input type="text" name="accion" id="accion" style="display:none" />
-				<h2 class="text-primary text-center">Gestionar Notas de Salida</h2>
+				<h2 class="text-primary text-md-center">Gestionar Notas de Salida</h2>
 
 				<div class="container">
-					<div class="text-left mb-3">
+					<div class="text-md-left mb-3">
 						<button type="button" class="btn btn-success" style="margin-right: 10px;" id="registrar" name="registrar">Registrar Notas de Salida</button>
 					</div>
 				</div>
-				
+
 				<div class="row">
-					<div class="col">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
 				<div class="container ">
-					<div class="row mb-3">
+					<div class="row md-3">
+
+						<div class="col-md-3">
+							<label for="ubi">Ubicación</label> <select name="ubi" id="ubi" class="form-select">
+								<option value="1">Almacen</option>
+								<option value="2">Mostrador</option>
+							</select>
+						</div>
+						
 						<div class="col-md-3">
 							<label for="empleado">Empleado</label>
 							<select class="form-select" name="empleado" id="empleado">
@@ -56,12 +64,6 @@ if (!isset($_SESSION['name'])) {
 								} ?>
 							</select>
 						</div>
-						<div class="col-md-3"> 
-							<label for="ubi">Ubicación</label> <select name="ubi" id="ubi" class="form-select">
-								<option value='disabled' disabled selected>Seleccione una Ubicación</option>
-								<option value="1">Almacen</option>
-								<option value="2">Mostrador</option>
-							</select> </div>
 
 
 						<div class="col-md-6 p-4">
@@ -76,9 +78,9 @@ if (!isset($_SESSION['name'])) {
 
 					<div class="table-responsive card shadow ms-0"> <!-- container card shadow mb-4 -->
 						<div class="row">
-							<div class="col-12">
+							<div class="col-md-12">
 								<table class="table table-striped table-hover" id="tabSalida">
-									<thead class="text-center">
+									<thead class="text-md-center">
 										<tr>
 											<th>X</th>
 											<th style="display:none">Id</th>
@@ -89,7 +91,7 @@ if (!isset($_SESSION['name'])) {
 											<th>Precio salida</th>
 										</tr>
 									</thead>
-									<tbody class="text-center" id="salidadetalle">
+									<tbody class="text-md-center" id="salidadetalle">
 
 									</tbody>
 								</table>
@@ -114,7 +116,7 @@ if (!isset($_SESSION['name'])) {
 						<div class="row mb-3">
 							<div class="container ">
 								<table class="table table-striped table-hover align-middle">
-									<thead class="text-center">
+									<thead class="text-md-center">
 										<tr>
 											<th style="display:none">Id</th>
 											<th>Codigo</th>
@@ -122,7 +124,7 @@ if (!isset($_SESSION['name'])) {
 											<th>Cantidad disponible</th>
 										</tr>
 									</thead>
-									<tbody class="text-center" id="listadoproductos">
+									<tbody class="text-md-center" id="listadoproductos">
 
 									</tbody>
 								</table>

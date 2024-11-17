@@ -31,9 +31,9 @@ if (!isset($_SESSION['name'])) {
     <div class="container" style="width: 75%;">
         <section class="d-flex flex-column align-items-center sm-4" style="margin-top: 110px;">
 
-            <h2 class="text-primary text-center">Gestionar Categoría</h2>
+            <h2 class="text-primary text-md-center">Gestionar Categoría</h2>
             <div class="container">
-                <div class="text-left">
+                <div class="text-md-left">
                     <button class="btn btn-success" id="incluir">Registrar Categoría</button>
                 </div>
             </div>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['name'])) {
                 <br>
                 <div class="container mt-3">
                 </div>
-                <div class="container text-center ">
+                <div class="container text-md-center ">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="tablacategoria">
                             <thead>
@@ -74,12 +74,12 @@ if (!isset($_SESSION['name'])) {
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="codCategoria">Código</label>
                                     <input class="form-control" type="text" id="codCategoria" name="codCategoria">
                                     <span id="scodCategoria"></span>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="nombreCategoria">Nombre</label>
                                     <input class="form-control" type="text" id="nombreCategoria" name="nombreCategoria">
                                     <span id="snombreCategoria"></span>
@@ -87,13 +87,13 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md">
                                 <br>
                                 <hr />
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-md-center">
                                 <button type="button" class="btn btn-dark" id="proceso"></button>
                             </div>
                         </div>

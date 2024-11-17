@@ -60,9 +60,12 @@ class Rempleado extends Conexion
 
             $html = "<html><head>";
             $html .= "<style>
+           .header { text-align: center; margin-bottom: 40px; position: relative; } /* Se aumentó el margin-bottom */ 
+           .header img { position: absolute; top: -20px; left: -20px; width: 100px; }
+            
             body { font-family: Arial, sans-serif; background-color: #fff; color: #333; margin: 0; padding: 0; }
             .container { width: 90%; max-width: 1000px; margin: 20px auto; border: 1px solid #ddd; background-color: #fff; padding: 20px; }
-            .header { text-align: center; margin-bottom: 20px; }
+            
             h1 { font-size: 24px; color: #555; margin: 0; }
             table { width: 100%; border-collapse: collapse; margin-top: 20px; }
             th, td { padding: 12px; text-align: center; font-size: 14px; color: #555; } /* Cambiado a text-align: center */
@@ -71,8 +74,15 @@ class Rempleado extends Conexion
             tr:hover { background-color: #e0f7fa; }
               </style>";
             $html .= "</head><body>";
+            $urllogo = 'public/img/logo.png';
+            $type = pathinfo($urllogo, PATHINFO_EXTENSION);
+            $data = file_get_contents($urllogo);
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
             $html .= "<div class='container'>";
-            $html .= "<div class='header'><h1>Reporte de Empleados</h1></div>";
+            $html .= "<div class='header'>";
+            $html .= "<img src='$base64' >";
+            $html .= "<h1>Reporte de Empleados</h1>";
+            $html .= "</div>";
             $html .= "<table>";
             $html .= "<thead>";
             $html .= "<tr>";

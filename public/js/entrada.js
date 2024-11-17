@@ -67,10 +67,13 @@ $(document).ready(function(){
         $("#modalproductos").modal("show");
     });
     
-    
-    $("#numfactura").on("keypress",function(e){
-        validarkeypress(/^[0-9-\b]*$/,e);
-    });
+    $("#nombreProveedor").on("keyup",function(){
+        validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,30}$/, 
+        $(this), $("#snombreProveedor"),"Este formato no debe estar vacío / permite un máximo 30 carácteres");
+
+	});
+
+   
     
     $("#numfactura").on("keyup",function(){
         validarkeyup(/^[1-9]{4,10}$/,$(this),
@@ -178,15 +181,14 @@ $(document).ready(function(){
         var id = $(linea).find("td:eq(0)").text();
         var encontro = false;
         
-        $("#productosentrada tr").each(function(){
-            if(id*1 == $(this).find("td:eq(1)").text()*1){
-                encontro = true
-                var t = $(this).find("td:eq(4)").children();
-                t.val(t.val()*1+1);
-                modificasubtotal(t);
-            } 
-        });
-        
+   
+        $("#productosentrada tr").each(function () {
+            if (id * 1 == $(this).find("td:eq(1)").text() * 1) {
+              encontro = true;
+              var t = $(this).find("td:eq(5)").children();
+              t.val(t.val() * 1 + 1);
+            }
+          });
         if(!encontro){
             var l = `
               <tr>
@@ -207,16 +209,16 @@ $(document).ready(function(){
                         $(linea).find("td:eq(2)").text()+
                `</td>
                <td>
-                  <input type="text" value="1" name="cant[]" "/>
+                  <input type="number" value="1" name="cant[]" id="cantidad" "/>
                </td>
                <td>
                    
-                  <input type="text" value="1" name="precio[]" "/></td>
+                  <input type="number" value="1" name="precio[]" id="precio" "/></td>
                
                </tr>`;
             $("#productosentrada").append(l);
         }
-        //crearDT();
+       
     }
     
 

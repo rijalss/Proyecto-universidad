@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 
 // Verificar si el usuario ha iniciado sesión
@@ -28,9 +28,9 @@ if (!isset($_SESSION['name'])) {
     <!-- Header -->
 
     <!-- Title -->
-    <section class="d-flex flex-column align-items-center" style="margin-top: 110px;">
+    <section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
 
-        <h1 id="nombre_persona" class="text-primary display-4 text-center text-uppercase font-weight-bold"></h1>
+        <h1 id="nombre_persona" class="text-primary display-4 text-md-center text-md-uppercase font-weight-bold"></h1>
 
         <?php
 
