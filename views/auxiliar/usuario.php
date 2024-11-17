@@ -74,22 +74,22 @@ if (!isset($_SESSION['name'])) {
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="container">
                             <div class="row">
-                                <div class="col-2 " style="display:none">
+                                <div class="col-md-2 " style="display:none">
                                     <label for="id">id</label>
                                     <input class="form-control" type="text" id="id" name="id">
                                     <span id="sid"></span>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="username">Username</label>
                                     <input class="form-control" type="text" id="username" name="username">
                                     <span id="susername"></span>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="password">Password</label>
                                     <input class="form-control" type="text" id="password" name="password">
                                     <span id="spassword"></span>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="rol">Rol</label>
                                     <select class="form-select" name="rol" id="rol">
                                         <option value="admin">Admin</option>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md">
                                 <br>
                                 <hr />
                             </div>

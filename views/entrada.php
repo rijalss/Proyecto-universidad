@@ -38,7 +38,7 @@ if (!isset($_SESSION['name'])) {
 
 
 				<div class="row">
-					<div class="col">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['name'])) {
 				<!-- FIN DE FILA DATOS DEL CLIENTE -->
 
 				<div class="row">
-					<div class="col">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['name'])) {
 				<!-- FILA DE BUSQUEDA DE PRODUCTOS -->
 			<div class="container">
 				<div class="row mb-3">
-					<div class="col input-group">
+					<div class="col-md input-group">
 						<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
 						<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
 						<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['name'])) {
 			</div>
 				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
 				<div class="row">
-					<div class="col">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['name'])) {
 				<div class="table-responsive card shadow ">
 
 					<div class="row">
-						<div class="col-12" >
+						<div class="col-md-12" >
 							<table class="table table-striped table-hover" id="tablaentrada">
 								<thead class="text-center">
 									<tr>

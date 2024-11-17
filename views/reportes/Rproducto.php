@@ -35,19 +35,19 @@ if (!isset($_SESSION['name'])) {
             <input type="text" name="accion" id="accion" style="display:none" />
 
             <div class="row mb-3">
-                <div class="col">
+                <div class="col-md">
                     <label for="codProducto" class="form-label">Código</label>
                     <input class="form-control" type="text" id="codProducto" name="codProducto" />
                     <span id="scodProducto" class="form-text"></span>
                 </div>
 
-                <div class="col">
+                <div class="col-md">
                     <label for="nombreProducto" class="form-label">Nombre</label>
                     <input class="form-control" type="text" id="nombreProducto" name="nombreProducto" />
                     <span id="snombreProducto" class="form-text"></span>
                 </div>
 
-                <div class="col">
+                <div class="col-md">
                     <label for="categoria" class="form-label">Categoría</label>
                     <select class="form-select" name="categoria" id="categoria">
                         <option value='disabled' disabled selected>Seleccione una categoría</option>
@@ -62,13 +62,13 @@ if (!isset($_SESSION['name'])) {
             </div>
 
             <div class="row mb-3">
-                <div class="col">
+                <div class="col-md">
                     <hr />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col text-center">
+                <div class="col-md text-center">
                     <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
                 </div>
             </div>

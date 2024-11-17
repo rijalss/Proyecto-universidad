@@ -76,7 +76,7 @@ if (!isset($_SESSION['name'])) {
 						<div class="container">
 							<div class="row mb-3">
 
-								<div class="col-1">
+								<div class="col-md-1">
 									<label for="prefijoRif"></label>
 									<select class="form-control" name="prefijoRif" id="prefijoRif">
 										<option value="J">J</option>
@@ -85,17 +85,17 @@ if (!isset($_SESSION['name'])) {
 									</select>
 									<span id="sprefijoRif"></span>
 								</div>
-								<div class="col-3">
+								<div class="col-md-3">
 									<label for="rifProveedor">Rif</label>
 									<input class="form-control" type="text" id="rifProveedor" name="rifProveedor">
 									<span id="srifProveedor"></span>
 								</div>
-								<div class="col-5">
+								<div class="col-md-5">
 									<label for="nombreProveedor">Nombre</label>
 									<input class="form-control" type="text" id="nombreProveedor" name="nombreProveedor">
 									<span id="snombreProveedor"></span>
 								</div>
-								<div class="col-3">
+								<div class="col-md-3">
 									<label for="telefonoProveedor">Teléfono</label>
 									<input class="form-control" type="text" id="telefonoProveedor" name="telefonoProveedor">
 									<span id="stelefonoProveedor"></span>
@@ -103,12 +103,12 @@ if (!isset($_SESSION['name'])) {
 
 							</div>
 							<div class="row mb-3">
-								<div class="col-6">
+								<div class="col-md-6">
 									<label for="correoProveedor">Correo</label>
 									<input class="form-control" type="text" id="correoProveedor" name="correoProveedor">
 									<span id="scorreoProveedor"></span>
 								</div>
-								<div class="col-6">
+								<div class="col-md-6">
 									<label for="direccionProveedor">Dirección</label>
 									<input class="form-control" type="text" id="direccionProveedor" name="direccionProveedor">
 									<span id="sdireccionProveedor"></span>

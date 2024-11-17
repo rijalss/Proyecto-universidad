@@ -10,7 +10,7 @@ class Entrada extends Conexion{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
-			$fecha = date('Y-m-d H:i:s');;
+			$fecha = date('Y-m-d H:i:s');
 
 
 		   $sql="INSERT INTO notaentrada(
@@ -25,6 +25,7 @@ class Entrada extends Conexion{
 			'$idempleado'	
 		)";
 		   $guarda = $co->query($sql);
+
 			$lid = $co->lastInsertId();
 
 			$tamano = count($idproducto);
@@ -46,7 +47,9 @@ for($i=0; $i<$tamano; $i++){
 
 	for($i=0; $i<$tamano; $i++){
 		$idProd = $idproducto[$i];
+
 		$cantidadActual = isset($existencias[$idProd]) ? $existencias[$idProd] : 0;
+
 		$Total = $cantidadActual + $cantidad[$i];
 
 		$co->query("UPDATE existencia SET cantidadExistencia = $Total WHERE clExistencia = $idProd");

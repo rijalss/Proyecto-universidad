@@ -109,16 +109,14 @@ if (!isset($_SESSION['name'])) {
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label for="descProducto" class="form-label">Descripción:</label>
                                     <textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
                                     <span id="sdescProducto"></span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-12">
-                                    <hr />
-                                    <center>
+                                <div class="col-md-6">
+                                 <br>
+                               
                                         <label for="archivo" style="cursor:pointer">
                                             <img src="public/img/img-producto/producto.jpg" id="imagen"
                                                 class="img-fluid rounded-circle w-25 mb-3 centered"
@@ -130,8 +128,10 @@ if (!isset($_SESSION['name'])) {
                                             style="display:none"
                                             accept=".png,.jpg,.jpeg"
                                             name="imagenarchivooo" />
-                                    </center>
+                                    
                                 </div>
+                            </div>
+                          
                             </div>
                         </div>
                         <br>
@@ -140,6 +140,7 @@ if (!isset($_SESSION['name'])) {
                                 <button type="button" class="btn btn-dark" id="proceso"></button>
                             </div>
                         </div>
+                        <br>
                     </form>
                 </div>
             </div>

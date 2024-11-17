@@ -31,7 +31,7 @@ if (!isset($_SESSION['name'])) {
 				<h2 class="text-primary text-center">Reportes Notas de entrada</h2>
 
 				<div class="row">
-					<div class="col">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>

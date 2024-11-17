@@ -22,7 +22,7 @@
                 <h2 class="text-primary text-center">Reporte Notas de Salida</h2>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md">
                         <hr />
                     </div>
                 </div>

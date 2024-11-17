@@ -35,12 +35,12 @@ if (!isset($_SESSION['name'])) {
             <input type="text" name="accion" id="accion" style="display:none" />
 
             <div class="row mb-3">
-                <div class="col">
+                <div class="col-md">
                     <label for="rifProveedor" class="form-label">Rif</label>
                     <input class="form-control" type="text" id="rifProveedor" name="rifProveedor" />
                     <span id="srifProveedor" class="form-text"></span>
                 </div>
-                <div class="col">
+                <div class="col-md">
                     <label for="nombreProveedor" class="form-label">Nombre</label>
                     <input class="form-control" type="text" id="nombreProveedor" name="nombreProveedor" />
                     <span id="snombreProveedor" class="form-text"></span>
@@ -48,13 +48,13 @@ if (!isset($_SESSION['name'])) {
             </div>
 
             <div class="row mb-3">
-                <div class="col">
+                <div class="col-md">
                     <hr />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col text-center">
+                <div class="col-md text-center">
                     <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
                 </div>
             </div>
