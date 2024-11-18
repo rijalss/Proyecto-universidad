@@ -53,7 +53,7 @@ if (!isset($_SESSION['name'])) {
 								<option value="2">Mostrador</option>
 							</select>
 						</div>
-						
+
 						<div class="col-md-3">
 							<label for="empleado">Empleado</label>
 							<select class="form-select" name="empleado" id="empleado">
@@ -115,7 +115,7 @@ if (!isset($_SESSION['name'])) {
 					<div class="container">
 						<div class="row mb-3">
 							<div class="container ">
-								<table class="table table-striped table-hover align-middle">
+								<table class="table table-striped table-hover align-middle" id="tsalida">
 									<thead class="text-md-center">
 										<tr>
 											<th style="display:none">Id</th>

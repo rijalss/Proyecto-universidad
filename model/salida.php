@@ -19,7 +19,7 @@ class Salida extends Conexion{
 				'nombre' => $row['nombreProducto']
 			];
 		}
-
+ 
 		$errores = [];
 		$alertas = [];
 
@@ -81,6 +81,7 @@ class Salida extends Conexion{
 
 			$r['resultado'] = 'registrar';
 			$r['mensaje'] .= "Registro Incluido!<br/> Se registró la nota de salida correctamente"; 
+			
 		} catch (Exception $e) {
 			$r['resultado'] = 'error';
 			$r['mensaje'] = $e->getMessage();
@@ -174,6 +175,7 @@ class Salida extends Conexion{
 
 			$r['resultado'] = 'registrar';
 			$r['mensaje'] .= "Registro Incluido!<br/> Se registró la nota de salida correctamente";
+		
 		} catch (Exception $e) {
 			$r['resultado'] = 'error';
 			$r['mensaje'] = $e->getMessage();
@@ -231,7 +233,8 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
-			
+			//$r['ubicacion'] .= "almacen";
+		
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 		    $r['mensaje'] =  $e->getMessage();
@@ -272,6 +275,7 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
+			//$r['ubicacion'] = "mostrador";
 		} catch (Exception $e) {
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
