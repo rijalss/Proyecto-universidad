@@ -18,6 +18,14 @@ if (!isset($_SESSION['name'])) {
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
+<style>
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+
 <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
     <?php require_once("public/components/menu.php"); ?>

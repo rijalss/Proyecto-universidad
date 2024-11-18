@@ -94,7 +94,7 @@ if (!isset($_SESSION['name'])) {
                                     <span id="sultimoPrecio" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="categoria" class="form-label">Categoría:</label>
+                                    <label for="categoria" class="form-label">Categoría</label>
                                     <select class="form-select" name="categoria" id="categoria">   
 
                                         <option value='disabled'   
@@ -110,7 +110,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="descProducto" class="form-label">Descripción:</label>
+                                    <label for="descProducto" class="form-label">Descripción</label>
                                     <textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
                                     <span id="sdescProducto"></span>
                                 </div>
