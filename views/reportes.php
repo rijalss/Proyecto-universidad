@@ -28,7 +28,13 @@ if (!isset($_SESSION['name'])) {
     <!-- Header -->
 
     <!-- Title -->
-
+    <style>
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
     <section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
         <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Reportes!</h1>
         <?php
@@ -104,7 +110,7 @@ if (!isset($_SESSION['name'])) {
     <br><br>
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 mt-auto">
-    <?php require_once("public/components/footer.php"); ?>
+        <?php require_once("public/components/footer.php"); ?>
     </footer>
     <!-- Footer -->
 

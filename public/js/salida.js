@@ -25,7 +25,7 @@ function  crearDT ()   {
             responsive: true,
             language: {
                 lengthMenu: "",
-                zeroRecords: "No hay productos en el almacen",
+                zeroRecords: "No hay productos registrados",
                 info: "Página _PAGE_ de _PAGES_",
                 infoEmpty: "",
                 infoFiltered: "(filtrado de _MAX_ registros totales)",

@@ -185,7 +185,7 @@ $(document).ready(function(){
         $("#productosentrada tr").each(function () {
             if (id * 1 == $(this).find("td:eq(1)").text() * 1) {
               encontro = true;
-              var t = $(this).find("td:eq(5)").children();
+              var t = $(this).find("td:eq(4)").children();
               t.val(t.val() * 1 + 1);
             }
           });

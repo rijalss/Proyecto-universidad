@@ -178,6 +178,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `username`, `password`, `rol`) VALUES
 (1, 'admin', 'admin', 'admin');
+INSERT INTO `usuario` (`id`, `username`, `password`, `rol`) VALUES
+(2, 'user', 'user', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -323,46 +325,46 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `administrarentrada`
 --
 ALTER TABLE `administrarentrada`
-  ADD CONSTRAINT `administrarEncargoEncargo` FOREIGN KEY (`clEntrada`) REFERENCES `notaentrada` (`clEntrada`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `administrarentrada_ibfk_1` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `administrarEncargoEncargo` FOREIGN KEY (`clEntrada`) REFERENCES `notaentrada` (`clEntrada`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `administrarentrada_ibfk_1` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `administrarsalida`
 --
 ALTER TABLE `administrarsalida`
-  ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `notasalida` (`clSalida`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallesalidaExistencia` FOREIGN KEY (`clExistencia`) REFERENCES `existencia` (`clExistencia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `detallesalidaSalida` FOREIGN KEY (`clSalida`) REFERENCES `notasalida` (`clSalida`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `empleadoCargo` FOREIGN KEY (`clCargo`) REFERENCES `cargo` (`clCargo`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `existencia`
 --
 ALTER TABLE `existencia`
-  ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `existenciaProducto` FOREIGN KEY (`clProducto`) REFERENCES `producto` (`clProducto`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `notaentrada`
 --
 ALTER TABLE `notaentrada`
-  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `encargoEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `encargoProveedor` FOREIGN KEY (`clProveedor`) REFERENCES `proveedor` (`clProveedor`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `notasalida`
 --
 ALTER TABLE `notasalida`
-  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `salidaEmpleado` FOREIGN KEY (`clEmpleado`) REFERENCES `empleado` (`clEmpleado`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `productoCategoria` FOREIGN KEY (`clCategoria`) REFERENCES `categoria` (`clCategoria`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

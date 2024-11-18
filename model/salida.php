@@ -131,9 +131,9 @@ class Salida extends Conexion{
 			// Alertas
 			if ($Total == 0
 			) {
-				$alertas[] = "Alerta: La existencia del producto '$nombreProd' se ha agotado!<br/>";
+				$alertas[] = "Alerta: La existencia del producto '$nombreProd' se ha agotado en el mostrador!<br/>";
 			} elseif ($Total <= 10) {
-				$alertas[] = "Alerta: La existencia del producto '$nombreProd' es baja!<br/>";
+				$alertas[] = "Alerta: La existencia del producto '$nombreProd' es baja en el mostrador!<br/>";
 			}
 		}
 
