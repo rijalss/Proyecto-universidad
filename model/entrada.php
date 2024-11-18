@@ -1,11 +1,73 @@
 <?php
-require_once('conexion.php');
+require_once('model/conexion.php');
 
 class Entrada extends Conexion{
 
 	public function registrar($idproducto, $idproveedor, $cantidad, $precio, $numfactura, $idempleado) {
 		$r = array();
 	
+	if (!$this->buscar($numfactura)){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		try{
+			$fecha = date('Y-m-d H:i:s');
+
+
+		   $sql="INSERT INTO notaentrada(
+			fechaEntrada,
+			numFactura,
+			clProveedor,
+			clEmpleado
+			) VALUES (
+			'$fecha',
+			'$numfactura',
+			'$idproveedor',
+			'$idempleado'	
+		)";
+		   $guarda = $co->query($sql);
+
+			$lid = $co->lastInsertId();
+
+			$tamano = count($idproducto);
+
+for($i=0; $i<$tamano; $i++){
+    $sql = "INSERT INTO administrarentrada (precioEntrada, cantidadEntrada, clEntrada, clExistencia) 
+            VALUES ('$precio[$i]', '$cantidad[$i]', '$lid', '$idproducto[$i]')";
+    $co->query($sql);
+}
+
+
+
+	// Obtener las cantidades de existencia actuales
+	$exist = $co->query("SELECT clExistencia, cantidadExistencia FROM existencia");
+	$existencias = [];
+	while ($row = $exist->fetch(PDO::FETCH_ASSOC)) {
+		$existencias[$row['clExistencia']] = $row['cantidadExistencia'];
+	}
+
+	for($i=0; $i<$tamano; $i++){
+		$idProd = $idproducto[$i];
+
+		$cantidadActual = isset($existencias[$idProd]) ? $existencias[$idProd] : 0;
+
+		$Total = $cantidadActual + $cantidad[$i];
+
+		$co->query("UPDATE existencia SET cantidadExistencia = $Total WHERE clExistencia = $idProd");
+	}
+
+	$r['resultado'] = 'registrar';
+	$r['mensaje'] = 'Registro Incluido!<br/> Se registró la nota de entrada correctamente';
+
+	} catch(Exception $e) {
+		$r['resultado'] = 'error';
+		$r['mensaje'] = $e->getMessage();
+	}
+}else {
+	$r['resultado'] = 'registrar';
+	$r['mensaje'] = 'ERROR! <br/> El numero de factura ya existe!';
+}
+	return $r;
+		
 		if (!$this->buscar($numfactura)) {
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

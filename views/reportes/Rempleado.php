@@ -35,52 +35,50 @@ if (!isset($_SESSION['name'])) {
                     <form method="post" action="" id="f" target="_blank">
                         <input type="text" name="accion" id="accion" style="display:none" />
 
-                        <div class="row mb-3">
-                            <div class="col-md">
-                                <label for="cedulaEmpleado" class="form-label">Cédula</label>
-                                <input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" />
-                                <span id="scedulaEmpleado" class="form-text"></span>
-                            </div>
-                            <div class="col-md">
-                                <label for="nombreEmpleado" class="form-label">Nombre</label>
-                                <input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" />
-                                <span id="snombreEmpleado" class="form-text"></span>
-                            </div>
-                            <div class="col-md">
-                                <label for="apellidoEmpleado" class="form-label">Apellido</label>
-                                <input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" />
-                                <span id="sapellidoEmpleado" class="form-text"></span>
-                            </div>
-                            <div class="col-md">
-                                <label for="cargo" class="form-label">Cargo</label>
-                                <select class="form-select" name="cargo" id="cargo">
-                                    <option value='disabled' disabled selected>Seleccione un cargo</option>
-                                    <?php
-                                    foreach ($cargos as $cargo) {
-                                        echo "<option value='" . $cargo['clCargo'] . "'>" . $cargo['nombreCargo'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                                <span id="scargo" class="form-text text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md">
-                                <hr />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md text-md-center">
-                                <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="row mb-3">
+                <div class="col-md">
+                    <label for="cedulaEmpleado" class="form-label">Cédula</label>
+                    <input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" />
+                    <span id="scedulaEmpleado" class="form-text"></span>
+                </div>
+                <div class="col-md">
+                    <label for="nombreEmpleado" class="form-label">Nombre</label>
+                    <input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" />
+                    <span id="snombreEmpleado" class="form-text"></span>
+                </div>
+                <div class="col-md">
+                    <label for="apellidoEmpleado" class="form-label">Apellido</label>
+                    <input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" />
+                    <span id="sapellidoEmpleado" class="form-text"></span>
+                </div>
+                <div class="col-md">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <select class="form-select" name="cargo" id="cargo">
+                        <option value=' ' disabled selected>Seleccione un cargo</option>
+                        <?php
+                        foreach ($cargos as $cargo) {
+                            echo "<option value='" . $cargo['clCargo'] . "'>" . $cargo['nombreCargo'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <span id="scargo" class="form-text text-danger"></span>
                 </div>
             </div>
-        </section>
+
+            <div class="row mb-3">
+                <div class="col-md">
+                    <hr />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md text-center">
+                    <button type="submit" class="btn btn-primary" id="generar" name="generar">Crear Reporte PDF</button>
+                </div>
+            </div>
+        </form>
     </div>
+</section>
 
 
     <!-- seccion del modal productos -->

@@ -19,11 +19,11 @@ data-mensaje="<?php echo !empty($mensaje) ? $mensaje : ''; ?>">
   <div class="container my-5 py-5">
     <div class="card border-dark shadow-lg">
       <div class="row g-0">
-        <div class=" col-md-6">
+        <div class="col-md-6">
           <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="public/img/img-1.jpg" alt="BootstrapBrain Logo">
         </div>
 
-        <div class=" col-md-6">
+        <div class="col-md-6">
           <div class="card-body p-3 p-md-4 p-xl-5">
 
             <div class="row">

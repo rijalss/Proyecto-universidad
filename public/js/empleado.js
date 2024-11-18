@@ -476,7 +476,7 @@ function enviaAjax(datos) {
     beforeSend: function () {},
     timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
     success: function (respuesta) {
-      console.log(respuesta); 
+     // console.log(respuesta); 
       try {
         var lee = JSON.parse(respuesta);
         if (lee.resultado == "consultar") {

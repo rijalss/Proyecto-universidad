@@ -115,8 +115,7 @@ if (!isset($_SESSION['name'])) {
                                     <span id="sdescProducto"></span>
                                 </div>
                                 <div class="col-md-6">
-                                 <br>
-                               
+                                <br>
                                         <label for="archivo" style="cursor:pointer">
                                             <img src="public/img/img-producto/producto.jpg" id="imagen"
                                                 class="img-fluid rounded-circle w-25 mb-3 centered"
@@ -128,10 +127,8 @@ if (!isset($_SESSION['name'])) {
                                             style="display:none"
                                             accept=".png,.jpg,.jpeg"
                                             name="imagenarchivooo" />
-                                    
                                 </div>
                             </div>
-                          
                             </div>
                         </div>
                         <br>

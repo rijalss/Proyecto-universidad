@@ -39,6 +39,7 @@ if (!isset($_SESSION['name'])) {
 
 				<div class="row">
 					<div class="col-md">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
@@ -78,22 +79,24 @@ if (!isset($_SESSION['name'])) {
 
 				<div class="row">
 					<div class="col-md">
+					<div class="col-md">
 						<hr />
 					</div>
 				</div>
 
 				<!-- FILA DE BUSQUEDA DE PRODUCTOS -->
-				<div class="container">
-					<div class="row mb-3">
-						<div class="col-md input-group">
-							<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
-							<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
-							<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
-						</div>
+			<div class="container">
+				<div class="row mb-3">
+					<div class="col-md input-group">
+						<input class="form-control" type="text" id="codigoproducto" name="codigoproducto" />
+						<input class="form-control" type="text" id="idproducto" name="idproducto" style="display:none" />
+						<button type="button" class="btn btn-primary" id="listadodeproductos" name="listadodeproductos">LISTADO DE PRODUCTOS</button>
 					</div>
 				</div>
+			</div>
 				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
 				<div class="row">
+					<div class="col-md">
 					<div class="col-md">
 						<hr />
 					</div>
@@ -103,7 +106,7 @@ if (!isset($_SESSION['name'])) {
 				<div class="table-responsive card shadow ">
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12" >
 							<table class="table table-striped table-hover" id="tablaentrada">
 								<thead class="text-md-center">
 									<tr>

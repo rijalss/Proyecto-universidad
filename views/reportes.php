@@ -15,7 +15,7 @@ if (!isset($_SESSION['name'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="public/img/favicon.ico" >
+    <link rel="icon" href="public/img/favicon.ico">
     <title>Bienvenido</title>
 
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
@@ -75,6 +75,15 @@ if (!isset($_SESSION['name'])) {
             <div class="col-md-6 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
+                        <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Existencias</h5>
+                        <p class="card-text">Gestiona los reportes de las Existencias de los productos</p>
+                        <a href="?pagina=rexistencia" class="btn btn-primary">Reporte de Existencias</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card shadow w-100 h-100 p-3">
+                    <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Proveedores</h5>
                         <p class="card-text">Gestiona los reportes de tus proveedores</p>
                         <a href="?pagina=rproveedor" class="btn btn-primary">Reporte de Proveedores</a>
@@ -94,7 +103,9 @@ if (!isset($_SESSION['name'])) {
     </div>
     <br><br>
     <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
     <?php require_once("public/components/footer.php"); ?>
+    </footer>
     <!-- Footer -->
 
     <!-- Scripts -->
