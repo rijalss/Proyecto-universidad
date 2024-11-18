@@ -214,17 +214,21 @@ function colocaproducto(linea) {
       $(linea).find("td:eq(3)").text() +
       `</td>
 		   <td>
-		      <input type="number" value="1" name="cant[]" class="c"/>
+		       <input type="number" value="1" name="cant[]" id="cantidad" min="1" onkeydown="validarSalida(event)"/>
 		   </td>
 		   <td>
 		       
-		      <input type="number" value="1" name="precio[]"/></td>
+		    <input type="number" value="1" name="precio[]" id="precio" min="1" onkeydown="validarSalida(event)"/></td>
 		   
 		   </tr>`;
     $("#salidadetalle").append(l);
   }
 }
-
+function validarSalida(event) {
+  if (event.key === '-' || event.key === 'e' || event.key === '+') {
+      event.preventDefault();
+  }
+}
 
 function eliminarsalidadetalle(boton) {
   $(boton).closest("tr").remove();
@@ -245,6 +249,8 @@ async function muestraMensaje(icono,tiempo,titulo,mensaje){
 
 function validarenvio() {
   var empleadoseleccionado = $("#empleado").val();
+  var cantidad = $("#cantidad").val();
+  var precio = $("#precio").val();
 
   if (empleadoseleccionado === null || empleadoseleccionado === "0") {
     muestraMensaje(
@@ -254,7 +260,14 @@ function validarenvio() {
       "Por favor, seleccione un empleado! <br/> Recuerde que debe tener alguno registrado!"
     );
     return false;
-  }
+  }else if (cantidad === null || cantidad === "0" || cantidad === "") {
+    muestraMensaje("error",4000,"ERROR!","Las cantidades de los productos <br/> no pueden ser menores a 1!"); 
+    return false;
+}
+else if (precio === null || precio === "0" || precio === "") {
+    muestraMensaje("error",4000,"ERROR!","Los precios de los productos no pueden ser menores a 1!"); 
+    return false;
+}
 
   return true;
 }

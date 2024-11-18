@@ -6,7 +6,7 @@ require_once("model/conexion.php");
 
 class Rexistencia extends Conexion
 {
-
+ 
     
 
     function generarPDF(){
@@ -50,8 +50,8 @@ class Rexistencia extends Conexion
             $html .= "<thead>";
             $html .= "<tr>";
             $html .= "<th>Nombre producto</th>";
-            $html .= "<th>Categoría</th>";
-            $html .= "<th>Cantidad en almacén</th>";
+            $html .= "<th>Categoria</th>";
+            $html .= "<th>Cantidad en almacen</th>";
             $html .= "<th>Cantidad en mostrador</th>";
             $html .= "</tr>";
             $html .= "</thead>";
@@ -77,11 +77,23 @@ class Rexistencia extends Conexion
             $html .= "</table>";
             $html .= "</div>";
             $html .= "</body></html>";
-          echo $html;
-           exit;
+         
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+        $pdf = new DOMPDF();
+
+        // Definimos el tamaño y orientación del papel que queremos.
+        $pdf->set_paper("A4", "portrait");
+
+        // Cargamos el contenido HTML.
+        $pdf->load_html(utf8_decode($html));
+
+        // Renderizamos el documento PDF.
+        $pdf->render();
+
+        // Enviamos el fichero PDF al navegador.
+        $pdf->stream('Reportedeexistencias.pdf', array("Attachment" => false));
        
     }
 
@@ -126,8 +138,8 @@ class Rexistencia extends Conexion
             $html .= "<thead>";
             $html .= "<tr>";
             $html .= "<th>Nombre producto</th>";
-            $html .= "<th>Categoría</th>";
-            $html .= "<th>Cantidad en almacén</th>";
+            $html .= "<th>Categoria</th>";
+            $html .= "<th>Cantidad en almacen</th>";
             $html .= "</tr>";
             $html .= "</thead>";
             $html .= "<tbody>";
@@ -151,11 +163,26 @@ class Rexistencia extends Conexion
             $html .= "</table>";
             $html .= "</div>";
             $html .= "</body></html>";
-          echo $html;
-            exit;
+         /* echo $html;
+            exit;*/
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+
+                // Instanciamos un objeto de la clase DOMPDF.
+        $pdf = new DOMPDF();
+
+        // Definimos el tamaño y orientación del papel que queremos.
+        $pdf->set_paper("A4", "portrait");
+
+        // Cargamos el contenido HTML.
+        $pdf->load_html(utf8_decode($html));
+
+        // Renderizamos el documento PDF.
+        $pdf->render();
+
+        // Enviamos el fichero PDF al navegador.
+        $pdf->stream('ReporteExistenciaAlmacen.pdf', array("Attachment" => false));
  }
 
         function generarPDFmostrador(){
@@ -199,7 +226,7 @@ class Rexistencia extends Conexion
                 $html .= "<thead>";
                 $html .= "<tr>";
                 $html .= "<th>Nombre producto</th>";
-                $html .= "<th>Categoría</th>";
+                $html .= "<th>Categoria</th>";
                 $html .= "<th>Cantidad en mostrador</th>";
                 $html .= "</tr>";
                 $html .= "</thead>";
@@ -224,11 +251,26 @@ class Rexistencia extends Conexion
                 $html .= "</table>";
                 $html .= "</div>";
                 $html .= "</body></html>";
-                echo $html;
-           exit;
+               /* echo $html;
+           exit;*/
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
+
+                    // Instanciamos un objeto de la clase DOMPDF.
+        $pdf = new DOMPDF();
+
+        // Definimos el tamaño y orientación del papel que queremos.
+        $pdf->set_paper("A4", "portrait");
+
+        // Cargamos el contenido HTML.
+        $pdf->load_html(utf8_decode($html));
+
+        // Renderizamos el documento PDF.
+        $pdf->render();
+
+        // Enviamos el fichero PDF al navegador.
+        $pdf->stream('ReporteExistenciaMostardor.pdf', array("Attachment" => false));
 
     }  
 }

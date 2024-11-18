@@ -48,7 +48,13 @@ if (is_file("views/reportes/" . $pagina . ".php")) {
                 //  $fin= date("y-m-d", strtotime( $_POST['ffin']));
                 $Ob3->set_fechafinal($_POST['fecha_fin']);
             } 
+
+            if (!empty($_POST['ubi'])) {
+                $Ob3->set_ubi($_POST['ubi']);
+        
+            }
            
+            
             // Generamos el PDF
         $Ob3->generarPDF();
         }

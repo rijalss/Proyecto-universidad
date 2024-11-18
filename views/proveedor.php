@@ -78,7 +78,7 @@ if (!isset($_SESSION['name'])) {
 
 								<div class="col-md-1">
 									<label for="prefijoRif"></label>
-									<select class="form-control" name="prefijoRif" id="prefijoRif">
+									<select class="form-select" name="prefijoRif" id="prefijoRif">
 										<option value="J">J</option>
 										<option value="V">V</option>
 										<option value="G">G</option>

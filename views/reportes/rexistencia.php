@@ -22,40 +22,43 @@ if (!isset($_SESSION['name'])) {
     <!--Llamada a archivo modal.php, dentro de el hay una sección modal-->
     <?php require_once("public/components/menu.php"); ?>
 
+<br><br><br>
+<div class="container" style="max-width: 70%;">
+    <section class="d-flex flex-column align-items-center py-5">
+        <h2 class="text-primary text-center mb-4">Reportes Existencias</h2>
+        <div class="card shadow mb-4 w-100">
+            <div class="card-body p-4">
+                <form method="post" action="" id="f" target="_blank">
+                    <input type="text" name="accion" id="accion" style="display:none" />
 
-    <section class="d-flex flex-column " style="margin-top: 110px;">
-
-        <div class="container"> <!-- todo el contenido ira dentro de esta etiqueta-->
-            <form method="post" action="" id="f" target="_blank">
-                <input type="text" name="accion" id="accion" style="display:none" />
-                <h2 class="text-primary text-center">Reportes Existencias</h2>
-
-                <div class="row">
-                    <div class="col-md">
-                        <hr />
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="ubi" class="form-label">Ubicación</label>
+                            <select name="ubi" id="ubi" class="form-select">
+                                <option value='0' disabled selected>Seleccione una Ubicación</option>
+                                <option value="1">Almacen</option>
+                                <option value="2">Mostrador</option>
+                            </select>
+                            <span id="subi" class="form-text"></span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="container">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                    </div>
+
                     <div class="row">
-                        <div class="col-md-2 d-flex align-items-end">
+                        <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary" id="Generar" name="Generar">Crear Reporte PDF</button>
                         </div>
-
-                    <div class="container ">
-                    <div class="col-md-3">
-                         <label for="ubi">Ubicación</label> 
-                         <select name="ubi" id="ubi" class="form-select">
-                        <option value='0' disabled selected>Seleccione una Ubicación</option> 
-                          <option value="1">Almacen</option>
-                          <option value="2">Mostrador</option>
-                          </select>
-                     </div>
-                                                        
-                </div>
-            </form>
-        </div> <!-- fin de container -->
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
+</div>
 
 
     <?php require_once("public/components/footer.php"); ?>

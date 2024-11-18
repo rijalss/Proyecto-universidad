@@ -89,7 +89,7 @@ if (!isset($_SESSION['name'])) {
 											<div class="row mb-3">
 												<div class="col-md-1">
 													<label for="prefijoCedula">Prefijo</label>
-														<select class="form-control" name="prefijoCedula" id="prefijoCedula">
+														<select class="form-select" name="prefijoCedula" id="prefijoCedula">
 															<option value="V">V</option>
 															<option value="E">E</option>
 														</select>
@@ -124,7 +124,7 @@ if (!isset($_SESSION['name'])) {
 												</div>
 												<div class=" col-md">
 													<label for="cargo">Cargo</label>
-														<select class="form-control" name="cargo" id="cargo">
+														<select class="form-select" name="cargo" id="cargo">
 															<option value='disabled' disabled selected>Seleccione un cargo</option>
 																<?php
 																foreach ($cargos as $cargo) {

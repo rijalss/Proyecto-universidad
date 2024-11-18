@@ -26,7 +26,7 @@ function crearDT() {
               lengthMenu: "Mostrar _MENU_",
               zeroRecords: "No se encontraron registros",
               info: "Página _PAGE_ de _PAGES_",
-              infoEmpty: "No hay notas de entrada registradas",
+              infoEmpty: "No hay notas de salida registradas",
               infoFiltered: "(filtrado de _MAX_ registros totales)",
               search: "Buscar",
               paginate: {
@@ -97,7 +97,16 @@ function validarFechas() {
      return true;
      } 
     
-
+     function limpia() {
+      
+      $("#numfactura").val("");
+      $("#ffin").val("");
+      $("#finicio").val("");
+      $("#ubi").val("disabled");
+      $("#empleado").val("disabled");
+        // Habilitar los campos por si estaban deshabilitados
+  
+    }
 $(document).ready(function () {
   consultar();
   // Obtener la fecha actual en formato yyyy-MM-dd
@@ -107,7 +116,12 @@ $(document).ready(function () {
   // Asignar la fecha actual al valor del input
   $("#fecha_inicio").val(fechaActual);
   $("#fecha_fin").val(fechaActual);*/
- 
+  $("#generar").on("click",function(){
+
+    setTimeout(function() {  limpia(); 1}, );
+
+  
+});
   $("#fecha_inicio").on("click",function(){
     $("#fecha_fin").prop('required', true);
   });
