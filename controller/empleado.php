@@ -17,13 +17,13 @@ if (is_file("views/" . $pagina . ".php")) {
         } elseif ($accion == 'eliminar') {
             $p->set_cedulaEmpleado($_POST['cedulaEmpleado']);
             $resultado = $p->eliminar();
-            if ($resultado) {
-                // Eliminar la imagen asociada al empleado
-                $imagen_path = 'public/img/img-empleado/' . $_POST['cedulaEmpleado'] . '.png';
-                if (file_exists($imagen_path)) {
-                    unlink($imagen_path);
-                }
-            }
+            // if ($resultado) {
+            //     // Eliminar la imagen asociada al empleado
+            //     $imagen_path = 'public/img/img-empleado/' . $_POST['cedulaEmpleado'] . '.png';
+            //     if (file_exists($imagen_path)) {
+            //         unlink($imagen_path);
+            //     }
+            // }
             echo json_encode($resultado);
         } elseif ($accion == 'existe') {
             $resultado = $p->existe($_POST['cedulaEmpleado']);

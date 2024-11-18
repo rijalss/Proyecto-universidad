@@ -18,13 +18,13 @@ if (is_file("views/" . $pagina . ".php")) {
         } elseif ($accion == 'eliminar') {
             $p->set_codProducto($_POST['codProducto']);
             $resultado = $p->eliminar();
-            if ($resultado) {
-                // Eliminar la imagen asociada al producto
-                $imagen_path = 'public/img/img-producto/' . $_POST['codProducto'] . '.png';
-                if (file_exists($imagen_path)) {
-                    unlink($imagen_path);
-                }
-            }
+            // if ($resultado) {
+            //     // Eliminar la imagen asociada al producto
+            //     $imagen_path = 'public/img/img-producto/' . $_POST['codProducto'] . '.png';
+            //     if (file_exists($imagen_path)) {
+            //         unlink($imagen_path);
+            //     }
+            // }
             echo json_encode($resultado);
         } elseif ($accion == 'existe') {
             $resultado = $p->existe($_POST['codProducto']);

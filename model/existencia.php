@@ -13,20 +13,28 @@ class Existencia extends Conexion{
         $r = array();
         try {
 
-            $resultado = $co->query("SELECT 
-            producto.nombreProducto,
-            existencia.cantidadExistencia,
-            categoria.nombreCategoria,
-            notaentrada.fechaEntrada,
-            proveedor.nombreProveedor
-            FROM 
+        $resultado = $co->query(" SELECT 
+            MAX(producto.nombreProducto) AS nombreProducto,
+            MAX(existencia.cantidadExistencia) AS cantidadExistencia,
+            MAX(categoria.nombreCategoria) AS nombreCategoria,
+            MAX(notaentrada.fechaEntrada) AS fechaEntrada,
+            MAX(proveedor.nombreProveedor) AS nombreProveedor
+        FROM 
             inventario.existencia
-            INNER JOIN inventario.producto ON existencia.clProducto = producto.clProducto
-            INNER JOIN inventario.categoria ON producto.clCategoria = categoria.clCategoria
-            INNER JOIN inventario.notaentrada ON existencia.clExistencia = notaentrada.clEntrada
-            INNER JOIN inventario.proveedor ON notaentrada.clProveedor = proveedor.clProveedor
-            WHERE existencia.cantidadExistencia > 0 
-             ");
+        INNER JOIN 
+            inventario.producto ON existencia.clProducto = producto.clProducto
+        INNER JOIN 
+            inventario.categoria ON producto.clCategoria = categoria.clCategoria
+        INNER JOIN 
+            administrarentrada ON existencia.clExistencia = administrarentrada.clExistencia 
+        INNER JOIN 
+            notaentrada ON administrarentrada.clEntrada = notaentrada.clEntrada 
+        INNER JOIN 
+            inventario.proveedor ON notaentrada.clProveedor = proveedor.clProveedor
+        WHERE 
+            existencia.cantidadExistencia > 0
+        GROUP BY 
+            producto.clProducto");
 
             if ($resultado) {
 

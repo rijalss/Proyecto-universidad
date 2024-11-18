@@ -121,7 +121,7 @@ class Categoria extends Conexion{
                 $r['mensaje'] =  'Registro Eliminado! <br/> Se eliminó la categoría correctamente';
             } catch (Exception $e) {
                 $r['resultado'] = 'error';
-                $r['mensaje'] =  $e->getMessage();
+                $r['mensaje'] =  'No se puede eliminar este registro. <br/> Está asociado a otro registro existente.';
             }
         } else {
             $r['resultado'] = 'eliminar';

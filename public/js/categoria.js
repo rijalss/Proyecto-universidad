@@ -282,7 +282,7 @@ function enviaAjax(datos) {
                 muestraMensaje('info', 4000,'Atención', lee.mensaje);
               
         }else if (lee.resultado == "error") {
-             muestraMensaje(lee.mensaje);
+            muestraMensaje("error", 10000, "ERROR!!!!", lee.mensaje);
           }
        }catch (e) {
           console.error("Error en análisis JSON:", e); 
