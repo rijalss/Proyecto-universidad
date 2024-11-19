@@ -79,7 +79,7 @@ if (!isset($_SESSION['name'])) {
 
 				<div class="row">
 					<div class="col-md">
-					<div class="col-md">
+					
 						<hr />
 					</div>
 				</div>
@@ -97,7 +97,7 @@ if (!isset($_SESSION['name'])) {
 				<!-- FIN DE FILA BUSQUEDA DE PRODUCTOS -->
 				<div class="row">
 					<div class="col-md">
-					<div class="col-md">
+					
 						<hr />
 					</div>
 				</div>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['name'])) {
 					</button>
 				</div>
 				<div class="modal-body">
-					<table class="table table-striped table-hover">
+					<table class="table table-striped table-hover " id="listado">
 						<thead class="text-md-center">
 							<tr>
 								<th style="display:none">Id</th>

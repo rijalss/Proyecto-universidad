@@ -233,8 +233,9 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
-			//$r['ubicacion'] .= "almacen";
-		
+			
+			$r['ubicacion'] = "No hay productos en el almacen";
+			$r['nota'] = "Almacen vacio";
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 		    $r['mensaje'] =  $e->getMessage();
@@ -275,7 +276,8 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
-			//$r['ubicacion'] = "mostrador";
+			$r['ubicacion'] = "No hay productos en el mostrador";
+			$r['nota'] = "Mostrador vacio";
 		} catch (Exception $e) {
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();

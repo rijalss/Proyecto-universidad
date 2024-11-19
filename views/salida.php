@@ -113,7 +113,7 @@ if (!isset($_SESSION['name'])) {
 					<div class="container">
 						<div class="row mb-3">
 							<div class="container ">
-								<table class="table table-striped table-hover align-middle">
+								<table class="table table-striped table-hover align-middle" id="listado">
 									<thead class="text-center">
 										<tr>
 											<th style="display:none">Id</th>

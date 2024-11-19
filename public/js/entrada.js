@@ -1,13 +1,13 @@
 function destruyeDT() {
   
-    if ($.fn.DataTable.isDataTable("#tablaentrada")) {
-        $("#tablaentrada").DataTable().destroy();
+    if ($.fn.DataTable.isDataTable("#listado")) {
+        $("#listado").DataTable().destroy();
     }
 }
 
 function crearDT() {
-    if (!$.fn.DataTable.isDataTable("#tablaentrada")) {
-        var table = $("#tablaentrada").DataTable({
+    if (!$.fn.DataTable.isDataTable("#listado")) {
+        var table = $("#listado").DataTable({
             paging: true,
             lengthChange: true,
             searching: true,
@@ -51,11 +51,7 @@ function crearDT() {
             float: "left",
         });
 
-        $("div.dataTables_filter input").css({
-            width: "300px",
-            float: "right",
-            "margin-left": "10px",
-        });
+        
     }
 }
 $(document).ready(function(){
@@ -315,13 +311,14 @@ $(document).ready(function(){
                     console.log(lee.resultado);
                     
                     if(lee.resultado=='listadoproductos'){
-                        
+                        destruyeDT();
                         $('#listadoproductos').html(lee.mensaje);
+                        crearDT();
                     }
                     else if(lee.resultado=='registrar'){
-                       
+                
                         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
-                  
+                       
                         limpia();
                     }else if (lee.resultado == "encontro") {		
                         if (lee.mensaje == 'El numero de factura ya existe!') {
