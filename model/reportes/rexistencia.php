@@ -132,7 +132,7 @@ class Rexistencia extends Conexion
             $html .= "<div class='container'>";
             $html .= "<div class='header'>";
             $html .= "<img src='$base64' >";
-            $html .= "<h1>Reporte de Existencias en Almacén</h1>";
+            $html .= "<h1>Reporte de Existencias en Almacen</h1>";
             $html .= "</div>";
             $html .= "<table>";
             $html .= "<thead>";

@@ -35,7 +35,7 @@ if (!isset($_SESSION['name'])) {
                         <div class="col-md-12">
                             <label for="ubi" class="form-label">Ubicación</label>
                             <select name="ubi" id="ubi" class="form-select">
-                                <option value='0' disabled selected>Seleccione una Ubicación</option>
+                                <option  value='disabled' disabled selected>Seleccione una Ubicación</option>
                                 <option value="1">Almacen</option>
                                 <option value="2">Mostrador</option>
                             </select>
@@ -65,7 +65,7 @@ if (!isset($_SESSION['name'])) {
     <?php require_once("public/components/extra.php"); ?>
 
     <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!--<script type="text/javascript" src="public/js/"></script>-->
+    <script type="text/javascript" src="public/js/rexistencia.js"></script>
 </body>
 
 </html>

@@ -249,7 +249,7 @@ function enviaAjax(datos) {
       beforeSend: function () {},
       timeout: 10000, 
       success: function (respuesta) {
-        console.log(respuesta); 
+        //console.log(respuesta); 
         try {
           var lee = JSON.parse(respuesta);
           if (lee.resultado == "consultar") {

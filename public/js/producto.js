@@ -157,7 +157,7 @@ $(document).ready(function () {
       /^[0-9]{0,10}([.,][0-9]{0,2})?$/,
       $(this),
       $("#sultimoPrecio"),
-      "Este formato no permite cantidades negativas"
+      "No se permite un precio tan alto"
     );
   });
 

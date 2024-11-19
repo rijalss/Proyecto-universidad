@@ -91,7 +91,7 @@ if (!isset($_SESSION['name'])) {
                                             <label for="habilitarPromedio" class="form-check-label">Habilitar Último Precio</label>
                                         </div>
                                     </div>
-                                    <span id="sultimoPrecio" class="text-danger"></span>
+                                    <span id="sultimoPrecio" ></span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="categoria" class="form-label">Categoría</label>

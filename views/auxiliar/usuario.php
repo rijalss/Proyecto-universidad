@@ -46,8 +46,8 @@ if (!isset($_SESSION['name'])) {
                             <thead>
                                 <tr>
                                     <th style="display:none">id</th>
-                                    <th>Username</th>
-                                    <th>Password</th>
+                                    <th>Usuario</th>
+                                    <th>Contraseña</th>
                                     <th>Rol</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -80,12 +80,12 @@ if (!isset($_SESSION['name'])) {
                                     <span id="sid"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="username">Username</label>
+                                    <label for="username">Usuario</label>
                                     <input class="form-control" type="text" id="username" name="username">
                                     <span id="susername"></span>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="password">Password</label>
+                                    <label for="password">Contraseña</label>
                                     <input class="form-control" type="text" id="password" name="password">
                                     <span id="spassword"></span>
                                 </div>
