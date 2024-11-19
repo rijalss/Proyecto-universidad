@@ -81,6 +81,7 @@ function muestraMensaje(icono,tiempo,titulo,mensaje){
 function validarFechas() { 
   var finicio = $('#finicio').val(); 
   var ffin = $('#ffin').val();
+  
       if ((finicio === "" && ffin !== "")) { 
         muestraMensaje("warning",4000,"ATENCION","Por favor, complete la Fecha Inicio .");
      
@@ -90,7 +91,12 @@ function validarFechas() {
       
          return false; 
 
-      }
+      }else if ((finicio === "" && ffin === "")) { 
+        muestraMensaje("warning",4000,"ATENCION","Por favor, introduzca las Fechas de Inicio y Final");
+        
+           return false; 
+  
+        }
 
       
      return true;
@@ -104,6 +110,7 @@ function validarFechas() {
       $("#finicio").val("");
       $("#proveedor").val("disabled");
       $("#empleado").val("disabled");
+   
         // Habilitar los campos por si estaban deshabilitados
   
     }
@@ -111,32 +118,50 @@ function validarFechas() {
 
 $(document).ready(function () {
   consultar();
-  // Obtener la fecha actual en formato yyyy-MM-dd
-  /*var hoy = new Date();
-   hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
-   var fechaActual = hoy.toISOString().slice(0, 10);
-  // Asignar la fecha actual al valor del input
-  $("#ffin").val(fechaActual);
-  $("#finicio").val(fechaActual);*/
+  
 
-  $("#finicio").on("click",function(){
-    $("#ffin").prop('required', true);
-  });
+ 
+    $("#finicio").on("input", function() {
+        if($("#finicio").val() === "") {
+            console.log("false");
+            $("#ffin").prop('required', false);
+        } else {
+            console.log("true");
+            $("#ffin").prop('required', true);
+            setTimeout(function() { 
+              $("#ffin").prop('required', false); 
+               }, 2000);
+        }
+    });
+
+    $("#ffin").on("input", function() {
+        if($("#ffin").val() === "") {
+            console.log("false");
+            $("#finicio").prop('required', false);
+        } else {
+            console.log("true");
+            $("#finicio").prop('required', true);
+            setTimeout(function() { 
+              $("#finicio").prop('required', false);; 
+               }, 2000);
+        }
+    });
+
+
 
   $("#Generar").on("click",function(){
 
-      setTimeout(function() {  limpia(); 1000}, );
-
     
-  });
+    
+   
+    setTimeout(function() {  
+      limpia();
+      consultar();
+       1000}, );
 
-
-
-
-
-  $("#ffin").on("click",function(){
-    $("#finicio").prop('required', true);
-  });
+  
+});
+ 
  
   $("#filtrar").on("click",function(){
  

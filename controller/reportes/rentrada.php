@@ -19,11 +19,11 @@ if (is_file("views/reportes/" . $pagina . ".php")) {
         
         if ($accion == 'filtrar') {
             
-            $inicio=date("y-m-d", strtotime( $_POST['finicio']));
-            $fin= date("y-m-d", strtotime( $_POST['ffin']));
+           
 
-            $obj1->setFechainicio($fin);
-            $obj1->setFechafinal($inicio);
+            $obj1->setFechainicio($_POST['finicio']);
+         
+            $obj1->setFechafinal($_POST['ffin']);
 
             echo  json_encode($obj1->filtrar());
         } 

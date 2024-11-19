@@ -162,7 +162,7 @@ $(document).ready(function(){
 		}	
         else if(validarkeyup(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{4,15}$/,
              $("#password"),$("#spassword"),"Solo letras y numeros entre 4 y 15 caracteres")==0){
-		    muestraMensaje("error",4000,"ERROR!","El password debe tener mínimo 4 dígitos y máximo 15");
+		    muestraMensaje("error",4000,"ERROR!","El contraseña debe tener mínimo 4 dígitos y máximo 15");
             return false;
         }
         return true;

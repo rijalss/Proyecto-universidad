@@ -18,10 +18,10 @@ if (is_file("views/reportes/" . $pagina . ".php")) {
             echo  json_encode($Ob2->Consultar());
         }
         if ($accion == 'filtrar') {
-            $inicio = date("y-m-d", strtotime($_POST['fecha_inicio']));
-            $fin = date("y-m-d", strtotime($_POST['fecha_fin']));
-            $Ob2->set_fechainicio($inicio);
-            $Ob2->set_fechafinal($fin);
+         /*   $inicio = date("y-m-d", strtotime($_POST['fecha_inicio']));
+            $fin = date("y-m-d", strtotime($_POST['fecha_fin']));*/
+            $Ob2->set_fechainicio($_POST['fecha_inicio']);
+            $Ob2->set_fechafinal($_POST['fecha_fin']);
 
             echo  json_encode($Ob2->filtrar());
         }
