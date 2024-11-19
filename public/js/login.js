@@ -19,7 +19,7 @@ $(document).ready(function(){
 				$(this),$("#susername"),"Este formato permite de 4 a 15 carácteres");
 		});
 		
-		/*$("#password").on("keypress",function(e){
+		$("#password").on("keypress",function(e){
 			validarkeypress(/^[A-Za-z0-9\b]*$/,e);
 		});
 		
@@ -28,7 +28,7 @@ $(document).ready(function(){
 			validarkeyup(/^[A-Za-z0-9]{4,15}$/,
 			$(this),$("#spassword"),"Solo letras y numeros entre 4 y 15 caracteres");
 		});
-		*/
+		
 		
 		
 	//FIN DE VALIDACION DE DATOS
@@ -38,15 +38,11 @@ $(document).ready(function(){
 	//CONTROL DE BOTONES
 	
 	
-	$("#acceder").on("click",function(){
-		event.preventDefault();
-		if(validarenvio()){
-			
-			$("#accion").val("acceder");	
-			$("#f").submit();
-			
-		}
-	});
+	$("#acceder").on("click", function (event) {
+		 event.preventDefault();
+		 if (validarenvio()) { 
+			$("#accion").val("acceder"); 
+			$("#f").submit(); } });
 		
 	});
 	
