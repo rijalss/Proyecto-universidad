@@ -49,7 +49,7 @@ if (!isset($_SESSION['name'])) {
 
 						<div class="col-md-3"> 
 							<label for="proveedor">Proveedor</label>
-							 <select class="form-control" name="proveedor" id="proveedor">
+							 <select class="form-select" name="proveedor" id="proveedor">
 								<option value='disabled' disabled selected>Seleccione un Proveedor</option> 
 								<?php foreach ($proveedores as $proveedor) {
 									echo "<option value='" . $proveedor['clProveedor'] . "'>" . $proveedor['nombreProveedor'] . "</option>";
@@ -58,7 +58,7 @@ if (!isset($_SESSION['name'])) {
 						 </div>
 
 						<div class="col-md-3"> <label for="empleado">Empleado</label>
-						 <select class="form-control" name="empleado" id="empleado">
+						 <select class="form-select" name="empleado" id="empleado">
 								<option value='disabled' disabled selected>Seleccione un Empleado</option>
 								 <?php foreach ($empleados as $empleado) {
 								 echo "<option value='" . $empleado['clEmpleado'] . "'>" . $empleado['nombreEmpleado'] . "</option>";

@@ -33,8 +33,16 @@
                             <button type="submit" class="btn btn-primary mr-2" id="generar" name="generar">Crear Reporte PDF</button>
                         </div>
                         <div class="col-md-3">
+                        <label for="ubi">Ubicación</label>
+                        <select name="ubi" id="ubi" class="form-select">
+                                <option value='disabled' disabled selected>Seleccione una Ubicación</option>
+                                <option value="1">Almacen</option>
+                                <option value="2">Mostrador</option>
+                        </select>
+                        </div>
+                        <div class="col-md-3">
                             <label for="empleado">Empleado</label>
-                            <select class="form-control" name="empleado" id="empleado">
+                            <select class="form-select" name="empleado" id="empleado">
                                 <option value='disabled' disabled selected>Seleccione un Empleado</option>
                                 <?php foreach ($empleados as $empleado) {
                                     echo "<option value='" . $empleado['clEmpleado'] . "'>" . $empleado['nombreEmpleado'] . "</option>";
@@ -73,6 +81,7 @@
                                     <th>Nombre Empleado</th>
                                     <th>Nombre producto</th>
                                     <th>Cantidad Salida</th>
+                                    <th>Ubicacion</th>
                                 </tr>
                             </thead>
                             <tbody class="text-md-center" id="Salida">

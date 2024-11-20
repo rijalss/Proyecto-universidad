@@ -26,7 +26,7 @@ function crearDT() {
               lengthMenu: "Mostrar _MENU_",
               zeroRecords: "No se encontraron registros",
               info: "Página _PAGE_ de _PAGES_",
-              infoEmpty: "No hay notas de entrada registradas",
+              infoEmpty: "No hay notas de salida registradas",
               infoFiltered: "(filtrado de _MAX_ registros totales)",
               search: "Buscar",
               paginate: {
@@ -91,30 +91,70 @@ function validarFechas() {
       
          return false; 
 
-      }
+      }else if ((finicio === "" && ffin === "")) { 
+        muestraMensaje("warning",4000,"ATENCION","Por favor, introduzca las Fechas de Inicio y Final");
+        
+           return false; 
+  
+        }
 
       
      return true;
      } 
     
-
+     function limpia() {
+      
+      $("#numfactura").val("");
+      $("#fecha_fin").val("");
+      $("#fecha_inicio").val("");
+      $("#ubi").val("disabled");
+      $("#empleado").val("disabled");
+     
+        // Habilitar los campos por si estaban deshabilitados
+  
+    }
 $(document).ready(function () {
   consultar();
-  // Obtener la fecha actual en formato yyyy-MM-dd
- /* var hoy = new Date();
-   hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
-   var fechaActual = hoy.toISOString().slice(0, 10);
-  // Asignar la fecha actual al valor del input
-  $("#fecha_inicio").val(fechaActual);
-  $("#fecha_fin").val(fechaActual);*/
  
-  $("#fecha_inicio").on("click",function(){
-    $("#fecha_fin").prop('required', true);
-  });
   
-  $("#fecha_fin").on("click",function(){
-    $("#fecha_inicio").prop('required', true);
-  });
+ 
+
+  $("#fecha_inicio").on("input", function() {
+    if($("#fecha_inicio").val() === "") {
+        console.log("false");
+        $("#fecha_fin").prop('required', false);
+    } else {
+        console.log("true");
+        $("#fecha_fin").prop('required', true);
+        setTimeout(function() { 
+          $("#fecha_fin").prop('required', false); 
+           }, 2000);
+    }
+});
+
+$("#fecha_fin").on("input", function() {
+    if($("#fecha_fin").val() === "") {
+        console.log("false");
+        $("#fecha_inicio").prop('required', false);
+    } else {
+        console.log("true");
+        $("#fecha_inicio").prop('required', true);
+        setTimeout(function() { 
+          $("#fecha_inicio").prop('required', false);; 
+           }, 2000);
+    }
+});
+
+$("#generar").on("click",function(){
+  
+  setTimeout(function() {  
+    limpia();
+    consultar();
+ 
+     1000}, );
+
+
+});
 
   $("#filtrar").on("click",function(){ 
     if (validarFechas()) { 

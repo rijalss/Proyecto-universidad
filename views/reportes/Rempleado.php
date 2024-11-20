@@ -54,7 +54,7 @@ if (!isset($_SESSION['name'])) {
                 <div class="col-md">
                     <label for="cargo" class="form-label">Cargo</label>
                     <select class="form-select" name="cargo" id="cargo">
-                        <option value=' ' disabled selected>Seleccione un cargo</option>
+                        <option value='disabled' disabled selected>Seleccione un cargo</option>
                         <?php
                         foreach ($cargos as $cargo) {
                             echo "<option value='" . $cargo['clCargo'] . "'>" . $cargo['nombreCargo'] . "</option>";

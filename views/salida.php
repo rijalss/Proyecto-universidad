@@ -46,6 +46,13 @@ if (!isset($_SESSION['name'])) {
 				</div>
 				<div class="container ">
 					<div class="row mb-3">
+						<div class="col-md-3"> 
+							<label for="ubi">Ubicación</label>
+							 <select name="ubi" id="ubi" class="form-select">
+								<option value="1">Almacén</option>
+								<option value="2">Mostrador</option>
+							</select>
+						 </div>
 						<div class="col-md-3">
 							<label for="empleado">Empleado</label>
 							<select class="form-select" name="empleado" id="empleado">
@@ -56,14 +63,6 @@ if (!isset($_SESSION['name'])) {
 								} ?>
 							</select>
 						</div>
-						<div class="col-md-3"> 
-							<label for="ubi">Ubicación</label> <select name="ubi" id="ubi" class="form-select">
-								<option value='disabled' disabled selected>Seleccione una Ubicación</option>
-								<option value="1">Almacen</option>
-								<option value="2">Mostrador</option>
-							</select>
-						 </div>
-
 
 						<div class="col-md-6 p-4">
 							<div class="col-md-2 input-group">
@@ -114,7 +113,7 @@ if (!isset($_SESSION['name'])) {
 					<div class="container">
 						<div class="row mb-3">
 							<div class="container ">
-								<table class="table table-striped table-hover align-middle">
+								<table class="table table-striped table-hover align-middle" id="listado">
 									<thead class="text-center">
 										<tr>
 											<th style="display:none">Id</th>

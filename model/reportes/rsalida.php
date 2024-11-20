@@ -11,6 +11,7 @@ class Rsalida extends Conexion{
     private $fechainicio;
     private $fechafinal;            
     private $clEmpleado;
+    private $ubi;
 
     public function set_clSalida($clSalida) {
 
@@ -27,6 +28,9 @@ class Rsalida extends Conexion{
     }
     public function set_fechafinal($fechafinal){
         $this->fechafinal = $fechafinal;
+    }
+    public function set_ubi($ubi){
+        $this->ubi = $ubi;
     }
 
     public function get_ClSalida(){
@@ -62,13 +66,15 @@ class Rsalida extends Conexion{
            
            $fechasinicio = !empty($this->fechainicio) ? $this->fechainicio : null; 
             $fechafin = !empty($this->fechafinal) ? $this->fechafinal : null;
-$resultado = $co->prepare(" SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto, existencia.cantidadMostrador, existencia.cantidadExistencia
+$resultado = $co->prepare(" SELECT empleado.nombreEmpleado, notasalida.fechaSalida, notasalida.ubicacionSalida, administrarsalida.cantidadSalida, producto.nombreProducto
 FROM notasalida
  INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
  INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
-  INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
-  INNER JOIN producto ON producto.clProducto = existencia.clProducto WHERE empleado.clEmpleado LIKE :clEmpleado
-  AND (DATE(notasalida.fechaSalida) BETWEEN :fechainicio AND :fechafinal OR :fechainicio IS NULL OR :fechafinal IS NULL) "
+ INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
+ INNER JOIN producto ON producto.clProducto = existencia.clProducto 
+ WHERE empleado.clEmpleado LIKE :clEmpleado
+ AND notasalida.ubicacionSalida LIKE :ubicacion
+ AND (DATE(notasalida.fechaSalida) BETWEEN :fechainicio AND :fechafinal OR :fechainicio IS NULL OR :fechafinal IS NULL) "
 
 );
 
@@ -76,7 +82,7 @@ FROM notasalida
             $resultado->bindvalue(':clEmpleado', '%' . $this->clEmpleado . '%' );
             $resultado->bindvalue(':fechainicio', $this->fechainicio );
             $resultado->bindvalue(':fechafinal',  $this->fechafinal );
-
+            $resultado->bindvalue(':ubicacion', '%' . $this->ubi . '%');
 
             $resultado->execute();
             $fila = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -119,8 +125,8 @@ FROM notasalida
              $html .= "<th>Nombre Producto</th>";
             $html .= "<th>Fecha de la Salida</th>";
             $html .= "<th>Cantidad de la Salida</th>";
-            $html .= "<th>Cantidad de Mostrador</th>";
-            $html .= "<th>Cantidad de Almacen</th>";
+            $html .= "<th>Ubicacion</th>";
+            
             
           
             $html .= "</tr>";
@@ -136,8 +142,16 @@ FROM notasalida
                     $html .= "<td>" . htmlspecialchars($f['nombreProducto']) . "</td>";
                     $html .= "<td>" . htmlspecialchars($f['fechaSalida']) . "</td>";
                     $html .= "<td>" . htmlspecialchars($f['cantidadSalida']) . "</td>";
-                    $html .= "<td>" . htmlspecialchars($f['cantidadMostrador']) . "</td>";
-                    $html .= "<td>" . htmlspecialchars($f['cantidadExistencia']) . "</td>";
+
+                    $ubicacion= $f['ubicacionSalida'];
+                    if ($ubicacion=="1") {
+                        $html .= "<td>Almacen</td>";
+                    }else if($ubicacion=="2") {
+                        $html .= "<td>Mostrador</td>";
+                    }
+                   
+                   
+                    
                     
                     $html .= "</tr>";
                     $html = $html . "</tr>";
@@ -184,7 +198,7 @@ FROM notasalida
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-            $resultado = $co->prepare("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
+            $resultado = $co->prepare("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, notasalida.ubicacionSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
  INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
  INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
   INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
@@ -204,6 +218,12 @@ FROM notasalida
                     $respuesta .= "<td>" . $r['nombreEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $r['nombreProducto'] . "</td>";
                     $respuesta .= "<td>" . $r['cantidadSalida'] . "</td>";
+                    $ubicacion= $r['ubicacionSalida'];
+                    if ($ubicacion=="1") {
+                        $respuesta .= "<td>Almacen</td>";
+                    }else if($ubicacion=="2") {
+                        $respuesta .= "<td>Mostrador</td>";
+                    }
                     $respuesta .= "</tr>";
                 }
 
@@ -225,7 +245,7 @@ FROM notasalida
         $co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $r = array();
         try {
-            $resultado = $co->query("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
+            $resultado = $co->query("SELECT empleado.nombreEmpleado, notasalida.fechaSalida, notasalida.ubicacionSalida, administrarsalida.cantidadSalida, producto.nombreProducto FROM notasalida
  INNER JOIN empleado ON notasalida.clEmpleado = empleado.clEmpleado 
  INNER JOIN administrarsalida ON notasalida.clSalida = administrarsalida.clSalida
   INNER JOIN existencia ON administrarsalida.clExistencia = existencia.clExistencia 
@@ -240,6 +260,13 @@ FROM notasalida
                     $respuesta .= "<td>" . $r['nombreEmpleado'] . "</td>";
                     $respuesta .= "<td>" . $r['nombreProducto'] . "</td>";
                     $respuesta .= "<td>" . $r['cantidadSalida'] . "</td>";
+                    $ubicacion= $r['ubicacionSalida'];
+                    if ($ubicacion=="1") {
+                        $respuesta .= "<td>Almacen</td>";
+                    }else if($ubicacion=="2") {
+                        $respuesta .= "<td>Mostrador</td>";
+                    }
+                   
                     $respuesta .= "</tr>";
                 }
 

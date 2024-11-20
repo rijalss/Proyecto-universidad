@@ -28,6 +28,7 @@ if (!isset($_SESSION['name'])) {
     <section class="d-flex flex-column align-items-center">
         <br><br><br><br>
         <h2 class="text-primary text-center">Gestionar Producto</h2>
+        <br>
         <div class="container">
             <div class="text-left">
                 <button class="btn btn-success" id="incluir">Registrar Producto</button>
@@ -91,10 +92,10 @@ if (!isset($_SESSION['name'])) {
                                             <label for="habilitarPromedio" class="form-check-label">Habilitar Último Precio</label>
                                         </div>
                                     </div>
-                                    <span id="sultimoPrecio" class="text-danger"></span>
+                                    <span id="sultimoPrecio" ></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="categoria" class="form-label">Categoría:</label>
+                                    <label for="categoria" class="form-label">Categoría</label>
                                     <select class="form-select" name="categoria" id="categoria">   
 
                                         <option value='disabled'   
@@ -110,7 +111,7 @@ if (!isset($_SESSION['name'])) {
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="descProducto" class="form-label">Descripción:</label>
+                                    <label for="descProducto" class="form-label">Descripción</label>
                                     <textarea class="form-control" id="descProducto" name="descProducto" rows="3" required></textarea>
                                     <span id="sdescProducto"></span>
                                 </div>

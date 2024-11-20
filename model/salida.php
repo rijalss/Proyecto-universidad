@@ -4,7 +4,7 @@ require_once('conexion.php');
 
 class Salida extends Conexion{
 
-	function registrar($idproducto, $cantidad, $precio, $idempleado)
+	function registrar($idproducto, $cantidad, $precio, $idempleado,$ubicacion )
 	{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -56,7 +56,7 @@ class Salida extends Conexion{
 
 		try {
 			$fecha = date('Y-m-d H:i:s');
-			$sql = "INSERT INTO notasalida (fechaSalida, clEmpleado) VALUES ('$fecha', '$idempleado')";
+			$sql = "INSERT INTO notasalida (fechaSalida, clEmpleado,ubicacionSalida) VALUES ('$fecha', '$idempleado','$ubicacion')";
 			$guarda = $co->query($sql);
 			$lid = $co->lastInsertId();
 
@@ -95,7 +95,7 @@ class Salida extends Conexion{
 	///
 
 
-	function registrarMostrador($idproducto, $cantidad, $precio, $idempleado)
+	function registrarMostrador($idproducto, $cantidad, $precio, $idempleado,$ubicacion)
 	{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -150,7 +150,7 @@ class Salida extends Conexion{
 
 		try {
 			$fecha = date('Y-m-d H:i:s');
-			$sql = "INSERT INTO notasalida (fechaSalida, clEmpleado) VALUES ('$fecha', '$idempleado')";
+			$sql = "INSERT INTO notasalida (fechaSalida, clEmpleado,ubicacionSalida) VALUES ('$fecha', '$idempleado','$ubicacion')";
 			$guarda = $co->query($sql);
 			$lid = $co->lastInsertId();
 
@@ -233,8 +233,9 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
-			//$r['ubicacion'] .= "almacen";
-		
+			
+			$r['ubicacion'] = "No hay productos en el almacen";
+			$r['nota'] = "Almacen vacio";
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 		    $r['mensaje'] =  $e->getMessage();
@@ -275,7 +276,8 @@ class Salida extends Conexion{
 			}
 			$r['resultado'] = 'listadoproductos';
 			$r['mensaje'] =  $respuesta;
-			//$r['ubicacion'] = "mostrador";
+			$r['ubicacion'] = "No hay productos en el mostrador";
+			$r['nota'] = "Mostrador vacio";
 		} catch (Exception $e) {
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();

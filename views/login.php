@@ -5,14 +5,15 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="public/img/favicon.ico" >
+  <link rel="icon" href="public/img/favicon.ico">
 
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="public/bootstrap/css/style.css">
 </head>
 
-<div id="mensajes" style="display:none" 
-data-mensaje="<?php echo !empty($mensaje) ? $mensaje : ''; ?>">
+<div id="mensajes" style="display:none"
+  data-mensaje="<?php echo !empty($mensaje) ? $mensaje : ''; ?>">
 </div>
 
 <body>

@@ -83,86 +83,78 @@ if (!isset($_SESSION['name'])) {
 					</div>
 						<div class="modal-body">
 
-							<form method="post" id="f" autocomplete="off">
-								<input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
-									<div class="container">									
-											<div class="row mb-3">
-												<div class="col-md-1">
-													<label for="prefijoCedula">Prefijo</label>
-														<select class="form-control" name="prefijoCedula" id="prefijoCedula">
-															<option value="V">V</option>
-															<option value="E">E</option>
-														</select>
-															<span id="sprefijoCedula"></span>
-												</div>
-												<div class="col-md">
-													<label for="cedulaEmpleado">Cédula</label>
-														<input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" required />
-														<span id="scedulaEmpleado"></span>
-												</div>
-												<div class=" col-md">
-													<label for="nombreEmpleado">Nombre</label>
-														<input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" required />
-														<span id="snombreEmpleado"></span>
-												</div>
-												<div class=" col-md">
-													<label for="apellidoEmpleado">Apellido</label>
-														<input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" required />
-														<span id="sapellidoEmpleado"></span>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<div class=" col-md">
-													<label for="correoEmpleado">Correo</label>
-														<input class="form-control" type="email" id="correoEmpleado" name="correoEmpleado" required />
-														<span id="scorreoEmpleado"></span>
-												</div>
-												<div class=" col-md">
-													<label for="telefonoEmpleado">Teléfono</label>
-														<input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
-														<span id="stelefonoEmpleado"></span>
-												</div>
-												<div class=" col-md">
-													<label for="cargo">Cargo</label>
-														<select class="form-control" name="cargo" id="cargo">
-															<option value='disabled' disabled selected>Seleccione un cargo</option>
-																<?php
-																foreach ($cargos as $cargo) {
-																	echo "<option value='" . $cargo['clCargo'] . "'>" . $cargo['nombreCargo'] . "</option>";
-																	}
-																	?>
-														</select>
-															<span id="scargo" class="error"></span>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<div class="col-md-12">
-													
-													<center>
-														<label for="archivo" style="cursor:pointer">
-
-															<img src="public/img/img-empleado/perfil.jpg" id="imagen" class="img-fluid rounded-circle w-25 mb-3 centered" 
-															style="object-fit:scale-down">
-															Click aqui para subir foto
-														</label>
-															<input id="archivo"	type="file"	style="display:none" accept=".png,.jpg,.jpeg" name="imagenarchivo" />
-													</center>
-																		
-																	
-												</div>
-																
-													<div class="col">
-														<hr />
-													</div>
-											</div>		
+						<form method="post" id="f" autocomplete="off">
+							<input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
+							<div class="container">
+								<div class="row mb-3">
+									<div class="col-md-2">
+										<label for="prefijoCedula">Prefijo</label>
+										<select class="form-select" name="prefijoCedula" id="prefijoCedula">
+											<option value="V">V</option>
+											<option value="E">E</option>
+										</select>
+										<span id="sprefijoCedula"></span>
 									</div>
-										
-										<div class="row mt-3 d-flex justify-content-center align-items-center">
-											<div class="col-md-2">
-												<button type="button" class="btn btn-dark" id="proceso"></button>
-											</div>
-										</div>
-										
+									<div class="col-md-4">
+										<label for="cedulaEmpleado">Cédula</label>
+										<input class="form-control" type="text" id="cedulaEmpleado" name="cedulaEmpleado" required />
+										<span id="scedulaEmpleado"></span>
+									</div>
+									<div class="col-md-3">
+										<label for="nombreEmpleado">Nombre</label>
+										<input class="form-control" type="text" id="nombreEmpleado" name="nombreEmpleado" required />
+										<span id="snombreEmpleado"></span>
+									</div>
+									<div class="col-md-3">
+										<label for="apellidoEmpleado">Apellido</label>
+										<input class="form-control" type="text" id="apellidoEmpleado" name="apellidoEmpleado" required />
+										<span id="sapellidoEmpleado"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-4">
+										<label for="correoEmpleado">Correo</label>
+										<input class="form-control" type="email" id="correoEmpleado" name="correoEmpleado" required />
+										<span id="scorreoEmpleado"></span>
+									</div>
+									<div class="col-md-4">
+										<label for="telefonoEmpleado">Teléfono</label>
+										<input class="form-control" type="text" id="telefonoEmpleado" name="telefonoEmpleado" required />
+										<span id="stelefonoEmpleado"></span>
+									</div>
+									<div class="col-md-4">
+										<label for="cargo">Cargo</label>
+										<select class="form-select" name="cargo" id="cargo">
+											<option value='disabled' disabled selected>Seleccione un cargo</option>
+											<?php
+											foreach ($cargos as $cargo) {
+												echo "<option value='" . $cargo['clCargo'] . "'>" . $cargo['nombreCargo'] . "</option>";
+											}
+											?>
+										</select>
+										<span id="scargo" class="error"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-md-12">
+										<center>
+											<label for="archivo" style="cursor:pointer">
+												<img src="public/img/img-empleado/perfil.jpg" id="imagen" class="img-fluid rounded-circle w-25 mb-3 centered" style="object-fit:scale-down">
+												Click aqui para subir foto
+											</label>
+											<input id="archivo" type="file" style="display:none" accept=".png,.jpg,.jpeg" name="imagenarchivo" />
+										</center>
+									</div>
+									<div class="col">
+										<hr />
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3 d-flex justify-content-center align-items-center">
+								<div class="col-md-2">
+									<button type="button" class="btn btn-dark" id="proceso"></button>
+								</div>
+							</div>
 						</form>
 					</div>
 			</div>

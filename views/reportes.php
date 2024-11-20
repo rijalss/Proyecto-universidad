@@ -16,7 +16,7 @@ if (!isset($_SESSION['name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="public/img/favicon.ico">
-    <title>Bienvenido</title>
+    <title>Reportes</title>
 
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css">
@@ -36,7 +36,7 @@ if (!isset($_SESSION['name'])) {
         }
     </style>
     <section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
-        <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar <br> Reportes!</h1>
+        <h1 class="display-4 text-center text-uppercase text-primary font-weight-bold">Gestionar <br> Reportes</h1>
         <?php
         /*
         session_start();
@@ -50,7 +50,7 @@ if (!isset($_SESSION['name'])) {
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Productos</h5>
@@ -59,8 +59,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Notas de Entrada</h5>
@@ -69,7 +68,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Notas de Salida</h5>
@@ -78,7 +77,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Existencias</h5>
@@ -87,7 +86,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Proveedores</h5>
@@ -96,7 +95,7 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card shadow w-100 h-100 p-3">
                     <div class="card-body">
                         <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reporte de Empleados</h5>
@@ -107,11 +106,12 @@ if (!isset($_SESSION['name'])) {
             </div>
         </div>
     </div>
-    <br><br>
+
+
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <?php require_once("public/components/footer.php"); ?>
-    </footer>
+
+    <?php require_once("public/components/footer.php"); ?>
+
     <!-- Footer -->
 
     <!-- Scripts -->

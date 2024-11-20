@@ -98,20 +98,7 @@ $(document).ready(function () {
 			enviaAjax(datos);
 		}
   });
-
-  $("#nombreEmpleado").on("keypress", function (e) {
-    validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
-  });
-
-  $("#nombreEmpleado").on("keyup", function () {
-    validarkeyup(
-      /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,30}$/,
-      $(this),
-      $("#snombre"),
-      "Se debe llenar este campo y debe contener un máximo de 30 caracteres"
-    );
-  });
-
+  
   $("#telefonoEmpleado").on("keypress", function (e) {
     validarkeypress(/^[0-9-\b]*$/, e);
   });
@@ -125,18 +112,33 @@ $(document).ready(function () {
     );
   });
 
-  $("#apellidoEmpleado").on("keypress", function (e) {
-    validarkeypress(/^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]*$/, e);
-  });
+// Validación para el campo nombreEmpleado
+$("#nombreEmpleado").on("keypress", function (e) {
+  validarkeypress(/^[A-Za-z\u00f1\u00d1\b\s]*$/, e); // Solo letras, espacios y ñ
+});
 
-  $("#apellidoEmpleado").on("keyup", function () {
-    validarkeyup(
-      /^[A-Za-z0-9,#\b\s\u00f1\u00d1\u00E0-\u00FC-]{1,200}$/,
-      $(this),
-      $("#sapellido"),
-      "Se debe llenar este campo y debe contener un máximo de 200 caracteres"
-    );
-  });
+$("#nombreEmpleado").on("keyup", function () {
+  validarkeyup(
+    /^[A-Za-z\u00f1\u00d1\s]{1,30}$/, // Solo letras, espacios y ñ, máximo 30 caracteres
+    $(this),
+    $("#snombreEmpleado"),
+    "Se debe llenar este campo y debe contener un máximo de 30 caracteres"
+  );
+});
+
+// Validación para el campo apellidoEmpleado
+$("#apellidoEmpleado").on("keypress", function (e) {
+  validarkeypress(/^[A-Za-z\u00f1\u00d1\b\s]*$/, e); // Solo letras, espacios y ñ
+});
+
+$("#apellidoEmpleado").on("keyup", function () {
+  validarkeyup(
+    /^[A-Za-z\u00f1\u00d1\s]{1,30}$/, // Solo letras, espacios y ñ, máximo 30 caracteres
+    $(this),
+    $("#sapellidoEmpleado"),
+    "Se debe llenar este campo y debe contener un máximo de 30 caracteres"
+  );
+});
 
   $("#correoEmpleado").on("keypress", function (e) {
     validarkeypress(/^[A-Za-z0-9@_.\b\u00f1\u00d1\u00E0-\u00FC.!@#$%^&*()-_=+[\]{};:'",<>/?\\|~`]*$/, e);

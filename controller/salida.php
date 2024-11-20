@@ -23,12 +23,12 @@ if (is_file("views/" . $pagina . ".php")) {
       echo json_encode($respuesta);
 
     }elseif ($accion == 'registrar') {
-
-      $respuesta = $obj1->registrar($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado']);
+     
+      $respuesta = $obj1->registrar($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado'],$_POST['ubi']);
       echo json_encode($respuesta);
     }elseif ($accion == 'registrarMostrador'){
 
-      $respuesta = $obj1->registrarMostrador($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado']);
+      $respuesta = $obj1->registrarMostrador($_POST['idp'], $_POST['cant'], $_POST['precio'], $_POST['empleado'],$_POST['ubi']);
       echo json_encode($respuesta);
     }
 

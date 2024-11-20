@@ -6,123 +6,64 @@ function carga_productos() {
   enviaAjax(datos);
 }
 
-function destruyeDT() {
+function destruyeDT(){
   
-    if ($.fn.DataTable.isDataTable("#tsalida")) {
-        $("#tsalida").DataTable().destroy();
+    if ($.fn.DataTable.isDataTable("#listado")) {
+        $("#listado").DataTable().destroy();
     }
 }
 
-function  crearDT ()   {
-    if (!$.fn.DataTable.isDataTable("#tsalida")) {
-        var table = $("#tsalida").DataTable({
-            paging: true,
-            lengthChange: true,
-            searching: false,
-            ordering: true,
-            info: true,
-            autoWidth: false,
-            responsive: true,
-            language: {
-                lengthMenu: "",
-                zeroRecords: "No hay productos registrados",
-                info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "",
-                infoFiltered: "(filtrado de _MAX_ registros totales)",
-                search: "Buscar",
-                paginate: {
-                    first: "Primera",
-                    last: "Última",
-                    next: "Siguiente",
-                    previous: "Anterior",
-                },
+function crearDT(mensaje,nota){
+  if (!$.fn.DataTable.isDataTable("#listado")) {
+    var table = $("#listado").DataTable({
+        paging: true,
+        lengthChange: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        responsive: true,
+        language: {
+            lengthMenu: "Mostrar _MENU_",
+            zeroRecords: mensaje,
+            info: "Página _PAGE_ de _PAGES_",
+            infoEmpty: nota,
+            infoFiltered: "(filtrado de _MAX_ registros totales)",
+            search: "Buscar",
+            paginate: {
+                first: "Primera",
+                last: "Última",
+                next: "Siguiente",
+                previous: "Anterior",
             },
-            autoWidth: false,
-            order: [[1, "asc"]],
-            dom:
-                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        });
+        },
+        autoWidth: false,
+        order: [[1, "asc"]],
+        dom:
+            "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    });
 
-        $("div.dataTables_length select").css({
-            width: "auto",
-            display: "inline",
-            "margin-top": "10px",
-        });
+    $("div.dataTables_length select").css({
+        width: "auto",
+        display: "inline",
+        "margin-top": "10px",
+    });
 
-        $("div.dataTables_filter").css({
-            "margin-bottom": "50px",
-            "margin-top": "10px",
-        });
+    $("div.dataTables_filter").css({
+        "margin-bottom": "50px",
+        "margin-top": "10px",
+    });
 
-        $("div.dataTables_filter label").css({
-            float: "left",
-        });
+    $("div.dataTables_filter label").css({
+        float: "left",
+    });
 
-        $("div.dataTables_filter input").css({
-            width: "300px",
-            float: "right",
-            "margin-left": "10px",
-        });
-    }
+    
+}
 
 }
-/*
-function crearDTmostrador() {
-    if (!$.fn.DataTable.isDataTable("#tsalida")) {
-        var table = $("#tsalida").DataTable({
-            paging: true,
-            lengthChange: true,
-            searching: false,
-            ordering: true,
-            info: true,
-            autoWidth: false,
-            responsive: true,
-            language: {
-                lengthMenu: "",
-                zeroRecords: "No hay productos en el Mradorlce",
-                info: "Página _PAGE_ de _PAGES_",
-                infoEmpty: "",
-                infoFiltered: "(filtrado de _MAX_ registros totales)",
-                search: "Buscar",
-                paginate: {
-                    first: "Primera",
-                    last: "Última",
-                    next: "Siguiente",
-                    previous: "Anterior",
-                },
-            },
-            autoWidth: false,
-            order: [[1, "asc"]],
-            dom:
-                "<'row'<'col-sm-2'l><'col-sm-6'B><'col-sm-4'f>><'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        });
 
-        $("div.dataTables_length select").css({
-            width: "auto",
-            display: "inline",
-            "margin-top": "10px",
-        });
-
-        $("div.dataTables_filter").css({
-            "margin-bottom": "50px",
-            "margin-top": "10px",
-        });
-
-        $("div.dataTables_filter label").css({
-            float: "left",
-        });
-
-        $("div.dataTables_filter input").css({
-            width: "300px",
-            float: "right",
-            "margin-left": "10px",
-        });
-    }
-
-}
-*/
 $(document).ready(function () {
   validarselect();
   carga_productos();
@@ -214,17 +155,21 @@ function colocaproducto(linea) {
       $(linea).find("td:eq(3)").text() +
       `</td>
 		   <td>
-		      <input type="number" value="1" name="cant[]" class="c"/>
+		       <input type="number" value="1" name="cant[]" id="cantidad" min="1" onkeydown="validarSalida(event)"/>
 		   </td>
 		   <td>
 		       
-		      <input type="number" value="1" name="precio[]"/></td>
+		    <input type="number" value="1" name="precio[]" id="precio" min="1" onkeydown="validarSalida(event)"/></td>
 		   
 		   </tr>`;
     $("#salidadetalle").append(l);
   }
 }
-
+function validarSalida(event) {
+  if (event.key === '-' || event.key === 'e' || event.key === '+') {
+      event.preventDefault();
+  }
+}
 
 function eliminarsalidadetalle(boton) {
   $(boton).closest("tr").remove();
@@ -245,6 +190,8 @@ async function muestraMensaje(icono,tiempo,titulo,mensaje){
 
 function validarenvio() {
   var empleadoseleccionado = $("#empleado").val();
+  var cantidad = $("#cantidad").val();
+  var precio = $("#precio").val();
 
   if (empleadoseleccionado === null || empleadoseleccionado === "0") {
     muestraMensaje(
@@ -254,7 +201,14 @@ function validarenvio() {
       "Por favor, seleccione un empleado! <br/> Recuerde que debe tener alguno registrado!"
     );
     return false;
-  }
+  }else if (cantidad === null || cantidad === "0" || cantidad === "") {
+    muestraMensaje("error",4000,"ERROR!","Las cantidades de los productos <br/> no pueden ser menores a 1!"); 
+    return false;
+}
+else if (precio === null || precio === "0" || precio === "") {
+    muestraMensaje("error",4000,"ERROR!","Los precios de los productos no pueden ser menores a 1!"); 
+    return false;
+}
 
   return true;
 }
@@ -313,19 +267,20 @@ function enviaAjax(datos) {
         destruyeDT();
         $("#listadoproductos").html(lee.mensaje);
         limpia();
-        crearDT();
+        crearDT(lee.ubicacion,lee.nota);
+
         } else if (lee.resultado == "registrar") {
       
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
         limpia();
         carga_productos();
-      //  destruyeDT()
+      
         } else if (lee.resultado == "registrarMostrador"){
 
         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
         limpia();
         carga_productos();
-       // destruyeDT()
+       
         } else if (lee.resultado == "error") {
           muestraMensaje('error', 4000,'ERROR',lee.mensaje);
         }
