@@ -55,7 +55,7 @@ class Login extends Conexion
                 $r['rol'] = $fila[0]['rol'];
             } else {
                 $r['resultado'] = 'noexiste';
-                $r['mensaje'] =  "Error en usuario o contraseña!!!";
+                $r['mensaje'] =  "Error en el usuario o contraseña!!!";
             }
         } catch (Exception $e) {
             $r['resultado'] = 'error';

@@ -1,13 +1,13 @@
 function destruyeDT() {
   
-    if ($.fn.DataTable.isDataTable("#tablaentrada")) {
-        $("#tablaentrada").DataTable().destroy();
+    if ($.fn.DataTable.isDataTable("#listado")) {
+        $("#listado").DataTable().destroy();
     }
 }
 
 function crearDT() {
-    if (!$.fn.DataTable.isDataTable("#tablaentrada")) {
-        var table = $("#tablaentrada").DataTable({
+    if (!$.fn.DataTable.isDataTable("#listado")) {
+        var table = $("#listado").DataTable({
             paging: true,
             lengthChange: true,
             searching: true,
@@ -51,11 +51,7 @@ function crearDT() {
             float: "left",
         });
 
-        $("div.dataTables_filter input").css({
-            width: "300px",
-            float: "right",
-            "margin-left": "10px",
-        });
+        
     }
 }
 $(document).ready(function(){
@@ -72,7 +68,6 @@ $(document).ready(function(){
         $(this), $("#snombreProveedor"),"Este formato no debe estar vacío / permite un máximo 30 carácteres");
 
 	});
-
    
     
     $("#numfactura").on("keyup",function(){
@@ -127,10 +122,14 @@ $(document).ready(function(){
         
     });
 
+
+    
+   
     function validarenvio(){
         var empleadoseleccionado = $("#empleado").val();
         var proveedorseleccionado = $("#proveedor").val();
-       
+        var cantidad = $("#cantidad").val();
+        var precio = $("#precio").val();
     
          if (empleadoseleccionado === null || empleadoseleccionado === "0") {
             muestraMensaje("error",4000,"ERROR!","Por favor, seleccione un empleado! <br/> Recuerde que debe tener alguno registrado!"); 
@@ -145,7 +144,15 @@ $(document).ready(function(){
             muestraMensaje("error",4000,"ERROR!","La factura debe coincidir con el formato <br/>");
                            
             return false;					
+        } else if (cantidad === null || cantidad === "0"|| cantidad === "") {
+            muestraMensaje("error",4000,"ERROR!","Las cantidades de los productos <br/> no pueden ser menores a 1!"); 
+            return false;
         }
+        else if (precio === null || precio === "0" || precio === "") {
+            muestraMensaje("error",4000,"ERROR!","Los precios de los productos no pueden ser menores a 1!"); 
+            return false;
+        }
+        
         return true;
     }
     
@@ -209,19 +216,23 @@ $(document).ready(function(){
                         $(linea).find("td:eq(2)").text()+
                `</td>
                <td>
-                  <input type="number" value="1" name="cant[]" id="cantidad" "/>
+                  <input type="number" value="1" name="cant[]" id="cantidad" min="1" onkeydown="validarEntrada(event)" />
                </td>
                <td>
-                   
-                  <input type="number" value="1" name="precio[]" id="precio" "/></td>
+
+                  <input type="number" value="1" name="precio[]" id="precio" min="1" onkeydown="validarEntrada(event)" /></td>
                
                </tr>`;
             $("#productosentrada").append(l);
         }
        
     }
+    function validarEntrada(event) {
+        if (event.key === '-' || event.key === 'e' || event.key === '+') {
+            event.preventDefault();
+        }
+    }
     
-
     //funcion para eliminar linea de detalle de ventas
     function eliminarproducto(boton){
         $(boton).closest('tr').remove();
@@ -242,23 +253,22 @@ $(document).ready(function(){
     
     
     //Función para validar por Keypress
-    function validarkeypress(er,e){
-        
+ 
+    function validarkeypress(er, e) {
         key = e.keyCode;
-        
-        
+      
         tecla = String.fromCharCode(key);
-        
-        
+      
         a = er.test(tecla);
-        
-        if(!a){
-        
-            e.preventDefault();
+      
+        if (!a) {
+          e.preventDefault();
         }
-        
-        
-    }
+      }
+
+// Evento keypress para el campo de cantidad
+
+
     //Función para validar por keyup
     function validarkeyup(er,etiqueta,etiquetamensaje,
     mensaje){
@@ -301,13 +311,14 @@ $(document).ready(function(){
                     console.log(lee.resultado);
                     
                     if(lee.resultado=='listadoproductos'){
-                        
+                        destruyeDT();
                         $('#listadoproductos').html(lee.mensaje);
+                        crearDT();
                     }
                     else if(lee.resultado=='registrar'){
-                       
+                
                         muestraMensaje('info', 4000,'REGISTRAR', lee.mensaje);
-                  
+                       
                         limpia();
                     }else if (lee.resultado == "encontro") {		
                         if (lee.mensaje == 'El numero de factura ya existe!') {
