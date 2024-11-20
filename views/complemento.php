@@ -62,9 +62,9 @@ if (!isset($_SESSION['name'])) {
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
+
         <?php require_once("public/components/footer.php"); ?>
-    </footer>
+   
     <!-- Footer -->
 
     <!-- Scripts -->
