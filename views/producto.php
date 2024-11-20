@@ -28,6 +28,7 @@ if (!isset($_SESSION['name'])) {
     <section class="d-flex flex-column align-items-center">
         <br><br><br><br>
         <h2 class="text-primary text-center">Gestionar Producto</h2>
+        <br>
         <div class="container">
             <div class="text-left">
                 <button class="btn btn-success" id="incluir">Registrar Producto</button>

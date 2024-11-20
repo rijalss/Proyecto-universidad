@@ -28,9 +28,9 @@ if (!isset($_SESSION['name'])) {
 	<!-- Header -->
 
 	<section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
-
+		<center>
 		<h2 class="text-primary text-md-center">Listar Existencias</h2>
-
+		</center>
 		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<br>
 			<div class="container  dropdown-menu">

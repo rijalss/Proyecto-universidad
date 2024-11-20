@@ -1,4 +1,4 @@
-<?php
+<center?php
 
 
 // Verificar si el usuario ha iniciado sesión
@@ -29,13 +29,16 @@ if (!isset($_SESSION['name'])) {
 	<!-- Header -->
 
 	<section class="d-flex flex-column align-items-md-center" style="margin-top: 110px;">
-
+		<center>
 		<h2 class="text-primary text-md-center">Gestionar Proveedor</h2>
+		</center>
+		<br>
 		<div class="container">
 			<div class="text-md-left">
 				<button class="btn btn-success" id="incluir">Registrar Proveedor</button>
 			</div>
 		</div>
+		<center>
 		<div class="container card shadow mb-4 "> <!-- todo el contenido ira dentro de esta etiqueta-->
 			<br>
 			<div class="container">
@@ -59,6 +62,7 @@ if (!isset($_SESSION['name'])) {
 			</div>
 		</div> <!-- fin de container -->
 	</section>
+</center>
 
 	<!-- Modal -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="modal1">
