@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['name'])) {
     header('Location: .');
@@ -19,12 +19,12 @@ if (!isset($_SESSION['name'])) {
 </head>
 
 <style>
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-    </style>
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
@@ -34,7 +34,7 @@ if (!isset($_SESSION['name'])) {
     <main class="flex-grow-1 container my-5">
         <section class="d-flex flex-column align-items-center mb-4">
             <br><br><br>
-            <h1 class="display-4 text-center text-uppercase font-weight-bold">Gestionar Complementos</h1>
+            <h1 class="display-4 text-center text-uppercase text-primary font-weight-bold">Gestionar Complementos</h1>
         </section>
 
         <!-- Container de cards -->
