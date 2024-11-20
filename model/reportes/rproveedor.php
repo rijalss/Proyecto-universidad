@@ -35,6 +35,7 @@ class rproveedor extends Conexion
             $fila = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
             $html = "<html><head>";
+            $html .= '<meta charset="UTF-8">';
             $html .= "<style>
            .header { text-align: center; margin-bottom: 40px; position: relative; } /* Se aumentó el margin-bottom */ 
            .header img { position: absolute; top: -20px; left: -20px; width: 100px; }
@@ -92,7 +93,7 @@ class rproveedor extends Conexion
             $html .= "</table>";
             $html .= "</div>";
             $html .= "</body></html>";
-
+            $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
          
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -113,7 +114,7 @@ class rproveedor extends Conexion
         $pdf->set_paper("A4", "portrait");
 
         // Cargamos el contenido HTML.
-        $pdf->load_html(utf8_decode($html));
+        $pdf->load_html($html);
 
         // Renderizamos el documento PDF.
         $pdf->render();
