@@ -3,7 +3,7 @@ function destruyeDT() {
     if ($.fn.DataTable.isDataTable("#listado")) {
         $("#listado").DataTable().destroy();
     }
-}
+} 
 
 function crearDT() {
     if (!$.fn.DataTable.isDataTable("#listado")) {
@@ -71,7 +71,7 @@ $(document).ready(function(){
    
     
     $("#numfactura").on("keyup",function(){
-        validarkeyup(/^[1-9]{4,10}$/,$(this),
+        validarkeyup(/^[0-9]{4,10}$/,$(this),
         $("#snumfactura"),"Este formato permite de 4 a 10 carácteres");
         if ($("#numfactura").val().length <= 9) {
 			var datos = new FormData();
@@ -80,6 +80,10 @@ $(document).ready(function(){
 			enviaAjax(datos);
 		}
     });
+
+      $("#numfactura").on("keypress", function (e) {
+    validarkeypress(/^[0-9-\b]*$/, e);
+  });
     
     //evento keyup de input codigoproducto
     $("#codigoproducto").on("keyup",function(){
@@ -139,7 +143,7 @@ $(document).ready(function(){
             muestraMensaje("error",4000,"ERROR!","Por favor, seleccione un proveedor! <br/> Recuerde que debe tener alguno registrado!"); 
             return false;
         }
-        else if(validarkeyup(/^[1-9]{4,10}$/,$("#numfactura"),
+        else if(validarkeyup(/^[0-9]{4,10}$/,$("#numfactura"),
             $("#snumfactura"),"Este formato permite de 4 a 10 carácteres")==0){
             muestraMensaje("error",4000,"ERROR!","La factura debe coincidir con el formato <br/>");
                            

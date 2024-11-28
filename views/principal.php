@@ -55,6 +55,13 @@
 
      <div class="container">
          <div class="row">
+             <style>
+                 .card-body {
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: space-between;
+                 }
+             </style>
              <?php
                 if ($_SESSION['rol'] == 'admin') {
                 ?>
@@ -159,10 +166,43 @@
                      </div>
                  </div>
              </div>
-         <?php
-            }
-            ?>
+
+             <?php
+                if ($_SESSION['rol'] == 'admin') {
+                ?>
+                 <div class="col-md-4 mb-3">
+                     <div class="card shadow w-100 h-100 p-3">
+                         <div class="card-body">
+                             <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-text.svg" alt="">Manual</h5>
+                             <p class="card-text">Manual de usuario.</p>
+                             <a class="btn btn-primary" href="Manual/Manual_admin.pdf" target="_blank">Manual</a>
+                         </div>
+                     </div>
+                 </div>
+             <?php
+                } else {
+
+                ?>
+                 <div class="col-md-4 mb-3">
+                     <div class="card shadow w-100 h-100 p-3">
+                         <div class="card-body">
+                             <h5 class="card-title"><img width="20PX" src="public/icons/svg/journal-text.svg" alt="">Manual</h5>
+                             <p class="card-text">Manual de usuario.</p>
+                             <a class="btn btn-primary" href="Manual/Manual_usuario.pdf" target="_blank">Manual</a>
+                         </div>
+                     </div>
+                 </div>
          </div>
+
+     <?php
+                }
+        ?>
+ <?php
+            }
+    ?>
+
+
+     </div>
      </div>
      <br><br>
      <!-- Footer -->

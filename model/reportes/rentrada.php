@@ -91,8 +91,8 @@ AND (DATE(notaentrada.fechaEntrada) BETWEEN :fechasinicio AND :fechafin OR :fech
 "
 
 );
-            $numFactura = $this->numFactura . '%'; 
-            $resultado->bindValue(':numFactura', $numFactura);
+           
+            $resultado->bindValue(':numFactura', '%' . $this->numFactura . '%');
             $resultado->bindValue(':clProveedor', '%' . $this->clProveedor . '%' );
             $resultado->bindValue(':clEmpleado', '%' . $this->clEmpleado . '%' );
             $resultado->bindValue(':fechasinicio', $this->Fechainicio);

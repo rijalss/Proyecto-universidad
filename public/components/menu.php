@@ -26,6 +26,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="?pagina=producto"><img width="20PX" src="public/icons/svg/bag.svg" alt=""> Gestionar Producto</a>
                             </li>
+
                         <?php
                         }
                         ?>
@@ -38,6 +39,7 @@
                         <li>
                             <a class="nav-link" href="?pagina=existencia"><img width="20PX" src="public/icons/svg/inboxes.svg" alt=""> Listar Existencias</a>
                         </li>
+
                         <?php
                         if ($_SESSION['rol'] == 'admin') {
                         ?>
@@ -56,6 +58,7 @@
                                     <li><a class="dropdown-item" href="?pagina=cargo"><img width="20px" src="public/icons/svg/employee.svg" alt=""> Gestionar Cargo</a></li>
                                 </ul>
                             </li>
+
                         <?php
                         }
                         ?>
@@ -72,6 +75,22 @@
                                 <li><a class="dropdown-item" href="?pagina=Rempleado"><img width="20PX" src="public/icons/svg/journal-plus.svg" alt=""> Reportes de Empleados</a></li>
                             </ul>
                         </li>
+
+                        <?php
+                        if ($_SESSION['rol'] == 'admin') {
+                        ?>
+                            <li>
+                                <a class="nav-link" href="Manual/Manual_admin.pdf" target="_blank"><img width="20PX" src="public/icons/svg/journal-text.svg" alt="">Manual</a>
+                            </li>
+                        <?php
+                        } else {
+                        ?>
+                            <li>
+                                <a class="nav-link" href="Manual/Manual_usuario.pdf" target="_blank"><img width="20PX" src="public/icons/svg/journal-text.svg" alt="">Manual</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     <?php
                     }
                     ?>
